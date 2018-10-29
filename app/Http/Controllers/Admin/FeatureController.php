@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Models\ProductCategory;
 use App\Models\Manufacturer;
 use Illuminate\Http\Request;
-use App\Http\Requests\ProductCategoryRequest;
+use App\Http\Requests\AssetFeatureRequest;
 use App\Helpers\General;
 
-class ProductCategoryController extends Controller
+class AssetFeatureController extends Controller
 {
     private $_data = array();
     private $_model;
@@ -20,9 +20,9 @@ class ProductCategoryController extends Controller
      */
     public function __construct()
     {
-        $this->_data['title'] = 'Nhóm sản phẩm';
-        $this->_data['controllerName'] = 'product-category';
-        $this->_model = new ProductCategory();
+        $this->_data['title'] = 'Thuộc tính sản phẩm';
+        $this->_data['controllerName'] = 'asset_feature';
+        $this->_model = new AssetFeature();
     }
 
     /**
@@ -66,6 +66,8 @@ class ProductCategoryController extends Controller
         $this->_data['parentOptions'] = $parentOptions;
         $this->_data['manufacturerOptions'] = $manufacturerOptions;
         $this->_data['orderOptions'] = $orderOptions;
+
+
         return view("admin.{$this->_data['controllerName']}.create", $this->_data);
     }
 

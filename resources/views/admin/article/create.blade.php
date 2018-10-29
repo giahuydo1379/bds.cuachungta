@@ -36,7 +36,7 @@ $action_title = isset($object['id'])?'Cập nhật':'Thêm mới';
                         <h3 class="box-title"><?=$action_title?> {{$title}}</h3>
                     </div>
                     <!-- form start -->
-                    <form id="frm-add" method="post" action="<?=isset($object['id']) ? route($controllerName.'.update', ['id' => $object['id']]) : route($controllerName.'.index')?>"" class="form-horizontal">
+                    <form id="frm-add" method="post" action="<?=isset($object['id']) ? route($controllerName.'.update', ['id' => $object['id']]) : route($controllerName.'.index')?>""  class="form-horizontal">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-sm-12">
@@ -48,36 +48,28 @@ $action_title = isset($object['id'])?'Cập nhật':'Thêm mới';
                                             {!! Form::text("name", @$object['name'], ['class' => 'form-control']) !!}
                                             <label id="name-error" class="error" for="name">{!! $errors->first("name") !!}</label>
                                         </div>
-                                        <label class="col-sm-2 control-label" for="form-field-1">
-                                            Mã sản phẩm <span class="required"></span>
-                                        </label>
-                                        <div class="col-sm-2">
-                                            {!! Form::text("product_code", @$object['product_code'], ['class' => 'form-control']) !!}
-                                            <label id="product_code-error" class="error" for="product_code">{!! $errors->first("product_code") !!}</label>
-                                        </div>
+
                                     </div>
                                 </div>
 
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label" for="form-field-1">
-                                            Nhóm sản phẩm <span class="required"></span>
+                                            Thể loại <span class="required"></span>
                                         </label>
                                         <div class="col-sm-8">
-                                            <select name="category_id" id="category_id" class="form-control select2" data-placeholder="Chọn nhóm sản phẩm">
+                                         {!! Form::select("article_category_id", $article_categories, @$object['article_category_id'], ['id' => 'article_category_id','class' => 'form-control select2','data-placeholder' => '--- Chọn thể loại ---']) !!}
+                                            <label id="article_category_id-error" class="error" for="article_category_id">{!! $errors->first("article_category_id") !!}</label>
+                                       {{--  <select name="article_category_id" id="article_category_id" class="form-control select2" data-placeholder="Chọn thể loại">
                                                 <option value=""></option>
-                                                @foreach($menu_items as $main_item)
-                                                        <optgroup label="{{ $main_item['name'] }}">
-                                                            @if($main_item['is_has_sub'])
-                                                                @foreach($main_item['sub_menu_items'] as $sub_item)
-                                                                    <option value="{{ $sub_item['id'] }}" {{ $sub_item['id'] == @$object['category_id']? 'selected' : '' }}>{{ $sub_item['name'] }}</option>
-                                                                @endforeach
-                                                            @endif
-                                                        </optgroup>
+                                                @foreach($article_categories as $article_category)
+
+                                                        <option value="{{ $article_category[] }}" {{ $article_category[] == @$object['article_category']? 'selected' : '' }}>{{ $article_category['name'] }}</option>
+
+
                                                 @endforeach
                                             </select>
-
-                                            <label id="category_id-error" class="error" for="category_id"></label>
+ --}}
                                         </div>
                                     </div>
 
@@ -86,7 +78,7 @@ $action_title = isset($object['id'])?'Cập nhật':'Thêm mới';
                                             Ưu tiên
                                         </label>
                                         <div class="col-sm-3">
-                                            {!! Form::select("order", $orderOptions, @$object['order'], ['id' => 'order','class' => 'form-control select2','data-placeholder' => '--- Chọn thứ tự ---']) !!}
+                                                  {!! Form::select("order", $orderOptions, @$object['order'], ['id' => 'order','class' => 'form-control select2','data-placeholder' => '--- Chọn thứ tự ---']) !!}
                                             <label id="order-error" class="error" for="order">{!! $errors->first("order") !!}</label>
                                         </div>
                                     </div>
@@ -184,9 +176,9 @@ $action_title = isset($object['id'])?'Cập nhật':'Thêm mới';
                                             Mô tả ngắn
                                         </label>
                                         <div class="col-sm-10">
-                                            {!! Form::textarea("short_description", @$object['short_description'],
-                                            ['id'=>'short_description', 'class' => 'form-control ckeditor', 'cols'=>"20", 'rows'=>"3"]) !!}
-                                            <label id="short_description-error" class="error" for="short_description">{!! $errors->first("short_description") !!}</label>
+                                            {!! Form::textarea("description", @$object['description'],
+                                            ['id'=>'description', 'class' => 'form-control ckeditor', 'cols'=>"20", 'rows'=>"3"]) !!}
+                                            <label id="description-error" class="error" for="description">{!! $errors->first("description") !!}</label>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -194,8 +186,8 @@ $action_title = isset($object['id'])?'Cập nhật':'Thêm mới';
                                             Nội dung bài viết
                                         </label>
                                         <div class="col-sm-10">
-                                            {!! Form::textarea("description", @$object['description'], ['id'=>'description', 'class' => 'form-control ckeditor']) !!}
-                                            <label id="description-error" class="error" for="description">{!! $errors->first("description") !!}</label>
+                                            {!! Form::textarea("content", @$object['content'], ['id'=>'content', 'class' => 'form-control ckeditor']) !!}
+                                            <label id="content-error" class="error" for="content">{!! $errors->first("content") !!}</label>
                                         </div>
                                     </div>
                                 </div>

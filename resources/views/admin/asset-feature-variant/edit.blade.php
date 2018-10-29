@@ -23,27 +23,56 @@
                         <h3 class="box-title">Thêm mới {{$title}}</h3>
                     </div>
                     <!-- form start -->
-                    <form id="frm-add" method="post" action="<?=route($controllerName.'.index')?>" class="form-horizontal">
+                    <form id="frm-add" method="post" action="<?=isset($object['id']) ? route($controllerName.'.update', ['id' => $object['id']]) : route($controllerName.'.index')?>"" class="form-horizontal">
                         <div class="box-body">
                             <div class="row">
-                                <div class="col-sm-7">
-                                    <div class="form-group">
+                                <div class="col-sm-10">
+                                          <div class="form-group">
                                         <label class="col-sm-3 control-label" for="form-field-1">
-                                            Tên nhóm hàng <span class="required"></span>
+                                           Tên  thuộc tính <span class="required"></span>
                                         </label>
-                                        <div class="col-sm-9">
-                                            {!! Form::text("name", null, ['class' => 'form-control']) !!}
-                                            <label id="name-error" class="error" for="name">{!! $errors->first("name") !!}</label>
+                                        <div class="col-sm-8">
+                                            {!! Form::select("feature_id", $assetFeature, $object['feature_id'], ['id' => 'feature_id','class' => 'form-control select2','data-placeholder' => '--- Chọn thuộc tính ---']) !!}
+                                            <label id="feature_id-error" class="error" for="feature_id">{!! $errors->first("feature_id") !!}</label>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label" for="form-field-1">
+                                           Tên giá trị thuộc tính
+                                        </label>
+                                         <div class="col-sm-9">
+                                            {!! Form::text("name", $object['name'], ['class' => 'form-control']) !!}
+                                            <label id="name-error" class="error" for="name">{!! $errors->first("name") !!}</label>
+                                        </div>
+                                    </div>
+
+                                          <div class="form-group">
+                                        <label class="col-sm-3 control-label" for="form-field-1">
                                             Mô tả
                                         </label>
                                         <div class="col-sm-9">
-                                            {!! Form::textarea("description", null, ['class' => 'form-control']) !!}
+                                            {!! Form::textarea("description", $object['description'], ['class' => 'form-control']) !!}
                                             <label id="description-error" class="error" for="description">{!! $errors->first("description") !!}</label>
+                                        </div>
+                                    </div>
+
+                                      <div class="form-group" >
+                                        <label class="col-sm-3 control-label "  for="form-field-1">
+                                     Giá trị từ
+                                        </label>
+                                         <div class="col-sm-9">
+                                            {!! Form::text("from", $object['from'], ['class' => 'form-control', 'disabled' => 'disabled'])  !!}
+                                            <label id="from-error" class="error" for="from">{!! $errors->first("from") !!}</label>
+                                        </div>
+                                    </div>
+                                      <div class="form-group" >
+                                        <label class="col-sm-3 control-label "  for="form-field-1">
+                                           Giá trị đến
+                                        </label>
+                                         <div class="col-sm-9">
+                                            {!! Form::text("to", $object['to'],  ['class' => 'form-control', 'disabled' => 'disabled' ]) !!}
+                                            <label id="to-error" class="error" for="to">{!! $errors->first("to") !!}</label>
                                         </div>
                                     </div>
 
@@ -53,35 +82,23 @@
                                         </label>
                                         <div class="col-sm-4">
                                             <label class="radio-inline">
-                                                <input type="radio" name="is_deleted" id="is_deleted1" value="0" checked> Kích hoạt
+                                                <input type="radio" name="status" id="status1" value="0" checked> Kích hoạt
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="is_deleted" id="is_deleted2" value="1"> Không kích hoạt
+                                                <input type="radio" name="status" id="status2" value="1"> Không kích hoạt
                                             </label>
                                         </div>
                                         <label class="col-sm-3 control-label" for="form-field-1">
                                             Ưu tiên <span class="required"></span>
                                         </label>
                                         <div class="col-sm-2">
-                                            {!! Form::select("position", $orderOptions, null, ['id' => 'position','class' => 'form-control select2','data-placeholder' => '--- Chọn thứ tự ---']) !!}
+                                            {!! Form::select("position", $orderOptions, $object['position'], ['id' => 'position','class' => 'form-control select2','data-placeholder' => '--- Chọn thứ tự ---']) !!}
                                             <label id="position-error" class="error" for="order">{!! $errors->first("position") !!}</label>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-5">
-                                    {{--<div class="form-group">--}}
-                                        {{--<label class="col-sm-3 control-label" for="form-field-1">--}}
-                                            {{--Nhóm hàng cha--}}
-                                        {{--</label>--}}
-                                        {{--<div class="col-sm-8">--}}
-                                            {{--{!! Form::select("parent_id", $parentOptions, null, ['id' => 'parent_id','class' => 'form-control select2','data-placeholder' => '--- Chọn nhóm hàng cha ---']) !!}--}}
-                                            {{--<label id="parent_id-error" class="error" for="parent_id">{!! $errors->first("parent_id") !!}</label>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                    <div class="form-group">
-
-                                    </div>
 
                                 </div>
                             </div>
@@ -135,15 +152,14 @@
                 submitHandler: function(form) {
                     ajax_loading(true);
                     $.ajax({
-                        method: "POST",
+                        method: "PUT",
                         url: $(form).attr('action'),
                         dataType: 'json',
                         data: $(form).serializeArray()
                     })
                         .done(function (res) {
-                            console.log(res);
                             ajax_loading(false);
-                            malert(res.msg, null, function () {
+                            malert(res.msg, null , function () {
                                 if (res.rs) {
                                     location.href='<?=route($controllerName.'.index')?>';
                                 }
@@ -160,6 +176,7 @@
             });
 
             init_select2('.select2');
+
         });
     </script>
 @endsection

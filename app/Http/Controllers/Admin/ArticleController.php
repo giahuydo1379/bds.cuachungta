@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Article;
+use App\Models\ArticleCategory;
 use App\Models\ProductCategory;
 use App\Models\ArticleImage;
 use Illuminate\Http\Request;
@@ -36,8 +37,9 @@ class ArticleController extends Controller
     public function index()
     {
         $this->_data['status'] = ['' => ''] + $this->_model->getStatusFilter();
-        $this->_data['categories'] = ['' => ''] + $this->_model->getCategoryFilter();
-        $this->_data['manufacturers'] = ['' => ''] + $this->_model->getManufacturerFilter();
+
+        $this->_data['article_categories'] = ['' => ''] + $this->_model->getArticleCategory();
+
 
         return view("admin.{$this->_data['controllerName']}.index", $this->_data);
     }
@@ -47,16 +49,15 @@ class ArticleController extends Controller
         $filter = [
             'offset' => $request->input('offset', 0),
             'limit' => $request->input('limit', 10),
-            'sort' => $request->input('sort', 'product_categories.id'),
+            'sort' => $request->input('sort', 'articles.id'),
             'order' => $request->input('order', 'asc'),
             'search' => $request->input('search', ''),
             'status' => $request->input('status', 1),
             'category_id' => $request->input('category_id', ''),
-            'manufacturer_id' => $request->input('manufacturer_id', ''),
+
         ];
 
         $data = $this->_model->getListAll($filter);
-
         return response()->json([
             'total' => $data['total'],
             'rows' => $data['data'],
@@ -70,8 +71,13 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        $this->_data['menu_items'] = General::getMenuItems();
+
         $this->_data['orderOptions'] = General::getOrderOptions();
+
+        $article_categories = array('' => '') + ArticleCategory::getCategoryArticles();
+         $this->_data['article_categories'] = $article_categories;
+
+
         return view("admin.{$this->_data['controllerName']}.create", $this->_data);
     }
 
@@ -85,9 +91,6 @@ class ArticleController extends Controller
     {
         $data = $request->all();
         unset($data['_token']);
-        $categoryModel = new ProductCategory();
-        $category = $categoryModel->find($data['category_id'])->toArray();
-        $data['manufacturer_id'] = $category['manufacturer_id'];
 
         if (empty($data['image_url'])) {
             $data['image_url'] = config('app.url');
@@ -144,10 +147,11 @@ class ArticleController extends Controller
         $object = $this->_model->find($id)->toArray();
         $this->_data['id'] = $id;
         $this->_data['object'] = $object;
-        $this->_data['menu_items'] = General::getMenuItems();
         $this->_data['orderOptions'] = General::getOrderOptions();
+         $article_categories = array('' => '') + ArticleCategory::getCategoryArticles();
+         $this->_data['article_categories'] = $article_categories;
         $this->_data['product_images'] = ArticleImage::select(\DB::Raw('CONCAT(image_url, image) as image'), 'id')->where('article_id', $id)->pluck('image', 'id');
-        return view("admin.{$this->_data['controllerName']}.create", $this->_data);
+         return view("admin.{$this->_data['controllerName']}.create", $this->_data);
     }
 
     /**
@@ -182,9 +186,6 @@ class ArticleController extends Controller
 
         unset($data['_token']);
 
-        $categoryModel = new ProductCategory();
-        $category = $categoryModel->find($data['category_id'])->toArray();
-        $data['manufacturer_id'] = $category['manufacturer_id'];
 
         $rs = $object->update($data);
 

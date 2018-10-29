@@ -26,10 +26,10 @@
                     <form id="frm-add" method="post" action="<?=route($controllerName.'.index')?>" class="form-horizontal">
                         <div class="box-body">
                             <div class="row">
-                                <div class="col-sm-7">
+                                <div class="col-sm-6">
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label" for="form-field-1">
-                                            Tên nhóm hàng <span class="required"></span>
+                                            Tên thuộc tính <span class="required"></span>
                                         </label>
                                         <div class="col-sm-9">
                                             {!! Form::text("name", null, ['class' => 'form-control']) !!}
@@ -47,42 +47,42 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label" for="form-field-1">
-                                            Trạng thái
-                                        </label>
-                                        <div class="col-sm-4">
-                                            <label class="radio-inline">
-                                                <input type="radio" name="is_deleted" id="is_deleted1" value="0" checked> Kích hoạt
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="is_deleted" id="is_deleted2" value="1"> Không kích hoạt
-                                            </label>
-                                        </div>
-                                        <label class="col-sm-3 control-label" for="form-field-1">
-                                            Ưu tiên <span class="required"></span>
-                                        </label>
-                                        <div class="col-sm-2">
-                                            {!! Form::select("position", $orderOptions, null, ['id' => 'position','class' => 'form-control select2','data-placeholder' => '--- Chọn thứ tự ---']) !!}
-                                            <label id="position-error" class="error" for="order">{!! $errors->first("position") !!}</label>
-                                        </div>
-                                    </div>
+
                                 </div>
 
-                                <div class="col-sm-5">
-                                    {{--<div class="form-group">--}}
-                                        {{--<label class="col-sm-3 control-label" for="form-field-1">--}}
-                                            {{--Nhóm hàng cha--}}
-                                        {{--</label>--}}
-                                        {{--<div class="col-sm-8">--}}
-                                            {{--{!! Form::select("parent_id", $parentOptions, null, ['id' => 'parent_id','class' => 'form-control select2','data-placeholder' => '--- Chọn nhóm hàng cha ---']) !!}--}}
-                                            {{--<label id="parent_id-error" class="error" for="parent_id">{!! $errors->first("parent_id") !!}</label>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                    <div class="form-group">
-
+                                <div class="col-sm-6">
+                                                          <div class="form-group">
+                                        <label class="col-sm-4 control-label" for="form-field-1">
+                                            Trạng thái
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="status" id="status1" value="1" <?=!isset($object['status']) || @$object['status']=='1'?'checked':''?>> Kích hoạt
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="status" id="status2" value="0" <?=@$object['status']=='0'?'checked':''?>> Không kích hoạt
+                                            </label>
+                                        </div>
+                                    </div>
+                                          <div class="form-group">
+                                        <label class="col-sm-4 control-label" for="form-field-1">
+                                            Ưu tiên
+                                        </label>
+                                        <div class="col-sm-3">
+                                                  {!! Form::select("position", $orderOptions, @$object['position'], ['id' => 'position','class' => 'form-control select2','data-placeholder' => '--- Chọn thứ tự ---']) !!}
+                                            <label id="position-error" class="error" for="position">{!! $errors->first("position") !!}</label>
+                                        </div>
                                     </div>
 
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label" for="form-field-1">
+                                          Khoảng giá
+                                        </label>
+                                        <div class="col-sm-3">
+                                                  {!! Form::select("is_range", $isRange, @$object['is_range'], ['id' => 'is_range','class' => 'form-control select2','data-placeholder' => '--- Chọn thứ tự ---']) !!}
+                                            <label id="is_range-error" class="error" for="is_range">{!! $errors->first("is_range") !!}</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -1,4 +1,5 @@
-<?php namespace App\Models;
+<?php
+ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,8 +14,8 @@ class Article extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['name', 'product_code', 'description', 'short_description', 'category_id', 'manufacturer_id', 'order',
-        'image', 'image_url', 'price', 'amount', 'is_home', 'created_at', 'updated_at', 'is_deleted', 'status'];
+    protected $fillable = ['name', 'description', 'content', 'article_category_id', 'manufacturer_id', 'position',
+        'image', 'image_url', 'created_at', 'updated_at', 'is_deleted', 'status'];
 
 //    protected $hidden = ['deleted_at', 'is_deleted'];
 
@@ -30,35 +31,37 @@ class Article extends Model
 
     public static function getListAll($filter){
 
-        $sql = self::select('articles.*', 'manufacturers.name as manufacturer_name', 'product_categories.name as category_name')
-                        ->leftJoin('manufacturers', 'manufacturers.id', '=', 'articles.manufacturer_id')
-                        ->leftJoin('product_categories', 'product_categories.id', '=', 'articles.category_id');
+        $sql = self::select('articles.*', 'article_categories.name as category_name')
+                        ->leftJoin('article_categories', 'article_categories.id', '=', 'articles.article_category_id');
+
 
         $sql->where('articles.is_deleted', 0);
 
         if (!empty($keyword = $filter['search'])) {
             $sql->where(function ($query) use ($keyword) {
-                $query->where('articles.name', 'LIKE', '%' . $keyword . '%')
-                      ->orWhere('manufacturers.name', 'LIKE', '%' . $keyword . '%')
-                      ->orWhere('product_categories.name', 'LIKE', '%' . $keyword . '%');
+                $query->where('articles.name', 'LIKE', '%' . $keyword . '%');
+
+
             });
         }
 
         if(!empty($filter['category_id'])){
-            $sql->where(['articles.category_id' => $filter['category_id']]);
-        }
-
-        if(!empty($filter['manufacturer_id'])){
-            $sql->where(['articles.manufacturer_id' => $filter['manufacturer_id']]);
+            $sql->where(['articles.article_category_id' => $filter['category_id']]);
         }
 
         if (isset($filter['status'])) {
             $sql->where('articles.status', $filter['status']);
         }
 
-        $sql->orderBy($filter['sort']??'articles.order', $filter['order']??'asc');
+         $total = $sql->count();
 
-        return $sql->paginate($filter['limit']??12)->toArray();
+        $data = $sql->skip($filter['offset'])
+            ->take($filter['limit'])
+            ->orderBy($filter['sort'], $filter['order'])
+            ->get()
+            ->toArray();
+
+        return ['total' => $total, 'data' => $data];
     }
 
     public static function getParentOptions(){
@@ -198,8 +201,8 @@ class Article extends Model
         return  array();
     }
 
-    public static function getManufacturerFilter() {
-        $data = Manufacturer::select('id','name')->pluck('name','id');
+    public static function getArticleCategory() {
+        $data = ArticleCategory::select('id','name')->pluck('name','id');
 
         if(!empty($data))
         {

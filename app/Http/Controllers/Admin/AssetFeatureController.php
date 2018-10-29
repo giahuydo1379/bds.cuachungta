@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Manufacturer;
+use App\Models\ProductCategory;
+use App\Models\AssetFeature;
 use Illuminate\Http\Request;
-use App\Http\Requests\ManufacturerRequest;
+use App\Http\Requests\AssetFeatureRequest;
 use App\Helpers\General;
 
-class ManufacturerController extends Controller
+class AssetFeatureController extends Controller
 {
     private $_data = array();
     private $_model;
@@ -19,9 +20,9 @@ class ManufacturerController extends Controller
      */
     public function __construct()
     {
-        $this->_data['title'] = 'Hãng sản xuất';
-        $this->_data['controllerName'] = 'manufacturer';
-        $this->_model = new Manufacturer();
+        $this->_data['title'] = 'Thuộc tính sản phẩm';
+        $this->_data['controllerName'] = 'asset-feature';
+        $this->_model = new AssetFeature();
     }
 
     /**
@@ -31,6 +32,8 @@ class ManufacturerController extends Controller
      */
     public function index()
     {
+        $isRange = General::isRange();
+        $this->_data['isRange'] = $isRange;
         return view("admin.{$this->_data['controllerName']}.index", $this->_data);
     }
 
@@ -39,7 +42,7 @@ class ManufacturerController extends Controller
         $filter = [
             'offset' => $request->input('offset', 0),
             'limit' => $request->input('limit', 10),
-            'sort' => $request->input('sort', 'id'),
+            'sort' => $request->input('sort', 'asset_features.id'),
             'order' => $request->input('order', 'asc'),
             'search' => $request->input('search', ''),
         ];
@@ -59,6 +62,13 @@ class ManufacturerController extends Controller
      */
     public function create()
     {
+
+        $orderOptions = General::getOrderOptions();
+        $this->_data['orderOptions'] = $orderOptions;
+
+        $isRange = General::isRange();
+        $this->_data['isRange'] = $isRange;
+
         return view("admin.{$this->_data['controllerName']}.create", $this->_data);
     }
 
@@ -68,14 +78,13 @@ class ManufacturerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ManufacturerRequest $request)
+    public function store(AssetFeatureRequest $request)
     {
         $data = $request->all();
 
         unset($data['_token']);
 
         $object = $this->_model->create($data);
-
         if ($object)
         {
             if ($request->ajax() || $request->wantsJson()) {
@@ -84,7 +93,6 @@ class ManufacturerController extends Controller
                     'msg' => 'Thêm mới '.$this->_data['title'].' thành công'
                 ]);
             }
-
             return redirect()->route("{$this->_data['controllerName']}.index");
         }
 
@@ -111,6 +119,13 @@ class ManufacturerController extends Controller
 
         $this->_data['id'] = $id;
         $this->_data['object'] = $object;
+
+       $orderOptions = General::getOrderOptions();
+        $this->_data['orderOptions'] = $orderOptions;
+
+        $isRange = General::isRange();
+        $this->_data['isRange'] = $isRange;
+
 
         return view("admin.{$this->_data['controllerName']}.edit", $this->_data);
     }
@@ -139,6 +154,7 @@ class ManufacturerController extends Controller
         }
 
         $data = $request->all();
+
 
         unset($data['_token']);
 
@@ -182,27 +198,16 @@ class ManufacturerController extends Controller
         ]);
     }
 
-    public function ajaxGetDistrictByProvince($province_id)
+    public function ajaxGetCategoryByManufacturer($manufacturer_id)
     {
         $res = [];
 
-        if (!empty($province_id))
+        if (!empty($manufacturer_id))
         {
-            $res = General::getDistrictOptionsByProvince($province_id);
+            $res = ProductCategory::ajaxGetCategoryBymanufacturer($manufacturer_id);
         }
 
         return response()->json($res);
     }
 
-    public function ajaxGetWardByDistrict($district_id)
-    {
-        $res = [];
-
-        if (!empty($district_id))
-        {
-            $res = General::getWardOptionsByDistrict($district_id);
-        }
-
-        return response()->json($res);
-    }
 }

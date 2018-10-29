@@ -26,18 +26,28 @@
                     <form id="frm-add" method="post" action="<?=route($controllerName.'.index')?>" class="form-horizontal">
                         <div class="box-body">
                             <div class="row">
-                                <div class="col-sm-7">
+                                <div class="col-sm-10">
+                                          <div class="form-group">
+                                        <label class="col-sm-3 control-label" for="form-field-1">
+                                           Tên  thuộc tính <span class="required"></span>
+                                        </label>
+                                        <div class="col-sm-8">
+                                            {!! Form::select("feature_id", $assetFeature, null, ['id' => 'feature_id','class' => 'form-control select2','data-placeholder' => '--- Chọn thuộc tính ---']) !!}
+                                            <label id="feature_id-error" class="error" for="feature_id">{!! $errors->first("feature_id") !!}</label>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label" for="form-field-1">
-                                            Tên nhóm hàng <span class="required"></span>
+                                           Tên giá trị thuộc tính
                                         </label>
-                                        <div class="col-sm-9">
+                                         <div class="col-sm-9">
                                             {!! Form::text("name", null, ['class' => 'form-control']) !!}
                                             <label id="name-error" class="error" for="name">{!! $errors->first("name") !!}</label>
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
+                                          <div class="form-group">
                                         <label class="col-sm-3 control-label" for="form-field-1">
                                             Mô tả
                                         </label>
@@ -47,16 +57,35 @@
                                         </div>
                                     </div>
 
+                                      <div class="form-group" >
+                                        <label class="col-sm-3 control-label "  for="form-field-1">
+                                     Giá trị từ
+                                        </label>
+                                         <div class="col-sm-9">
+                                            {!! Form::text("from", null, ['id' => 'from', 'class' => 'form-control', 'disabled' => 'disabled'])  !!}
+                                            <label id="from-error" class="error" for="from">{!! $errors->first("from") !!}</label>
+                                        </div>
+                                    </div>
+                                      <div class="form-group" >
+                                        <label class="col-sm-3 control-label "  for="form-field-1">
+                                           Giá trị đến
+                                        </label>
+                                         <div class="col-sm-9">
+                                            {!! Form::text("to", null,  ['id' => 'to','class' => 'form-control', 'disabled' => 'disabled' ]) !!}
+                                            <label id="to-error" class="error" for="to">{!! $errors->first("to") !!}</label>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label" for="form-field-1">
                                             Trạng thái
                                         </label>
                                         <div class="col-sm-4">
                                             <label class="radio-inline">
-                                                <input type="radio" name="is_deleted" id="is_deleted1" value="0" checked> Kích hoạt
+                                                <input type="radio" name="status" id="status1" value="0" checked> Kích hoạt
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="is_deleted" id="is_deleted2" value="1"> Không kích hoạt
+                                                <input type="radio" name="status" id="status2" value="1"> Không kích hoạt
                                             </label>
                                         </div>
                                         <label class="col-sm-3 control-label" for="form-field-1">
@@ -70,18 +99,6 @@
                                 </div>
 
                                 <div class="col-sm-5">
-                                    {{--<div class="form-group">--}}
-                                        {{--<label class="col-sm-3 control-label" for="form-field-1">--}}
-                                            {{--Nhóm hàng cha--}}
-                                        {{--</label>--}}
-                                        {{--<div class="col-sm-8">--}}
-                                            {{--{!! Form::select("parent_id", $parentOptions, null, ['id' => 'parent_id','class' => 'form-control select2','data-placeholder' => '--- Chọn nhóm hàng cha ---']) !!}--}}
-                                            {{--<label id="parent_id-error" class="error" for="parent_id">{!! $errors->first("parent_id") !!}</label>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                    <div class="form-group">
-
-                                    </div>
 
                                 </div>
                             </div>
@@ -122,6 +139,22 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
+
+        $('#feature_id').change(function() {
+             var feature_id = $('#feature_id').val();
+        $from = $('#from');
+         $to = $('#to');
+
+            if(feature_id == 2 ){
+             $from.prop('disabled',false);
+                   $to.prop('disabled',false);
+            }
+            else{
+                 $from.prop('disabled',true);
+                   $to.prop('disabled',true);
+            }
+        });
+
             $('#frm-add').validate({
                 ignore: ".ignore",
                 rules: {

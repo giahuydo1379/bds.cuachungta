@@ -2,18 +2,18 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Manufacturer extends Model
+class ArticleCategory extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'manufacturers';
+    protected $table = 'article_categories';
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['name', 'created_at', 'updated_at', 'is_deleted'];
+    protected $fillable = ['name', 'created_at', 'updated_at', 'is_deleted', 'description', 'position', 'status', 'created_by'];
 
 //    protected $hidden = ['deleted_at', 'is_deleted'];
 
@@ -54,6 +54,17 @@ class Manufacturer extends Model
     public static function getManufacturerById($id){
 
         $data = Manufacturer::select('*')->where('id', $id)->first();
+
+        if(!empty($data))
+        {
+            return $data->toArray();
+        }
+
+        return  array();
+    }
+
+    public static   function getCategoryArticles(){
+        $data = ArticleCategory::select('id','name')->pluck('name','id');
 
         if(!empty($data))
         {

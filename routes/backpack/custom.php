@@ -28,6 +28,13 @@ Route::group([
     Route::get('product-category/ajax-get-category-by-manufacturer/{manufacturer_id}', 'ProductCategoryController@ajaxGetCategoryByManufacturer')->name('product-category.ajax_get_category_by_manufacturer');
     Route::resource('product-category', 'ProductCategoryController');
 
+
+    Route::get('asset-feature/search', 'AssetFeatureController@search')->name('asset-feature.search');
+    Route::resource('asset-feature', 'AssetFeatureController');
+
+    Route::get('asset-feature-variantsearch', 'AssetFeatureVariantController@search')->name('asset-feature-variant.search');
+    Route::resource('asset-feature-variant', 'AssetFeatureVariantController');
+
     Route::get('product/import', 'ProductController@import')->name('product.import');
     Route::post('product/import', 'ProductController@store_import');
     Route::get('product/search', 'ProductController@search')->name('product.search');
@@ -40,6 +47,9 @@ Route::group([
     Route::post('warehouse/import', 'WarehouseController@store_import');
     Route::get('warehouse/search', 'WarehouseController@search')->name('warehouse.search');
     Route::resource('warehouse', 'WarehouseController');
+
+    Route::get('article/search', 'ArticleController@search')->name('article.search');
+    // Route::get('article/ajax-data', 'ArticleController@getAjaxData')->name('article.ajaxData');
 
     Route::get('article/search', 'ArticleController@search')->name('article.search');
     Route::post('article/ajax-active', 'ArticleController@ajaxActive')->name('article.ajax_active');

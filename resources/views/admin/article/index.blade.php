@@ -48,17 +48,12 @@
                                     'class' => 'custom_filter',
                                     'data-placeholder' => '--- Trạng thái ---']) !!}
                             </div>
+
                             <div class="col-sm-3">
-                                {!! Form::select('manufacturer_id_filter', $manufacturers, null, [
-                                    'id' => 'manufacturer_id_filter',
-                                    'class' => 'custom_filter',
-                                    'data-placeholder' => '--- Hãng sản xuất ---']) !!}
-                            </div>
-                            <div class="col-sm-3">
-                                {!! Form::select('category_id_filter', $categories, null, [
+                                {!! Form::select('category_id_filter', $article_categories, null, [
                                     'id' => 'category_id_filter',
                                     'class' => 'custom_filter',
-                                    'data-placeholder' => '--- Nhóm sản phẩm ---']) !!}
+                                    'data-placeholder' => '--- Thể loại ---']) !!}
                             </div>
                             <div class="col-sm-1">
                                 <button id="reset-page" class="btn btn-default" type="button" name="refresh" title="Reset">Làm lại</button>
@@ -92,10 +87,8 @@
                             <tr>
                                 <th data-field="check_id" data-checkbox="true">ID</th>
                                 <th data-field="name" data-sortable="true">Tiều đề bài viết</th>
-                                <th data-field="product_code" data-sortable="true">Mã sản phẩm</th>
-                                <th data-field="category_name" data-sortable="true">Danh mục</th>
-                                <th data-field="manufacturer_name" data-sortable="true">Hãng sản xuất</th>
-                                <th data-field="order" data-sortable="true">Ưu tiên</th>
+                                <th data-field="category_name" data-sortable="true">Thể loại</th>
+                                <th data-field="position" data-sortable="true">Ưu tiên</th>
                                 <th data-field="created_at" data-sortable="true">Ngày tạo</th>
                                 <th data-field="status" data-sortable="true" data-formatter="formatStatus">Trạng thái</th>
                                 <th data-field="id" data-align="center" data-formatter="actionColumn">Chức năng</th>

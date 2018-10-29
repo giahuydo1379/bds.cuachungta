@@ -6,11 +6,14 @@ use App\Models\Partner;
 use App\Models\ProductCategory;
 use App\Models\Manufacturer;
 use App\Models\Support;
+use App\Models\ArticleCategory;
+
 use Illuminate\Support\Facades\Cache;
 
 class General
 {
-    public static function get_link_menu($item, $locale='') {
+    public static function get_link_menu($item, $locale='')
+    {
         if ($item['type']=='page_link') {
             $tmp = $locale.'/'.$item['page_slug'];
         } elseif ($item['type']=='internal_link') {
@@ -22,7 +25,8 @@ class General
         return url($tmp ? $tmp : '/');
     }
 
-    public static function get_limit_options() {
+    public static function get_limit_options()
+    {
         return [
             '10' => '10 dòng/Trang',
             '20' => '20 dòng/Trang',
@@ -32,14 +36,15 @@ class General
         ];
     }
 
-    public static function get_menu_items($re_cache=false) {
+    public static function get_menu_items($re_cache=false)
+    {
         $key = 'MenuItems:All';
 
-        $objects = Cache::get( $key );
+        $objects = Cache::get($key);
 
         if ($re_cache || !$objects) {
             $objects = \App\Models\MenuItem::select('menu_items.*', 'p.slug as page_slug')
-                ->leftjoin('pages as p','p.id', '=', 'menu_items.page_id')
+                ->leftjoin('pages as p', 'p.id', '=', 'menu_items.page_id')
                 ->orderBy('lft', 'asc')->get()->toArray();
 
             Cache::forever($key, $objects);
@@ -48,10 +53,11 @@ class General
         return $objects;
     }
 
-    public static function get_settings($name=null, $re_cache=false) {
+    public static function get_settings($name=null, $re_cache=false)
+    {
         $key = 'Settings:All';
 
-        $objects = Cache::get( $key );
+        $objects = Cache::get($key);
 
         if ($re_cache || !$objects) {
             $objects = \App\Models\Setting::getAllSettings();
@@ -66,20 +72,25 @@ class General
         return $objects;
     }
 
-    public static function getCurrencies(){
+    public static function getCurrencies()
+    {
         return  array(
             'VNĐ' => 'VNĐ',
             'USD' => 'USD',
         );
     }
 
-    public static function format_show_date($date, $format='d-m-Y') {
-        if (!$date || $date=='0000-00-00') return '';
+    public static function format_show_date($date, $format='d-m-Y')
+    {
+        if (!$date || $date=='0000-00-00') {
+            return '';
+        }
 
         return date($format, strtotime($date));
     }
 
-    static function get_controller_action() {
+    public static function get_controller_action()
+    {
         $action = app('request')->route()->getAction();
 
         $route = isset($action['as']) ? $action['as'] : '';
@@ -89,7 +100,7 @@ class General
         list($controller, $action) = explode('@', $controller);
 
         if (!$route) {
-            $route = strtolower( str_replace('Controller', '', $controller) ) .'.'. $action;
+            $route = strtolower(str_replace('Controller', '', $controller)) .'.'. $action;
         }
 
         return array(
@@ -99,7 +110,8 @@ class General
         );
     }
 
-    static function get_data_fillable($model, $data) {
+    public static function get_data_fillable($model, $data)
+    {
         $fillable = $model->getFillable();
 
         $rs = [];
@@ -115,19 +127,21 @@ class General
 
     public static function saveDocumentFile($filename, $path)
     {
-        if (empty($filename)) return '';
+        if (empty($filename)) {
+            return '';
+        }
 
         $root = rtrim(public_path(), '/') . '/';
 
         // file goc
-        $path_file = realpath( $root ."uploads/tmp/". $filename );
+        $path_file = realpath($root ."uploads/tmp/". $filename);
 
-        if( file_exists ($path_file) ) {
+        if (file_exists($path_file)) {
 
             // tao thu muc
-            if (! is_dir ( $root . $path )) {
-                mkdir ( $root . $path, 0777, true );
-                if( chmod($root . $path, 0777) ) {
+            if (! is_dir($root . $path)) {
+                mkdir($root . $path, 0777, true);
+                if (chmod($root . $path, 0777)) {
                     // more code
                     chmod($root . $path, 0755);
                 }
@@ -135,9 +149,9 @@ class General
 
             // file dich
             $info = pathinfo($path_file);
-            $filename = $path .time().'-'. str_slug(basename($path_file,'.'.$info['extension']), '-' ).'.'.$info['extension'];
+            $filename = $path .time().'-'. str_slug(basename($path_file, '.'.$info['extension']), '-').'.'.$info['extension'];
 
-            rename($path_file, $root . $filename );
+            rename($path_file, $root . $filename);
 
             // xoa hinh tmp
             @unlink($path_file);
@@ -149,10 +163,11 @@ class General
         return '';
     }
 
-    public static function get_version_js_data($re_cache=false) {
+    public static function get_version_js_data($re_cache=false)
+    {
         $key = 'get_version_js_data';
 
-        $value = Cache::get( $key );
+        $value = Cache::get($key);
 
         if ($re_cache || !$value) {
             $value = time();
@@ -163,10 +178,11 @@ class General
         return $value;
     }
 
-    public static function get_version_js($re_cache=true) {
+    public static function get_version_js($re_cache=true)
+    {
         $key = 'get_version_js';
 
-        $value = Cache::get( $key );
+        $value = Cache::get($key);
 
         if ($re_cache || !$value) {
             $value = time();
@@ -176,10 +192,11 @@ class General
 
         return $value;
     }
-    public static function get_version_css($re_cache=true) {
+    public static function get_version_css($re_cache=true)
+    {
         $key = 'get_version_css';
 
-        $value = Cache::get( $key );
+        $value = Cache::get($key);
 
         if ($re_cache || !$value) {
             $value = time();
@@ -194,7 +211,7 @@ class General
     {
         $key = 'Partner:All';
 
-        $objects = Cache::get( $key );
+        $objects = Cache::get($key);
 
         if ($re_cache || !$objects) {
             $objects = Partner::where('is_deleted', 0)
@@ -212,7 +229,7 @@ class General
     {
         $key = 'Support:All';
 
-        $objects = Cache::get( $key );
+        $objects = Cache::get($key);
 
         if ($re_cache || !$objects) {
             $objects = Support::where('is_deleted', 0)
@@ -225,13 +242,13 @@ class General
         return $objects;
     }
 
-    public static function getOrderOptions(){
-       $orderArr = [];
-       for($i = 1; $i<=20; $i++)
-       {
-           $orderArr[$i] = $i;
-       }
-       return  $orderArr;
+    public static function getOrderOptions()
+    {
+        $orderArr = [];
+        for ($i = 1; $i<=20; $i++) {
+            $orderArr[$i] = $i;
+        }
+        return  $orderArr;
     }
 
     public static function getManufacturer()
@@ -243,7 +260,7 @@ class General
 
     public static function getProductCategories()
     {
-        $objects = ProductCategory::where('is_deleted', 0)
+        $objects = ArticleCategory::where('is_deleted', 0)
             ->orderBy('order', 'asc')->get()->toArray();
 
         $rs = [];
@@ -254,26 +271,36 @@ class General
 
         return $rs;
     }
+
+        public static function getCategoryArticles()
+    {
+         $data = ArticleCategory::select('id','name')->pluck('name','id');
+
+        if(!empty($data))
+        {
+            return $data->toArray();
+        }
+
+        return  array();
+    }
     public static function getMenuItems()
     {
-        $objects = Manufacturer::where('is_deleted',0)->get();
+        $objects = Manufacturer::where('is_deleted', 0)->get();
         $data = array();
-        foreach ($objects as $object)
-        {
+        foreach ($objects as $object) {
             $object = $object->toArray();
+
 
             $sub_items = self::checkCategory($object['id']);
 
-            if($sub_items['rs'] == true)
-            {
+            if ($sub_items['rs'] == true) {
                 $object['is_has_sub'] = 1;
-            }
-            else
-            {
+            } else {
                 $object['is_has_sub'] = 0;
             }
 
             $object['sub_menu_items'] = $sub_items['data'];
+
 
             $data[] = $object;
         }
@@ -297,18 +324,14 @@ class General
 
     public static function checkCategory($manufacturer_id)
     {
-        $objects = ProductCategory::where('is_deleted',0)->where('manufacturer_id', $manufacturer_id)->get();
+        $objects = ProductCategory::where('is_deleted', 0)->where('manufacturer_id', $manufacturer_id)->get();
         $data = [];
-        if(count($objects))
-        {
+        if (count($objects)) {
             $data['rs'] = true;
-            foreach ($objects as $item)
-            {
+            foreach ($objects as $item) {
                 $data['data'][] = $item->toArray();
             }
-        }
-        else
-        {
+        } else {
             $data['rs'] = false;
             $data['data'] = [];
         }
@@ -317,16 +340,22 @@ class General
 
     public static function getProductSubMenuItems()
     {
-        $objects = ProductCategory::where('is_deleted',0)->get();
+        $objects = ProductCategory::where('is_deleted', 0)->get();
         $data = array();
-        foreach ($objects as $object)
-        {
+        foreach ($objects as $object) {
             $data[] = $object->toArray();
         }
         return $data;
     }
+    public static function isRange() {
+        return array(
+            '0' => 'Không',
+            '1' => 'Có',
+        );
+    }
 
-    public static function toSlug($str) {
+    public static function toSlug($str)
+    {
         $str = trim(mb_strtolower($str));
         $str = preg_replace('/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/', 'a', $str);
         $str = preg_replace('/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/', 'e', $str);

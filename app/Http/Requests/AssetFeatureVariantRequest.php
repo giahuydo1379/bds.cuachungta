@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class WarehouseRequest extends Request
+class AssetFeatureVariantRequest extends Request
 {
     public function __construct()
     {
@@ -36,7 +36,7 @@ class WarehouseRequest extends Request
     public function messages()
     {
         $data = array();
-        $data["name.required"] = 'Vui lòng nhập tiêu đề!';
+        $data["name.required"] = 'Vui lòng nhập tên!';
         return $data;
     }
 }

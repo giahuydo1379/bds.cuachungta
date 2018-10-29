@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class ProductCategoryRequest extends Request
+class AssetFeatureRequest extends Request
 {
     public function __construct()
     {

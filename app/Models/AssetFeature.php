@@ -1,33 +1,34 @@
-<?php namespace App\Models;
+<?php
+ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProductCategory extends Model
+class AssetFeature extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'product_categories';
+    protected $table = 'asset_features';
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['name', 'description', 'parent_id', 'manufacturer_id', 'order',
-        'image', 'image_url', 'created_at', 'updated_at', 'is_deleted'];
+    protected $fillable = ['name', 'description', 'is_range', 'position',
+        'status', 'created_at', 'updated_at', 'is_deleted'];
 
 //    protected $hidden = ['parent_id', 'is_deleted'];
 
     public static function getListAll($filter){
 
-        $sql = self::select('product_categories.*', 'manufacturers.name as manufacturer_name')
-                        ->leftJoin('manufacturers', 'manufacturers.id', '=', 'product_categories.manufacturer_id');
-//        $sql->where('product_categories.is_deleted', 0);
+        $sql = self::select('asset_features.*');
+
+        $sql->where('asset_features.is_deleted', 0);
 
         if (!empty($keyword = $filter['search'])) {
             $sql->where(function ($query) use ($keyword) {
-                $query->where('product_categories.name', 'LIKE', '%' . $keyword . '%')
-                      ->orWhere('manufacturers.name', 'LIKE', '%' . $keyword . '%');
+                $query->where('asset_features.name', 'LIKE', '%' . $keyword . '%');
+
             });
         }
 

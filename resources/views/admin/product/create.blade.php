@@ -58,7 +58,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group" style="display: none;">
                                         <label class="col-sm-4 control-label" for="form-field-1">
-                                            Nhóm sản phẩm <span class="required"></span>
+                                            Thể loại <span class="required"></span>
                                         </label>
                                         <div class="col-sm-8">
                                             <select name="category_id" id="category_id" class="form-control select2" data-placeholder="Chọn nhóm sản phẩm">

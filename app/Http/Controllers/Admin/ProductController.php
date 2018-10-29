@@ -185,6 +185,7 @@ class ProductController extends Controller
     {
         $this->_data['menu_items'] = General::getMenuItems();
         $this->_data['orderOptions'] = General::getOrderOptions();
+
         return view("admin.{$this->_data['controllerName']}.create", $this->_data);
     }
 
@@ -258,6 +259,7 @@ class ProductController extends Controller
         $this->_data['menu_items'] = General::getMenuItems();
         $this->_data['orderOptions'] = General::getOrderOptions();
         $this->_data['product_images'] = ProductImage::where('product_id', $id)->pluck('image', 'id');
+        // dd(    $this->_data['menu_items']);
         return view("admin.{$this->_data['controllerName']}.create", $this->_data);
     }
 

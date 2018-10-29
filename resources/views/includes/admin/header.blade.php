@@ -20,7 +20,7 @@
             @if (backpack_auth()->check())
                 <!-- Messages: style can be found in dropdown.less-->
                 <li><a href="/cache/update-all" target="_blank"><i class="fa fa-eraser" aria-hidden="true"></i> Clear Cache</a></li>
-                <li><a href="https://phanthinh.com.vn" target="_blank"><i class="fa fa-firefox fa-fw"></i> Website Phan Thịnh</a></li>
+                <li><a href="/" target="_blank"><i class="fa fa-firefox fa-fw"></i> Website</a></li>
                 <li class="dropdown messages-menu hide">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope-o"></i>

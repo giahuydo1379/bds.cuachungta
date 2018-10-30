@@ -1,60 +1,37 @@
-<html>
-  <head>
-    <title>{{ config('backpack.base.project_name') }} Error 404</title>
+@extends('layouts.frontend')
 
-    <link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
+@section('content')
 
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        color: #B0BEC5;
-        display: table;
-        font-weight: 100;
-        font-family: 'Lato';
-      }
+    <section class="container wp-main-error" style="padding: 100px 0px;">
+        <div class="wrap-error">
+            <div class="col-md-6 left-error">
+                <img src="/html/assets/images/gif-bear.gif" alt="">
+            </div>
+            <div class="col-md-6 right-error">
+                <h1>404</h1>
+                <h2>{{__("We did not find your page request")}}</h2>
+                <p class="decript">{{__('The this page does not exist or the product were deleted from website.')}} {{__('You can try the following links:')}}</p>
+                <ul class="list-link">
+                    <li class="item-link">
+                        <a href="/" class="home">
+                            <p>Về trang chủ</p>
+                        </a>
+                    </li>
+                    <!--
+                    <li class="item-link">
+                        <a href="/" class="top">
+                            <p>{{__('Top 10 best selling products')}}</p>
+                        </a>
+                    </li>
+                    <li class="item-link">
+                        <a href="/" class="favorite">
+                            <p>{{__('Top brand favorite')}}</p>
+                        </a>
+                    </li>
+                    -->
+                </ul>
+            </div>
+        </div>
+    </section>
 
-      .container {
-        text-align: center;
-        display: table-cell;
-        vertical-align: middle;
-      }
-
-      .content {
-        text-align: center;
-        display: inline-block;
-      }
-
-      .title {
-        font-size: 156px;
-      }
-
-      .quote {
-        font-size: 36px;
-      }
-
-      .explanation {
-        font-size: 24px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="content">
-        <div class="title">404</div>
-        <div class="quote">Page not found.</div>
-        <div class="explanation">
-          <br>
-          <small>
-            <?php
-              $default_error_message = "Please return to <a href='".url('')."'>our homepage</a>.";
-            ?>
-            {!! isset($exception)? ($exception->getMessage()?$exception->getMessage():$default_error_message): $default_error_message !!}
-         </small>
-       </div>
-      </div>
-    </div>
-  </body>
-</html>
+@endsection

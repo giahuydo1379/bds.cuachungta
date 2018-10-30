@@ -14,7 +14,8 @@ $ver_css = \App\Helpers\General::get_version_css();
     <meta name="viewport" content="initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" type="text/css" href="/html/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/html/assets/css/style.css?v=<?=$ver_css?>">
+    <link rel="stylesheet" type="text/css" href="/css/fe-customs.css?v=<?=$ver_css?>">
 
     @yield('after_styles')
 

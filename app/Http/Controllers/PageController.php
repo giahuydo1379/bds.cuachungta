@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
-use Illuminate\Http\Request;
 use Validator;
 
-class PageController extends HomeController
+class PageController extends Controller
 {
     public function index($slug)
     {

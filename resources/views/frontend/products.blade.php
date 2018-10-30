@@ -1,4 +1,4 @@
-@extends('home.layout')
+@extends('frontend.layout')
 
 @section('title') Sản phẩm @stop
 
@@ -87,7 +87,7 @@
                 </div>
 
                 <div class="box mt-5">
-                    @include('home.supports')
+                    @include('frontend.supports')
                 </div>
             </div>
         </div>

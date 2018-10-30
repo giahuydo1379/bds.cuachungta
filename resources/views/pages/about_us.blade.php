@@ -1,7 +1,7 @@
 <?php
 $settings = \App\Helpers\General::get_settings();
 ?>
-@extends('home.layout')
+@extends('frontend.layout')
 @section('title') {{ $page['title'] }}@stop
 
 @section('after_style')

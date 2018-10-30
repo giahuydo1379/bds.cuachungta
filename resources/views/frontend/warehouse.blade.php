@@ -1,4 +1,4 @@
-@extends('home.layout')
+@extends('frontend.layout')
 @section('title') Kho hàng có sẵn @stop
 
 @section('after_style')

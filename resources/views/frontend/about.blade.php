@@ -1,4 +1,4 @@
-@extends('home.layout')
+@extends('frontend.layout')
 @section('title') Giới thiệu @stop
 
 @section('after_style')

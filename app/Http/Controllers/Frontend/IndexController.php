@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Home;
+namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\ArticleImage;
 use App\Models\Manufacturer;
@@ -11,32 +11,28 @@ use App\Models\ProductCategory;
 use App\Models\Warehouse;
 use Illuminate\Http\Request;
 use App\Models\SlideShow;
-use NunoMaduro\Collision\Provider;
 
-class IndexController extends HomeController
+class IndexController extends Controller
 {
-	public function __construct()
-	{
-		parent::__construct();
-	}
+    protected $data = []; // the information we send to the view
 
     public function index(Request $request)
     {
-        $limit = $request->input('limit', 12);
-        $this->data['limit'] = $limit;
-        $this->data['objects'] = Article::getHomeArticles();
+//        $limit = $request->input('limit', 12);
+//        $this->data['limit'] = $limit;
+//        $this->data['objects'] = Article::getHomeArticles();
 
-        return view('home.index', $this->data);
+        return view('frontend.index', $this->data);
     }
 
     public function about(Request $request)
     {
-        return view('home.about', $this->data);
+        return view('frontend.about', $this->data);
     }
 
     public function contact(Request $request)
     {
-        return view('home.contact', $this->data);
+        return view('frontend.contact', $this->data);
     }
 
     public function category_manufacturer(Request $request, $slug, $id)
@@ -47,7 +43,7 @@ class IndexController extends HomeController
 //        $this->data['slides'] = SlideShow::getSlideShows();
         $this->data['manufacturerCategories'] = ProductCategory::getCategoryBymanufacturer($id);
         $this->data['manufacturer'] = Manufacturer::getManufacturerById($id);
-        return view('home.category-manufacturer', $this->data);
+        return view('frontend.category-manufacturer', $this->data);
     }
 
     public function products(Request $request)
@@ -69,7 +65,7 @@ class IndexController extends HomeController
         }
         $this->data['products'] = $rs;
 
-        return view('home.products', $this->data);
+        return view('frontend.products', $this->data);
     }
 
     public function product_category(Request $request, $slug, $id)
@@ -89,7 +85,7 @@ class IndexController extends HomeController
 
         $this->data['manufacturer'] = Manufacturer::getManufacturerById($category['manufacturer_id']);
         
-        return view('home.product-category', $this->data);
+        return view('frontend.product-category', $this->data);
     }
 
     public function product_detail($slug, $id)
@@ -110,7 +106,7 @@ class IndexController extends HomeController
             $this->data['diffProducts'] = [];
         }
 
-        return view('home.product-detail', $this->data);
+        return view('frontend.product-detail', $this->data);
     }
 
     public function article_detail($slug, $id)
@@ -131,12 +127,12 @@ class IndexController extends HomeController
 
         $this->data['objects_same_category'] = Article::getArticlesSameCategory($object['category_id'], $id);
 
-        return view('home.article-detail', $this->data);
+        return view('frontend.article-detail', $this->data);
     }
 
     public function warehouse(Request $request)
     {
-        return view('home.warehouse', $this->data);
+        return view('frontend.warehouse', $this->data);
     }
 
     public function ajax_warehouse(Request $request)
@@ -171,6 +167,6 @@ class IndexController extends HomeController
 
         $this->data['objects'] = $products;
         $this->data['tukhoa'] = $tukhoa;
-        return view('home.search', $this->data);
+        return view('frontend.search', $this->data);
     }
 }

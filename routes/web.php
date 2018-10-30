@@ -15,26 +15,22 @@
 //    return view('welcome');
 //});
 //
-//Route::name('home')->group(function () {
-//    Route::get('/', 'Home\IndexController@index')->name('index');
-//});
 // Auth::routes();
-// Route::get('/home', 'HomeController@index')->name('home');
 
 // Trang chủ
-Route::get('/', ['as' => 'home', 'uses' => 'Home\IndexController@index']);
-Route::get('/lien-he.html', ['as' => 'contact', 'uses' => 'Home\IndexController@contact']);
-Route::get('/kho-hang.html', ['as' => 'warehouse', 'uses' => 'Home\IndexController@warehouse']);
-Route::get('/ajax-warehouse', ['as' => 'ajax-warehouse', 'uses' => 'Home\IndexController@ajax_warehouse']);
-Route::get('/tim-kiem', ['as' => 'search', 'uses' => 'Home\IndexController@search']);
+Route::get('/', ['as' => 'home', 'uses' => 'Frontend\IndexController@index']);
+Route::get('/lien-he.html', ['as' => 'contact', 'uses' => 'Frontend\IndexController@contact']);
+Route::get('/kho-hang.html', ['as' => 'warehouse', 'uses' => 'Frontend\IndexController@warehouse']);
+Route::get('/ajax-warehouse', ['as' => 'ajax-warehouse', 'uses' => 'Frontend\IndexController@ajax_warehouse']);
+Route::get('/tim-kiem', ['as' => 'search', 'uses' => 'Frontend\IndexController@search']);
 Route::get('/san-pham', ['as' => 'products',
-    'uses' => 'Home\IndexController@products']);
+    'uses' => 'Frontend\IndexController@products']);
 Route::get('/{manufacturerName}-m{id}.html', ['as' => 'category_manufacturer',
-    'uses' => 'Home\IndexController@category_manufacturer'])->where(['manufacturerName' => '[a-z\-0-9]+', 'id' => '[0-9]+']);
-Route::get('/{categoryName}-c{id}.html', ['as' => 'product_category', 'uses' => 'Home\IndexController@product_category'])->where(['categoryName' => '[a-z\-0-9]+', 'id' => '[0-9]+']);;
-Route::get('/{productName}-p{id}.html', ['as' => 'product_detail', 'uses' => 'Home\IndexController@product_detail'])->where(['productName' => '[a-z\-0-9]+', 'id' => '[0-9]+']);
+    'uses' => 'Frontend\IndexController@category_manufacturer'])->where(['manufacturerName' => '[a-z\-0-9]+', 'id' => '[0-9]+']);
+Route::get('/{categoryName}-c{id}.html', ['as' => 'product_category', 'uses' => 'Frontend\IndexController@product_category'])->where(['categoryName' => '[a-z\-0-9]+', 'id' => '[0-9]+']);;
+Route::get('/{productName}-p{id}.html', ['as' => 'product_detail', 'uses' => 'Frontend\IndexController@product_detail'])->where(['productName' => '[a-z\-0-9]+', 'id' => '[0-9]+']);
 
-Route::get('/{slug_article}-a{id}.html', ['as' => 'article_detail', 'uses' => 'Home\IndexController@article_detail'])
+Route::get('/{slug_article}-a{id}.html', ['as' => 'article_detail', 'uses' => 'Frontend\IndexController@article_detail'])
     ->where(['slug_article' => '[a-z\-0-9]+', 'id' => '[0-9]+']);
 
 Route::group(['prefix' => 'cache'], function () {

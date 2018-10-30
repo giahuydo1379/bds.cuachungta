@@ -12,6 +12,31 @@ use Illuminate\Support\Facades\Cache;
 
 class General
 {
+    public static function get_scripts_include($type='body', $re_cache=false) {
+        $key = 'ScriptInclude:All';
+
+        $objects = Cache::get( $key );
+
+        if ($re_cache || !$objects) {
+            $objects = \App\Models\ScriptInclude::getAllScripts();
+
+            Cache::forever($key, $objects);
+        }
+
+        foreach ($objects as $item) {
+            if (!isset($item['type']) || $item['type']===$type) echo $item['value'];
+        }
+    }
+
+    public static function telegram_log($content) {
+        //            $url = 'https://api.telegram.org/bot545339852:AAH9-wfIRfeWX19P7uPvrHPrGho57CuIunc/getUpdates'; dùng get chat id
+        $url = 'https://api.telegram.org/bot545339852:AAH9-wfIRfeWX19P7uPvrHPrGho57CuIunc/sendMessage';
+        $url .= '?chat_id=-251432008';
+        $url .= '&text='. urlencode(env("APP_NAME")). ': '.$content;
+
+        $res = \Ixudra\Curl\Facades\Curl::to($url)->get();
+    }
+
     public static function get_link_menu($item, $locale='')
     {
         if ($item['type']=='page_link') {

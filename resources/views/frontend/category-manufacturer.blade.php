@@ -1,4 +1,4 @@
-@extends('home.layout')
+@extends('frontend.layout')
 @section('title') {{ $manufacturer['name'] }} @stop
 
 @section('after_style')
@@ -80,7 +80,7 @@
                     @endforeach
                 </div>
                 <div class="box mt-5">
-                    @include('home.supports')
+                    @include('frontend.supports')
                 </div>
             </div>
         </div>

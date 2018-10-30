@@ -1,4 +1,4 @@
-@extends('home.layout')
+@extends('frontend.layout')
 
 @section('title') {{ $category['name'] }} @stop
 
@@ -47,7 +47,7 @@
                             <div class="col-xl-3 col-lg-4 col-md-6 mb-4">Bài viết đang được cập nhật</div>
                         @endif
                     </div>
-                    @if(count($objects['data'])) @include('home.paginator') @endif
+                    @if(count($objects['data'])) @include('frontend.paginator') @endif
                 </div>
             </div>
             <div class="col-lg-3 order-lg-3">
@@ -87,7 +87,7 @@
                     @endforeach
                 </div>
                 <div class="box mt-5">
-                    @include('home.supports')
+                    @include('frontend.supports')
                 </div>
             </div>
         </div>

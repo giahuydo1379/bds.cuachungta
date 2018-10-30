@@ -1,4 +1,4 @@
-@extends('home.layout')
+@extends('frontend.layout')
 @section('title') Tìm kiếm sản phẩm @stop
 
 @section('content')
@@ -29,7 +29,7 @@
 				@endif
 			</div>
 
-			@include('home.paginator')
+			@include('frontend.paginator')
 		</div>
 	</div>
 @stop

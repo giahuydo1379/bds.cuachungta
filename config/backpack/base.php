@@ -12,17 +12,17 @@ return [
     */
 
     // Project name. Shown in the breadcrumbs and a few other places.
-    'project_name' => 'Phan Thịnh',
+    'project_name' => 'Bất Động Sản',
 
     // Menu logos
-    'logo_lg'   => 'Phan Thịnh',
-    'logo_mini' => '<b>PT</b>',
+    'logo_lg'   => 'Bất Động Sản',
+    'logo_mini' => '<b>BĐS</b>',
 
     // Developer or company name. Shown in footer.
     'developer_name' => 'dtrtinh',
 
     // Developer website. Link in footer.
-    'developer_link' => 'http://my.kht.vn',
+    'developer_link' => 'http://tinthuenha.net',
 
     // Show powered by Laravel Backpack in the footer?
     'show_powered_by' => true,

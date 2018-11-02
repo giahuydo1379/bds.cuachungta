@@ -33,6 +33,15 @@ Route::get('/{productName}-p{id}.html', ['as' => 'product_detail', 'uses' => 'Fr
 Route::get('/{slug_article}-a{id}.html', ['as' => 'article_detail', 'uses' => 'Frontend\IndexController@article_detail'])
     ->where(['slug_article' => '[a-z\-0-9]+', 'id' => '[0-9]+']);
 
+Route::group(['prefix' => 'location'], function () {
+    Route::get('/', 'LocationController@index')->name('location');
+    Route::get('get-provinces', 'LocationController@get_provinces')->name('location.provinces');
+    Route::get('get-provinces', 'LocationController@get_provinces');
+    Route::get('get-districts', 'LocationController@get_districts');
+    Route::get('get-wards', 'LocationController@get_wards');
+    Route::get('geo-ids-by-address', 'LocationController@geoIdsByAddress');
+});
+
 Route::group(['prefix' => 'cache'], function () {
     Route::get('/update-js-data', 'CacheController@update_js_data')->name('cache.update-js-data');
     Route::get('/update-img', 'CacheController@update_img')->name('cache.update-img');

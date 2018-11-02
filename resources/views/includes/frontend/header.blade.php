@@ -1,5 +1,6 @@
 <?php
 $menu_items = \App\Helpers\General::get_menu_items();
+$settings = \App\Helpers\General::get_settings();
 ?>
 <!-- ====== BEGIN HEADER ====== -->
 <header id="header">
@@ -8,8 +9,8 @@ $menu_items = \App\Helpers\General::get_menu_items();
         <div class="container">
             <!-- Navbar Brand -->
             <div class="navbar-header">
-                <a href="{{url('/')}}" id="navbar-brand" class="navbar-brand"><img src="/html/assets/images/header-logo-default.png"
-                                                                        alt="kensington Property"></a>
+                <a href="{{url('/')}}" id="navbar-brand" class="navbar-brand">
+                    <img src="<?=@$settings['image_logo_header']['value']?>" alt="kensington Property"></a>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
                         aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>

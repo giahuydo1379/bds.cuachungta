@@ -13,51 +13,38 @@
                     <div class="search-tabmenu">
                         <!-- Tabmenu Navigation -->
                         <ul class="nav nav-tabs" role="tablist">
-                            <li class="active"><a href="#for-sale" role="tab" data-toggle="tab"><i
-                                            class="fi flaticon-sale"></i> Nhà đất cho thuê</a></li>
-                            <li><a href="#for-rent" role="tab" data-toggle="tab"><i class="fi flaticon-rent"></i> Nhà đất
-                                    cần thuê</a></li>
+                            <li class="active">
+                                <a href="#for-sale" role="tab" data-toggle="tab"><i class="fi flaticon-sale"></i> Nhà đất cho thuê</a></li>
+                            <li><a href="#for-rent" role="tab" data-toggle="tab"><i class="fi flaticon-rent"></i> Nhà đất cần thuê</a></li>
                         </ul>
                         <!-- Tabmenu Body / Content -->
                         <div class="tab-content">
                             <!-- Tabmenu Content 1 / Property For SALE -->
                             <div role="tabpanel" class="tab-pane active" id="for-sale">
-                                <form action="#">
+                                <form action="" id="frm-sale-search" method="post">
                                     <div class="form-body">
                                         <div class="row">
                                             <div class="col-md-4 form-group">
                                                 <label for="sale-location">Thành Phố</label>
-                                                <select class="form-control" id="sale-location">
-                                                    <option>Chọn Thành Phố</option>
-                                                    <option>Hà Nội</option>
-                                                    <option>Hồ Chí Minh</option>
-                                                    <option>Vĩnh Long</option>
-                                                    <option>Cần Thơ</option>
+                                                <select class="form-control province_has_asset change" id="sale-location"
+                                                data-destination="#frm-sale-search .district" data-placeholder="Chọn Tỉnh / Thành Phố">
+                                                    <option>Chọn Tỉnh / Thành Phố</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-4 form-group">
                                                 <label for="sale-location">Quận/Huyện</label>
-                                                <select class="form-control" id="sale-location">
+                                                <select class="form-control district" id="sale-location" data-placeholder="Chọn Quận Huyện">
                                                     <option>Chọn Quận Huyện</option>
-                                                    <option>Quận 1</option>
-                                                    <option>Quận 2</option>
-                                                    <option>Quận 3</option>
-                                                    <option>Quận 4</option>
                                                 </select>
                                             </div>
+                                            <?php
+                                            $assets_categories = \App\Helpers\General::get_assets_categories('lease');
+                                            ?>
                                             <div class="col-md-4 form-group">
                                                 <label for="sale-type">Loại Nhà Cho Thuê</label>
-                                                <select class="form-control" id="sale-type">
-                                                    <option>Loại Nhà Cho Thuê</option>
-                                                    <option>Cho thuê nhà chung cư</option>
-                                                    <option>Cho thuê nhà riêng</option>
-                                                    <option>Cho thuê nhà mặt phố</option>
-                                                    <option>Cho thuê nhà trọ, phòng trọ</option>
-                                                    <option>Cho thuê văn phòng</option>
-                                                    <option>Cho thuê cửa hàng, ki ốt</option>
-                                                    <option>Cho thuê kho, nhà xưởng, đất</option>
-                                                    <option>Cho thuê loại bất động sản khác</option>
-                                                </select>
+                                                {!! Form::select("category_id", @$assets_categories, null,
+                                                        ['class' => 'form-control', 'data-id' => @$address_default['category_id'],
+                                                        "data-placeholder" => "Chọn Loại Nhà Cho Thuê"]) !!}
                                             </div>
                                         </div>
                                         <div class="row">
@@ -91,43 +78,30 @@
                                 </form>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="for-rent">
-                                <form action="#">
+                                <form action="" id="frm-rent-search" method="post">
                                     <div class="form-body">
                                         <div class="row">
                                             <div class="col-md-4 form-group">
                                                 <label for="sale-location">Thành Phố</label>
-                                                <select class="form-control" id="sale-location">
+                                                <select class="form-control province_has_asset change" id="rent-location"
+                                                        data-destination="#frm-rent-search .district" data-placeholder="Chọn Tỉnh / Thành Phố">
                                                     <option>Chọn Thành Phố</option>
-                                                    <option>Hà Nội</option>
-                                                    <option>Hồ Chí Minh</option>
-                                                    <option>Vĩnh Long</option>
-                                                    <option>Cần Thơ</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-4 form-group">
                                                 <label for="sale-location">Quận/Huyện</label>
-                                                <select class="form-control" id="sale-location">
+                                                <select class="form-control district" id="rent-location" data-placeholder="Chọn Quận Huyện">
                                                     <option>Chọn Quận Huyện</option>
-                                                    <option>Quận 1</option>
-                                                    <option>Quận 2</option>
-                                                    <option>Quận 3</option>
-                                                    <option>Quận 4</option>
                                                 </select>
                                             </div>
+                                            <?php
+                                            $assets_categories = \App\Helpers\General::get_assets_categories('buy');
+                                            ?>
                                             <div class="col-md-4 form-group">
                                                 <label for="sale-type">Loại Nhà Cần Thuê</label>
-                                                <select class="form-control" id="sale-type">
-                                                    <option>Loại Nhà Cho Thuê</option>
-                                                    <option>Cần thuê nhà chung cư</option>
-                                                    <option>Cần thuê nhà riêng</option>
-                                                    <option>Cần thuê nhà mặt phố</option>
-                                                    <option>Cần thuê nhà trọ, phòng trọ</option>
-                                                    <option>Cần thuê văn phòng</option>
-                                                    <option>Cần thuê cửa hàng, ki ốt</option>
-                                                    <option>Cần thuê kho, nhà xưởng, đất</option>
-                                                    <option>Cần thuê loại bất động sản khác</option>
-                                                </select>
-                                                </select>
+                                                {!! Form::select("category_id", @$assets_categories, null,
+                                                        ['class' => 'form-control', 'data-id' => @$address_default['category_id'],
+                                                        "data-placeholder" => "Chọn Loại Nhà Cho Thuê"]) !!}
                                             </div>
                                         </div>
                                         <div class="row">

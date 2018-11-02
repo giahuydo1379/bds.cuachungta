@@ -12,6 +12,50 @@ use Illuminate\Support\Facades\Cache;
 
 class General
 {
+    public static function key_address_default(){
+        return 'address_default';
+    }
+
+    public static function getAddressByDistrict($district_id, $ward=null){
+        $ward = $ward ? $ward : \App\Models\District::select(
+            \DB::raw("CONCAT_WS(' ', provinces.type, provinces.name) as province_name"),
+            \DB::raw("CONCAT_WS(' ', districts.type, districts.name) as district_name")
+        )
+            ->where('district_id', $district_id)
+            ->leftJoin('provinces', 'provinces.province_id', '=', 'districts.province_id')
+            ->first();
+
+        $address = [];
+        if ($ward['province_name']) {
+            $address[] = $ward['province_name'];
+        }
+
+        if ($ward['district_name'] && strpos($address[0], $ward['district_name']) === false) {
+            $address[] = $ward['district_name'];
+        }
+
+        if (isset($ward['ward_name'])) {
+            $address[] = $ward['ward_name'];
+        }
+
+        $address = implode(", ", array_reverse($address));
+        return $address;
+    }
+
+    public static function get_assets_categories($type='lease', $re_cache=false) {
+        $key = 'AssetCategory:All';
+
+        $objects = Cache::get( $key );
+
+        if ($re_cache || !$objects) {
+            $objects = \App\Models\AssetCategory::getAssetCategories();
+
+            Cache::forever($key, $objects);
+        }
+
+        return $objects[$type]??[];
+    }
+
     public static function get_scripts_include($type='body', $re_cache=false) {
         $key = 'ScriptInclude:All';
 

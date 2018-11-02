@@ -5,7 +5,12 @@ $(document).ready(function() {
     numeral.defaultFormat('0,0.[00]');
     moment.locale('vi');
 
-    // setTimeout(function(){ get_list_notification(); }, 1000);
+    if ($('.province_has_asset').length > 0) {
+        get_provinces('.province_has_asset', 1);
+        $('.province_has_asset.change').on('change', function () {
+            get_districts_by_province($(this));
+        });
+    }
 
     $('.notification_counter').on('click', function () {
         var counter = $('.notification_counter .badge').text();
@@ -75,6 +80,72 @@ function init_btn_delete(element) {
         });
         return false;
     });
+}
+function get_districts_by_province(obj_province, select2) {
+    var select2 = select2 || false;
+    var destination = $(obj_province).attr('data-destination');
+    var id = $(destination).attr('data-id');
+
+    var html = '<option value="">'+($(destination).attr('data-placeholder'))+'</option>';
+
+    if (!$(obj_province).val()) {
+        $(destination).html(html).val(id).trigger('change');
+        if (select2) init_select2(obj_province);
+        return;
+    }
+
+    $.get(_base_url+'/location/get-districts', {
+        province_id: $(obj_province).val(),
+        has_store: $(obj_province).attr('data-store'),
+        status: $(obj_province).attr('data-status'),
+    }, function (res) {
+        $.each(res.data, function( id, name ) {
+            html += '<option value="'+id+'">'+name+'</option>';
+        });
+        $(destination).html(html).val(id).trigger('change');
+
+        if (select2) init_select2(obj_province);
+
+    }, 'json');
+}
+function get_wards_by_district(obj_district) {
+    var destination = $(obj_district).attr('data-destination');
+    var id = $(destination).attr('data-id');
+
+    var html = '<option value="">Chọn Phường / Xã</option>';
+    if (!$(obj_district).val()) {
+        $(destination).html(html).val(id);
+        return;
+    }
+
+    $.get('/location/get-wards', {district_id: $(obj_district).val()}, function (res) {
+        $.each(res.data, function( id, name ) {
+            html += '<option value="'+id+'">'+name+'</option>';
+        });
+        $(destination).html(html).val(id);
+    }, 'json');
+}
+function get_provinces(destination, has_asset) {
+    destination = destination || '#province_id';
+    has_asset = has_asset || 0;
+
+    var url = _base_url + '/location/get-provinces';
+    var params = {};
+    if(has_asset==1) {
+        params.has_asset = has_asset;
+    }
+
+    $.get(url, params, function (res) {
+        var html = '<option value="">'+($(destination).attr('data-placeholder'))+'</option>';
+        $.each(res.data, function( id, name ) {
+            html += '<option value="'+id+'">'+name+'</option>';
+        });
+
+        $(destination).each(function( index ) {
+            $(this).html(html).val($(this).attr('data-id')).trigger('change');
+        });
+
+    }, 'json');
 }
 function img_user_default(obj) {
     $(obj).attr('src', _base_url+'/images/user.png');

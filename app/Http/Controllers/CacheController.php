@@ -86,12 +86,7 @@ class CacheController extends Controller
         $version_js = \App\Helpers\General::get_version_js(true);
         $version_css = \App\Helpers\General::get_version_css(true);
 
-        return response()->json([
-            'rs' => 1,
-            'ver_js_data' => $version_data,
-            'version_js' => $version_js,
-            'version_css' => $version_css,
-        ]);
+        return redirect('/');
     }
 }
 

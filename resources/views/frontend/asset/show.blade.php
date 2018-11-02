@@ -39,21 +39,21 @@
                             <!-- Property Gallery Slider -->
                             <div class="property-image">
                                 <div id="property-slider" class="property-slider">
-                                    <img src="assets/images/1.jpg" alt="Property Photo 1">
-                                    <img src="assets/images/2.jpg" alt="Property Photo 2">
-                                    <img src="assets/images/3.jpg" alt="Property Photo 4">
-                                    <img src="assets/images/4.jpg" alt="Property Photo 5">
-                                    <img src="assets/images/5.jpg" alt="Property Photo 6">
-                                    <img src="assets/images/img_slider_default.jpg" alt="Property Photo 7">
+                                    <img src="/html/assets/images/1.jpg" alt="Property Photo 1">
+                                    <img src="/html/assets/images/2.jpg" alt="Property Photo 2">
+                                    <img src="/html/assets/images/3.jpg" alt="Property Photo 4">
+                                    <img src="/html/assets/images/4.jpg" alt="Property Photo 5">
+                                    <img src="/html/assets/images/5.jpg" alt="Property Photo 6">
+                                    <img src="/html/assets/images/img_slider_default.jpg" alt="Property Photo 7">
                                 </div>
                                 <!-- Property Gallery Slider Navigation -->
                                 <div id="property-slider-nav" class="property-slider-nav">
-                                    <img src="assets/images/1.jpg" alt="Property Photo 1">
-                                    <img src="assets/images/2.jpg" alt="Property Photo 2">
-                                    <img src="assets/images/3.jpg" alt="Property Photo 4">
-                                    <img src="assets/images/4.jpg" alt="Property Photo 5">
-                                    <img src="assets/images/5.jpg" alt="Property Photo 6">
-                                    <img src="assets/images/img_slider_default.jpg" alt="Property Photo 7">
+                                    <img src="/html/assets/images/1.jpg" alt="Property Photo 1">
+                                    <img src="/html/assets/images/2.jpg" alt="Property Photo 2">
+                                    <img src="/html/assets/images/3.jpg" alt="Property Photo 4">
+                                    <img src="/html/assets/images/4.jpg" alt="Property Photo 5">
+                                    <img src="/html/assets/images/5.jpg" alt="Property Photo 6">
+                                    <img src="/html/assets/images/img_slider_default.jpg" alt="Property Photo 7">
                                 </div>
                             </div>
                             <!-- Property facility Detail -->
@@ -240,7 +240,7 @@
                                     <ul class="recent-property">
                                         <!-- Property List Item -->
                                         <li>
-                                            <div class="property-image"><img style="background: url(assets/images/1.jpg) center center no-repeat; padding-bottom: 100%; height: 0;" src="assets/images/transparent.png" alt="Property One"></div>
+                                            <div class="property-image"><img style="background: url(/html/assets/images/1.jpg) center center no-repeat; padding-bottom: 100%; height: 0;" src="/html/assets/images/transparent.png" alt="Property One"></div>
                                             <div class="property-content">
                                                 <a href="single-property.html">Best Private Villas</a>
                                                 <span class="property-price">3.000.000 VNĐ</span>
@@ -251,7 +251,7 @@
                                         </li>
                                         <!-- Property List Item -->
                                         <li>
-                                            <div class="property-image"><img style="background: url(assets/images/1.jpg) center center no-repeat; padding-bottom: 100%; height: 0;" src="assets/images/transparent.png" alt="Property One"></div>
+                                            <div class="property-image"><img style="background: url(/html/assets/images/1.jpg) center center no-repeat; padding-bottom: 100%; height: 0;" src="/html/assets/images/transparent.png" alt="Property One"></div>
                                             <div class="property-content">
                                                 <a href="single-property.html">Best Private Villas</a>
                                                 <span class="property-price">3.000.000 VNĐ</span>
@@ -262,7 +262,7 @@
                                         </li>
                                         <!-- Property List Item -->
                                         <li>
-                                            <div class="property-image"><img style="background: url(assets/images/1.jpg) center center no-repeat; padding-bottom: 100%; height: 0;" src="assets/images/transparent.png" alt="Property One"></div>
+                                            <div class="property-image"><img style="background: url(/html/assets/images/1.jpg) center center no-repeat; padding-bottom: 100%; height: 0;" src="/html/assets/images/transparent.png" alt="Property One"></div>
                                             <div class="property-content">
                                                 <a href="single-property.html">Best Private Villas</a>
                                                 <span class="property-price">3.000.000 VNĐ</span>
@@ -273,7 +273,7 @@
                                         </li>
                                         <!-- Property List Item -->
                                         <li>
-                                            <div class="property-image"><img style="background: url(assets/images/1.jpg) center center no-repeat; padding-bottom: 100%; height: 0;" src="assets/images/transparent.png" alt="Property One"></div>
+                                            <div class="property-image"><img style="background: url(/html/assets/images/1.jpg) center center no-repeat; padding-bottom: 100%; height: 0;" src="/html/assets/images/transparent.png" alt="Property One"></div>
                                             <div class="property-content">
                                                 <a href="single-property.html">Best Private Villas</a>
                                                 <span class="property-price">3.000.000 VNĐ</span>
@@ -284,7 +284,7 @@
                                         </li>
                                         <!-- Property List Item -->
                                         <li>
-                                            <div class="property-image"><img style="background: url(assets/images/1.jpg) center center no-repeat; padding-bottom: 100%; height: 0;" src="assets/images/transparent.png" alt="Property One"></div>
+                                            <div class="property-image"><img style="background: url(/html/assets/images/1.jpg) center center no-repeat; padding-bottom: 100%; height: 0;" src="/html/assets/images/transparent.png" alt="Property One"></div>
                                             <div class="property-content">
                                                 <a href="single-property.html">Best Private Villas</a>
                                                 <span class="property-price">3.000.000 VNĐ</span>

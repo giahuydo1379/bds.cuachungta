@@ -1,3 +1,6 @@
+<?php
+$menu_items = \App\Helpers\General::get_menu_items();
+?>
 <!-- ====== BEGIN HEADER ====== -->
 <header id="header">
     <!-- Main Menu Header -->
@@ -5,7 +8,7 @@
         <div class="container">
             <!-- Navbar Brand -->
             <div class="navbar-header">
-                <a href="/" id="navbar-brand" class="navbar-brand"><img src="/html/assets/images/header-logo-default.png"
+                <a href="{{url('/')}}" id="navbar-brand" class="navbar-brand"><img src="/html/assets/images/header-logo-default.png"
                                                                         alt="kensington Property"></a>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
                         aria-expanded="false" aria-controls="navbar">
@@ -18,25 +21,12 @@
             <!-- Navbar Menu -->
             <nav id="navbar" class="navbar navbar-right navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                @foreach($menu_items as $item)
                     <!-- Dropdown Menu -->
                     <li>
-                        <a class="scrollLink" href="#featured-property">Tin nổi bật</a>
+                        <a class="scrollLink" href="{{$item['link_full']}}">{{$item['name']}}</a>
                     </li>
-                    <!-- Dropdown Menu -->
-                    <li>
-                        <a class="scrollLink" href="#block-house">Nhà đất cho thuê</a>
-                    </li>
-                    <!-- Dropdown Menu -->
-                    <li>
-                        <a class="scrollLink" href="#block-land">Nhà đất cần thuê</a>
-                    </li>
-                    <!-- Dropdown Menu -->
-                    <li>
-                        <a class="scrollLink" href="#block-news">Tin tức</a>
-                    </li>
-                    <li>
-                        <a class="scrollLink" href="#testimony">Phong thủy</a>
-                    </li>
+                @endforeach
                 </ul>
             </nav>
         </div>

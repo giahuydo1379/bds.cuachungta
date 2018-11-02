@@ -1,7 +1,13 @@
 @extends('layouts.frontend')
 
 @section('content')
-
+    <style>
+        footer.fixed {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
     <section class="container wp-main-error" style="padding: 100px 0px;">
         <div class="wrap-error">
             <div class="col-md-6 left-error">

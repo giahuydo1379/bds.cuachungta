@@ -31,8 +31,3 @@ span.required:before {
 .select2-container .select2-selection--single {
     height: 34px !important;
 }
-footer.fixed {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}

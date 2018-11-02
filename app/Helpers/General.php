@@ -72,6 +72,10 @@ class General
                 ->leftjoin('pages as p', 'p.id', '=', 'menu_items.page_id')
                 ->orderBy('lft', 'asc')->get()->toArray();
 
+            foreach ($objects as $index => $item) {
+                $objects[$index]['link_full'] = self::get_link_menu($item);
+            }
+
             Cache::forever($key, $objects);
         }
 

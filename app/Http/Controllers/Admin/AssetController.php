@@ -2,13 +2,26 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Asset;
+use App\Models\AssetCategory;
+use App\Models\District;
 use App\Models\ProductCategory;
-use App\Models\AssetFeature;
+use App\Models\Province;
+use App\Models\Ward;
 use Illuminate\Http\Request;
-use App\Http\Requests\AssetFeatureRequest;
-use App\Helpers\General;
 
-class AssetFeatureController extends Controller
+use App\Helpers\General;
+use App\Models\Manufacturer;
+
+use Box\Spout\Reader\ReaderFactory;
+use Box\Spout\Common\Type;
+use Log;
+use Session;
+use App\Models\AssetFeature;
+
+//use Symfony\Component\HttpFoundation\Request;
+
+class AssetController extends Controller
 {
     private $_data = array();
     private $_model;
@@ -20,9 +33,9 @@ class AssetFeatureController extends Controller
      */
     public function __construct()
     {
-        $this->_data['title'] = 'Thuộc tính sản phẩm';
-        $this->_data['controllerName'] = 'asset-feature';
-        $this->_model = new AssetFeature();
+        $this->_data['title'] = 'Sản phẩm';
+        $this->_data['controllerName'] = 'asset';
+        $this->_model = new Asset();
     }
 
     /**
@@ -32,9 +45,6 @@ class AssetFeatureController extends Controller
      */
     public function index()
     {
-        $isRange = General::isRange();
-        $this->_data['isRange'] = $isRange;
-        $this->_data['status'] = ['' => ''] + $this->_model->getStatusFilter();
         return view("admin.{$this->_data['controllerName']}.index", $this->_data);
     }
 
@@ -43,13 +53,14 @@ class AssetFeatureController extends Controller
         $filter = [
             'offset' => $request->input('offset', 0),
             'limit' => $request->input('limit', 10),
-            'sort' => $request->input('sort', 'asset_features.id'),
+            'sort' => $request->input('sort', 'assets.id'),
             'order' => $request->input('order', 'asc'),
             'search' => $request->input('search', ''),
-            'status' => $request->input('status', 1),
+            
         ];
 
         $data = $this->_model->getListAll($filter);
+
 
         return response()->json([
             'total' => $data['total'],
@@ -64,11 +75,25 @@ class AssetFeatureController extends Controller
      */
     public function create()
     {
-        $orderOptions = General::getOrderOptions();
-        $this->_data['orderOptions'] = $orderOptions;
+        $province = array('' => '') + Province::getProvince();
+        $district = array('' => '') + District::getDistrict();
+        $ward = array('' => '') + Ward::getWard();
+        $category = array('' => '') + AssetCategory::getCategory();
+        $assetFeature = array('' => '') + AssetFeature::getAssetFeature();
+        $type = array('' => '') + $this->_model->getOptionsType();
+        $this->_data['type'] = $type;
 
-        $isRange = General::isRange();
-        $this->_data['isRange'] = $isRange;
+        $this->_data['orderOptions'] = General::getOrderOptions();
+
+        $this->_data['province'] = $province;
+        $this->_data['district'] = $district;
+        $this->_data['ward'] = $ward;
+        $this->_data['category'] = $category;
+        $this->_data['assetFeature'] = $assetFeature;
+
+
+
+
 
         return view("admin.{$this->_data['controllerName']}.create", $this->_data);
     }
@@ -79,13 +104,18 @@ class AssetFeatureController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AssetFeatureRequest $request)
+    public function store(Request $request)
     {
         $data = $request->all();
-
+        dd($data);
         unset($data['_token']);
 
+        if (empty($data['image_url'])) {
+            $data['image_url'] = config('app.url');
+        }
+
         $object = $this->_model->create($data);
+
         if ($object) {
             if ($request->ajax() || $request->wantsJson()) {
                 return response()->json([
@@ -93,6 +123,7 @@ class AssetFeatureController extends Controller
                     'msg' => 'Thêm mới '.$this->_data['title'].' thành công'
                 ]);
             }
+
             return redirect()->route("{$this->_data['controllerName']}.index");
         }
 
@@ -120,12 +151,12 @@ class AssetFeatureController extends Controller
         $this->_data['id'] = $id;
         $this->_data['object'] = $object;
 
+        $parentOptions = array('' => '') + $this->_model->getParentOptions();
+        $manufacturerOptions = array('' => '') + Manufacturer::getManufacturerOptions();
         $orderOptions = General::getOrderOptions();
+        $this->_data['parentOptions'] = $parentOptions;
+        $this->_data['manufacturerOptions'] = $manufacturerOptions;
         $this->_data['orderOptions'] = $orderOptions;
-
-        $isRange = General::isRange();
-        $this->_data['isRange'] = $isRange;
-
 
         return view("admin.{$this->_data['controllerName']}.edit", $this->_data);
     }
@@ -154,6 +185,9 @@ class AssetFeatureController extends Controller
 
         $data = $request->all();
 
+        if (empty($data['image_url'])) {
+            $data['image_url'] = config('app.url');
+        }
 
         unset($data['_token']);
 
@@ -203,6 +237,36 @@ class AssetFeatureController extends Controller
         if (!empty($manufacturer_id)) {
             $res = ProductCategory::ajaxGetCategoryBymanufacturer($manufacturer_id);
         }
+
+        return response()->json($res);
+    }
+
+    public function getDistrict($id)
+    {
+        $res = [];
+
+        $res = Asset::getDistrict($id);
+        //dd($res);
+
+        return response()->json($res);
+    }
+
+    public function getWard($id)
+    {
+        $res = [];
+
+        $res = Asset::getWard($id);
+      
+
+        return response()->json($res);
+    }
+
+    public function getAssetFeatureVariant($id)
+    {
+        $res = [];
+
+        $res = Asset::getAssetFeatureVariant($id);
+        //dd($res);
 
         return response()->json($res);
     }

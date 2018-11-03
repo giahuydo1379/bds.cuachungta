@@ -40,9 +40,6 @@
                         <div id="datatable_button_stack" class="pull-right text-right hidden-xs"></div>
                     </div>
                     <div class="box-body overflow-hidden">
-
-                           
-
                         <div id="table-toolbar">
                             <a href="<?=route($controllerName.'.create')?>" class="btn btn-success ladda-button" data-style="zoom-in"><span class="ladda-label"><i class="fa fa-plus"></i> Thêm {{ $title }}</span></a>
                         </div>
@@ -70,7 +67,14 @@
                                 <th data-field="name" data-sortable="true">Tên nhóm sản phẩm</th>
                                 <th data-field="description" data-sortable="true">Mô tả</th>
                                 <th data-field="position" data-sortable="true">Ưu tiên</th>
-                                <th data-field="is_range" data-sortable="true">Khoảng giá</th>
+                                <th data-field="province_id" data-sortable="true">Tỉnh/Thành </th>
+                                <th data-field="district_id" data-sortable="true">Quận/Huyện</th>
+
+                                <th data-field="ward_id" data-sortable="true">Phường/Xã</th>
+
+                          
+
+
                                 <th data-field="created_at" data-sortable="true">Ngày tạo</th>
                                 <th data-field="is_deleted" data-sortable="true" data-formatter="formatStatus">Trạng thái</th>
                                 <th data-field="id" data-align="center" data-formatter="actionColumn">Chức năng</th>

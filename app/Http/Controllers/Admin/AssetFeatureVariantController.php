@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\ProductCategory;
 use App\Models\AssetFeatureVariant;
+use App\Models\AssetFeature;
 use Illuminate\Http\Request;
 use App\Http\Requests\AssetFeatureVariantRequest;
 use App\Helpers\General;
@@ -204,6 +205,23 @@ class AssetFeatureVariantController extends Controller
         }
 
         return response()->json($res);
+    }
+     public function getAjaxDisableFeature($id)
+    {
+        $data = AssetFeature::where('id', $id)->first()->toArray();
+
+        if ($data['is_range'] == 1) {
+            return response()->json([
+                'is_range' => 1,
+
+            ]);
+        } else {
+            return response()->json([
+                'is_range' => 0,
+            ]);
+        }
+
+
     }
 
 }

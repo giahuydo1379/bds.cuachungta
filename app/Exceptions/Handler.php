@@ -56,7 +56,7 @@ class Handler extends ExceptionHandler
             $url .= '?chat_id=-251432008';
             $url .= '&text='.urlencode(config("app.name")).': '.$content;
 
-            $res = Curl::to($url)->get();
+            $res = \Ixudra\Curl\Facades\Curl::to($url)->get();
         }
 
         parent::report($exception);

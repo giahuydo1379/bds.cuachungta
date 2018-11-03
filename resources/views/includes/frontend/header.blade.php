@@ -22,8 +22,20 @@ $settings = \App\Helpers\General::get_settings();
             <!-- Navbar Menu -->
             <nav id="navbar" class="navbar navbar-right navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                <?php
+                $base_url = url('/');
+                $curr_url = url()->current();
+                if ($base_url==$curr_url) {
+                    $base_url = '';
+                }
+                ?>
                 @foreach($menu_items as $item)
                     <!-- Dropdown Menu -->
+                    <?php
+                        if (strpos($item['link_full'], '#')===0) {
+                            $item['link_full'] = $base_url.$item['link_full'];
+                        }
+                        ?>
                     <li>
                         <a class="scrollLink" href="{{$item['link_full']}}">{{$item['name']}}</a>
                     </li>

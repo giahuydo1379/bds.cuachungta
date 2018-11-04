@@ -1,12 +1,13 @@
 <?php
 $ver_js = \App\Helpers\General::get_version_js();
 $ver_css = \App\Helpers\General::get_version_css();
+$settings = \App\Helpers\General::get_settings();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <link rel="shortcut icon" type='image/x-icon' href="/html/assets/images/favicon.ico">
+    <link rel="shortcut icon" type='image/x-icon' href="<?=@$settings['favicon_ico']['value']?>">
 
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <title>@if(isset($title)){{$title.' :: '.config('app.name')}} @else @yield('title', 'Trang chủ'){{' :: '.config('app.name')}}@endif</title>
@@ -43,6 +44,9 @@ $ver_css = \App\Helpers\General::get_version_css();
             }
         });
     </script>
+
+    <script type="text/javascript" src="/js/numeral.min.js"></script>
+    <script type="text/javascript" src="/js/function.js"></script>
 
     @yield('after_scripts')
 

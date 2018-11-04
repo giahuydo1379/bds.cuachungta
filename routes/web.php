@@ -19,19 +19,26 @@
 
 // Trang chủ
 Route::get('/', ['as' => 'home', 'uses' => 'Frontend\IndexController@index']);
-Route::get('/lien-he.html', ['as' => 'contact', 'uses' => 'Frontend\IndexController@contact']);
-Route::get('/kho-hang.html', ['as' => 'warehouse', 'uses' => 'Frontend\IndexController@warehouse']);
-Route::get('/ajax-warehouse', ['as' => 'ajax-warehouse', 'uses' => 'Frontend\IndexController@ajax_warehouse']);
-Route::get('/tim-kiem', ['as' => 'search', 'uses' => 'Frontend\IndexController@search']);
-Route::get('/san-pham', ['as' => 'products',
-    'uses' => 'Frontend\IndexController@products']);
-Route::get('/{manufacturerName}-m{id}.html', ['as' => 'category_manufacturer',
-    'uses' => 'Frontend\IndexController@category_manufacturer'])->where(['manufacturerName' => '[a-z\-0-9]+', 'id' => '[0-9]+']);
-Route::get('/{categoryName}-c{id}.html', ['as' => 'product_category', 'uses' => 'Frontend\IndexController@product_category'])->where(['categoryName' => '[a-z\-0-9]+', 'id' => '[0-9]+']);;
-Route::get('/{productName}-p{id}.html', ['as' => 'product_detail', 'uses' => 'Frontend\IndexController@product_detail'])->where(['productName' => '[a-z\-0-9]+', 'id' => '[0-9]+']);
+Route::get('/tim-kiem', ['as' => 'search.index', 'uses' => 'Frontend\SearchController@index']);
+Route::get('/tin-noi-bat', ['as' => 'asset.hot', 'uses' => 'Frontend\AssetController@hot']);
+Route::get('/nha-dat-cho-thue', ['as' => 'asset.lease', 'uses' => 'Frontend\AssetController@index']);
+Route::get('/nha-dat-can-thue', ['as' => 'asset.buy', 'uses' => 'Frontend\AssetController@buy']);
+Route::get('/{slug}-a{id}.html', ['as' => 'asset.show', 'uses' => 'Frontend\AssetController@show'])
+    ->where(['slug' => '[a-z\-0-9]+', 'id' => '[0-9]+']);
 
-Route::get('/{slug_article}-a{id}.html', ['as' => 'article_detail', 'uses' => 'Frontend\IndexController@article_detail'])
-    ->where(['slug_article' => '[a-z\-0-9]+', 'id' => '[0-9]+']);
+Route::get('/tin-tuc', ['as' => 'article.index', 'uses' => 'Frontend\ArticleController@index']);
+Route::get('/phong-thuy', ['as' => 'article.fengshui', 'uses' => 'Frontend\ArticleController@fengshui']);
+Route::get('/{slug}-n{id}.html', ['as' => 'article.show', 'uses' => 'Frontend\ArticleController@show'])
+    ->where(['slug' => '[a-z\-0-9]+', 'id' => '[0-9]+']);
+
+Route::group(['prefix' => 'location'], function () {
+    Route::get('/', 'LocationController@index')->name('location');
+    Route::get('get-provinces', 'LocationController@get_provinces')->name('location.provinces');
+    Route::get('get-provinces', 'LocationController@get_provinces');
+    Route::get('get-districts', 'LocationController@get_districts');
+    Route::get('get-wards', 'LocationController@get_wards');
+    Route::get('geo-ids-by-address', 'LocationController@geoIdsByAddress');
+});
 
 Route::group(['prefix' => 'cache'], function () {
     Route::get('/update-js-data', 'CacheController@update_js_data')->name('cache.update-js-data');

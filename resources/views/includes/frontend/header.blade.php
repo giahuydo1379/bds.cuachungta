@@ -1,3 +1,7 @@
+<?php
+$menu_items = \App\Helpers\General::get_menu_items();
+$settings = \App\Helpers\General::get_settings();
+?>
 <!-- ====== BEGIN HEADER ====== -->
 <header id="header">
     <!-- Main Menu Header -->
@@ -5,8 +9,8 @@
         <div class="container">
             <!-- Navbar Brand -->
             <div class="navbar-header">
-                <a href="/" id="navbar-brand" class="navbar-brand"><img src="/html/assets/images/header-logo-default.png"
-                                                                        alt="kensington Property"></a>
+                <a href="{{url('/')}}" id="navbar-brand" class="navbar-brand">
+                    <img src="<?=@$settings['image_logo_header']['value']?>" alt="kensington Property"></a>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
                         aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
@@ -18,25 +22,24 @@
             <!-- Navbar Menu -->
             <nav id="navbar" class="navbar navbar-right navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                <?php
+                $base_url = url('/');
+                $curr_url = url()->current();
+                if ($base_url==$curr_url) {
+                    $base_url = '';
+                }
+                ?>
+                @foreach($menu_items as $item)
                     <!-- Dropdown Menu -->
+                    <?php
+                        if (strpos($item['link_full'], '#')===0) {
+                            $item['link_full'] = $base_url.$item['link_full'];
+                        }
+                        ?>
                     <li>
-                        <a class="scrollLink" href="#featured-property">Tin nổi bật</a>
+                        <a class="scrollLink" href="{{$item['link_full']}}">{{$item['name']}}</a>
                     </li>
-                    <!-- Dropdown Menu -->
-                    <li>
-                        <a class="scrollLink" href="#block-house">Nhà đất cho thuê</a>
-                    </li>
-                    <!-- Dropdown Menu -->
-                    <li>
-                        <a class="scrollLink" href="#block-land">Nhà đất cần thuê</a>
-                    </li>
-                    <!-- Dropdown Menu -->
-                    <li>
-                        <a class="scrollLink" href="#block-news">Tin tức</a>
-                    </li>
-                    <li>
-                        <a class="scrollLink" href="#testimony">Phong thủy</a>
-                    </li>
+                @endforeach
                 </ul>
             </nav>
         </div>

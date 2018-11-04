@@ -17,8 +17,8 @@ class District extends Model
 
 //    protected $hidden = ['deleted_at', 'is_deleted'];
 
-    public static function getListAll($filter){
-
+    public static function getListAll($filter)
+    {
         $sql = self::select('manufacturers.*');
 //        $sql->where('manufacturers.is_deleted', 0);
 
@@ -39,12 +39,11 @@ class District extends Model
         return ['total' => $total, 'data' => $data];
     }
 
-    public static function getDistrict(){
+    public static function getDistrict()
+    {
+        $data = District::select('district_id', 'name')->pluck('name', 'district_id');
 
-        $data = District::select('district_id','name')->pluck('name','district_id');
-
-        if(!empty($data))
-        {
+        if (!empty($data)) {
             return $data->toArray();
         }
 
@@ -56,4 +55,3 @@ class District extends Model
         return $this->belongsTo('App\Models\Province', 'province_id');
     }
 }
-?>

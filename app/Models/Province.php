@@ -17,8 +17,8 @@ class Province extends Model
 
 //    protected $hidden = ['deleted_at', 'is_deleted'];
 
-    public static function getListAll($filter){
-
+    public static function getListAll($filter)
+    {
         $sql = self::select('manufacturers.*');
 //        $sql->where('manufacturers.is_deleted', 0);
 
@@ -39,12 +39,11 @@ class Province extends Model
         return ['total' => $total, 'data' => $data];
     }
 
-    public static function getProvince(){
+    public static function getProvince()
+    {
+        $data = Province::select('province_id', 'name')->pluck('name', 'province_id');
 
-        $data = Province::select('province_id','name')->pluck('name','province_id');
-
-        if(!empty($data))
-        {
+        if (!empty($data)) {
             return $data->toArray();
         }
 
@@ -56,4 +55,3 @@ class Province extends Model
         return $this->hasMany('App\Models\District');
     }
 }
-?>

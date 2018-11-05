@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               10.1.31-MariaDB - mariadb.org binary distribution
+-- Server version:               10.1.26-MariaDB - mariadb.org binary distribution
 -- Server OS:                    Win32
--- HeidiSQL Version:             9.5.0.5196
+-- HeidiSQL Version:             9.4.0.5125
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -11,12 +11,8 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
-
--- Dumping database structure for bds
-CREATE DATABASE IF NOT EXISTS `bds` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `bds`;
-
 -- Dumping structure for table bds.articles
+DROP TABLE IF EXISTS `articles`;
 CREATE TABLE IF NOT EXISTS `articles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL COMMENT 'tiêu đề bài viết',
@@ -33,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `articles` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='bài viết về tin tức, phong thuỷ';
 
--- Dumping data for table bds.articles: ~36 rows (approximately)
+-- Dumping data for table bds.articles: ~35 rows (approximately)
 /*!40000 ALTER TABLE `articles` DISABLE KEYS */;
 INSERT INTO `articles` (`id`, `name`, `description`, `content`, `article_category_id`, `image`, `image_url`, `position`, `status`, `is_deleted`, `created_at`, `updated_at`) VALUES
 	(1, 'CP1E *', NULL, '<ul>\r\n	<li><span style="color:#2980b9"><span style="font-size:14px"><span style="font-family:Calibri,sans-serif">PLC loại nhỏ cho ứng dụng đơn giản, gi&aacute; th&agrave;nh thấp, hỗ trợ tối đa 180 I/O, </span></span></span><span style="color:#c0392b"><span style="font-size:14px"><span style="font-family:Calibri,sans-serif">kh&ocirc;ng hỗ trợ Function Blocks</span></span></span></li>\r\n	<li><span style="color:#2980b9"><span style="font-size:14px"><span style="font-family:Calibri,sans-serif">Cổng giao tiếp&nbsp;: USB .(RS232, 1 cổng t&ugrave;y chọn hỗ trợ d&ograve;ng CP1E-N)</span></span></span></li>\r\n	<li><span style="color:#2980b9"><span style="font-size:14px"><span style="font-family:Calibri,sans-serif">Mở rộng th&ecirc;m I/O d&ugrave;ng Module CP1W</span></span></span></li>\r\n	<li><span style="color:#2980b9"><span style="font-size:14px"><span style="font-family:Calibri,sans-serif">Nguồn : 24VDC, 100-240VAC</span></span></span></li>\r\n	<li><span style="color:#2980b9"><span style="font-size:14px"><span style="font-family:Calibri,sans-serif">Dung lượng chương tr&igrave;nh : 2K step cho CP1E-E,&nbsp;8K steps cho CP1E-N</span></span></span></li>\r\n	<li><span style="color:#2980b9"><span style="font-size:14px"><span style="font-family:Calibri,sans-serif">Bộ nhớ dữ liệu&nbsp;: 2K word cho CP1E-E,&nbsp;8K word cho CP1E-N</span></span></span></li>\r\n	<li><span style="color:#2980b9"><span style="font-size:14px"><span style="font-family:Calibri,sans-serif">Bộ đếm tốc độ cao&nbsp;: 6 v&agrave;o(10Khz/100Khz)</span></span></span></li>\r\n	<li><span style="color:#2980b9"><span style="font-size:14px"><span style="font-family:Calibri,sans-serif">T&iacute;n hiệu xung ng&otilde; ra&nbsp; : 2 ra(100Khz) loại transistor</span></span></span></li>\r\n	<li><span style="color:#2980b9"><span style="font-size:14px"><span style="font-family:Calibri,sans-serif">Truyền th&ocirc;ng&nbsp;:&nbsp;hỗ trợ d&ograve;ng CP1E-N: Serial, Modbus-RTU, Ethernet/FINS</span></span></span></li>\r\n	<li><span style="font-size:14px"><a href="https://drive.google.com/open?id=0B5JT8gQq5SdlbDROY2ZDVkZHdms"><span style="color:#f39c12">Download t&agrave;i liệu</span></a></span></li>\r\n</ul>', 1, '/uploads/cke/CP1E.jpg', 'https://phanthinh.com.vn', 1, 1, 0, '2018-09-04 16:34:42', '2018-09-23 03:59:53'),
@@ -74,6 +70,7 @@ INSERT INTO `articles` (`id`, `name`, `description`, `content`, `article_categor
 /*!40000 ALTER TABLE `articles` ENABLE KEYS */;
 
 -- Dumping structure for table bds.article_categories
+DROP TABLE IF EXISTS `article_categories`;
 CREATE TABLE IF NOT EXISTS `article_categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL COMMENT 'tên',
@@ -96,6 +93,7 @@ INSERT INTO `article_categories` (`id`, `name`, `description`, `position`, `stat
 /*!40000 ALTER TABLE `article_categories` ENABLE KEYS */;
 
 -- Dumping structure for table bds.article_images
+DROP TABLE IF EXISTS `article_images`;
 CREATE TABLE IF NOT EXISTS `article_images` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `image` varchar(255) DEFAULT NULL COMMENT 'path ảnh',
@@ -106,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `article_images` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='ảnh của bài viết tin tức, phong thuỷ';
 
--- Dumping data for table bds.article_images: ~12 rows (approximately)
+-- Dumping data for table bds.article_images: ~13 rows (approximately)
 /*!40000 ALTER TABLE `article_images` DISABLE KEYS */;
 INSERT INTO `article_images` (`id`, `image`, `image_url`, `article_id`, `created_at`, `updated_at`) VALUES
 	(22, '/uploads/cke/CP1E-N20.jpg', 'https://phanthinh.com.vn', 1, '2018-09-22 14:30:18', '2018-09-22 14:30:18'),
@@ -125,6 +123,7 @@ INSERT INTO `article_images` (`id`, `image`, `image_url`, `article_id`, `created
 /*!40000 ALTER TABLE `article_images` ENABLE KEYS */;
 
 -- Dumping structure for table bds.assets
+DROP TABLE IF EXISTS `assets`;
 CREATE TABLE IF NOT EXISTS `assets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL COMMENT 'tiêu đề bài viết',
@@ -155,6 +154,7 @@ CREATE TABLE IF NOT EXISTS `assets` (
 /*!40000 ALTER TABLE `assets` ENABLE KEYS */;
 
 -- Dumping structure for table bds.assets_images
+DROP TABLE IF EXISTS `assets_images`;
 CREATE TABLE IF NOT EXISTS `assets_images` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `image` varchar(255) DEFAULT NULL COMMENT 'path ảnh',
@@ -183,6 +183,7 @@ INSERT INTO `assets_images` (`id`, `image`, `image_url`, `asset_id`, `created_at
 /*!40000 ALTER TABLE `assets_images` ENABLE KEYS */;
 
 -- Dumping structure for table bds.asset_categories
+DROP TABLE IF EXISTS `asset_categories`;
 CREATE TABLE IF NOT EXISTS `asset_categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL COMMENT 'tên',
@@ -198,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `asset_categories` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='danh mục bài viết';
 
--- Dumping data for table bds.asset_categories: ~5 rows (approximately)
+-- Dumping data for table bds.asset_categories: ~6 rows (approximately)
 /*!40000 ALTER TABLE `asset_categories` DISABLE KEYS */;
 INSERT INTO `asset_categories` (`id`, `name`, `type`, `description`, `position`, `status`, `is_deleted`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 'Cho thuê nhà chung cư', NULL, NULL, 1, 1, 0, NULL, NULL, NULL, '2018-10-23 09:07:05'),
@@ -210,6 +211,7 @@ INSERT INTO `asset_categories` (`id`, `name`, `type`, `description`, `position`,
 /*!40000 ALTER TABLE `asset_categories` ENABLE KEYS */;
 
 -- Dumping structure for table bds.asset_features
+DROP TABLE IF EXISTS `asset_features`;
 CREATE TABLE IF NOT EXISTS `asset_features` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'tên',
@@ -223,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `asset_features` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT COMMENT='danh mục filter';
 
--- Dumping data for table bds.asset_features: ~5 rows (approximately)
+-- Dumping data for table bds.asset_features: ~6 rows (approximately)
 /*!40000 ALTER TABLE `asset_features` DISABLE KEYS */;
 INSERT INTO `asset_features` (`id`, `name`, `description`, `is_range`, `position`, `status`, `is_deleted`, `created_at`, `updated_at`) VALUES
 	(2, 'Diện tích', 'Diện tích', 0, 1, 1, 0, NULL, '2018-08-02 22:50:50'),
@@ -235,6 +237,7 @@ INSERT INTO `asset_features` (`id`, `name`, `description`, `is_range`, `position
 /*!40000 ALTER TABLE `asset_features` ENABLE KEYS */;
 
 -- Dumping structure for table bds.asset_features_values
+DROP TABLE IF EXISTS `asset_features_values`;
 CREATE TABLE IF NOT EXISTS `asset_features_values` (
   `feature_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `asset_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
@@ -384,6 +387,7 @@ INSERT INTO `asset_features_values` (`feature_id`, `asset_id`, `variant_id`) VAL
 /*!40000 ALTER TABLE `asset_features_values` ENABLE KEYS */;
 
 -- Dumping structure for table bds.asset_features_variants
+DROP TABLE IF EXISTS `asset_features_variants`;
 CREATE TABLE IF NOT EXISTS `asset_features_variants` (
   `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `feature_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
@@ -400,7 +404,7 @@ CREATE TABLE IF NOT EXISTS `asset_features_variants` (
   KEY `job_feature_id` (`feature_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='giá trị filter';
 
--- Dumping data for table bds.asset_features_variants: 12 rows
+-- Dumping data for table bds.asset_features_variants: 13 rows
 /*!40000 ALTER TABLE `asset_features_variants` DISABLE KEYS */;
 INSERT INTO `asset_features_variants` (`id`, `feature_id`, `name`, `description`, `from`, `to`, `position`, `status`, `is_deleted`, `created_at`, `updated_at`) VALUES
 	(1, 2, 'Nhân viên', NULL, 0, 0, 0, 1, 0, '2018-04-05 20:36:12', '2018-04-05 21:04:17'),
@@ -419,6 +423,7 @@ INSERT INTO `asset_features_variants` (`id`, `feature_id`, `name`, `description`
 /*!40000 ALTER TABLE `asset_features_variants` ENABLE KEYS */;
 
 -- Dumping structure for table bds.audits
+DROP TABLE IF EXISTS `audits`;
 CREATE TABLE IF NOT EXISTS `audits` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_type` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -451,6 +456,7 @@ INSERT INTO `audits` (`id`, `user_type`, `user_id`, `event`, `auditable_type`, `
 /*!40000 ALTER TABLE `audits` ENABLE KEYS */;
 
 -- Dumping structure for table bds.districts
+DROP TABLE IF EXISTS `districts`;
 CREATE TABLE IF NOT EXISTS `districts` (
   `district_id` varchar(5) CHARACTER SET utf8 NOT NULL,
   `name` varchar(100) CHARACTER SET utf8 NOT NULL,
@@ -1179,7 +1185,36 @@ INSERT INTO `districts` (`district_id`, `name`, `type`, `location`, `province_id
 	('973', 'Ngọc Hiển', 'Huyện', NULL, '96', 0);
 /*!40000 ALTER TABLE `districts` ENABLE KEYS */;
 
+-- Dumping structure for table bds.menu_items
+DROP TABLE IF EXISTS `menu_items`;
+CREATE TABLE IF NOT EXISTS `menu_items` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `type` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `link` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `page_id` int(10) unsigned DEFAULT NULL,
+  `parent_id` int(10) unsigned DEFAULT NULL,
+  `lft` int(10) unsigned DEFAULT NULL,
+  `rgt` int(10) unsigned DEFAULT NULL,
+  `depth` int(10) unsigned DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table bds.menu_items: ~0 rows (approximately)
+/*!40000 ALTER TABLE `menu_items` DISABLE KEYS */;
+INSERT INTO `menu_items` (`id`, `name`, `type`, `link`, `page_id`, `parent_id`, `lft`, `rgt`, `depth`, `created_at`, `updated_at`, `deleted_at`) VALUES
+	(1, 'Tin nổi bật', 'internal_link', '#featured-property', NULL, NULL, NULL, NULL, NULL, '2018-11-05 09:13:11', '2018-11-05 09:13:11', NULL),
+	(2, 'Nhà đất cho thuê', 'internal_link', '#block-house', NULL, NULL, NULL, NULL, NULL, '2018-11-05 09:13:11', '2018-11-05 09:13:11', NULL),
+	(3, 'Nhà đất cần thuê', 'internal_link', '#block-land', NULL, NULL, NULL, NULL, NULL, '2018-11-05 09:13:11', '2018-11-05 09:13:11', NULL),
+	(4, 'Tin tức', 'internal_link', '#block-news', NULL, NULL, NULL, NULL, NULL, '2018-11-05 09:13:11', '2018-11-05 09:13:11', NULL),
+	(5, 'Phong thủy', 'internal_link', '#testimony', NULL, NULL, NULL, NULL, NULL, '2018-11-05 09:13:11', '2018-11-05 09:13:11', NULL);
+/*!40000 ALTER TABLE `menu_items` ENABLE KEYS */;
+
 -- Dumping structure for table bds.migrations
+DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE IF NOT EXISTS `migrations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1192,6 +1227,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 
 -- Dumping structure for table bds.pages
+DROP TABLE IF EXISTS `pages`;
 CREATE TABLE IF NOT EXISTS `pages` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `template` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT 'default',
@@ -1222,6 +1258,7 @@ INSERT INTO `pages` (`id`, `template`, `name`, `title`, `slug`, `content`, `imag
 /*!40000 ALTER TABLE `pages` ENABLE KEYS */;
 
 -- Dumping structure for table bds.password_resets
+DROP TABLE IF EXISTS `password_resets`;
 CREATE TABLE IF NOT EXISTS `password_resets` (
   `email` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
   `token` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
@@ -1234,6 +1271,7 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
 /*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
 
 -- Dumping structure for table bds.products
+DROP TABLE IF EXISTS `products`;
 CREATE TABLE IF NOT EXISTS `products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL COMMENT 'tên sản phẩm',
@@ -1260,6 +1298,7 @@ CREATE TABLE IF NOT EXISTS `products` (
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 
 -- Dumping structure for table bds.provinces
+DROP TABLE IF EXISTS `provinces`;
 CREATE TABLE IF NOT EXISTS `provinces` (
   `province_id` varchar(5) CHARACTER SET utf8 NOT NULL,
   `name` varchar(100) CHARACTER SET utf8 NOT NULL,
@@ -1338,6 +1377,7 @@ INSERT INTO `provinces` (`province_id`, `name`, `type`, `is_deleted`, `ordering`
 /*!40000 ALTER TABLE `provinces` ENABLE KEYS */;
 
 -- Dumping structure for table bds.scripts_include
+DROP TABLE IF EXISTS `scripts_include`;
 CREATE TABLE IF NOT EXISTS `scripts_include` (
   `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1358,6 +1398,7 @@ INSERT INTO `scripts_include` (`id`, `key`, `description`, `value`, `is_active`,
 /*!40000 ALTER TABLE `scripts_include` ENABLE KEYS */;
 
 -- Dumping structure for table bds.settings
+DROP TABLE IF EXISTS `settings`;
 CREATE TABLE IF NOT EXISTS `settings` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
@@ -1370,28 +1411,18 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `settings_key_unique` (`key`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Dumping data for table bds.settings: ~14 rows (approximately)
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
 INSERT INTO `settings` (`id`, `key`, `name`, `description`, `value`, `field`, `active`, `created_at`, `updated_at`) VALUES
-	(1, 'hotline', 'Hotline', 'Hotline', '0908.488.288', '{"name":"value","label":"Value","type":"text"}', 1, '2018-08-22 16:43:23', '2018-08-22 03:00:35'),
-	(2, 'address', 'Address', 'Address', 'Số 04, Đường Số 37, P 4, Q 4, TP HCM', '{"name":"value","label":"Value","type":"text"}', 1, '2018-08-22 16:43:23', '2018-08-22 03:02:08'),
-	(3, 'email_support', 'Email Support', 'Email Support', 'ptt@phanthinh.com.vn', '{"name":"value","label":"Value","type":"email"}', 1, '2018-08-22 16:43:24', '2018-08-22 08:25:53'),
-	(34, 'company_name', 'Company Name', 'Company Name', 'Công ty TNHH Thương mại Dịch vụ Kỹ thuật Phan Thịnh', '{"name":"value","label":"Value","type":"text"}', 1, '2018-08-22 16:43:26', '2018-08-22 16:43:19'),
-	(35, 'tax_code', 'Tax Code', 'Tax Code', '0313155026', '{"name":"value","label":"Value","type":"text"}', 1, '2018-08-22 16:43:27', '2018-08-22 16:43:18'),
-	(36, 'bank', 'Bank', 'Bank', '0331000441339 Vietcombank – Chi Nhánh Sài Gòn', '{"name":"value","label":"Value","type":"text"}', 1, '2018-08-22 16:43:29', '2018-08-22 16:43:17'),
-	(37, 'phone', 'Phone', 'Phone', '(028).6261 7273', '{"name":"value","label":"Value","type":"text"}', 1, '2018-08-22 16:43:30', '2018-08-22 16:43:16'),
-	(38, 'fax', 'Fax', 'Fax', '(028).6261 5053', '{"name":"value","label":"Value","type":"text"}', 1, '2018-08-22 16:43:31', '2018-08-22 16:43:15'),
-	(39, 'email', 'Email', 'Email', 'ptt@phanthinh.com.vn', '{"name":"value","label":"Value","type":"email"}', 1, '2018-08-22 16:43:33', '2018-08-22 08:25:40'),
-	(40, 'address_map', 'Address Map', 'Address Map', 'https://www.google.com/maps/embed?pb=!1m21!1m12!1m3!1d3919.7052260192377!2d106.70141721537776!3d10.75718616248866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m6!3e0!4m3!3m2!1d10.7572007!2d106.7036179!4m0!5e0!3m2!1svi!2s!4v1516607953177', '{"name":"value","label":"Value","type":"textarea"}', 1, '2018-08-22 16:43:34', '2018-08-22 16:43:14'),
-	(41, 'image_logo_header', 'Logo Header', 'Logo Header', NULL, '{"name":"value","label":"Value","type":"image"}', 1, '2018-08-22 16:43:35', '2018-09-18 02:35:54'),
-	(42, 'image_logo_footer', 'Logo Footer', 'Logo Footer', 'data:image/png;base64,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', '{"name":"value","label":"Value","type":"image"}', 1, '2018-08-22 16:43:36', '2018-08-22 03:50:53'),
-	(46, 'og_keywords', 'SEO Keywords Mặt định', 'SEO Keywords Mặt định', 'Điện máy, Điện tử, Điện lạnh, Gia dụng, Kỹ thuật số, Thiết bị văn phòng, Vi tính, Nội thất, Gia dụng, Thời trang, Siêu Thị, Trung Tâm', '{"name":"value","label":"Value","type":"textarea"}', 1, '2018-08-22 16:43:37', '2018-08-22 16:43:12'),
-	(47, 'og_description', 'SEO Description', 'SEO Description', 'Điện tử, Điện lạnh, Gia dụng, Kỹ thuật số, Thiết bị văn phòng, Vi tính, Nội thất, Gia dụng. Tin tức: Công nghệ, kinh nghiệm, Download, thủ thuật, khéo tay, Mốt thời trang, phong thủy.', '{"name":"value","label":"Value","type":"textarea"}', 1, '2018-08-22 16:43:38', '2018-08-22 16:43:13');
+	(1, 'copyright', 'Copyright', 'Copyright', 'Copyright &copy; 2018 - All Rights Reserved By tinthuenha', '{"name":"value","label":"Value","type":"text"}', 1, '2018-08-22 16:43:23', '2018-08-22 03:00:35'),
+	(41, 'image_logo_header', 'Logo Header', 'Logo Header', '/html/assets/images/header-logo-default.png', '{"name":"value","label":"Value","type":"image"}', 1, '2018-08-22 16:43:35', '2018-09-18 02:35:54'),
+	(49, 'favicon_ico', 'Favicon ico', 'Favicon ico', '/html/assets/images/favicon.ico', '{"name":"value","label":"Value","type":"image"}', 1, '2018-08-22 16:43:35', '2018-09-18 02:35:54');
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 
 -- Dumping structure for table bds.slides
+DROP TABLE IF EXISTS `slides`;
 CREATE TABLE IF NOT EXISTS `slides` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
@@ -1417,6 +1448,7 @@ INSERT INTO `slides` (`id`, `title`, `image`, `image_url`, `description`, `link`
 /*!40000 ALTER TABLE `slides` ENABLE KEYS */;
 
 -- Dumping structure for table bds.users
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `code` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1438,13 +1470,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   KEY `username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='người dùng (chủ website)';
 
--- Dumping data for table bds.users: ~0 rows (approximately)
+-- Dumping data for table bds.users: ~1 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `code`, `department_id`, `fullname`, `email`, `username`, `avatar`, `gender`, `is_enabled`, `password`, `remember_token`, `api_token`, `created_at`, `updated_at`) VALUES
-	(2, NULL, 0, 'Admin', 'phanthinh@gmail.com', 'phanthinh', NULL, NULL, 1, '$2y$10$du4MvTsmV6RVezWRdgkxEuvKmgb.W1pPhXXY2IwIUAnM3.HhPDiGi', 'PaKYNWCtQNwD7MDWqhwhcQ8N0IC58nKO4Ro3wvYunCMgJzRJniE5PELEJMSn', NULL, '2018-04-25 01:25:31', '2018-04-25 01:25:31');
+	(2, NULL, 0, 'Admin', 'admin@gmail.com', 'Nakata', NULL, NULL, 1, '$2y$10$du4MvTsmV6RVezWRdgkxEuvKmgb.W1pPhXXY2IwIUAnM3.HhPDiGi', 'PaKYNWCtQNwD7MDWqhwhcQ8N0IC58nKO4Ro3wvYunCMgJzRJniE5PELEJMSn', NULL, '2018-04-25 01:25:31', '2018-04-25 01:25:31');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Dumping structure for table bds.wards
+DROP TABLE IF EXISTS `wards`;
 CREATE TABLE IF NOT EXISTS `wards` (
   `ward_id` varchar(5) CHARACTER SET utf8 NOT NULL,
   `name` varchar(100) CHARACTER SET utf8 NOT NULL,

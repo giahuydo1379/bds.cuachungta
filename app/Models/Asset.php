@@ -11,7 +11,7 @@ class Asset extends Model
      *
      * @var string
      */
-    protected $table = 'assets ';
+    protected $table = 'assets';
 
     protected $primaryKey = 'id';
 

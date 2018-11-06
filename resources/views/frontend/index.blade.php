@@ -15,79 +15,14 @@
             </div>
         </div>
     </section>
+
     <!-- ====== FEATURED PROPERTY SECTION ====== -->
     <section id="featured-property" class="page-section">
         <div class="container">
-            <!-- Section Title -->
-            <div class="section-header">
-                <h2 class="section-title">Tin nổi bật <a class="btn-more" href="{{route('fe.asset.hot')}}">Xem thêm <i
-                                class="fa fa-angle-double-right" aria-hidden="true"></i></a></h2>
-            </div>
-            <!-- Section Content -->
-            <div class="row">
-                <div class="col-md-4 col-sm-6">
-                    <!-- Property Item Tall -->
-                    <div class="property-item">
-                        <div class="property-header">
-                            <a href="archive-property.html" class="item-category">Thuê Nhà phố</a>
-                            <a href="single-property.html" class="item-title">Nhà phố Nguyễn Du Quận 1 cho thuê</a>
-                            <div class="item-price">35 triệu / tháng</div>
-                        </div>
-                        <figure class="item-img" style="background-image: url('/html/assets/images/1.jpg');">
-                            <a href="single-property.html"></a>
-                        </figure>
-                    </div>
-                </div>
-                <div class="col-md-4 col-md-push-4 col-sm-6">
-                    <!-- Property Item Tall -->
-                    <div class="property-item">
-                        <div class="property-header">
-                            <a href="archive-property.html" class="item-category">Thuê Căn hộ</a>
-                            <a href="single-property.html" class="item-title">Home city Quận 2</a>
-                            <div class="item-price">10 triệu / tháng</div>
-                        </div>
-                        <figure class="item-img" style="background-image: url('/html/assets/images/2.jpg');">
-                            <a href="single-property.html"></a>
-                        </figure>
-                    </div>
-                </div>
-                <div class="col-md-4 col-md-pull-4">
-                    <!-- Property Item Short / Multiple Row Item -->
-                    <div class="multiple-item">
-                        <div class="row">
-                            <div class="col-md-12 col-sm-6">
-                                <!-- Property Item Short -->
-                                <div class="property-item">
-                                    <div class="property-header">
-                                        <a href="archive-property.html" class="item-category">Thuê Đất</a>
-                                        <a href="single-property.html" class="item-title">Thuê Đất Nông nghiệp Quận 12</a>
-                                        <div class="item-price">5 triệu / tháng</div>
-                                    </div>
-                                    <figure class="item-img" style="background-image: url('/html/assets/images/3.jpg');">
-                                        <a href="single-property.html"></a>
-                                    </figure>
-                                </div>
-                            </div>
-                            <div class="col-md-12 col-sm-6">
-                                <!-- Property Item Short -->
-                                <div class="property-item">
-                                    <div class="property-header">
-                                        <a href="archive-property.html" class="item-category">Thuê văn phòng</a>
-                                        <a href="single-property.html" class="item-title">Thuê văn phòng công ty Quận Phú
-                                            Nhuận</a>
-                                        <div class="item-price">13 triệu / tháng</div>
-                                    </div>
-                                    <figure class="item-img" style="background-image: url('/html/assets/images/4.jpg');">
-                                        <a href="single-property.html"></a>
-                                    </figure>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?=\App\Helpers\Block::asset_hot()?>
         </div>
     </section>
+
     <!-- ====== BEST OFFER SECTION ====== -->
     <section id="block-house" class="page-section">
         <div class="container">

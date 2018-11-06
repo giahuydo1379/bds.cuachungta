@@ -43,17 +43,6 @@ class IndexController extends Controller
         return view('frontend.contact', $this->data);
     }
 
-    public function category_manufacturer(Request $request, $slug, $id)
-    {
-        $limit = $request->input('limit', 12);
-        $this->data['limit'] = $limit;
-
-//        $this->data['slides'] = SlideShow::getSlideShows();
-        $this->data['manufacturerCategories'] = ProductCategory::getCategoryBymanufacturer($id);
-        $this->data['manufacturer'] = Manufacturer::getManufacturerById($id);
-        return view('frontend.category-manufacturer', $this->data);
-    }
-
     public function products(Request $request)
     {
         $limit = $request->input('limit', 12);

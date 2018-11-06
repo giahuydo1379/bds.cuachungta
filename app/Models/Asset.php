@@ -75,6 +75,35 @@ class Asset extends Model
         return  array();
     }
 
+    public static function getAssetsHot($limit=4)
+    {
+        $query = self::select(['*']);
+
+        $query->where('assets.is_deleted', 0);
+        $query->where('assets.is_hot', 1);
+        $query->where('assets.status', 1);
+
+        $query->orderBy('assets.position', 'asc');
+        $query->orderBy('assets.id', 'desc');
+
+        return $query->limit($limit)->get();
+    }
+
+    public static function getTopAssetsByType($type='lease', $limit=4)
+    {
+        $query = self::select(['*']);
+
+        $query->where('assets.is_deleted', 0);
+        $query->where('assets.is_hot', 1);
+        $query->where('assets.status', 1);
+        $query->where('assets.type', $type);
+
+        $query->orderBy('assets.position', 'asc');
+        $query->orderBy('assets.id', 'desc');
+
+        return $query->limit($limit)->get();
+    }
+
     public static function getCategoryById($id)
     {
         $data = ProductCategory::select('product_categories.*', 'manufacturers.name as manufacturer_name')
@@ -86,25 +115,6 @@ class Asset extends Model
             return $data->toArray();
         }
 
-        return  array();
-    }
-
-    public static function getCategoryBymanufacturer($manufacturer_id)
-    {
-        $data = ProductCategory::select(
-            'product_categories.id',
-            'product_categories.name',
-            'product_categories.image_url',
-            'product_categories.image',
-            'manufacturers.name as manufacturer_name'
-        )
-            ->leftJoin('manufacturers', 'manufacturers.id', '=', 'product_categories.manufacturer_id')
-            ->where('product_categories.manufacturer_id', $manufacturer_id)
-            ->where('product_categories.is_deleted', 0)
-            ->orderBy('product_categories.order', 'asc')->get();
-        if (!empty($data)) {
-            return $data->toArray();
-        }
         return  array();
     }
 

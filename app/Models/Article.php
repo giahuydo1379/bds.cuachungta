@@ -15,7 +15,7 @@ class Article extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = ['name', 'description', 'content', 'article_category_id', 'manufacturer_id', 'position',
-        'image', 'image_url', 'created_at', 'updated_at', 'is_deleted', 'status'];
+        'image', 'image_url', 'created_at', 'updated_at', 'is_deleted', 'status', 'is_hot', 'is_common'];
 
 //    protected $hidden = ['deleted_at', 'is_deleted'];
 

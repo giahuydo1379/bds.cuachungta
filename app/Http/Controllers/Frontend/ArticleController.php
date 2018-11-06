@@ -19,8 +19,12 @@ class ArticleController extends Controller
     public function index(Request $request)
     {
         $articles = Article::orderBy('id', 'DESC')->where(['status'=> 1, 'article_category_id'=> 1, 'is_deleted' => 0])->paginate(5);
+        $ishots =Article::where(['is_hot'=>1, 'status'=>1, 'article_category_id'=> 1, 'is_deleted' => 0])->latest()->take(5)->get();
+        $iscommons =Article::where(['is_common'=>1, 'status'=>1, 'article_category_id'=> 1, 'is_deleted' => 0])->latest()->take(5)->get();
+
         $this->data['articles'] = $articles;
-     //   dd( $articles);
+        $this->data['ishots'] = $ishots;
+        $this->data['iscommons'] = $iscommons;
 
         return view('frontend.article.index', $this->data);
     }
@@ -33,8 +37,14 @@ class ArticleController extends Controller
     public function show(Request $request, $slug, $id)
     {
         $articles = Article::findOrFail($id);
-     
+        $ishots =Article::where(['is_hot'=>1, 'status'=>1, 'article_category_id'=> 1, 'is_deleted' => 0])->latest()->take(5)->get();
+        $iscommons =Article::where(['is_common'=>1, 'status'=>1, 'article_category_id'=> 1, 'is_deleted' => 0])->latest()->take(5)->get();
+
         $this->data['articles'] = $articles;
+        $this->data['ishots'] = $ishots;
+        $this->data['articles'] = $articles;
+        $this->data['iscommons'] = $iscommons;
+
         return view('frontend.article.show', $this->data);
     }
 }

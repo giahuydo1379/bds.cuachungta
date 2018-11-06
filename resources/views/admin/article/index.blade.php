@@ -91,6 +91,8 @@
                                 <th data-field="position" data-sortable="true">Ưu tiên</th>
                                 <th data-field="created_at" data-sortable="true">Ngày tạo</th>
                                 <th data-field="status" data-sortable="true" data-formatter="formatStatus">Trạng thái</th>
+                                <th data-field="is_hot" data-sortable="true" data-formatter="formatIshot">Tin nổi bật</th>
+                                <th data-field="is_common" data-sortable="true" data-formatter="formatIscommon">Tin phổ biến</th>
                                 <th data-field="id" data-align="center" data-formatter="actionColumn">Chức năng</th>
                             </tr>
                             </thead>
@@ -165,6 +167,30 @@
             else
             {
                 return '<span class="label label-sm label-warning">Không kích hoạt</span>';
+            }
+        }
+
+        function formatIshot(value, row, index) {
+
+            if(value == 1)
+            {
+                return '<span class="label label-sm label-success">Có</span>'
+            }
+            else
+            {
+                return '<span class="label label-sm label-warning">Không</span>';
+            }
+        }
+
+        function formatIscommon(value, row, index) {
+
+            if(value == 1)
+            {
+                return '<span class="label label-sm label-success">Có</span>'
+            }
+            else
+            {
+                return '<span class="label label-sm label-warning">Không</span>';
             }
         }
 

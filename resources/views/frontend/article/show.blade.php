@@ -14,7 +14,7 @@
                             <h2 class="post-title"><a href="#">{!! $articles->name!!}</a></h2>
                             <figure class="post-image"><a href="#"><img src="{{ $articles->image}}" alt=""></a></figure>
                             <div class="post-entries">
-                               {!! $articles->description !!}
+                                {!! $articles->description !!}
                                 <blockquote>
                                     <p>Bố trí phòng làm việc hợp phong thủy sẽ hỗ trợ cho sự nghiệp thăng tiến</p>
                                     <footer>Vinh Nguyen</footer>
@@ -69,10 +69,12 @@
                             <h2 class="screen-reader-text">Trở về</h2>
                             <div class="nav-links">
                                 <div class="nav-previous">
-                                    <a href="#" rel="prev"><span class="nav-post-title">Trờ về</span><span class="nav-post-name">Bố trí văn phòng hợp phong thủy giúp tăng vượng khí</span></a>
+                                    <a href="#" rel="prev"><span class="nav-post-title">Trờ về</span><span
+                                                class="nav-post-name">Bố trí văn phòng hợp phong thủy giúp tăng vượng khí</span></a>
                                 </div>
                                 <div class="nav-next">
-                                    <a href="#" rel="prev"><span class="nav-post-title">Tiếp theo</span><span class="nav-post-name">Phương pháp kích hoạt tài lộc cho không gian ngồi làm việc</span></a>
+                                    <a href="#" rel="prev"><span class="nav-post-title">Tiếp theo</span><span
+                                                class="nav-post-name">Phương pháp kích hoạt tài lộc cho không gian ngồi làm việc</span></a>
                                 </div>
                             </div>
                         </nav>
@@ -85,16 +87,24 @@
                             <div class="panel-body">
                                 <ul class="post-list">
                                     <li>
-                                        <a class="post-image" href="single-blog.html"><img src="/html/assets/images/transparent.png" style="background-image: url(assets/images/1.jpg);  padding-bottom: 56.25%; height: 0; background-size: cover; background-position: center;"  alt="Image"></a>
+                                        <a class="post-image" href="single-blog.html"><img
+                                                    src="/html/assets/images/transparent.png"
+                                                    style="background-image: url(assets/images/1.jpg);  padding-bottom: 56.25%; height: 0; background-size: cover; background-position: center;"
+                                                    alt="Image"></a>
                                         <div class="post-content">
-                                            <a href="single-blog.html" class="post-title">Hai màu trắng - đen có ý nghĩa, mối liên hệ gì với người mệnh Thủy?</a>
+                                            <a href="single-blog.html" class="post-title">Hai màu trắng - đen có ý
+                                                nghĩa, mối liên hệ gì với người mệnh Thủy?</a>
                                             <span class="post-date">02/01/2017</span>
                                         </div>
                                     </li>
                                     <li>
-                                        <a class="post-image" href="single-blog.html"><img src="/html/assets/images/transparent.png" style="background-image: url(assets/images/1.jpg);  padding-bottom: 56.25%; height: 0; background-size: cover; background-position: center;"  alt="Image"></a>
+                                        <a class="post-image" href="single-blog.html"><img
+                                                    src="/html/assets/images/transparent.png"
+                                                    style="background-image: url(assets/images/1.jpg);  padding-bottom: 56.25%; height: 0; background-size: cover; background-position: center;"
+                                                    alt="Image"></a>
                                         <div class="post-content">
-                                            <a href="single-blog.html" class="post-title">Trang trí nội thất phòng ngủ hợp phong thủy với người tuổi Mão</a>
+                                            <a href="single-blog.html" class="post-title">Trang trí nội thất phòng ngủ
+                                                hợp phong thủy với người tuổi Mão</a>
                                             <span class="post-date">11/10/2018</span>
                                         </div>
                                     </li>
@@ -112,7 +122,8 @@
                                 <form role="search" method="get" class="search-form" action="#">
                                     <label>
                                         <span class="screen-reader-text">Tìm kiếm:</span>
-                                        <input type="search" class="search-field" placeholder="Tìm kiếm …" value="" name="s">
+                                        <input type="search" class="search-field" placeholder="Tìm kiếm …" value=""
+                                               name="s">
                                     </label>
                                     <input type="submit" class="search-submit" value="Search">
                                 </form>
@@ -126,26 +137,12 @@
                                 </div>
                                 <div class="panel-body">
                                     <ul>
-                                        <li>
-                                            <a href="single-blog.html">LDG Group khánh thành nhà điều hành và giới thiệu dự án Viva Park</a>
-                                            <span class="post-date">20/01/2017</span>
-                                        </li>
-                                        <li>
-                                            <a href="single-blog.html">LDG Group khánh thành nhà điều hành và giới thiệu dự án Viva Park</a>
-                                            <span class="post-date">20/01/2017</span>
-                                        </li>
-                                        <li>
-                                            <a href="single-blog.html">LDG Group khánh thành nhà điều hành và giới thiệu dự án Viva Park</a>
-                                            <span class="post-date">20/01/2017</span>
-                                        </li>
-                                        <li>
-                                            <a href="single-blog.html">LDG Group khánh thành nhà điều hành và giới thiệu dự án Viva Park</a>
-                                            <span class="post-date">20/01/2017</span>
-                                        </li>
-                                        <li>
-                                            <a href="single-blog.html">LDG Group khánh thành nhà điều hành và giới thiệu dự án Viva Park</a>
-                                            <span class="post-date">20/01/2017</span>
-                                        </li>
+                                        @foreach($ishots as $ishot)
+                                            <li>
+                                                <a href="{{ url('tin-tuc/' .$ishot->path()) }}">{!! $ishot->name !!}</a>
+                                                <span class="post-date">{!! $ishot->created_at !!}</span>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
@@ -162,46 +159,19 @@
                                 <div class="panel-body">
                                     <!-- Post List -->
                                     <ul class="post-listb">
+                                    @foreach($iscommons as $iscommon)
                                         <!-- Post List Item -->
-                                        <li>
-                                            <div class="post-image"><img style="background: url(assets/images/property_item_default.jpg) center center no-repeat; padding-bottom: 100%; height: 0;" src="/html/assets/images/transparent.png" alt="#"></div>
-                                            <div class="post-content">
-                                                <span class="post-date">20/01/2017</span>
-                                                <a href="single-blog.html" class="post-title">Ecopark Grand – The Island: Miền tiên cảnh mới của giới đại gia Việt</a>
-                                            </div>
-                                        </li>
-                                        <!-- Post List Item -->
-                                        <li>
-                                            <div class="post-image"><img style="background: url(assets/images/property_item_default.jpg) center center no-repeat; padding-bottom: 100%; height: 0;" src="/html/assets/images/transparent.png" alt="#"></div>
-                                            <div class="post-content">
-                                                <span class="post-date">20/01/2017</span>
-                                                <a href="single-blog.html" class="post-title">Ecopark Grand – The Island: Miền tiên cảnh mới của giới đại gia Việt</a>
-                                            </div>
-                                        </li>
-                                        <!-- Post List Item -->
-                                        <li>
-                                            <div class="post-image"><img style="background: url(assets/images/property_item_default.jpg) center center no-repeat; padding-bottom: 100%; height: 0;" src="/html/assets/images/transparent.png" alt="#"></div>
-                                            <div class="post-content">
-                                                <span class="post-date">20/01/2017</span>
-                                                <a href="single-blog.html" class="post-title">Ecopark Grand – The Island: Miền tiên cảnh mới của giới đại gia Việt</a>
-                                            </div>
-                                        </li>
-                                        <!-- Post List Item -->
-                                        <li>
-                                            <div class="post-image"><img style="background: url(assets/images/property_item_default.jpg) center center no-repeat; padding-bottom: 100%; height: 0;" src="/html/assets/images/transparent.png" alt="#"></div>
-                                            <div class="post-content">
-                                                <span class="post-date">20/01/2017</span>
-                                                <a href="single-blog.html" class="post-title">Ecopark Grand – The Island: Miền tiên cảnh mới của giới đại gia Việt</a>
-                                            </div>
-                                        </li>
-                                        <!-- Post List Item -->
-                                        <li>
-                                            <div class="post-image"><img style="background: url(assets/images/property_item_default.jpg) center center no-repeat; padding-bottom: 100%; height: 0;" src="/html/assets/images/transparent.png" alt="#"></div>
-                                            <div class="post-content">
-                                                <span class="post-date">20/01/2017</span>
-                                                <a href="single-blog.html" class="post-title">Ecopark Grand – The Island: Miền tiên cảnh mới của giới đại gia Việt</a>
-                                            </div>
-                                        </li>
+                                            <li>
+                                                <div class="post-image"><img
+                                                            style="background: url(assets/images/property_item_default.jpg) center center no-repeat; padding-bottom: 100%; height: 0;"
+                                                            src="{{ $iscommon->image }}" alt="#"></div>
+                                                <div class="post-content">
+                                                    <span class="post-date">{!! $iscommon->created_at !!}</span>
+                                                    <a href="{{ url('tin-tuc/' .$iscommon->path()) }}" class="post-title">{!! $iscommon->name !!}</a>
+                                                </div>
+                                            </li>
+                                            <!-- Post List Item -->
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>

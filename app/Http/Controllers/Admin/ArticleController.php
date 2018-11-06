@@ -90,6 +90,7 @@ class ArticleController extends Controller
     public function store(ArticleRequest $request)
     {
         $data = $request->all();
+
         unset($data['_token']);
 
         if (empty($data['image_url'])) {

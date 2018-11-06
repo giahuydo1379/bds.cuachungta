@@ -19,51 +19,20 @@
                 <div class="col-md-8">
                     <!-- Content -->
                     <div id="content">
+                        @foreach($articles as $article)
+
                         <!-- Post List -->
                         <article class="post">
-                            <h2 class="post-title"><a href="{{\App\Helpers\Block::get_link_article()}}">Đất tái định cư Hòa Liên (Đà Nẵng) đột ngột lên "cơn sốt"</a></h2>
-                            <figure class="post-image"><a href="{{\App\Helpers\Block::get_link_article()}}"><img style="background: url(/html/assets/images/1.jpg) center center no-repeat; padding-bottom: 50%; height: 0;" src="/html/assets/images/transparent.png" alt="Post list 1"></a></figure>
+                            <h2 class="post-title"><a href="{{ url('tin-tuc/' .$article->path()) }}">{!! $article->name !!}</a></h2>
+                            <figure class="post-image"><a href="{{ url('tin-tuc/' .$article->path()) }}"><img style="background: url({{ $article->image }}) center center no-repeat; padding-bottom: 50%; height: 0;" src="{{ $article->image }}" alt="Post list 1"></a></figure>
                             <ul class="post-meta">
-                                <li class="post-author"><a href="#">16:53 09/10/2018</a></li>
+                                <li class="post-author"><a href="#">{{ $article->created_at }}</a></li>
                             </ul>
-                            <p class="post-entries">Giá nền đất tái định cư ở Hòa Liên, Hòa Vang, TP. Đà Nẵng bỗng dưng tăng bất thường trong thời gian ngắn, khiến giới đầu tư địa ốc và người dân ồ ạt đổ đi săn đất.</p>
+                            <p class="post-entries">{!! $article->description !!}</p>
                         </article>
-                        <!-- Post List -->
-                        <article class="post">
-                            <h2 class="post-title"><a href="{{\App\Helpers\Block::get_link_article()}}">Đất tái định cư Hòa Liên (Đà Nẵng) đột ngột lên "cơn sốt"</a></h2>
-                            <figure class="post-image"><a href="{{\App\Helpers\Block::get_link_article()}}"><img style="background: url(/html/assets/images/2.jpg) center center no-repeat; padding-bottom: 50%; height: 0;" src="/html/assets/images/transparent.png" alt="Post list 1"></a></figure>
-                            <ul class="post-meta">
-                                <li class="post-author"><a href="#">16:53 09/10/2018</a></li>
-                            </ul>
-                            <p class="post-entries">Giá nền đất tái định cư ở Hòa Liên, Hòa Vang, TP. Đà Nẵng bỗng dưng tăng bất thường trong thời gian ngắn, khiến giới đầu tư địa ốc và người dân ồ ạt đổ đi săn đất.</p>
-                        </article>
-                        <!-- Post List -->
-                        <article class="post">
-                            <h2 class="post-title"><a href="{{\App\Helpers\Block::get_link_article()}}">Đất tái định cư Hòa Liên (Đà Nẵng) đột ngột lên "cơn sốt"</a></h2>
-                            <figure class="post-image"><a href="{{\App\Helpers\Block::get_link_article()}}"><img style="background: url(/html/assets/images/3.jpg) center center no-repeat; padding-bottom: 50%; height: 0;" src="/html/assets/images/transparent.png" alt="Post list 1"></a></figure>
-                            <ul class="post-meta">
-                                <li class="post-author"><a href="#">16:53 09/10/2018</a></li>
-                            </ul>
-                            <p class="post-entries">Giá nền đất tái định cư ở Hòa Liên, Hòa Vang, TP. Đà Nẵng bỗng dưng tăng bất thường trong thời gian ngắn, khiến giới đầu tư địa ốc và người dân ồ ạt đổ đi săn đất.</p>
-                        </article>
-                        <!-- Post List -->
-                        <article class="post">
-                            <h2 class="post-title"><a href="{{\App\Helpers\Block::get_link_article()}}">Đất tái định cư Hòa Liên (Đà Nẵng) đột ngột lên "cơn sốt"</a></h2>
-                            <figure class="post-image"><a href="{{\App\Helpers\Block::get_link_article()}}"><img style="background: url(/html/assets/images/4.jpg) center center no-repeat; padding-bottom: 50%; height: 0;" src="/html/assets/images/transparent.png" alt="Post list 1"></a></figure>
-                            <ul class="post-meta">
-                                <li class="post-author"><a href="#">16:53 09/10/2018</a></li>
-                            </ul>
-                            <p class="post-entries">Giá nền đất tái định cư ở Hòa Liên, Hòa Vang, TP. Đà Nẵng bỗng dưng tăng bất thường trong thời gian ngắn, khiến giới đầu tư địa ốc và người dân ồ ạt đổ đi săn đất.</p>
-                        </article>
-                        <!-- Post List -->
-                        <article class="post">
-                            <h2 class="post-title"><a href="{{\App\Helpers\Block::get_link_article()}}">Đất tái định cư Hòa Liên (Đà Nẵng) đột ngột lên "cơn sốt"</a></h2>
-                            <figure class="post-image"><a href="{{\App\Helpers\Block::get_link_article()}}"><img style="background: url(/html/assets/images/5.jpg) center center no-repeat; padding-bottom: 50%; height: 0;" src="/html/assets/images/transparent.png" alt="Post list 1"></a></figure>
-                            <ul class="post-meta">
-                                <li class="post-author"><a href="#">16:53 09/10/2018</a></li>
-                            </ul>
-                            <p class="post-entries">Giá nền đất tái định cư ở Hòa Liên, Hòa Vang, TP. Đà Nẵng bỗng dưng tăng bất thường trong thời gian ngắn, khiến giới đầu tư địa ốc và người dân ồ ạt đổ đi săn đất.</p>
-                        </article>
+
+                        @endforeach
+
                         <!-- Post List Paginatino-->
                         <div class="pagination">
                             <a href="#" class="prev"></a>
@@ -135,7 +104,7 @@
                                 <!-- Panel Body -->
                                 <div class="panel-body">
                                     <!-- Post List -->
-                                    <ul class="post-listb">
+                                    <ul class="post-list">
                                         <!-- Post List Item -->
                                         <li>
                                             <div class="post-image"><img style="background: url(/html/assets/images/property_item_default.jpg) center center no-repeat; padding-bottom: 100%; height: 0;" src="/html/assets/images/transparent.png" alt="#"></div>

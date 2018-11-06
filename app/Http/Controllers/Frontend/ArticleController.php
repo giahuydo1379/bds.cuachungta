@@ -18,6 +18,10 @@ class ArticleController extends Controller
 
     public function index(Request $request)
     {
+        $articles = Article::orderBy('id', 'DESC')->where(['status'=> 1, 'article_category_id'=> 1, 'is_deleted' => 0])->paginate(5);
+        $this->data['articles'] = $articles;
+     //   dd( $articles);
+
         return view('frontend.article.index', $this->data);
     }
 

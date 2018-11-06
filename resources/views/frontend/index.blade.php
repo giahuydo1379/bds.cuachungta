@@ -580,11 +580,11 @@
                         <div class="property-item">
                             <div class="img-box">
                                 <a href="{{ url('tin-tuc/' .$article->path()) }}" class="img-box__image"><img
-                                            style="background: url(/html/assets/images/2.jpg) center center no-repeat; padding-bottom: 62%; height: 0;"
+                                            style="background: url({{ $article->image }}) center center no-repeat; padding-bottom: 62%; height: 0;"
                                 src="{{ $article->image}}" alt="" class="img-responsive"></a>
                             </div>
                             <div class="property-content">
-                            <a href="single-property.html" class="property-title">{!! $article->content !!}</a>
+                            <a href="{{ url('tin-tuc/' .$article->path()) }}" class="property-title">{!! $article->content !!}</a>
                             </div>
                         </div>
                        

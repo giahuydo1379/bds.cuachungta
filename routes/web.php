@@ -28,7 +28,7 @@ Route::get('/{slug}-a{id}.html', ['as' => 'asset.show', 'uses' => 'Frontend\Asse
 
 Route::get('/tin-tuc', ['as' => 'article.index', 'uses' => 'Frontend\ArticleController@index']);
 Route::get('/phong-thuy', ['as' => 'article.fengshui', 'uses' => 'Frontend\ArticleController@fengshui']);
-Route::get('/{slug}-n{id}.html', ['as' => 'article.show', 'uses' => 'Frontend\ArticleController@show'])
+Route::get('tin-tuc/{slug}-n{id}.html', ['as' => 'article.show', 'uses' => 'Frontend\ArticleController@show'])
     ->where(['slug' => '[a-z\-0-9]+', 'id' => '[0-9]+']);
 
 Route::group(['prefix' => 'location'], function () {

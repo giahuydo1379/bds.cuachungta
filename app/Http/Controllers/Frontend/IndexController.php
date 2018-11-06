@@ -21,7 +21,15 @@ class IndexController extends Controller
 //        $limit = $request->input('limit', 12);
 //        $this->data['limit'] = $limit;
 //        $this->data['objects'] = Article::getHomeArticles();
-
+        $articles =  Article::where(['status'=>1, 'is_deleted'=>0])
+                        ->orderBy('id', 'desc')
+                        ->take(4)
+                        ->get();
+        //   ->toArray();
+      
+                    
+        $this->data['articles'] = $articles;
+       
         return view('frontend.index', $this->data);
     }
 
@@ -51,13 +59,16 @@ class IndexController extends Controller
         $limit = $request->input('limit', 12);
         $this->data['limit'] = $limit;
 
-        $rank_articles = Article::select('articles.*', \DB::Raw('@m_rank := IF(@current_m = manufacturer_id, @m_rank + 1, 1) AS m_rank'),
-            \DB::Raw('@current_m := manufacturer_id'))
+        $rank_articles = Article::select(
+            'articles.*',
+            \DB::Raw('@m_rank := IF(@current_m = manufacturer_id, @m_rank + 1, 1) AS m_rank'),
+            \DB::Raw('@current_m := manufacturer_id')
+        )
             ->whereRaw('is_deleted=0')
             ->orderBy('manufacturer_id', 'desc')
             ->orderBy('order', 'asc');
 
-        $articles = \DB::table( \DB::raw("({$rank_articles->toSql()}) as sub") )->select('*')
+        $articles = \DB::table(\DB::raw("({$rank_articles->toSql()}) as sub"))->select('*')
             ->where('m_rank', '>', 0)->get();
         $rs = [];
         foreach ($articles as $item) {
@@ -98,7 +109,7 @@ class IndexController extends Controller
             $products_same_code = Product::getProductsSameCode($detail_data['product']['code'], $detail_data['product']['id']);
             $this->data['products_same_code'] = $products_same_code;
 
-            $product_ids = array_column($products_same_code,'id');
+            $product_ids = array_column($products_same_code, 'id');
             $product_ids[] = $detail_data['product']['id'];
 
             $this->data['diffProducts'] = Product::getProductsSameCategory($detail_data['product']['category_id'], $product_ids);

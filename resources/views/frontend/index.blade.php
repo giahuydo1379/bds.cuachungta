@@ -569,64 +569,30 @@
             </div>
             <!-- Panel Wrapper for Panel Box Container -->
             <div class="panel-wrapper">
+               
+                   
+          
                 <div id="product-house" class="row">
+                        @foreach ($articles as $key => $article)
                     <div class="col-md-3 col-sm-6">
                         <!-- Property Item -->
+                     
                         <div class="property-item">
                             <div class="img-box">
-                                <a href="single-property.html" class="img-box__image"><img
+                                <a href="{{ url('tin-tuc/' .$article->path()) }}" class="img-box__image"><img
                                             style="background: url(/html/assets/images/2.jpg) center center no-repeat; padding-bottom: 62%; height: 0;"
-                                            src="/html/assets/images/transparent.png" alt="" class="img-responsive"></a>
+                                src="{{ $article->image}}" alt="" class="img-responsive"></a>
                             </div>
                             <div class="property-content">
-                                <a href="single-property.html" class="property-title">ỨNG DỤNG PHONG THỦY GIÚP CUỘC SỐNG TỐT
-                                    ĐẸP HƠN</a>
+                            <a href="single-property.html" class="property-title">{!! $article->content !!}</a>
                             </div>
                         </div>
+                       
                     </div>
-                    <div class="col-md-3 col-sm-6">
-                        <!-- Property Item -->
-                        <div class="property-item">
-                            <div class="img-box">
-                                <a href="single-property.html" class="img-box__image"><img
-                                            style="background: url(/html/assets/images/2.jpg) center center no-repeat; padding-bottom: 62%; height: 0;"
-                                            src="/html/assets/images/transparent.png" alt="" class="img-responsive"></a>
-                            </div>
-                            <div class="property-content">
-                                <a href="single-property.html" class="property-title">Mẹo bố trí phòng làm việc hợp phong
-                                    thủy để có sự nghiệp thăng tiến</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <!-- Property Item -->
-                        <div class="property-item">
-                            <div class="img-box">
-                                <a href="single-property.html" class="img-box__image"><img
-                                            style="background: url(/html/assets/images/2.jpg) center center no-repeat; padding-bottom: 62%; height: 0;"
-                                            src="/html/assets/images/transparent.png" alt="" class="img-responsive"></a>
-                            </div>
-                            <div class="property-content">
-                                <a href="single-property.html" class="property-title">Phương pháp kích hoạt tài lộc cho
-                                    không gian ngồi làm việc</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <!-- Property Item -->
-                        <div class="property-item">
-                            <div class="img-box">
-                                <a href="single-property.html" class="img-box__image"><img
-                                            style="background: url(/html/assets/images/2.jpg) center center no-repeat; padding-bottom: 62%; height: 0;"
-                                            src="/html/assets/images/transparent.png" alt="" class="img-responsive"></a>
-                            </div>
-                            <div class="property-content">
-                                <a href="single-property.html" class="property-title">Cách tìm hướng phát triển trí tuệ tính
-                                    theo thập can</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
+            
+
             </div>
         </div>
     </section>

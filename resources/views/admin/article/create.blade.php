@@ -78,8 +78,8 @@ $action_title = isset($object['id'])?'Cập nhật':'Thêm mới';
                                             Ưu tiên
                                         </label>
                                         <div class="col-sm-3">
-                                                  {!! Form::select("order", $orderOptions, @$object['order'], ['id' => 'order','class' => 'form-control select2','data-placeholder' => '--- Chọn thứ tự ---']) !!}
-                                            <label id="order-error" class="error" for="order">{!! $errors->first("order") !!}</label>
+                                                  {!! Form::select("position", $orderOptions, @$object['order'], ['id' => 'order','class' => 'form-control select2','data-placeholder' => '--- Chọn thứ tự ---']) !!}
+                                            <label id="order-error" class="error" for="position">{!! $errors->first("position") !!}</label>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -278,13 +278,11 @@ $action_title = isset($object['id'])?'Cập nhật':'Thêm mới';
                 ignore: ".ignore",
                 rules: {
                     name: "required",
-                    product_code: "required",
-                    category_id: "required",
+                 
                 },
                 messages: {
                     name: "Nhập tiêu đề bài viết",
-                    product_code: "Nhập mã sản phẩm",
-                    category_id: "Chọn nhóm sản phẩm",
+                    
                 },
                 submitHandler: function(form) {
                     ajax_loading(true);

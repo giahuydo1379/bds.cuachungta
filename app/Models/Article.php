@@ -19,8 +19,8 @@ class Article extends Model
 
 //    protected $hidden = ['deleted_at', 'is_deleted'];
 
-    public static function getHomeArticles() {
-
+    public static function getHomeArticles()
+    {
         $objects = self::select('id', 'name', 'image', 'image_url')
             ->where('is_deleted', 0)
             ->orderBy('order', 'asc')
@@ -29,8 +29,8 @@ class Article extends Model
         return $objects->get()->toArray();
     }
 
-    public static function getListAll($filter){
-
+    public static function getListAll($filter)
+    {
         $sql = self::select('articles.*', 'article_categories.name as category_name')
                         ->leftJoin('article_categories', 'article_categories.id', '=', 'articles.article_category_id');
 
@@ -40,12 +40,10 @@ class Article extends Model
         if (!empty($keyword = $filter['search'])) {
             $sql->where(function ($query) use ($keyword) {
                 $query->where('articles.name', 'LIKE', '%' . $keyword . '%');
-
-
             });
         }
 
-        if(!empty($filter['category_id'])){
+        if (!empty($filter['category_id'])) {
             $sql->where(['articles.article_category_id' => $filter['category_id']]);
         }
 
@@ -53,7 +51,7 @@ class Article extends Model
             $sql->where('articles.status', $filter['status']);
         }
 
-         $total = $sql->count();
+        $total = $sql->count();
 
         $data = $sql->skip($filter['offset'])
             ->take($filter['limit'])
@@ -64,20 +62,20 @@ class Article extends Model
         return ['total' => $total, 'data' => $data];
     }
 
-    public static function getParentOptions(){
+    public static function getParentOptions()
+    {
+        $data = ProductCategory::select('id', 'name')->pluck('name', 'id');
 
-        $data = ProductCategory::select('id','name')->pluck('name','id');
-
-        if(!empty($data))
-        {
+        if (!empty($data)) {
             return $data->toArray();
         }
 
         return  array();
     }
 
-    public static function getArticlesByCate($category_id, $limit){
-        $data = Article::select('articles.id','articles.name', 'articles.image', 'product_categories.name as category_name')
+    public static function getArticlesByCate($category_id, $limit)
+    {
+        $data = Article::select('articles.id', 'articles.name', 'articles.image', 'product_categories.name as category_name')
                             ->leftJoin('product_categories', 'product_categories.id', '=', 'articles.category_id')
                             ->where('articles.category_id', $category_id)
                             ->where('articles.is_deleted', 0)
@@ -87,8 +85,8 @@ class Article extends Model
         return $data->paginate($limit)->toArray();
     }
 
-    public static function getArticleById($id){
-
+    public static function getArticleById($id)
+    {
         $data = [];
 
         $product = Article::select('articles.*', 'manufacturers.name as manufacturer_name', 'product_categories.name as category_name')
@@ -99,7 +97,8 @@ class Article extends Model
         return $product ? $product->toArray() : [];
     }
 
-    public static function getProductsSameCode($code, $except_ids=[]) {
+    public static function getProductsSameCode($code, $except_ids=[])
+    {
         $query = Article::select('*')
             ->where('code', $code)
             ->where('is_deleted', 0);
@@ -115,7 +114,8 @@ class Article extends Model
         return $query->get()->toArray();
     }
 
-    public static function getArticlesSameCategory($category_id, $except_ids=[]) {
+    public static function getArticlesSameCategory($category_id, $except_ids=[])
+    {
         $query = Article::select('*')
             ->where('category_id', $category_id)
             ->where('is_deleted', 0);
@@ -133,8 +133,8 @@ class Article extends Model
         return $query->get()->toArray();
     }
 
-    public static function getAllProducts(){
-
+    public static function getAllProducts()
+    {
         $data = [];
 
         $products = Article::select('articles.*', 'product_categories.name as category_name')
@@ -143,18 +143,16 @@ class Article extends Model
                             ->orderBy('articles.order', 'asc')
                             ->get();
 
-        if(count($products))
-        {
-            foreach ($products as $item)
-            {
+        if (count($products)) {
+            foreach ($products as $item) {
                 $data[] = $item->toArray();
             }
         }
         return $data;
     }
 
-    public static function getSearchArticles($params) {
-
+    public static function getSearchArticles($params)
+    {
         $objects = Article::select('articles.*', 'product_categories.name as category_name')
             ->leftJoin('product_categories', 'product_categories.id', '=', 'articles.category_id')
             ->where('articles.is_deleted', 0);
@@ -183,33 +181,39 @@ class Article extends Model
         return $objects->paginate($params['limit']??12)->toArray();
     }
 
-    public static function getStatusFilter() {
+    public static function getStatusFilter()
+    {
         return array(
             '1' => 'Đang hoạt động',
             '0' => 'Không hoạt động',
         );
     }
 
-    public static function getCategoryFilter() {
-        $data = ProductCategory::select('id','name')->pluck('name','id');
+    public static function getCategoryFilter()
+    {
+        $data = ProductCategory::select('id', 'name')->pluck('name', 'id');
 
-        if(!empty($data))
-        {
+        if (!empty($data)) {
             return $data->toArray();
         }
 
         return  array();
     }
 
-    public static function getArticleCategory() {
-        $data = ArticleCategory::select('id','name')->pluck('name','id');
+    public static function getArticleCategory()
+    {
+        $data = ArticleCategory::select('id', 'name')->pluck('name', 'id');
 
-        if(!empty($data))
-        {
+        if (!empty($data)) {
             return $data->toArray();
         }
 
         return  array();
+    }
+
+    public function path()
+    {
+        $slug = str_slug($this->name, '-');
+        return $slug . '-n' .  $this->id . '.html';
     }
 }
-?>

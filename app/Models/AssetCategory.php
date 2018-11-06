@@ -55,7 +55,8 @@ class AssetCategory extends Model
         return $this->belongsTo('App\Models\Province', 'province_id');
     }
 
-    public static function getAssetCategories() {
+    public static function getAssetCategories()
+    {
         $objects = self::select('id', 'name', 'type')
             ->where('status', 1)
             ->where('is_deleted', 0)

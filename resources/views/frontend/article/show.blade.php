@@ -11,17 +11,15 @@
                     <div id="content">
                         <!-- Post Entries-->
                         <article class="post">
-                            <h2 class="post-title"><a href="#">Mẹo bố trí phòng làm việc hợp phong thủy để có sự nghiệp thăng tiến</a></h2>
-                            <figure class="post-image"><a href="#"><img src="/html/assets/images/1.jpg" alt=""></a></figure>
+                            <h2 class="post-title"><a href="#">{!! $articles->name!!}</a></h2>
+                            <figure class="post-image"><a href="#"><img src="{{ $articles->image}}" alt=""></a></figure>
                             <div class="post-entries">
-                                <p>Theo phong thủy, một văn phòng làm việc có vị trí tốt khi có bàn làm việc dựa vào bức tường vững chãi, bên trái là cửa sổ mở ra ngoài khung cảnh thiên nhiên tươi đẹp, có đủ ánh sáng, gió mát. Ngoài ra, nếu văn phòng có sử dụng các đồ dùng thích hợp, bố trí hài hòa cũng giúp người làm việc phát huy được tài năng và có thêm nhiệt huyết với công việc.</p>
-                                <p>Chỗ đặt bàn làm việc tốt nhất là ở vị trí có thể nhìn thấy cửa ra vào. Trường hợp góc làm việc ở vị trí không thuận lợi, hãy đặt một chiếc gương nhỏ trên bàn sao cho có thể phản chiếu được hình ảnh cửa ra vào.</p>
+                               {!! $articles->description !!}
                                 <blockquote>
                                     <p>Bố trí phòng làm việc hợp phong thủy sẽ hỗ trợ cho sự nghiệp thăng tiến</p>
                                     <footer>Vinh Nguyen</footer>
                                 </blockquote>
-                                <p>Sự di chuyển của luồng khí xung quanh bàn làm việc là yếu tố mà phong thủy rất chú trọng. Sự bừa bộn của đồ đạc, những chồng hồ sơ lộn xộn trên bàn hay trong tủ lưu trữ cũng tác động đến luồng di chuyển của khí. Vì thế, nếu muốn phòng làm việc thu được nhiều vượng khí, bạn nên hoàn thành hết các công việc tồn đọng, ưu tiên phân loại và giải quyết những việc này vì sự bừa bộn có thể ảnh hưởng đến tâm trạng hoặc tiến độ công việc.</p>
-                                <p>Mỗi khi tham dự các cuộc họp, để luôn tỉnh táo và tiếp thu tốt bạn nên chọn chỗ ngồi phù hợp. Trong đó, vị trí ngồi ở hướng Tây-Bắc đối diện hướng Đông-Nam được cho là thuận lợi với việc lãnh đạo và đưa ra các quyết định quan trọng. Trong khi đó, với vị trí ngồi ở hướng ngược lại, bạn sẽ nhận được hỗ trợ trong giao tiếp và trình bày.</p>
+                                {!! $articles->content !!}
                                 <div class="widget">
                                     <div class="share-box">
                                         <h4>Share:</h4>

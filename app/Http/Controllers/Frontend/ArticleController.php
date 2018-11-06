@@ -28,6 +28,9 @@ class ArticleController extends Controller
 
     public function show(Request $request, $slug, $id)
     {
+        $articles = Article::findOrFail($id);
+     
+        $this->data['articles'] = $articles;
         return view('frontend.article.show', $this->data);
     }
 }

@@ -83,6 +83,24 @@ class Asset extends Model
         $query->where('assets.is_hot', 1);
         $query->where('assets.status', 1);
 
+        $query->orderBy('assets.position', 'asc');
+        $query->orderBy('assets.id', 'desc');
+
+        return $query->limit($limit)->get();
+    }
+
+    public static function getTopAssetsByType($type='lease', $limit=4)
+    {
+        $query = self::select(['*']);
+
+        $query->where('assets.is_deleted', 0);
+        $query->where('assets.is_hot', 1);
+        $query->where('assets.status', 1);
+        $query->where('assets.type', $type);
+
+        $query->orderBy('assets.position', 'asc');
+        $query->orderBy('assets.id', 'desc');
+
         return $query->limit($limit)->get();
     }
 

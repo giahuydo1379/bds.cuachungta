@@ -18,17 +18,17 @@
 // Auth::routes();
 
 // Trang chủ
-Route::get('/', ['as' => 'home', 'uses' => 'Frontend\IndexController@index']);
-Route::get('/tim-kiem', ['as' => 'search.index', 'uses' => 'Frontend\SearchController@index']);
-Route::get('/tin-noi-bat', ['as' => 'asset.hot', 'uses' => 'Frontend\AssetController@hot']);
-Route::get('/nha-dat-cho-thue', ['as' => 'asset.lease', 'uses' => 'Frontend\AssetController@index']);
-Route::get('/nha-dat-can-thue', ['as' => 'asset.buy', 'uses' => 'Frontend\AssetController@buy']);
-Route::get('/{slug}-a{id}.html', ['as' => 'asset.show', 'uses' => 'Frontend\AssetController@show'])
+Route::get('/', ['as' => 'fe.home', 'uses' => 'Frontend\IndexController@index']);
+Route::get('/tim-kiem', ['as' => 'fe.search.index', 'uses' => 'Frontend\SearchController@index']);
+Route::get('/tin-noi-bat', ['as' => 'fe.asset.hot', 'uses' => 'Frontend\AssetController@hot']);
+Route::get('/nha-dat-cho-thue', ['as' => 'fe.asset.lease', 'uses' => 'Frontend\AssetController@index']);
+Route::get('/nha-dat-can-thue', ['as' => 'fe.asset.buy', 'uses' => 'Frontend\AssetController@buy']);
+Route::get('/{slug}-a{id}.html', ['as' => 'fe.asset.show', 'uses' => 'Frontend\AssetController@show'])
     ->where(['slug' => '[a-z\-0-9]+', 'id' => '[0-9]+']);
 
-Route::get('/tin-tuc', ['as' => 'article.index', 'uses' => 'Frontend\ArticleController@index']);
-Route::get('/phong-thuy', ['as' => 'article.fengshui', 'uses' => 'Frontend\ArticleController@fengshui']);
-Route::get('tin-tuc/{slug}-n{id}.html', ['as' => 'article.show', 'uses' => 'Frontend\ArticleController@show'])
+Route::get('/tin-tuc', ['as' => 'fe.article.index', 'uses' => 'Frontend\ArticleController@index']);
+Route::get('/phong-thuy', ['as' => 'fe.article.fengshui', 'uses' => 'Frontend\ArticleController@fengshui']);
+Route::get('tin-tuc/{slug}-n{id}.html', ['as' => 'fe.article.show', 'uses' => 'Frontend\ArticleController@show'])
     ->where(['slug' => '[a-z\-0-9]+', 'id' => '[0-9]+']);
 
 Route::group(['prefix' => 'location'], function () {

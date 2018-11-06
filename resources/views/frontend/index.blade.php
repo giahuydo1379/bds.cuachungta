@@ -20,7 +20,7 @@
         <div class="container">
             <!-- Section Title -->
             <div class="section-header">
-                <h2 class="section-title">Tin nổi bật <a class="btn-more" href="{{route('asset.hot')}}">Xem thêm <i
+                <h2 class="section-title">Tin nổi bật <a class="btn-more" href="{{route('fe.asset.hot')}}">Xem thêm <i
                                 class="fa fa-angle-double-right" aria-hidden="true"></i></a></h2>
             </div>
             <!-- Section Content -->
@@ -93,7 +93,7 @@
         <div class="container">
             <!-- Section Header / Title with Column Slider Control / Add 'header-column' to use this style -->
             <div class="section-header header-column">
-                <h2 class="section-title"><a href="{{route('asset.lease')}}" title="">Nhà đất cho thuê</a> <a class="btn-more" href="{{route('asset.lease')}}">Xem thêm <i
+                <h2 class="section-title"><a href="{{route('fe.asset.lease')}}" title="">Nhà đất cho thuê</a> <a class="btn-more" href="{{route('fe.asset.lease')}}">Xem thêm <i
                                 class="fa fa-angle-double-right" aria-hidden="true"></i></a></h2>
             </div>
             <div id="product-house" class="row">
@@ -329,7 +329,7 @@
         <div class="container">
             <!-- Section Header / Title with Column Slider Control / Add 'header-column' to use this style -->
             <div class="section-header header-column">
-                <h2 class="section-title"><a href="{{route('asset.buy')}}">Nhà đất cần thuê</a> <a class="btn-more" href="{{route('asset.buy')}}">Xem thêm <i
+                <h2 class="section-title"><a href="{{route('fe.asset.buy')}}">Nhà đất cần thuê</a> <a class="btn-more" href="{{route('fe.asset.buy')}}">Xem thêm <i
                                 class="fa fa-angle-double-right" aria-hidden="true"></i></a></h2>
             </div>
             <div class="col-md-3 col-sm-6">
@@ -564,7 +564,7 @@
             <!-- Section Header / Title with Column Content / Add 'header-column' to use this style -->
             <div class="section-header header-column">
                 <!-- Header Title / Column 1 -->
-                <h2 class="section-title"><a href="{{route('article.index')}}" title="">Tin tức</a> <a class="btn-more" href="{{route('article.index')}}">Xem thêm <i
+                <h2 class="section-title"><a href="{{route('fe.article.index')}}" title="">Tin tức</a> <a class="btn-more" href="{{route('fe.article.index')}}">Xem thêm <i
                                 class="fa fa-angle-double-right" aria-hidden="true"></i></a></h2>
             </div>
             <!-- Panel Wrapper for Panel Box Container -->
@@ -601,7 +601,7 @@
         <div class="container">
             <!-- Section Header / Title with Column Slider Control / Add 'header-column' to use this style -->
             <div class="section-header header-column">
-                <h2 class="section-title"><a href="{{route('article.fengshui')}}" title="">Phong thủy</a> <a class="btn-more" href="{{route('article.fengshui')}}">Xem thêm <i
+                <h2 class="section-title"><a href="{{route('fe.article.fengshui')}}" title="">Phong thủy</a> <a class="btn-more" href="{{route('fe.article.fengshui')}}">Xem thêm <i
                                 class="fa fa-angle-double-right" aria-hidden="true"></i></a></h2>
                 <!-- Slider Control -->
                 <div class="slide-control">

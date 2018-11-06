@@ -10,7 +10,7 @@
     <div class="tab-content">
         <!-- Tabmenu Content 1 / Property For SALE -->
         <div role="tabpanel" class="tab-pane active" id="for-sale">
-            <form action="{{route('search.index')}}" id="frm-sale-search" method="get">
+            <form action="{{route('fe.search.index')}}" id="frm-sale-search" method="get">
                 <div class="form-body">
                     <div class="row">
                         <div class="col-md-4 form-group">
@@ -66,7 +66,7 @@
             </form>
         </div>
         <div role="tabpanel" class="tab-pane" id="for-rent">
-            <form action="{{route('search.index')}}" id="frm-rent-search" method="get">
+            <form action="{{route('fe.search.index')}}" id="frm-rent-search" method="get">
                 <div class="form-body">
                     <div class="row">
                         <div class="col-md-4 form-group">

@@ -30,6 +30,8 @@ Route::get('/tin-tuc', ['as' => 'fe.article.index', 'uses' => 'Frontend\ArticleC
 Route::get('/phong-thuy', ['as' => 'fe.article.fengshui', 'uses' => 'Frontend\ArticleController@fengshui']);
 Route::get('tin-tuc/{slug}-n{id}.html', ['as' => 'fe.article.show', 'uses' => 'Frontend\ArticleController@show'])
     ->where(['slug' => '[a-z\-0-9]+', 'id' => '[0-9]+']);
+Route::get('phong-thuy/{slug}-n{id}.html', ['as' => 'fe.article.show', 'uses' => 'Frontend\ArticleController@showFengshui'])
+    ->where(['slug' => '[a-z\-0-9]+', 'id' => '[0-9]+']);
 
 Route::group(['prefix' => 'location'], function () {
     Route::get('/', 'LocationController@index')->name('location');

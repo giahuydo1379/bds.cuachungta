@@ -53,7 +53,7 @@
                         @foreach ($articles as $key => $article)
                     <div class="col-md-3 col-sm-6">
                         <!-- Property Item -->
-                     
+
                         <div class="property-item">
                             <div class="img-box">
                                 <a href="{{ url('tin-tuc/' .$article->path()) }}" class="img-box__image"><img
@@ -64,11 +64,11 @@
                             <a href="{{ url('tin-tuc/' .$article->path()) }}" class="property-title">{!! $article->content !!}</a>
                             </div>
                         </div>
-                       
+
                     </div>
                     @endforeach
                 </div>
-            
+
 
             </div>
         </div>
@@ -89,86 +89,48 @@
             <!-- Testimony Slider Content -->
             <div id="content-slider" class="content-slider testimony-wrapper">
                 <!-- Testimony Slider Item -->
+                @foreach($fengshuis as $key => $fengshui)
                 <div class="slider-item">
                     <!-- Testimony Left -->
+                @if($key % 2 == 1)
                     <div class="testimony-item item-left">
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="testimony-profile">
-                                    <a href="single-property.html" class="img-box__image"><img
-                                                style="background: url(/html/assets/images/2.jpg) center center no-repeat; padding-bottom: 100%; height: 0;"
-                                                src="/html/assets/images/transparent.png" alt="" class="img-responsive"></a>
+                                    <a href="{{ url('phong-thuy/' .$fengshui->path()) }}" class="img-box__image"><img
+                                                style="background: url({!! $fengshui->name !!}) center center no-repeat; padding-bottom: 100%; height: 0;"
+                                                src="{!! $fengshui->name !!}" alt="" class="img-responsive"></a>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="testimony-text">
-                                    <h5><a href="#" title="">ỨNG DỤNG PHONG THỦY GIÚP CUỘC SỐNG TỐT ĐẸP HƠN</a></h5>
-                                    <p>Simple and clean-easy to customize, the demo is so close to what I need. This theme
-                                        can read my mind. AMAZING!</p>
+                                    <h5><a href="{{ url('phong-thuy/' .$fengshui->path()) }}" title="">{!! $fengshui->name !!}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @else
                     <!-- Testimony Right -->
                     <div class="testimony-item item-right">
                         <div class="row">
                             <div class="col-md-3 col-md-push-6 col-md-offset-3">
                                 <div class="testimony-profile">
-                                    <a href="single-property.html" class="img-box__image"><img
-                                                style="background: url(/html/assets/images/2.jpg) center center no-repeat; padding-bottom: 100%; height: 0;"
-                                                src="/html/assets/images/transparent.png" alt="" class="img-responsive"></a>
+                                    <a href="{{ url('phong-thuy/' .$fengshui->path()) }}" class="img-box__image"><img
+                                                style="background: url({!! $fengshui->name !!}) center center no-repeat; padding-bottom: 100%; height: 0;"
+                                                src="{!! $fengshui->name !!}" alt="" class="img-responsive"></a>
                                 </div>
                             </div>
                             <div class="col-md-6 col-md-pull-3">
                                 <div class="testimony-text">
-                                    <h5><a href="#" title="">ỨNG DỤNG PHONG THỦY GIÚP CUỘC SỐNG TỐT ĐẸP HƠN</a></h5>
-                                    <p>Simple and clean-easy to customize, the demo is so close to what I need. This theme
-                                        can read my mind. AMAZING!</p>
+                                    <h5><a href="{{ url('phong-thuy/' .$fengshui->path()) }}" title="">{!! $fengshui->name !!}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Testimony Slider Item -->
-                <div class="slider-item">
-                    <!-- Testimony Left -->
-                    <div class="testimony-item item-left">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="testimony-profile">
-                                    <a href="single-property.html" class="img-box__image"><img
-                                                style="background: url(/html/assets/images/2.jpg) center center no-repeat; padding-bottom: 100%; height: 0;"
-                                                src="/html/assets/images/transparent.png" alt="" class="img-responsive"></a>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="testimony-text">
-                                    <h5><a href="#" title="">ỨNG DỤNG PHONG THỦY GIÚP CUỘC SỐNG TỐT ĐẸP HƠN</a></h5>
-                                    <p>Simple and clean-easy to customize, the demo is so close to what I need. This theme
-                                        can read my mind. AMAZING!</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Testimony Right -->
-                    <div class="testimony-item item-right">
-                        <div class="row">
-                            <div class="col-md-3 col-md-push-6 col-md-offset-3">
-                                <div class="testimony-profile">
-                                    <a href="single-property.html" class="img-box__image"><img
-                                                style="background: url(/html/assets/images/2.jpg) center center no-repeat; padding-bottom: 100%; height: 0;"
-                                                src="/html/assets/images/transparent.png" alt="" class="img-responsive"></a>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-md-pull-3">
-                                <div class="testimony-text">
-                                    <h5><a href="#" title="">ỨNG DỤNG PHONG THỦY GIÚP CUỘC SỐNG TỐT ĐẸP HƠN</a></h5>
-                                    <p>Simple and clean-easy to customize, the demo is so close to what I need. This theme
-                                        can read my mind. AMAZING!</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endif
+                @endforeach
+
                 </div>
             </div>
         </div>

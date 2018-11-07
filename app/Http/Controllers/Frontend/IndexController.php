@@ -21,14 +21,18 @@ class IndexController extends Controller
 //        $limit = $request->input('limit', 12);
 //        $this->data['limit'] = $limit;
 //        $this->data['objects'] = Article::getHomeArticles();
-        $articles =  Article::where(['status'=>1, 'is_deleted'=>0])
+        $articles =  Article::where(['status'=>1, 'is_deleted'=>0, 'article_category_id' => 1])
                         ->orderBy('id', 'desc')
                         ->take(4)
                         ->get();
-        //   ->toArray();
+        $fengshuis =  Article::where(['status'=>1, 'is_deleted'=>0, 'article_category_id' => 2])
+            ->orderBy('id', 'desc')
+            ->take(4)
+            ->get();
       
                     
         $this->data['articles'] = $articles;
+        $this->data['fengshuis'] = $fengshuis;
        
         return view('frontend.index', $this->data);
     }

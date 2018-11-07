@@ -20,14 +20,14 @@
                 <div class="col-md-8">
                     <!-- Content -->
                     <div id="content">
-                    @foreach($articles as $article)
+                    @foreach($fengshuis as $article)
 
                         <!-- Post List -->
                             <article class="post">
                                 <h2 class="post-title"><a
-                                            href="{{ url('tin-tuc/' .$article->path()) }}">{!! $article->name !!}</a>
+                                            href="{{ url('phong-thuy/' .$article->path()) }}">{!! $article->name !!}</a>
                                 </h2>
-                                <figure class="post-image"><a href="{{ url('tin-tuc/' .$article->path()) }}"><img
+                                <figure class="post-image"><a href="{{ url('phong-thuy/' .$article->path()) }}"><img
                                                 style="background: url({{ $article->image }}) center center no-repeat; padding-bottom: 50%; height: 0;"
                                                 src="{{ $article->image }}" alt="Post list 1"></a></figure>
                                 <ul class="post-meta">
@@ -38,9 +38,13 @@
 
                     @endforeach
                         <div class="pagination">
-                        {{ $articles->links('frontend/pagination/pagination') }}
+                            {{ $fengshuis->links('frontend/pagination/pagination') }}
                         </div>
+                    {{--<!-- Post List Paginatino-->--}}
+                        {{--<div class="pagination">--}}
+                            {{--{{ $fengshuis->links() }}--}}
 
+                        {{--</div>--}}
 
                     </div>
                 </div>
@@ -71,7 +75,7 @@
                                     <ul>
                                         @foreach($ishots as $ishot)
                                             <li>
-                                                <a href="{{ url('tin-tuc/' .$ishot->path()) }}">{!! $ishot->name !!}</a>
+                                                <a href="{{ url('phong-thuy/' .$ishot->path()) }}">{!! $ishot->name !!}</a>
                                                 <span class="post-date">{!! $ishot->created_at !!}</span>
                                             </li>
                                         @endforeach
@@ -101,7 +105,7 @@
                                                             src="{{ $iscommon->image }}" alt="#"></div>
                                                 <div class="post-content">
                                                     <span class="post-date">{{ $iscommon->created_at }}</span>
-                                                    <a href="{{ url('tin-tuc/' .$iscommon->path()) }}"
+                                                    <a href="{{ url('phong-thuy/' .$iscommon->path()) }}"
                                                        class="post-title">{!! $iscommon->name !!}</a>
                                                 </div>
                                             </li>
@@ -119,18 +123,9 @@
     </section>
 @stop
 <style>
-    .pageslinks ul li {
-        background-image:none;
-        float:right;
-        padding-left:0;
-        padding-right:10px;
-
+    .pagination {
+        display: inline-block;
     }
-    div#flexicontent .pagescounter {
-        text-align:right;
-
-    }
-
 </style>
 @section('after_script')
     <script type='text/javascript'>

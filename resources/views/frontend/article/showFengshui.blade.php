@@ -139,7 +139,7 @@
                                     <ul>
                                         @foreach($ishots as $ishot)
                                             <li>
-                                                <a href="{{ url('tin-tuc/' .$ishot->path()) }}">{!! $ishot->name !!}</a>
+                                                <a href="{{ url('phong-thuy/' .$ishot->path()) }}">{!! $ishot->name !!}</a>
                                                 <span class="post-date">{!! $ishot->created_at !!}</span>
                                             </li>
                                         @endforeach
@@ -167,7 +167,7 @@
                                                             src="{{ $iscommon->image }}" alt="#"></div>
                                                 <div class="post-content">
                                                     <span class="post-date">{!! $iscommon->created_at !!}</span>
-                                                    <a href="{{ url('tin-tuc/' .$iscommon->path()) }}" class="post-title">{!! $iscommon->name !!}</a>
+                                                    <a href="{{ url('phong-thuy/' .$iscommon->path()) }}" class="post-title">{!! $iscommon->name !!}</a>
                                                 </div>
                                             </li>
                                             <!-- Post List Item -->

@@ -18,9 +18,9 @@ class ArticleController extends Controller
 
     public function index(Request $request)
     {
-        $articles = Article::orderBy('id', 'DESC')->where(['status'=> 1, 'article_category_id'=> 1, 'is_deleted' => 0])->paginate(5);
-        $ishots =Article::where(['is_hot'=>1, 'status'=>1, 'article_category_id'=> 1, 'is_deleted' => 0])->latest()->take(5)->get();
-        $iscommons =Article::where(['is_common'=>1, 'status'=>1, 'article_category_id'=> 1, 'is_deleted' => 0])->latest()->take(5)->get();
+        $articles = Article::orderBy('id', 'DESC')->where(['status' => 1, 'article_category_id' => 1, 'is_deleted' => 0])->paginate(2);
+        $ishots = Article::where(['is_hot' => 1, 'status' => 1, 'article_category_id' => 1, 'is_deleted' => 0])->latest()->take(5)->get();
+        $iscommons = Article::where(['is_common' => 1, 'status' => 1, 'article_category_id' => 1, 'is_deleted' => 0])->latest()->take(5)->get();
 
         $this->data['articles'] = $articles;
         $this->data['ishots'] = $ishots;
@@ -31,14 +31,21 @@ class ArticleController extends Controller
 
     public function fengshui(Request $request)
     {
-        return view('frontend.article.index', $this->data);
+        $ishots = Article::where(['is_hot' => 1, 'status' => 1, 'article_category_id' => 1, 'is_deleted' => 0])->latest()->take(5)->get();
+        $iscommons = Article::where(['is_common' => 1, 'status' => 1, 'article_category_id' => 2, 'is_deleted' => 0])->latest()->take(5)->get();
+        $fengshuis = Article::orderBy('id', 'DESC')->where(['status' => 1, 'article_category_id' => 2, 'is_deleted' => 0])->paginate(2);
+
+        $this->data['ishots'] = $ishots;
+        $this->data['iscommons'] = $iscommons;
+        $this->data['fengshuis'] = $fengshuis;
+        return view('frontend.article.fengshui', $this->data);
     }
 
     public function show(Request $request, $slug, $id)
     {
         $articles = Article::findOrFail($id);
-        $ishots =Article::where(['is_hot'=>1, 'status'=>1, 'article_category_id'=> 1, 'is_deleted' => 0])->latest()->take(5)->get();
-        $iscommons =Article::where(['is_common'=>1, 'status'=>1, 'article_category_id'=> 1, 'is_deleted' => 0])->latest()->take(5)->get();
+        $ishots = Article::where(['is_hot' => 1, 'status' => 1, 'article_category_id' => 1, 'is_deleted' => 0])->latest()->take(5)->get();
+        $iscommons = Article::where(['is_common' => 1, 'status' => 1, 'article_category_id' => 1, 'is_deleted' => 0])->latest()->take(5)->get();
 
         $this->data['articles'] = $articles;
         $this->data['ishots'] = $ishots;
@@ -46,5 +53,18 @@ class ArticleController extends Controller
         $this->data['iscommons'] = $iscommons;
 
         return view('frontend.article.show', $this->data);
+    }
+    public function showFengshui(Request $request, $slug, $id)
+    {
+        $articles = Article::findOrFail($id);
+        $ishots = Article::where(['is_hot' => 1, 'status' => 1, 'article_category_id' => 2, 'is_deleted' => 0])->latest()->take(5)->get();
+        $iscommons = Article::where(['is_common' => 1, 'status' => 1, 'article_category_id' => 2, 'is_deleted' => 0])->latest()->take(5)->get();
+
+        $this->data['articles'] = $articles;
+        $this->data['ishots'] = $ishots;
+        $this->data['articles'] = $articles;
+        $this->data['iscommons'] = $iscommons;
+
+        return view('frontend.article.showFengshui', $this->data);
     }
 }

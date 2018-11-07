@@ -20,4 +20,19 @@ class SearchController extends Controller
     {
         return view('frontend.search.index', $this->data);
     }
+    public function search(Request $request)
+    {
+        $limit = $request->input('limit', 12);
+        $this->data['limit'] = $limit;
+
+        $tukhoa = $request->input('kw');
+
+        $products = Article::getSearchArticles(['search' => $tukhoa, 'limit' => $limit]);
+
+
+
+        $this->data['objects'] = $products;
+        $this->data['tukhoa'] = $tukhoa;
+        return view('frontend.search.index', $this->data);
+    }
 }

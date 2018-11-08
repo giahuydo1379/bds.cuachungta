@@ -10,19 +10,20 @@
     <div class="tab-content">
         <!-- Tabmenu Content 1 / Property For SALE -->
         <div role="tabpanel" class="tab-pane active" id="for-sale">
-            <form action="{{route('fe.search.index')}}" id="frm-sale-search" method="get">
+            <form action="{{route('fe.search.search')}}" id="frm-sale-search" method="post">
                 <div class="form-body">
                     <div class="row">
+                        @csrf
                         <div class="col-md-4 form-group">
                             <label for="sale-location">Thành Phố</label>
-                            <select class="form-control province_has_asset change" id="sale-location"
+                            <select name="tp" class="form-control province_has_asset change" id="sale-location"
                                     data-destination="#frm-sale-search .district" data-placeholder="Chọn Tỉnh / Thành Phố">
                                 <option>Chọn Tỉnh / Thành Phố</option>
                             </select>
                         </div>
                         <div class="col-md-4 form-group">
                             <label for="sale-location">Quận/Huyện</label>
-                            <select class="form-control district" id="sale-location" data-placeholder="Chọn Quận Huyện">
+                            <select name="huyen" class="form-control district" id="sale-location" data-placeholder="Chọn Quận Huyện">
                                 <option>Chọn Quận Huyện</option>
                             </select>
                         </div>
@@ -39,18 +40,18 @@
                         <div class="col-md-4 form-group">
                             <label for="sale-range-feet">Diện tích (m2)</label>
                             <div class="range-box">
-                                <input id="sale-range-feet" readonly="">
+                                <input name="dientich" id="sale-range-feet" readonly="">
                             </div>
                         </div>
                         <div class="col-md-4 form-group">
                             <label for="sale-range-price">Giá (VNĐ)</label>
-                            <select class="form-control" id="sale-price">
+                            <select name="gia" class="form-control" id="sale-price">
                                 <option>Chọn Giá</option>
                                 <option>Thỏa thuận</option>
-                                <option> > 1 triệu</option>
-                                <option>1 - 3 triệu</option>
-                                <option>3 - 5 triệu</option>
-                                <option>5 - 10 triệu</option>
+                                <option value="10000000"> > 1 triệu</option>
+                                <option value="10000000">1 - 3 triệu</option>
+                                <option value="10000000">3 - 5 triệu</option>
+                                <option value="10000000">5 - 10 triệu</option>
                                 <option>10 - 40 triệu</option>
                                 <option>40 - 70 triệu</option>
                                 <option>70 - 100 triệu</option>

@@ -22,6 +22,7 @@ class SearchController extends Controller
     }
     public function search(Request $request)
     {
+        dd($request->all());
         $limit = $request->input('limit', 12);
         $this->data['limit'] = $limit;
 

@@ -67,4 +67,17 @@ class ArticleController extends Controller
 
         return view('frontend.article.showFengshui', $this->data);
     }
+    public function isHot(Request $request, $slug, $id)
+    {
+        $articles = Article::findOrFail($id);
+        $ishots = Article::where(['is_hot' => 1, 'status' => 1, 'article_category_id' => 2, 'is_deleted' => 0])->latest()->take(5)->get();
+        $iscommons = Article::where(['is_common' => 1, 'status' => 1, 'article_category_id' => 2, 'is_deleted' => 0])->latest()->take(5)->get();
+
+        $this->data['articles'] = $articles;
+        $this->data['ishots'] = $ishots;
+        $this->data['articles'] = $articles;
+        $this->data['iscommons'] = $iscommons;
+
+        return view('frontend.article.ishot', $this->data);
+    }
 }

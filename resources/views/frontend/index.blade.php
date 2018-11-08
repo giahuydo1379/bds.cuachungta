@@ -89,46 +89,46 @@
             <!-- Testimony Slider Content -->
             <div id="content-slider" class="content-slider testimony-wrapper">
                 <!-- Testimony Slider Item -->
-                @foreach($fengshuis as $key => $fengshui)
+                @foreach($fengshuis->chunk(2) as $chunk)
                 <div class="slider-item">
                     <!-- Testimony Left -->
-                @if($key % 2 == 1)
-                    <div class="testimony-item item-left">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="testimony-profile">
-                                    <a href="{{ url('phong-thuy/' .$fengshui->path()) }}" class="img-box__image"><img
-                                                style="background: url({!! $fengshui->name !!}) center center no-repeat; padding-bottom: 100%; height: 0;"
-                                                src="{!! $fengshui->name !!}" alt="" class="img-responsive"></a>
+                    @foreach($chunk as $key=>$item)
+                        @if($key%2==0)
+                        <div class="testimony-item item-left">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="testimony-profile">
+                                        <a href="single-property.html" class="img-box__image"><img style="background: url(assets/images/2.jpg) center center no-repeat; padding-bottom: 100%; height: 0;" src="assets/images/transparent.png" alt="" class="img-responsive"></a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="testimony-text">
-                                    <h5><a href="{{ url('phong-thuy/' .$fengshui->path()) }}" title="">{!! $fengshui->name !!}</p>
+                                <div class="col-md-6">
+                                    <div class="testimony-text">
+                                        <h5><a href="#" title="">{!!$item-> name!!}</a></h5>
+                                        <p>Simple and clean-easy to customize, the demo is so close to what I need. This theme can read my mind. AMAZING!</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    @else
+                        @else
+                        <div class="testimony-item item-right">
+                            <div class="row">
+                                <div class="col-md-3 col-md-push-6 col-md-offset-3">
+                                    <div class="testimony-profile">
+                                        <a href="single-property.html" class="img-box__image"><img style="background: url(assets/images/2.jpg) center center no-repeat; padding-bottom: 100%; height: 0;" src="assets/images/transparent.png" alt="" class="img-responsive"></a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-md-pull-3">
+                                    <div class="testimony-text">
+                                        <h5><a href="#" title="">{!! $item->name !!}</a></h5>
+                                        <p>Simple and clean-easy to customize, the demo is so close to what I need. This theme can read my mind. AMAZING!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                    @endforeach
                     <!-- Testimony Right -->
-                    <div class="testimony-item item-right">
-                        <div class="row">
-                            <div class="col-md-3 col-md-push-6 col-md-offset-3">
-                                <div class="testimony-profile">
-                                    <a href="{{ url('phong-thuy/' .$fengshui->path()) }}" class="img-box__image"><img
-                                                style="background: url({!! $fengshui->name !!}) center center no-repeat; padding-bottom: 100%; height: 0;"
-                                                src="{!! $fengshui->name !!}" alt="" class="img-responsive"></a>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-md-pull-3">
-                                <div class="testimony-text">
-                                    <h5><a href="{{ url('phong-thuy/' .$fengshui->path()) }}" title="">{!! $fengshui->name !!}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                    @endif
                 @endforeach
 
                 </div>

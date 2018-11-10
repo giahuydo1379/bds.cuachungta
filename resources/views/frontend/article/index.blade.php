@@ -21,7 +21,6 @@
                     <!-- Content -->
                     <div id="content">
                     @foreach($articles as $article)
-
                         <!-- Post List -->
                             <article class="post">
                                 <h2 class="post-title"><a
@@ -35,12 +34,11 @@
                                 </ul>
                                 <p class="post-entries">{!! $article->description !!}</p>
                             </article>
-
                     @endforeach
                         <div class="pagination">
+                            @if (!count($articles)) Không tìm thấy tin tức @endif
                         {{ $articles->links('frontend/pagination/pagination') }}
                         </div>
-
 
                     </div>
                 </div>
@@ -51,11 +49,10 @@
                         <!-- widget section Search -->
                         <div class="widget widget_search">
                             <div class="panel-box">
-                                <form role="search" method="get" class="search-form" action="#">
+                                <form role="search" method="get" class="search-form" action="">
                                     <label>
                                         <span class="screen-reader-text">Tìm kiếm:</span>
-                                        <input type="search" class="search-field" placeholder="Tìm kiếm …" value=""
-                                               name="s">
+                                        <input type="search" class="search-field" placeholder="Tìm kiếm …" value="{{@$_GET['kw']}}" name="kw">
                                     </label>
                                     <input type="submit" class="search-submit" value="Search">
                                 </form>

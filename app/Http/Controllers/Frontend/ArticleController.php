@@ -18,7 +18,14 @@ class ArticleController extends Controller
 
     public function index(Request $request)
     {
-        $articles = Article::orderBy('id', 'DESC')->where(['status' => 1, 'article_category_id' => 1, 'is_deleted' => 0])->paginate(2);
+        $articles = Article::select('*')
+            ->where(['status' => 1, 'article_category_id' => 1, 'is_deleted' => 0]);
+        $kw = $request->input('kw', '');
+        if ($kw) {
+            $articles->where('articles.name', 'LIKE', '%' . $kw . '%');
+        }
+        $articles = $articles->orderBy('id', 'DESC')->paginate(5);
+
         $ishots = Article::where(['is_hot' => 1, 'status' => 1, 'article_category_id' => 1, 'is_deleted' => 0])->latest()->take(5)->get();
         $iscommons = Article::where(['is_common' => 1, 'status' => 1, 'article_category_id' => 1, 'is_deleted' => 0])->latest()->take(5)->get();
 
@@ -33,11 +40,19 @@ class ArticleController extends Controller
     {
         $ishots = Article::where(['is_hot' => 1, 'status' => 1, 'article_category_id' => 1, 'is_deleted' => 0])->latest()->take(5)->get();
         $iscommons = Article::where(['is_common' => 1, 'status' => 1, 'article_category_id' => 2, 'is_deleted' => 0])->latest()->take(5)->get();
-        $fengshuis = Article::orderBy('id', 'DESC')->where(['status' => 1, 'article_category_id' => 2, 'is_deleted' => 0])->paginate(2);
+
+        $fengshuis = Article::select('*')
+            ->where(['status' => 1, 'article_category_id' => 2, 'is_deleted' => 0]);
+        $kw = $request->input('kw', '');
+        if ($kw) {
+            $fengshuis->where('articles.name', 'LIKE', '%' . $kw . '%');
+        }
+        $fengshuis = $fengshuis->orderBy('id', 'DESC')->paginate(2);
 
         $this->data['ishots'] = $ishots;
         $this->data['iscommons'] = $iscommons;
         $this->data['fengshuis'] = $fengshuis;
+
         return view('frontend.article.fengshui', $this->data);
     }
 

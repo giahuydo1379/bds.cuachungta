@@ -38,13 +38,9 @@
 
                     @endforeach
                         <div class="pagination">
+                            @if (!count($fengshuis)) Không tìm thấy tin phong thuỷ @endif
                             {{ $fengshuis->links('frontend/pagination/pagination') }}
                         </div>
-                    {{--<!-- Post List Paginatino-->--}}
-                        {{--<div class="pagination">--}}
-                            {{--{{ $fengshuis->links() }}--}}
-
-                        {{--</div>--}}
 
                     </div>
                 </div>
@@ -55,11 +51,10 @@
                         <!-- widget section Search -->
                         <div class="widget widget_search">
                             <div class="panel-box">
-                                <form role="search" method="get" class="search-form" action="#">
+                                <form role="search" method="get" class="search-form" action="">
                                     <label>
                                         <span class="screen-reader-text">Tìm kiếm:</span>
-                                        <input type="search" class="search-field" placeholder="Tìm kiếm …" value=""
-                                               name="s">
+                                        <input type="search" class="search-field" placeholder="Tìm kiếm …" value="{{@$_GET['kw']}}" name="kw">
                                     </label>
                                     <input type="submit" class="search-submit" value="Search">
                                 </form>

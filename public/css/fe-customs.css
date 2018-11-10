@@ -31,3 +31,6 @@ span.required:before {
 .select2-container .select2-selection--single {
     height: 34px !important;
 }
+.property-slider-nav img {
+    max-height: 130px;
+}

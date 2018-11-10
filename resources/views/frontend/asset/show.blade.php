@@ -23,59 +23,45 @@
                             <div class="post-property-header">
                                 <div class="row">
                                     <div class="col-md-8 col-sm-8">
-                                        <h3 class="post-title"><a href="#">TMT LAND - CHUYÊN CHO THUÊ VINHOMES BA SON 1PN 16TR, 2PN 19TR, 3 PN 27TR, 4 PN TL, LH 0909060957</a></h3>
+                                        <h3 class="post-title">{{$object['name']}}</h3>
                                     </div>
                                     <div class="col-md-4 col-sm-4 text-right">
-                                        <span class="property-price">10 triệu / tháng</span>
+                                        <span class="property-price">{{$object['price']}}</span>
                                     </div>
                                 </div>
                                 <div class="property-address">
                                     Phú Nhuận, TP.HCM
                                 </div>
                                 <div class="property-label">
-                                    <a href="#" class="property-label__type">50 m2</a>
+                                    <a href="#" class="property-label__type">{{$object['acreage']}}</a>
                                 </div>
                             </div>
                             <!-- Property Gallery Slider -->
                             <div class="property-image">
                                 <div id="property-slider" class="property-slider">
-                                    <img src="/html/assets/images/1.jpg" alt="Property Photo 1">
-                                    <img src="/html/assets/images/2.jpg" alt="Property Photo 2">
-                                    <img src="/html/assets/images/3.jpg" alt="Property Photo 4">
-                                    <img src="/html/assets/images/4.jpg" alt="Property Photo 5">
-                                    <img src="/html/assets/images/5.jpg" alt="Property Photo 6">
-                                    <img src="/html/assets/images/img_slider_default.jpg" alt="Property Photo 7">
+                                    <img src="{{$object['image_url'].$object['image']}}" alt="">
+                                    @foreach($images as $item)
+                                        <img src="{{$item['image_url'].$item['image']}}" alt="">
+                                    @endforeach
                                 </div>
                                 <!-- Property Gallery Slider Navigation -->
                                 <div id="property-slider-nav" class="property-slider-nav">
-                                    <img src="/html/assets/images/1.jpg" alt="Property Photo 1">
-                                    <img src="/html/assets/images/2.jpg" alt="Property Photo 2">
-                                    <img src="/html/assets/images/3.jpg" alt="Property Photo 4">
-                                    <img src="/html/assets/images/4.jpg" alt="Property Photo 5">
-                                    <img src="/html/assets/images/5.jpg" alt="Property Photo 6">
-                                    <img src="/html/assets/images/img_slider_default.jpg" alt="Property Photo 7">
+                                    <img src="{{$object['image_url'].$object['image']}}" alt="">
+                                    @foreach($images as $item)
+                                        <img src="{{$item['image_url'].$item['image']}}" alt="">
+                                    @endforeach
                                 </div>
                             </div>
                             <!-- Property facility Detail -->
                             <div class="property-footer">
-                                <div class="item-wide"><span class="fi flaticon-wide"></span> 50 m2</div>
+                                <div class="item-wide"><span class="fi flaticon-wide"></span>{{$object['acreage']}}</div>
                                 <div class="item-room"><span class="fi flaticon-room"></span> 4</div>
                                 <div class="item-bathroom"><span class="fi flaticon-bathroom"></span> 3</div>
                                 <div class="item-garage"><span class="fi flaticon-garage"></span> 1</div>
                             </div>
-                            <p>Cho thuê mặt bằng kho, xưởng tại khu vực Metro Hà Đông.
-                                Phù hợp làm bãi xe, bãi rửa xe, nơi trưng bày máy móc công trình, trưng bày bán hàng gốm sứ, cây cảnh, quán bia ngoài trời, bãi tập kết vật liệu xây dựng, bãi tập kết sắt vụn... Đây là khu mặt bằng nằm phía trước khu kho xưởng đã được xây dựng và đang hoạt động.</p>
-                            <p>Địa chỉ: Đối diện chợ 365 Hà Đông (Cạnh khu Chung cư CC Huyndai Khu Thương mại Metro Hà Đông).</p>
-                            <p>Diện tích kho: 200, 500m2.</p>
-                            <p>iện tích mặt bằng 100 - 200 - 300 - 500 - 1000 - 2000 - 4000m2. <br>
-                                1. Nền bê tông sạch, chắc chắn, xe container ra vào thoải mái.<br>
-                                2. Điện nước đầy đủ phục vụ sản xuất (điện 3 pha).<br>
-                                3. Thời gian cho thuê lâu dài, ổn định, pháp lý đầy đủ, xuất được VAT.<br>
-                                4. Được phép dựng nhà Container trên mặt bằng - Giá cho thuê mặt bằng 30.000 vnđ.<br>
-                                5. Kho đã dựng 70.000 vnđ.<br>
-                                (Thuê lâu dài - Chính chủ).<br>
-                                Liên hệ trực tiếp chính chủ: Anh Sáng 0906558566</p>
-                            <!-- The Space Section -->
+                            <div class="property-content">
+                                {!! $object['content'] !!}
+                            </div>
                             <hr>
                             <div class="row">
                                 <div class="col-md-3 col-sm-3">

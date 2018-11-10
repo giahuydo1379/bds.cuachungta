@@ -43,11 +43,15 @@ class Block
 
     public static function get_link_article($item=null)
     {
-        return route('article.show', ['slug' => 'slug-article', 'id' => 1]);
+        if (!is_array($item)) $item = $item->toArray();
+
+        return route('fe.article.show', ['slug' => str_slug(@$item['name']), 'id' => @$item['id']]);
     }
 
     public static function get_link_asset($item=null)
     {
-        return route('asset.show', ['slug' => 'slug-asset', 'id' => 1]);
+        if (!is_array($item)) $item = $item->toArray();
+
+        return route('fe.asset.show', ['slug' => str_slug(@$item['name']), 'id' => @$item['id']]);
     }
 }

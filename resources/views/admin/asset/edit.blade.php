@@ -302,21 +302,8 @@ $action_title = isset($object['id']) ? 'Cập nhật' : 'Thêm mới';
                                                 <th>Giá trị thuộc tính</th>
                                                 <th>Hoạt động</th>
                                                 </thead>
-                                                <tbody>
-                                                @if (isset($variants))
-                                                    @foreach($variants as $variant)
-                                                        <tr>
-                                                            <td>{{ $variant->feature->name }}<input name="feature_id[]" type="hidden"
-                                                                                                    value="{{$variant->feature->id}}"/></td>
-                                                            <td>{{ $variant->variant->name }}<input name="variant_id[]" type="hidden"
-                                                                                                    value="{{$variant->variant->id}}"/></td>
-                                                            <td><a href="" class="btn btn-danger del-tt">Xoá</a></td>
-                                                        </tr>
-                                                    @endforeach
-                                                @endif
-                                                </tbody>
+                                                <tbody></tbody>
                                             </table>
-
                                         </div>
                                         </div>
                                 </div>
@@ -553,18 +540,31 @@ $action_title = isset($object['id']) ? 'Cập nhật' : 'Thêm mới';
                 }
             });
             if (AssetFeaatureVariant && !flat) {
-                $('#tableItem').append('<tr>\
-                    <td>' + ftext + '<input name="feature_id[]" type="hidden" value="' + AssetFeaature + '"/></td>\
-                    <td>' + ftext2 + '<input name="variant_id[]" type="hidden" value="' + AssetFeaatureVariant + '"/></td>\
-                    <td><a href="" class="btn btn-danger del-tt">xoa</a></td></tr>');
+                add_feature_variant(AssetFeaature, ftext, AssetFeaatureVariant, ftext2);
             }
+        }
+        function add_feature_variant(feature_id, feature_name, variant_id, variant_name, id) {
+            var tmp = 'fv_'+feature_id+'_'+variant_id;
+            if ($('#'+tmp).attr('id') == tmp) return;
 
+            id = id || 0;
+            var item = $.now();
+            $('#tableItem tbody').append('<tr id="'+tmp+'">\
+                    <td>' + feature_name + '<input name="fvv['+item+'][feature_id]" type="hidden" value="' + feature_id + '"/></td>\
+                    <td>' + variant_name + '<input name="fvv['+item+'][variant_id]" type="hidden" value="' + variant_id + '"/></td>\
+                    <td><a href="#" class="add-tooltip btn btn-danger btn-xs btn-delete-fvv" data-toggle="tooltip" \
+                        data-original-title="Xóa giá trị thuộc tính"><i class="fa fa-trash-o"></i> Xóa</a></td></tr>');
         }
 
-        $('body').on('click', '.del-tt', function (e) {
+        @if (isset($variants) && is_array($variants))
+            @foreach($variants as $variant)
+                add_feature_variant('{{$variant['feature_id']}}', '{{@$assetFeature[$variant['feature_id']]}}',
+                                    '{{$variant['variant_id']}}', '{{$variant['variant_name']}}');
+            @endforeach
+        @endif
+
+        $('body').on('click', '.btn-delete-fvv', function (e) {
             e.preventDefault();
-            // alert('xx');
-            // $('table#tableItem')
             $(this).closest('tr').remove();
         });
 

@@ -100,41 +100,22 @@ class AssetController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        
 
         if (empty($data['image_url'])) {
             $data['image_url'] = config('app.url');
         }
 
-
-       
-
         $object = $this->_model->create($data);
 
-        if ($object && isset($data['product_images'])) {
-            $this->store_product_images($object->id, $data['product_images']);
-        }
-
-
-        $assset_id = DB::getPdo()->lastInsertId();
-
-        
-        
-        $feature_id = $data['feature_id'];
-        $variant_id = $data['variant_id'];
-
-        foreach ($variant_id as $key=>$variant) {
-            $assetFeaturesValues = new AssetFeatureValue;
-            $assetFeaturesValues->asset_id = $assset_id;
-            $assetFeaturesValues->feature_id = $feature_id[$key];
-            $assetFeaturesValues->variant_id = $variant_id[$key];
-            
-            $assetFeaturesValues->save();
-        }
-
-        
-
         if ($object) {
+            if (isset($data['product_images'])) {
+                $this->store_product_images($object->id, $data['product_images']);
+            }
+
+            if (isset($data['fvv'])) {
+                $this->store_asset_features_values($object->id, $data['fvv']);
+            }
+
             if ($request->ajax() || $request->wantsJson()) {
                 return response()->json([
                     'rs' => 1,
@@ -151,9 +132,6 @@ class AssetController extends Controller
                 'msg' => 'Thêm mới ' . $this->_data['title'] . ' không thành công'
             ]);
         }
-
-
-
 
         return redirect("/admin/{$this->_data['controllerName']}/add");
     }
@@ -174,14 +152,17 @@ class AssetController extends Controller
 
         $object = $query->toArray();
 
-        $assetFeaturesValues = AssetFeatureValue::where('asset_id', $id)->get();
+        $assetFeaturesValues = AssetFeatureValue::select(['asset_features_values.*', 'asset_features_variants.name as variant_name'])
+            ->where('asset_id', $id)
+            ->leftJoin('asset_features_variants', 'asset_features_variants.id', '=', 'asset_features_values.variant_id')
+            ->get()->toArray();
         $this->_data['variants'] = $assetFeaturesValues;
-       
+
         $category = array('' => '') + AssetCategory::getCategory();
         $assetFeature = array('' => '') + AssetFeature::getAssetFeature();
+
         $type = array('' => '') + $this->_model->getOptionsType();
         $this->_data['type'] = $type;
-        
 
         $this->_data['orderOptions'] = General::getOrderOptions();
 
@@ -218,7 +199,6 @@ class AssetController extends Controller
         }
 
         $data = $request->all();
-       
 
         if (empty($data['image_url'])) {
             $data['image_url'] = config('app.url');
@@ -232,25 +212,9 @@ class AssetController extends Controller
             $this->store_product_images($id, $data['product_images']);
         }
 
-
-
-        $assset_id = $id;
-        $assetFeaturesValues = AssetFeatureValue::whereAssetId($id)->delete();
-    
-        $feature_id = $data['feature_id'];
-        $variant_id = $data['variant_id'];
-
-        foreach ($variant_id as $key=>$variant) {
-            $assetFeaturesValues = new AssetFeatureValue;
-            $assetFeaturesValues->asset_id = $assset_id;
-            $assetFeaturesValues->feature_id = $feature_id[$key];
-            $assetFeaturesValues->variant_id = $variant_id[$key];
-            
-            $assetFeaturesValues->save();
+        if ($rs && isset($data['fvv'])) {
+            $this->store_asset_features_values($id, $data['fvv']);
         }
-
-
-
 
         if ($request->ajax() || $request->wantsJson()) {
             return response()->json([
@@ -328,6 +292,17 @@ class AssetController extends Controller
         //dd($res);
 
         return response()->json($res);
+    }
+    public function store_asset_features_values($asset_id, $fvv)
+    {
+        AssetFeatureValue::where('asset_id', $asset_id)->delete();
+        foreach ($fvv as $item) {
+            AssetFeatureValue::create([
+                'asset_id' => $asset_id,
+                'feature_id' => $item['feature_id'],
+                'variant_id' => $item['variant_id'],
+            ]);
+        }
     }
     public function store_product_images($asset_id, $product_images)
     {

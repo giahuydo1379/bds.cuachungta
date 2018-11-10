@@ -78,8 +78,6 @@ class AssetController extends Controller
      */
     public function create()
     {
-        $province = array('' => '') + Province::getProvince();
-       
         $category = array('' => '') + AssetCategory::getCategory();
         $assetFeature = array('' => '') + AssetFeature::getAssetFeature();
         $type = array('' => '') + $this->_model->getOptionsType();
@@ -87,16 +85,10 @@ class AssetController extends Controller
 
         $this->_data['orderOptions'] = General::getOrderOptions();
 
-        $this->_data['province'] = $province;
-        
         $this->_data['category'] = $category;
         $this->_data['assetFeature'] = $assetFeature;
 
-
-
-
-
-        return view("admin.{$this->_data['controllerName']}.create", $this->_data);
+        return view("admin.{$this->_data['controllerName']}.edit", $this->_data);
     }
 
     /**
@@ -175,18 +167,15 @@ class AssetController extends Controller
      */
     public function edit($id)
     {
-        $relation = Asset::find($id);
-       
-        $district = $relation->district->name;
-        $ward = $relation->ward->name;
-        
-        $object = $this->_model->find($id)->toArray();
-        $assetFeaturesValues = AssetFeatureValue::whereAssetId($id)->get();
+        $query = Asset::find($id);
+        if (!$query) {
+            abort(404);
+        }
 
+        $object = $query->toArray();
+
+        $assetFeaturesValues = AssetFeatureValue::where('asset_id', $id)->get();
         $this->_data['variants'] = $assetFeaturesValues;
-        
-        
-        $province = array('' => '') + Province::getProvince();
        
         $category = array('' => '') + AssetCategory::getCategory();
         $assetFeature = array('' => '') + AssetFeature::getAssetFeature();
@@ -196,18 +185,13 @@ class AssetController extends Controller
 
         $this->_data['orderOptions'] = General::getOrderOptions();
 
-        $this->_data['province'] = $province;
-        
         $this->_data['category'] = $category;
         $this->_data['assetFeature'] = $assetFeature;
        
-        $this->_data['district'] = $district;
-        $this->_data['ward'] = $ward;
         $this->_data['product_images'] = AssetImage::select(\DB::Raw('CONCAT(image_url, image) as image'), 'id')->where('asset_id', $id)->pluck('image', 'id');
         
         $this->_data['object'] = $object;
-       
-       
+
         return view("admin.{$this->_data['controllerName']}.edit", $this->_data);
     }
 

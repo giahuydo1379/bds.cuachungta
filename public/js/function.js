@@ -12,17 +12,6 @@ $(document).ready(function() {
         });
     }
 
-    $('.notification_counter').on('click', function () {
-        var counter = $('.notification_counter .badge').text();
-        if (counter != "0") {
-            $.post(_base_url + '/notification/reset-counter', function (response) {
-                if (response.rs) {
-                    $('.notification_counter .badge').text(0);
-                }
-            });
-        }
-    });
-
     $('img.img-user').on('error', function() { img_user_default(this); });
 });
 function init_fm_number(element) {

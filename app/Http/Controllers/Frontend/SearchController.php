@@ -23,26 +23,24 @@ class SearchController extends Controller
     }
     public function search(Request $request)
     {
-        //dd($request->all());
         $provice = $request->province;
         $district = $request->district;
         $cid = $request->cid;
         $square = $request->square;
         $price = $request->price;
-        
-        $assets = Asset::whereProvinceId($provice)->whereDistrictId($district)->whereAssetCategoryId($cid)->get();
+        $priceArray = explode(';', $price);
+       
+
+
+
+        $assets = Asset::whereProvinceId($provice)
+        ->whereDistrictId($district)
+        ->whereAssetCategoryId($cid)
+        ->whereBetween('price', $priceArray)
+        ->paginate(20);
     
-        $limit = $request->input('limit', 12);
-        $this->data['limit'] = $limit;
 
-        $tukhoa = $request->input('kw');
-
-        $products = Article::getSearchArticles(['search' => $tukhoa, 'limit' => $limit]);
-
-
-
-        $this->data['objects'] = $products;
-        $this->data['tukhoa'] = $tukhoa;
+        $this->data['assets'] = $assets;
         return view('frontend.search.index', $this->data);
     }
 }

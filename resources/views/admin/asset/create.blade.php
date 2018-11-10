@@ -128,12 +128,12 @@
                                         <div class="col-sm-8">
                                             <label class="radio-inline">
                                                 <input type="radio" name="status" id="status1"
-                                                       value="0" <?= !isset($object['status']) || @$object['status'] == '0' ? 'checked' : ''; ?>>
+                                                       value="1" <?= !isset($object['status']) || @$object['status'] == '1' ? 'checked' : ''; ?>>
                                                 Kích hoạt
                                             </label>
                                             <label class="radio-inline">
                                                 <input type="radio" name="status" id="status2"
-                                                       value="1" <?= @$object['status'] == '1' ? 'checked' : ''; ?>> Không
+                                                       value="0" <?= @$object['status'] == '0' ? 'checked' : ''; ?>> Không
                                                 kích hoạt
                                             </label>
                                         </div>
@@ -563,13 +563,22 @@
             };
             $.post({
                 url: "/panel-kht/asset/loadDistrict/"+valId, data, success: function (result) {
-                    console.log(result);
-                    var data = $.map(result, function (obj) {
+                    // console.log(result);
+                    
+                    var res = Object.keys(result)
+                        .map(function(k) {
+                            var hash = {};
+                            hash['district_id'] = k;
+                            hash['district_name'] = result[k];
+                            return hash;
+                    });
+                   
+                    var data = $.map(res, function (obj) {
                       obj.id = obj.district_id; // replace pk with your identifier
-                      obj.text = obj.name;
+                      obj.text = obj.district_name;
                       return obj;
                     });
-                    console.log(data);
+                    // console.log(data);
                     $('#district_id').html('');
                     $("#district_id").select2({
                       data:data
@@ -601,9 +610,18 @@
             $.post({
                 url: "/panel-kht/asset/loadWard/"+valId, data, success: function (result) {
                     console.log(result);
-                    var data = $.map(result, function (obj) {
+
+                var res = Object.keys(result)
+                        .map(function(k) {
+                            var hash = {};
+                            hash['ward_id'] = k;
+                            hash['ward_name'] = result[k];
+                            return hash;
+                    });
+                    console.log(res);
+                    var data = $.map(res, function (obj) {
                     obj.id = obj.ward_id; // replace pk with your identifier
-                    obj.text = obj.name;
+                    obj.text = obj.ward_name;
                     return obj;
                     });
                     console.log(data);

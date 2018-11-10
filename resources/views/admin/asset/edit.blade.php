@@ -132,12 +132,12 @@ $action_title = isset($object['id']) ? 'Cập nhật' : 'Thêm mới';
                                         <div class="col-sm-8">
                                             <label class="radio-inline">
                                                 <input type="radio" name="status" id="status1"
-                                                       value="0" <?= !isset($object['status']) || @$object['status'] == '0' ? 'checked' : ''; ?>>
+                                                       value="1" <?= !isset($object['status']) || @$object['status'] == '1' ? 'checked' : ''; ?>>
                                                 Kích hoạt
                                             </label>
                                             <label class="radio-inline">
                                                 <input type="radio" name="status" id="status2"
-                                                       value="1" <?= @$object['status'] == '1' ? 'checked' : ''; ?>> Không
+                                                       value="0" <?= @$object['status'] == '0' ? 'checked' : ''; ?>> Không
                                                 kích hoạt
                                             </label>
                                         </div>

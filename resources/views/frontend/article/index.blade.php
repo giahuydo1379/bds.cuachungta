@@ -37,9 +37,9 @@
                             </article>
 
                     @endforeach
-                        <div class="pagination">
-                        {{ $articles->links('frontend/pagination/pagination') }}
-                        </div>
+                    <div class="pagination">
+                    {{ $articles->links('frontend/pagination/pagination') }}
+                    </div>
 
 
                     </div>

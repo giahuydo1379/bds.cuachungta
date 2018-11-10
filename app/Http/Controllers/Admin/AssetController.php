@@ -108,7 +108,7 @@ class AssetController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        
+     
 
         if (empty($data['image_url'])) {
             $data['image_url'] = config('app.url');
@@ -122,24 +122,25 @@ class AssetController extends Controller
         if ($object && isset($data['product_images'])) {
             $this->store_product_images($object->id, $data['product_images']);
         }
-
-
-        $assset_id = DB::getPdo()->lastInsertId();
-
-        
-        
-        $feature_id = $data['feature_id'];
-        $variant_id = $data['variant_id'];
-
-        foreach ($variant_id as $key=>$variant) {
-            $assetFeaturesValues = new AssetFeatureValue;
-            $assetFeaturesValues->asset_id = $assset_id;
-            $assetFeaturesValues->feature_id = $feature_id[$key];
-            $assetFeaturesValues->variant_id = $variant_id[$key];
-            
-            $assetFeaturesValues->save();
+     
+        if (isset($data['variant_id'])) {
+            $assset_id = DB::getPdo()->lastInsertId();
+            $feature_id = $data['feature_id'];
+            $variant_id = $data['variant_id'];
+    
+            foreach ($variant_id as $key=>$variant) {
+                $assetFeaturesValues = new AssetFeatureValue;
+                $assetFeaturesValues->asset_id = $assset_id;
+                $assetFeaturesValues->feature_id = $feature_id[$key];
+                $assetFeaturesValues->variant_id = $variant_id[$key];
+                
+                $assetFeaturesValues->save();
+            }
         }
 
+       
+
+        
         
 
         if ($object) {

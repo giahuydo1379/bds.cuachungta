@@ -10,7 +10,7 @@
 
 
 @if ($paginator->hasPages())
-    <div class="col-xs-12" xmlns="http://www.w3.org/1999/html">
+    {{-- <div class="col-xs-12" xmlns="http://www.w3.org/1999/html"> --}}
 
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
@@ -35,7 +35,7 @@
                     @foreach ($element as $page => $url)
                         @if ($page == $paginator->currentPage())
 
-                        <span  class="curent"> {{ $page }}</span>
+                        <span  class="current"> {{ $page }}</span>
 
                         @else
 
@@ -48,14 +48,11 @@
 
             {{-- Next Page Link --}}
             @if ($paginator->hasMorePages())
-               <a href="{{ $paginator->nextPageUrl() }}" class="next" rel="next">&raquo;</a>
+               <a href="{{ $paginator->nextPageUrl() }}" class="next" rel="next"></a>
             @else
-
-                    <a class="next" href="#" aria-label="Next">
-
-                    </a>
-
+                <a class="next" href="#" aria-label="Next">
+                </a>
             @endif
 
-    </div>
+    {{-- </div> --}}
 @endif

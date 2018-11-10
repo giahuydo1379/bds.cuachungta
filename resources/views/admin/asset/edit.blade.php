@@ -330,18 +330,19 @@ $action_title = isset($object['id']) ? 'Cập nhật' : 'Thêm mới';
                                     <th>Hoạt động</th>
                                 </thead>
                                 <tbody>
+                                    @foreach($variants as $variant)
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                    <td>{{ $variant->feature->name }}<input name="feature_id[]" type="hidden" value="{{$variant->feature->id}}"/></td>
+                                    <td>{{ $variant->variant->name }}<input name="variant_id[]" type="hidden" value="{{$variant->variant->id}}"/></td>
+                                        <td><a href="" class="btn btn-danger del-tt">xoa</a></td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
-                          
+                        
                         </div>
 
                     </div>
-
 
                     <div class="row">
                         <div class="col-sm-12">

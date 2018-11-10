@@ -31,7 +31,7 @@ class SearchController extends Controller
         $price = $request->price;
         
         $assets = Asset::whereProvinceId($provice)->whereDistrictId($district)->whereAssetCategoryId($cid)->get();
-        dd($assets);
+    
         $limit = $request->input('limit', 12);
         $this->data['limit'] = $limit;
 

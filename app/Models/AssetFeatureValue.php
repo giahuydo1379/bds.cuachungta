@@ -17,7 +17,14 @@ class AssetFeatureValue extends Model
     protected $fillable = ['feature_id', 'asset_id', 'variant_id'];
 
 //    protected $hidden = ['parent_id', 'is_deleted'];
-
+    public function variant()
+    {
+        return $this->hasOne(AssetFeatureVariant::class, 'id', 'variant_id');
+    }
+    public function feature()
+    {
+        return $this->hasOne(AssetFeature::class, 'id', 'feature_id');
+    }
     public static function getListAll($filter)
     {
         $sql = self::select('asset_features.*');

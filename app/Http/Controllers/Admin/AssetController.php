@@ -181,6 +181,9 @@ class AssetController extends Controller
         $ward = $relation->ward->name;
         
         $object = $this->_model->find($id)->toArray();
+        $assetFeaturesValues = AssetFeatureValue::whereAssetId($id)->get();
+
+        $this->_data['variants'] = $assetFeaturesValues;
         
         
         $province = array('' => '') + Province::getProvince();
@@ -197,13 +200,14 @@ class AssetController extends Controller
         
         $this->_data['category'] = $category;
         $this->_data['assetFeature'] = $assetFeature;
+       
         $this->_data['district'] = $district;
         $this->_data['ward'] = $ward;
         $this->_data['product_images'] = AssetImage::select(\DB::Raw('CONCAT(image_url, image) as image'), 'id')->where('asset_id', $id)->pluck('image', 'id');
         
         $this->_data['object'] = $object;
-
-
+       
+       
         return view("admin.{$this->_data['controllerName']}.edit", $this->_data);
     }
 
@@ -230,6 +234,7 @@ class AssetController extends Controller
         }
 
         $data = $request->all();
+       
 
         if (empty($data['image_url'])) {
             $data['image_url'] = config('app.url');
@@ -237,7 +242,31 @@ class AssetController extends Controller
 
         unset($data['_token']);
 
-        $object->update($data);
+        $rs = $object->update($data);
+
+        if ($rs && isset($data['product_images'])) {
+            $this->store_product_images($id, $data['product_images']);
+        }
+
+
+
+        $assset_id = $id;
+        $assetFeaturesValues = AssetFeatureValue::whereAssetId($id)->delete();
+    
+        $feature_id = $data['feature_id'];
+        $variant_id = $data['variant_id'];
+
+        foreach ($variant_id as $key=>$variant) {
+            $assetFeaturesValues = new AssetFeatureValue;
+            $assetFeaturesValues->asset_id = $assset_id;
+            $assetFeaturesValues->feature_id = $feature_id[$key];
+            $assetFeaturesValues->variant_id = $variant_id[$key];
+            
+            $assetFeaturesValues->save();
+        }
+
+
+
 
         if ($request->ajax() || $request->wantsJson()) {
             return response()->json([

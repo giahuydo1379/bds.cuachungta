@@ -11,6 +11,7 @@ use App\Models\ProductCategory;
 use App\Models\Warehouse;
 use Illuminate\Http\Request;
 use App\Models\SlideShow;
+use App\Models\Asset;
 
 class SearchController extends Controller
 {
@@ -22,7 +23,15 @@ class SearchController extends Controller
     }
     public function search(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
+        $provice = $request->province;
+        $district = $request->district;
+        $cid = $request->cid;
+        $square = $request->square;
+        $price = $request->price;
+        
+        $assets = Asset::whereProvinceId($provice)->whereDistrictId($district)->whereAssetCategoryId($cid)->get();
+        dd($assets);
         $limit = $request->input('limit', 12);
         $this->data['limit'] = $limit;
 

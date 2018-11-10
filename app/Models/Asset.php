@@ -176,4 +176,13 @@ class Asset extends Model
             'buy' => 'Cần thuê',
         );
     }
+
+    public function district()
+    {
+        return $this->hasOne('App\Models\District', 'district_id', 'district_id');
+    }
+    public function ward()
+    {
+        return $this->hasOne('App\Models\Ward', 'ward_id', 'ward_id');
+    }
 }

@@ -71,11 +71,10 @@ class ArticleController extends Controller
      */
     public function create()
     {
-
         $this->_data['orderOptions'] = General::getOrderOptions();
 
         $article_categories = array('' => '') + ArticleCategory::getCategoryArticles();
-         $this->_data['article_categories'] = $article_categories;
+        $this->_data['article_categories'] = $article_categories;
 
 
         return view("admin.{$this->_data['controllerName']}.create", $this->_data);
@@ -99,14 +98,12 @@ class ArticleController extends Controller
 
         $object = $this->_model->create($data);
 
-        if ($object)
-        {
+        if ($object) {
             if ($object && isset($data['product_images'])) {
                 $this->store_product_images($object->id, $data['product_images']);
             }
 
             if ($request->ajax() || $request->wantsJson()) {
-
                 $request->session()->flash('error', 0);
                 $request->session()->flash('message', 'Thêm mới '.$this->_data['title'].' thành công');
 
@@ -122,7 +119,6 @@ class ArticleController extends Controller
         }
 
         if ($request->ajax() || $request->wantsJson()) {
-
             $request->session()->flash('error', 1);
             $request->session()->flash('message', 'Thêm mới ' . $this->_data['title'] . ' không thành công');
 
@@ -149,10 +145,12 @@ class ArticleController extends Controller
         $this->_data['id'] = $id;
         $this->_data['object'] = $object;
         $this->_data['orderOptions'] = General::getOrderOptions();
-         $article_categories = array('' => '') + ArticleCategory::getCategoryArticles();
-         $this->_data['article_categories'] = $article_categories;
+        $article_categories = array('' => '') + ArticleCategory::getCategoryArticles();
+        $this->_data['article_categories'] = $article_categories;
+      
         $this->_data['product_images'] = ArticleImage::select(\DB::Raw('CONCAT(image_url, image) as image'), 'id')->where('article_id', $id)->pluck('image', 'id');
-         return view("admin.{$this->_data['controllerName']}.create", $this->_data);
+       
+        return view("admin.{$this->_data['controllerName']}.create", $this->_data);
     }
 
     /**
@@ -166,8 +164,7 @@ class ArticleController extends Controller
     {
         $object  = $this->_model->find($id);
 
-        if (!$object)
-        {
+        if (!$object) {
             if ($request->ajax() || $request->wantsJson()) {
                 return response()->json([
                     'rs' => 0,
@@ -195,7 +192,6 @@ class ArticleController extends Controller
         }
 
         if ($request->ajax() || $request->wantsJson()) {
-
             $request->session()->flash('error', 0);
             $request->session()->flash('message', 'Chỉnh sửa '.$this->_data['title'].' thành công');
 
@@ -210,14 +206,17 @@ class ArticleController extends Controller
         return redirect()->route("{$this->_data['controllerName']}.index");
     }
 
-    public function store_product_images($article_id, $product_images) {
+    public function store_product_images($article_id, $product_images)
+    {
         if (isset($product_images['delete'])) {
             ArticleImage::where('article_id', $article_id)
                 ->whereIn('id', $product_images['delete'])->delete();
             unset($product_images['delete']);
         }
         foreach ($product_images as $item) {
-            if ($item['id']) continue;
+            if ($item['id']) {
+                continue;
+            }
             ArticleImage::create([
                 'article_id' => $article_id,
                 'image' => $item['image'],
@@ -236,8 +235,7 @@ class ArticleController extends Controller
     {
         $object  = $this->_model->find($id);
 
-        if (!$object || !$id)
-        {
+        if (!$object || !$id) {
             return response()->json([
                 'rs' => 0,
                 'msg' => 'Xóa '.$this->_data['title'].' không thành công',
@@ -259,14 +257,12 @@ class ArticleController extends Controller
      * @return Ambigous <\Illuminate\Routing\Redirector, \Illuminate\Http\RedirectResponse>
      * @author HaLV
      */
-    public function ajaxActive(Request $request) {
-
+    public function ajaxActive(Request $request)
+    {
         $ids = $request->all()['ids'];
 
-        if (!empty($ids))
-        {
-            foreach ($ids as $id)
-            {
+        if (!empty($ids)) {
+            foreach ($ids as $id) {
                 $object  = $this->_model->find($id);
                 $object->status = 1;
                 $object->save();
@@ -290,14 +286,12 @@ class ArticleController extends Controller
      * @return Ambigous <\Illuminate\Routing\Redirector, \Illuminate\Http\RedirectResponse>
      * @author HaLV
      */
-    public function ajaxInactive(Request $request) {
-
+    public function ajaxInactive(Request $request)
+    {
         $ids = $request->all()['ids'];
 
-        if (!empty($ids))
-        {
-            foreach ($ids as $id)
-            {
+        if (!empty($ids)) {
+            foreach ($ids as $id) {
                 $object  = $this->_model->find($id);
                 $object->status = 0;
                 $object->save();
@@ -321,14 +315,12 @@ class ArticleController extends Controller
      * @return Ambigous <\Illuminate\Routing\Redirector, \Illuminate\Http\RedirectResponse>
      * @author HaLV
      */
-    public function ajaxDelete(Request $request) {
-
+    public function ajaxDelete(Request $request)
+    {
         $ids = $request->all()['ids'];
 
-        if (!empty($ids))
-        {
-            foreach ($ids as $id)
-            {
+        if (!empty($ids)) {
+            foreach ($ids as $id) {
                 $object  = $this->_model->find($id);
                 $object->is_deleted = 1;
                 $object->save();
@@ -351,8 +343,7 @@ class ArticleController extends Controller
     {
         $res = [];
 
-        if (!empty($province_id))
-        {
+        if (!empty($province_id)) {
             $res = General::getDistrictOptionsByProvince($province_id);
         }
 
@@ -363,8 +354,7 @@ class ArticleController extends Controller
     {
         $res = [];
 
-        if (!empty($district_id))
-        {
+        if (!empty($district_id)) {
             $res = General::getWardOptionsByDistrict($district_id);
         }
 

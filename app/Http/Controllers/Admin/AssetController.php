@@ -8,6 +8,8 @@ use App\Models\District;
 use App\Models\ProductCategory;
 use App\Models\Province;
 use App\Models\Ward;
+use App\Models\AssetFeatureValue;
+use App\Models\AssetImage;
 use Illuminate\Http\Request;
 
 use App\Helpers\General;
@@ -18,6 +20,7 @@ use Box\Spout\Common\Type;
 use Log;
 use Session;
 use App\Models\AssetFeature;
+use DB;
 
 //use Symfony\Component\HttpFoundation\Request;
 
@@ -76,8 +79,7 @@ class AssetController extends Controller
     public function create()
     {
         $province = array('' => '') + Province::getProvince();
-        $district = array('' => '') + District::getDistrict();
-        $ward = array('' => '') + Ward::getWard();
+       
         $category = array('' => '') + AssetCategory::getCategory();
         $assetFeature = array('' => '') + AssetFeature::getAssetFeature();
         $type = array('' => '') + $this->_model->getOptionsType();
@@ -86,8 +88,7 @@ class AssetController extends Controller
         $this->_data['orderOptions'] = General::getOrderOptions();
 
         $this->_data['province'] = $province;
-        $this->_data['district'] = $district;
-        $this->_data['ward'] = $ward;
+        
         $this->_data['category'] = $category;
         $this->_data['assetFeature'] = $assetFeature;
 
@@ -107,14 +108,39 @@ class AssetController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        dd($data);
-        unset($data['_token']);
+        
 
         if (empty($data['image_url'])) {
             $data['image_url'] = config('app.url');
         }
 
+
+       
+
         $object = $this->_model->create($data);
+
+        if ($object && isset($data['product_images'])) {
+            $this->store_product_images($object->id, $data['product_images']);
+        }
+
+
+        $assset_id = DB::getPdo()->lastInsertId();
+
+        
+        
+        $feature_id = $data['feature_id'];
+        $variant_id = $data['variant_id'];
+
+        foreach ($variant_id as $key=>$variant) {
+            $assetFeaturesValues = new AssetFeatureValue;
+            $assetFeaturesValues->asset_id = $assset_id;
+            $assetFeaturesValues->feature_id = $feature_id[$key];
+            $assetFeaturesValues->variant_id = $variant_id[$key];
+            
+            $assetFeaturesValues->save();
+        }
+
+        
 
         if ($object) {
             if ($request->ajax() || $request->wantsJson()) {
@@ -134,6 +160,9 @@ class AssetController extends Controller
             ]);
         }
 
+
+
+
         return redirect("/admin/{$this->_data['controllerName']}/add");
     }
 
@@ -146,17 +175,34 @@ class AssetController extends Controller
      */
     public function edit($id)
     {
+        $relation = Asset::find($id);
+       
+        $district = $relation->district->name;
+        $ward = $relation->ward->name;
+        
         $object = $this->_model->find($id)->toArray();
+        
+        
+        $province = array('' => '') + Province::getProvince();
+       
+        $category = array('' => '') + AssetCategory::getCategory();
+        $assetFeature = array('' => '') + AssetFeature::getAssetFeature();
+        $type = array('' => '') + $this->_model->getOptionsType();
+        $this->_data['type'] = $type;
+        
 
-        $this->_data['id'] = $id;
+        $this->_data['orderOptions'] = General::getOrderOptions();
+
+        $this->_data['province'] = $province;
+        
+        $this->_data['category'] = $category;
+        $this->_data['assetFeature'] = $assetFeature;
+        $this->_data['district'] = $district;
+        $this->_data['ward'] = $ward;
+        $this->_data['product_images'] = AssetImage::select(\DB::Raw('CONCAT(image_url, image) as image'), 'id')->where('asset_id', $id)->pluck('image', 'id');
+        
         $this->_data['object'] = $object;
 
-        $parentOptions = array('' => '') + $this->_model->getParentOptions();
-        $manufacturerOptions = array('' => '') + Manufacturer::getManufacturerOptions();
-        $orderOptions = General::getOrderOptions();
-        $this->_data['parentOptions'] = $parentOptions;
-        $this->_data['manufacturerOptions'] = $manufacturerOptions;
-        $this->_data['orderOptions'] = $orderOptions;
 
         return view("admin.{$this->_data['controllerName']}.edit", $this->_data);
     }
@@ -269,5 +315,23 @@ class AssetController extends Controller
         //dd($res);
 
         return response()->json($res);
+    }
+    public function store_product_images($asset_id, $product_images)
+    {
+        if (isset($product_images['delete'])) {
+            AssetImage::where('asset_id', $asset_id)
+                ->whereIn('id', $product_images['delete'])->delete();
+            unset($product_images['delete']);
+        }
+        foreach ($product_images as $item) {
+            if ($item['id']) {
+                continue;
+            }
+            AssetImage::create([
+                'asset_id' => $asset_id,
+                'image' => $item['image'],
+                'image_url' => config('app.url')
+            ]);
+        }
     }
 }

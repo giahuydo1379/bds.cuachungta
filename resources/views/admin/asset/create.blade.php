@@ -82,17 +82,17 @@
                                         <label class="col-sm-2 control-label" for="form-field-1">
                                             Quận/huyện
                                         </label>
-                                        <div class="col-sm-3" id="loadDistrict">
+                                        <div class="col-sm-3" id="loadDistrict" >
                                             {{-- {!! Form::select("district_id", null, ['id' => 'district_id', 'class' => 'form-control select2  ','data-placeholder' => '--- Chọn quận/huyện ---']) !!} --}}
-                                            <select class="form-control select2" id="district_id">
+                                            <select class="form-control select2" id="district_id" name ="district_id"> 
                                                 {{-- <option value="">--- Chọn quận/huyện ---</option> --}}
                                             </select>
                                             <label id="district_id-error" class="error"
                                                    for="district_id">{!! $errors->first("district_id") !!}</label>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label" for="form-field-1">
+                                    <div class="form-group" >
+                                        <label class="col-sm-4 control-label" for="form-field-1" >
                                             Phường\xã
                                         </label>
                                         {{-- <div class="col-sm-3">
@@ -103,7 +103,7 @@
                                         </div> --}}
                                         <div class="col-sm-3" id="loadWardId">
                                                 {{-- {!! Form::select("district_id", null, ['id' => 'district_id', 'class' => 'form-control select2  ','data-placeholder' => '--- Chọn quận/huyện ---']) !!} --}}
-                                                <select class="form-control select2" id="ward_id">
+                                                <select class="form-control select2" id="ward_id" name = "ward_id">
                                                     {{-- <option value="">--- Chọn quận/huyện ---</option> --}}
                                                 </select>
                                                 <label id="ward_id-error" class="error"
@@ -333,7 +333,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            xxx
+                          
                         </div>
 
                     </div>

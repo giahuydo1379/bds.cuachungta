@@ -16,45 +16,47 @@
                         @csrf
                         <div class="col-md-4 form-group">
                             <label for="sale-location">Thành Phố</label>
-                            <select name="tp" class="form-control province_has_asset change" id="sale-location"
+                            <select name="province" class="form-control province_has_asset change" id="sale-location"
                                     data-destination="#frm-sale-search .district" data-placeholder="Chọn Tỉnh / Thành Phố">
                                 <option>Chọn Tỉnh / Thành Phố</option>
                             </select>
                         </div>
                         <div class="col-md-4 form-group">
                             <label for="sale-location">Quận/Huyện</label>
-                            <select name="huyen" class="form-control district" id="sale-location" data-placeholder="Chọn Quận Huyện">
+                            <select name="district" class="form-control district" id="sale-location" data-placeholder="Chọn Quận Huyện">
                                 <option>Chọn Quận Huyện</option>
                             </select>
                         </div>
                         <?php
                         $assets_categories = \App\Helpers\General::get_assets_categories('lease');
+                        
                         ?>
                         <div class="col-md-4 form-group">
                             <label for="sale-type">Loại Nhà Cho Thuê</label>
                             {!! Form::select("cid", @$assets_categories, @$_GET['cid'],
-                                    ['class' => 'form-control', "data-placeholder" => "Chọn Loại Nhà Cho Thuê"]) !!}
+                            ['class' => 'form-control', "data-placeholder" => "Chọn Loại Nhà Cho Thuê"]) !!}
+
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4 form-group">
                             <label for="sale-range-feet">Diện tích (m2)</label>
                             <div class="range-box">
-                                <input name="dientich" id="sale-range-feet" readonly="">
+                                <input name="square" id="sale-range-feet" readonly="">
                             </div>
                         </div>
                         <div class="col-md-4 form-group">
                             <label for="sale-range-price">Giá (VNĐ)</label>
-                            <select name="gia" class="form-control" id="sale-price">
+                            <select name="price" class="form-control" id="sale-price">
                                 <option>Chọn Giá</option>
                                 <option>Thỏa thuận</option>
-                                <option value="10000000"> > 1 triệu</option>
-                                <option value="10000000">1 - 3 triệu</option>
-                                <option value="10000000">3 - 5 triệu</option>
-                                <option value="10000000">5 - 10 triệu</option>
-                                <option>10 - 40 triệu</option>
-                                <option>40 - 70 triệu</option>
-                                <option>70 - 100 triệu</option>
+                                <option value="0;1"> > 1 triệu</option>
+                                <option value="1;3">1 - 3 triệu</option>
+                                <option value="3;5">3 - 5 triệu</option>
+                                <option value="5;10">5 - 10 triệu</option>
+                                <option value="10;40">10 - 40 triệu</option>
+                                <option value="40;70">40 - 70 triệu</option>
+                                <option value="70;100">70 - 100 triệu</option>
                             </select>
                         </div>
                         <div class="col-md-4 form-group">
@@ -88,8 +90,10 @@
                         ?>
                         <div class="col-md-4 form-group">
                             <label for="sale-type">Loại Nhà Cần Thuê</label>
+                            
                             {!! Form::select("cid", @$assets_categories, @$_GET['cid'],
                                     ['class' => 'form-control', "data-placeholder" => "Chọn Loại Nhà Cho Thuê"]) !!}
+
                         </div>
                     </div>
                     <div class="row">

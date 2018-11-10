@@ -7,7 +7,7 @@ use App\Models\Article;
 use App\Models\ArticleImage;
 use App\Models\Manufacturer;
 use App\Models\Product;
-use App\Models\ProductCategory;
+use App\Models\AssetCategory;
 use App\Models\Warehouse;
 use Illuminate\Http\Request;
 use App\Models\SlideShow;
@@ -18,6 +18,7 @@ class IndexController extends Controller
 
     public function index(Request $request)
     {
+        
 //        $limit = $request->input('limit', 12);
 //        $this->data['limit'] = $limit;
 //        $this->data['objects'] = Article::getHomeArticles();
@@ -29,11 +30,13 @@ class IndexController extends Controller
             ->orderBy('id', 'desc')
             ->take(4)
             ->get();
-      
+
+     
                     
         $this->data['articles'] = $articles;
         $this->data['fengshuis'] = $fengshuis;
-       
+                    
+        
         return view('frontend.index', $this->data);
     }
 

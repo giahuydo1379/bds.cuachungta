@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Asset;
+
 use App\Models\AssetCategory;
 use App\Models\District;
 use App\Models\ProductCategory;
@@ -49,6 +50,7 @@ class AssetController extends Controller
     public function index()
     {
         $this->_data['status'] = ['' => ''] + $this->_model->getStatusFilter();
+
         return view("admin.{$this->_data['controllerName']}.index", $this->_data);
     }
 

@@ -2,6 +2,11 @@
 
 @section('content')
     <!-- Content Header (Page header) -->
+    <style>
+            .chosen-container-single .chosen-single abbr {
+                top: 12px !important;
+            }
+        </style>
     <section class="content-header">
         <h1>
             <span class="text-capitalize">{{ $title }}</span>
@@ -12,6 +17,17 @@
             <li><a href="<?=route($controllerName.'.index')?>" class="text-capitalize">{{ ucfirst($title) }}</a></li>
             <li class="active">Danh sách</li>
         </ol>
+
+        <div id="error_div" class="alert alert-warning alert-dismissible" style="display: none;">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-warning"></i> Thông báo!</h4>
+                <span id="error_msg"></span>
+            </div>
+            <div id="success_div" class="alert alert-success alert-dismissible" style="display: none;">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> Thông báo!</h4>
+                <span id="success_msg"></span>
+            </div>
     </section>
 
     @if(Session::has('success-message'))
@@ -42,7 +58,8 @@
                     <div class="box-body overflow-hidden">
                             <div class="row">
                                     <div class="col-sm-3">
-                                        {!! Form::select('status_filter', $status, '1', [
+                                        {!! Form::select('status_filter', $status, '1', 
+                                        [
                                             'id' => 'status_filter',
                                             'class' => 'custom_filter',
                                             'data-placeholder' => '--- Trạng thái ---']) !!}
@@ -188,7 +205,7 @@
          function activeItems(items, e) {
             if (e) e.preventDefault();
             {{--malert('Bạn có thật sự muốn kích hoạt {{$title}} này không?', 'Xác nhận kích hoạt {{$title}}', null, function () {--}}
-                var url = '{{ url("/panel-kht/article/ajax-active") }}';
+                var url = '{{ url("/panel-kht/asset/ajax-active") }}';
                 var data = {
                     '_token': '{{ csrf_token() }}',
                     'ids': items
@@ -220,7 +237,7 @@
         function inactiveItems(items, e) {
             if (e) e.preventDefault();
             {{--malert('Bạn có thật sự muốn ngừng kích hoạt {{$title}} này không?', 'Xác nhận ngừng kích hoạt {{$title}}', null, function () {--}}
-                var url = '{{ url("/panel-kht/article/ajax-inactive") }}';
+                var url = '{{ url("/panel-kht/asset/ajax-inactive") }}';
                 var data = {
                     '_token': '{{ csrf_token() }}',
                     'ids': items
@@ -246,7 +263,7 @@
         function deleteItems(items, e) {
             if (e) e.preventDefault();
             malert('Bạn có thật sự muốn xoá {{$title}} này không?', 'Xác nhận xoá {{$title}}', null, function () {
-                var url = '{{ url("/panel-kht/article/ajax-delete") }}';
+                var url = '{{ url("/panel-kht/asset/ajax-delete") }}';
                 var data = {
                     '_token': '{{ csrf_token() }}',
                     'ids': items
@@ -273,17 +290,17 @@
                 notifyMsg('{{ session('msg') }}');
                     @endif
 
-                      var status = $('#status_filter').val();
-            if(status == '1')
-            {
-                $('#demo-active-row').hide();
-                $('#demo-inactive-row').show();
-            }
-            else
-            {
-                $('#demo-active-row').show();
-                $('#demo-inactive-row').hide();
-            }
+                   var status = $('#status_filter').val();
+                    if(status == '1')
+                    {
+                        $('#demo-active-row').hide();
+                        $('#demo-inactive-row').show();
+                    }
+                    else
+                    {
+                        $('#demo-active-row').show();
+                        $('#demo-inactive-row').hide();
+                    }
 
          
 

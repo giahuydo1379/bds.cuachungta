@@ -31,10 +31,16 @@ Route::group([
 
     Route::get('asset-feature/search', 'AssetFeatureController@search')->name('asset-feature.search');
     Route::resource('asset-feature', 'AssetFeatureController');
+    Route::post('asset-feature/ajax-active', 'AssetFeatureController@ajaxActive')->name('asset-feature.ajax_active');
+    Route::post('asset-feature/ajax-inactive', 'AssetFeatureController@ajaxInactive')->name('asset-feature.ajax_inactive');
+    Route::post('asset-feature/ajax-delete', 'AssetFeatureController@ajaxDelete')->name('asset-feature.ajax_delete');
+
+
 
     Route::get('asset-feature-variant-search', 'AssetFeatureVariantController@search')->name('asset-feature-variant.search');
     Route::resource('asset-feature-variant', 'AssetFeatureVariantController');
     Route::get('asset-feature-variant/ajax-disable-feature/{id}', 'AssetFeatureVariantController@getAjaxDisableFeature');
+
 
 
     Route::get('asset/search', 'AssetController@search')->name('asset.search');

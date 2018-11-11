@@ -67,13 +67,8 @@
                                 <th data-field="name" data-sortable="true">Tên nhóm sản phẩm</th>
                                 <th data-field="description" data-sortable="true">Mô tả</th>
                                 <th data-field="position" data-sortable="true">Ưu tiên</th>
-                                <th data-field="province_id" data-sortable="true">Tỉnh/Thành </th>
-                                <th data-field="district_id" data-sortable="true">Quận/Huyện</th>
-
-                                <th data-field="ward_id" data-sortable="true">Phường/Xã</th>
-
-                          
-
+                                <th data-field="districtname" data-sortable="true">Tỉnh/Thành </th>
+                                <th data-field="provincename" data-sortable="true">Quận/Huyện</th>
 
                                 <th data-field="created_at" data-sortable="true">Ngày tạo</th>
                                 <th data-field="is_deleted" data-sortable="true" data-formatter="formatStatus">Trạng thái</th>

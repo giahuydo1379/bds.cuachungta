@@ -24,7 +24,16 @@ class Asset extends Model
 
     public static function getListAll($filter)
     {
-        $sql = self::select('assets.*');
+        $scope = [
+            'assets.*', 'districts.name as districtname', 'provinces.name as provincename'
+        ];
+
+        $sql = self::select($scope)
+
+       ->leftJoin('provinces', 'provinces.province_id', '=', 'assets.province_id')
+        ->leftJoin('districts', 'districts.district_id', '=', 'assets.district_id');
+       
+        
 
         $sql->where('assets.is_deleted', 0);
 

@@ -56,13 +56,13 @@
                                             <label id="description-error" class="error" for="description">{!! $errors->first("description") !!}</label>
                                         </div>
                                     </div>
-
+                                    @if(isset($object['from']))
                                       <div class="form-group" >
                                         <label class="col-sm-3 control-label "  for="form-field-1">
                                      Giá trị từ
                                         </label>
                                          <div class="col-sm-9">
-                                            {!! Form::text("from", $object['from'], ['class' => 'form-control', 'disabled' => 'disabled'])  !!}
+                                            {!! Form::text("from", $object['from'], ['class' => 'form-control'])  !!}
                                             <label id="from-error" class="error" for="from">{!! $errors->first("from") !!}</label>
                                         </div>
                                     </div>
@@ -71,11 +71,11 @@
                                            Giá trị đến
                                         </label>
                                          <div class="col-sm-9">
-                                            {!! Form::text("to", $object['to'],  ['class' => 'form-control', 'disabled' => 'disabled' ]) !!}
+                                            {!! Form::text("to", $object['to'],  ['class' => 'form-control' ]) !!}
                                             <label id="to-error" class="error" for="to">{!! $errors->first("to") !!}</label>
                                         </div>
                                     </div>
-
+                                    @endif
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label" for="form-field-1">
                                             Trạng thái

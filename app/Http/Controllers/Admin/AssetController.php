@@ -48,6 +48,7 @@ class AssetController extends Controller
      */
     public function index()
     {
+        $this->_data['status'] = ['' => ''] + $this->_model->getStatusFilter();
         return view("admin.{$this->_data['controllerName']}.index", $this->_data);
     }
 
@@ -59,6 +60,7 @@ class AssetController extends Controller
             'sort' => $request->input('sort', 'assets.id'),
             'order' => $request->input('order', 'asc'),
             'search' => $request->input('search', ''),
+            'status' => $request->input('status', '1'),
             
         ];
 
@@ -321,5 +323,88 @@ class AssetController extends Controller
                 'image_url' => config('app.url')
             ]);
         }
+    }
+
+
+    public function ajaxActive(Request $request)
+    {
+        $ids = $request->all()['ids'];
+
+        if (!empty($ids)) {
+            foreach ($ids as $id) {
+                $object  = $this->_model->find($id);
+                $object->status = 1;
+                $object->save();
+            }
+            return response()->json([
+                'rs' => 1,
+                'msg' => 'Kích hoạt '.$this->_data['title'].' thành công',
+                'act' => 'active'
+            ]);
+        }
+
+        return response()->json([
+            'rs' => 1,
+            'msg' => 'Kích hoạt '.$this->_data['title'].' không thành công',
+            'act' => 'active'
+        ]);
+    }
+
+    /**
+     * Enter description here ...
+     * @return Ambigous <\Illuminate\Routing\Redirector, \Illuminate\Http\RedirectResponse>
+     * @author HaLV
+     */
+    public function ajaxInactive(Request $request)
+    {
+        $ids = $request->all()['ids'];
+
+        if (!empty($ids)) {
+            foreach ($ids as $id) {
+                $object  = $this->_model->find($id);
+                $object->status = 0;
+                $object->save();
+            }
+            return response()->json([
+                'rs' => 1,
+                'msg' => 'Ngừng kích hoạt '.$this->_data['title'].' thành công',
+                'act' => 'inactive'
+            ]);
+        }
+
+        return response()->json([
+            'rs' => 1,
+            'msg' => 'Ngừng kích hoạt '.$this->_data['title'].' không thành công',
+            'act' => 'inactive'
+        ]);
+    }
+
+    /**
+     * Enter description here ...
+     * @return Ambigous <\Illuminate\Routing\Redirector, \Illuminate\Http\RedirectResponse>
+     * @author HaLV
+     */
+    public function ajaxDelete(Request $request)
+    {
+        $ids = $request->all()['ids'];
+
+        if (!empty($ids)) {
+            foreach ($ids as $id) {
+                $object  = $this->_model->find($id);
+                $object->is_deleted = 1;
+                $object->save();
+            }
+            return response()->json([
+                'rs' => 1,
+                'msg' => 'Xóa '.$this->_data['title'].' thành công',
+                'act' => 'delete'
+            ]);
+        }
+
+        return response()->json([
+            'rs' => 1,
+            'msg' => 'Xóa '.$this->_data['title'].' không thành công',
+            'act' => 'delete'
+        ]);
     }
 }

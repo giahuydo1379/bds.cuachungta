@@ -59,11 +59,25 @@ class ArticleController extends Controller
         $articles = Article::findOrFail($id);
         $ishots = Article::where(['is_hot' => 1, 'status' => 1, 'article_category_id' => 1, 'is_deleted' => 0])->latest()->take(5)->get();
         $iscommons = Article::where(['is_common' => 1, 'status' => 1, 'article_category_id' => 1, 'is_deleted' => 0])->latest()->take(5)->get();
-
+        $articlePrevious = Article::where('id', '<', $id)
+                                    ->orderBy('id', 'desc')
+                                    ->first();
+        $articleNext = Article::where('id', '>', $id)
+                                   ->orderBy('id', 'asc')
+                                    ->first();
+        $postRandom = Article::inRandomOrder()->where('id', '!=', $id)
+                                        ->where(['status' => 1, 'article_category_id' => 1, 'is_deleted' => 0])
+                                        ->limit(2)
+                                        ->get();
         $this->data['articles'] = $articles;
         $this->data['ishots'] = $ishots;
         $this->data['articles'] = $articles;
         $this->data['iscommons'] = $iscommons;
+
+        $this->data['articlePrevious'] = $articlePrevious;
+        $this->data['articleNext'] = $articleNext;
+        $this->data['postRandom'] = $postRandom;
+
 
         return view('frontend.article.show', $this->data);
     }
@@ -73,10 +87,27 @@ class ArticleController extends Controller
         $ishots = Article::where(['is_hot' => 1, 'status' => 1, 'article_category_id' => 2, 'is_deleted' => 0])->latest()->take(5)->get();
         $iscommons = Article::where(['is_common' => 1, 'status' => 1, 'article_category_id' => 2, 'is_deleted' => 0])->latest()->take(5)->get();
 
+        $articlePrevious = Article::where('id', '<', $id)
+        ->orderBy('id', 'desc')
+        ->first();
+        $articleNext = Article::where('id', '>', $id)
+            ->orderBy('id', 'asc')
+                ->first();
+        $postRandom = Article::inRandomOrder()->where('id', '!=', $id)
+                    ->where(['status' => 1, 'article_category_id' => 2, 'is_deleted' => 0])
+                    ->limit(2)
+                    ->get();
+
         $this->data['articles'] = $articles;
         $this->data['ishots'] = $ishots;
         $this->data['articles'] = $articles;
         $this->data['iscommons'] = $iscommons;
+
+        $this->data['articlePrevious'] = $articlePrevious;
+        $this->data['articleNext'] = $articleNext;
+        $this->data['postRandom'] = $postRandom;
+
+
 
         return view('frontend.article.showFengshui', $this->data);
     }

@@ -42,6 +42,11 @@ Route::group([
     Route::post('asset/loadWard/{id}', 'AssetController@getWard');
     Route::post('asset/loadAssetFeatureVariant/{id}', 'AssetController@getAssetFeatureVariant');
     Route::resource('asset', 'AssetController');
+    Route::post('asset/ajax-active', 'AssetController@ajaxActive')->name('asset.ajax_active');
+    Route::post('asset/ajax-inactive', 'AssetController@ajaxInactive')->name('asset.ajax_inactive');
+    Route::post('asset/ajax-delete', 'AssetController@ajaxDelete')->name('asset.ajax_delete');
+
+
 
     Route::get('product/import', 'ProductController@import')->name('product.import');
     Route::post('product/import', 'ProductController@store_import');

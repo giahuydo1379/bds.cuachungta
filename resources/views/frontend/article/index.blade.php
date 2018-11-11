@@ -35,11 +35,8 @@
                                 <p class="post-entries">{!! $article->description !!}</p>
                             </article>
                     @endforeach
-                        <div class="pagination">
-                            @if (!count($articles)) Không tìm thấy tin tức @endif
+                        @if (!count($articles)) <div class="pagination">Không tìm thấy tin tức</div> @endif
                         {{ $articles->links('frontend/pagination/pagination') }}
-                        </div>
-
                     </div>
                 </div>
 

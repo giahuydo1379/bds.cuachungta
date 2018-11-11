@@ -6,11 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\ArticleImage;
 use App\Models\Manufacturer;
-use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\Warehouse;
 use Illuminate\Http\Request;
-use App\Models\SlideShow;
 
 class ArticleController extends Controller
 {

@@ -27,7 +27,6 @@ Route::get('/{slug}-a{id}.html', ['as' => 'fe.asset.show', 'uses' => 'Frontend\A
     ->where(['slug' => '[a-z\-0-9]+', 'id' => '[0-9]+']);
 
 Route::get('/tin-tuc', ['as' => 'fe.article.index', 'uses' => 'Frontend\ArticleController@index']);
-Route::post('/tim-kiem', ['as' => 'fe.search.search', 'uses' => 'Frontend\SearchController@search']);
 
 Route::get('/phong-thuy', ['as' => 'fe.article.fengshui', 'uses' => 'Frontend\ArticleController@fengshui']);
 Route::get('tin-tuc/{slug}-n{id}.html', ['as' => 'fe.article.show', 'uses' => 'Frontend\ArticleController@show'])

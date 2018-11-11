@@ -28,8 +28,6 @@ class Asset extends Model
 
         $sql->where('assets.is_deleted', 0);
 
-        
-
         if (!empty($keyword = $filter['search'])) {
             $sql->where(function ($query) use ($keyword) {
                 $query->where('assets.name', 'LIKE', '%' . $keyword . '%');
@@ -184,5 +182,32 @@ class Asset extends Model
     public function ward()
     {
         return $this->hasOne('App\Models\Ward', 'ward_id', 'ward_id');
+    }
+
+    public static function getSearchAssets($params)
+    {
+        $query = self::select('assets.*') //, 'product_categories.name as category_name'
+//            ->leftJoin('product_categories', 'product_categories.id', '=', 'articles.category_id')
+            ->where(['status' => 1, 'is_deleted' => 0]);
+
+        if (isset($params['kw'])) {
+            $query->where('assets.name', 'LIKE', '%' . $params['kw'] . '%');
+        }
+
+        if (isset($params['province'])) {
+            $query->where('assets.province_id', $params['province']);
+        }
+
+        if (isset($params['district'])) {
+            $query->where('assets.district_id', $params['district']);
+        }
+
+        if (isset($params['cid'])) {
+            $query->where('assets.asset_category_id', $params['cid']);
+        }
+
+        $query->orderBy($params['sort']??'assets.position', $params['order']??'asc');
+
+        return $query->paginate($params['limit']??12);
     }
 }

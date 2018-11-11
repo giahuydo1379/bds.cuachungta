@@ -10,10 +10,9 @@
     <div class="tab-content">
         <!-- Tabmenu Content 1 / Property For SALE -->
         <div role="tabpanel" class="tab-pane active" id="for-sale">
-            <form action="{{route('fe.search.search')}}" id="frm-sale-search" method="post">
+            <form action="{{route('fe.search.index')}}" id="frm-sale-search" method="get">
                 <div class="form-body">
                     <div class="row">
-                        @csrf
                         <div class="col-md-4 form-group">
                             <label for="sale-location">Thành Phố</label>
                             <select name="province" class="form-control province_has_asset change" id="sale-location"

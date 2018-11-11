@@ -38,7 +38,7 @@
 
                     @endforeach
                         <div class="pagination">
-                            @if (!count($fengshuis)) Không tìm thấy tin phong thuỷ @endif
+                            @if (!count($fengshuis)) <div class="pagination">Không tìm thấy tin tức</div> @endif
                             {{ $fengshuis->links('frontend/pagination/pagination') }}
                         </div>
 

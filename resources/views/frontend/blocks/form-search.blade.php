@@ -68,7 +68,7 @@
             </form>
         </div>
         <div role="tabpanel" class="tab-pane" id="for-rent">
-            <form action="{{route('fe.search.search')}}" id="frm-rent-search" method="post">
+            <form action="{{route('fe.search.index')}}" id="frm-rent-search" method="get">
                 <div class="form-body">
                     <div class="row">
                         <div class="col-md-4 form-group">

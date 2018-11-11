@@ -31,7 +31,7 @@
                                                 style="background: url({{ $article->image }}) center center no-repeat; padding-bottom: 50%; height: 0;"
                                                 src="{{ $article->image }}" alt="Post list 1"></a></figure>
                                 <ul class="post-meta">
-                                    <li class="post-author"><a href="#">{{ $article->created_at }}</a></li>
+                                    <li class="post-author"><a href="#">{{ $article->updated_at }}</a></li>
                                 </ul>
                                 <p class="post-entries">{!! $article->description !!}</p>
                             </article>
@@ -72,7 +72,7 @@
                                         @foreach($ishots as $ishot)
                                             <li>
                                                 <a href="{{ url('tin-tuc/' .$ishot->path()) }}">{!! $ishot->name !!}</a>
-                                                <span class="post-date">{!! $ishot->created_at !!}</span>
+                                                <span class="post-date">{!! $ishot->updated_at !!}</span>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -100,7 +100,7 @@
                                                             style="background: url({{ $iscommon->image }}) center center no-repeat; padding-bottom: 100%; height: 0;"
                                                             src="{{ $iscommon->image }}" alt="#"></div>
                                                 <div class="post-content">
-                                                    <span class="post-date">{{ $iscommon->created_at }}</span>
+                                                    <span class="post-date">{{ $iscommon->updated_at }}</span>
                                                     <a href="{{ url('tin-tuc/' .$iscommon->path()) }}"
                                                        class="post-title">{!! $iscommon->name !!}</a>
                                                 </div>

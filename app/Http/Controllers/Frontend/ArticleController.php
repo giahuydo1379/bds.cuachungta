@@ -18,7 +18,7 @@ class ArticleController extends Controller
 
     public function index(Request $request)
     {
-        $articles = Article::orderBy('id', 'DESC')->where(['status' => 1, 'article_category_id' => 1, 'is_deleted' => 0])->paginate(2);
+        $articles = Article::orderBy('id', 'DESC')->where(['status' => 1, 'article_category_id' => 1, 'is_deleted' => 0])->paginate(5);
         //dd($articles->links());
         $ishots = Article::where(['is_hot' => 1, 'status' => 1, 'article_category_id' => 1, 'is_deleted' => 0])->latest()->take(5)->get();
         $iscommons = Article::where(['is_common' => 1, 'status' => 1, 'article_category_id' => 1, 'is_deleted' => 0])->latest()->take(5)->get();
@@ -34,7 +34,7 @@ class ArticleController extends Controller
     {
         $ishots = Article::where(['is_hot' => 1, 'status' => 1, 'article_category_id' => 1, 'is_deleted' => 0])->latest()->take(5)->get();
         $iscommons = Article::where(['is_common' => 1, 'status' => 1, 'article_category_id' => 2, 'is_deleted' => 0])->latest()->take(5)->get();
-        $fengshuis = Article::orderBy('id', 'DESC')->where(['status' => 1, 'article_category_id' => 2, 'is_deleted' => 0])->paginate(2);
+        $fengshuis = Article::orderBy('id', 'DESC')->where(['status' => 1, 'article_category_id' => 2, 'is_deleted' => 0])->paginate(5);
 
         $this->data['ishots'] = $ishots;
         $this->data['iscommons'] = $iscommons;
@@ -45,10 +45,33 @@ class ArticleController extends Controller
     public function show(Request $request, $slug, $id)
     {
         $articles = Article::findOrFail($id);
+
+        $articleNext = Article::where('id', '>', $id)
+        ->where(['status' => 1, 'article_category_id' => 1, 'is_deleted' => 0])
+        ->orderBy('id', 'asc')
+        ->first();
+
+        $articlePrevious = Article::where('id', '<', $id)
+        ->where(['status' => 1, 'article_category_id' => 1, 'is_deleted' => 0])
+        ->orderBy('id', 'desc')
+        ->first();
+
+        $postRandom = Article::inRandomOrder()
+        ->where('id', '!=', $id)
+        ->where(['status' => 1, 'article_category_id' => 1, 'is_deleted' => 0])
+        ->limit(2)
+        ->get();
+      
+
+    
         $ishots = Article::where(['is_hot' => 1, 'status' => 1, 'article_category_id' => 1, 'is_deleted' => 0])->latest()->take(5)->get();
         $iscommons = Article::where(['is_common' => 1, 'status' => 1, 'article_category_id' => 1, 'is_deleted' => 0])->latest()->take(5)->get();
 
         $this->data['articles'] = $articles;
+        $this->data['articleNext'] = $articleNext;
+        $this->data['articlePrevious'] = $articlePrevious;
+        $this->data['postRandom'] = $postRandom;
+
         $this->data['ishots'] = $ishots;
         $this->data['articles'] = $articles;
         $this->data['iscommons'] = $iscommons;
@@ -58,10 +81,34 @@ class ArticleController extends Controller
     public function showFengshui(Request $request, $slug, $id)
     {
         $articles = Article::findOrFail($id);
+        
+
+        $articleNext = Article::where('id', '>', $id)
+        ->where(['status' => 1, 'article_category_id' => 2, 'is_deleted' => 0])
+        ->orderBy('id', 'asc')
+        ->first();
+
+        $articlePrevious = Article::where('id', '<', $id)
+        ->where(['status' => 1, 'article_category_id' => 2, 'is_deleted' => 0])
+        ->orderBy('id', 'desc')
+        ->first();
+
+        $postRandom = Article::inRandomOrder()
+        ->where('id', '!=', $id)
+        ->where(['status' => 1, 'article_category_id' => 1, 'is_deleted' => 0])
+        ->limit(2)
+        ->get();
+      
+
+
         $ishots = Article::where(['is_hot' => 1, 'status' => 1, 'article_category_id' => 2, 'is_deleted' => 0])->latest()->take(5)->get();
         $iscommons = Article::where(['is_common' => 1, 'status' => 1, 'article_category_id' => 2, 'is_deleted' => 0])->latest()->take(5)->get();
 
         $this->data['articles'] = $articles;
+        $this->data['articleNext'] = $articleNext;
+        $this->data['articlePrevious'] = $articlePrevious;
+        $this->data['postRandom'] = $postRandom;
+
         $this->data['ishots'] = $ishots;
         $this->data['articles'] = $articles;
         $this->data['iscommons'] = $iscommons;

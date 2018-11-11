@@ -14,10 +14,10 @@
                             <h2 class="post-title"><a href="#">{!! $articles->name!!}</a></h2>
                             <figure class="post-image"><a href="#"><img src="{{ $articles->image}}" alt=""></a></figure>
                             <div class="post-entries">
-                                {!! $articles->description !!}
+                             
                                 <blockquote>
-                                    <p>Bố trí phòng làm việc hợp phong thủy sẽ hỗ trợ cho sự nghiệp thăng tiến</p>
-                                    <footer>Vinh Nguyen</footer>
+                                    <p>  {!! $articles->description !!}</p>
+                                    <footer></footer>
                                 </blockquote>
                                 {!! $articles->content !!}
                                 <div class="widget">
@@ -68,14 +68,22 @@
                         <nav class="navigation post-navigation" role="navigation">
                             <h2 class="screen-reader-text">Trở về</h2>
                             <div class="nav-links">
+                                @if ($articlePrevious != null)
                                 <div class="nav-previous">
-                                    <a href="#" rel="prev"><span class="nav-post-title">Trờ về</span><span
-                                                class="nav-post-name">Bố trí văn phòng hợp phong thủy giúp tăng vượng khí</span></a>
+                                    <a href="{{ url('phong-thuy/' .$articlePrevious->path()) }}" rel="prev"><span class="nav-post-title">Trờ về</span><span
+                                                class="nav-post-name">{{  $articlePrevious->name }}</span></a>
                                 </div>
+                               
+
+                                @endif
+
+
+                                @if ($articleNext != null)    
                                 <div class="nav-next">
-                                    <a href="#" rel="prev"><span class="nav-post-title">Tiếp theo</span><span
-                                                class="nav-post-name">Phương pháp kích hoạt tài lộc cho không gian ngồi làm việc</span></a>
+                                    <a href="{{ url('phong-thuy/' .$articleNext->path()) }}" rel="prev"><span class="nav-post-title">Tiếp theo</span><span
+                                                class="nav-post-name">{{ $articleNext->name }}</span></a>
                                 </div>
+                                @endif
                             </div>
                         </nav>
                         <div class="related-post widget panel-box">
@@ -86,28 +94,19 @@
                             <!-- Related Post List -->
                             <div class="panel-body">
                                 <ul class="post-list">
-                                    <li>
-                                        <a class="post-image" href="single-blog.html"><img
-                                                    src="/html/assets/images/transparent.png"
-                                                    style="background-image: url(assets/images/1.jpg);  padding-bottom: 56.25%; height: 0; background-size: cover; background-position: center;"
-                                                    alt="Image"></a>
-                                        <div class="post-content">
-                                            <a href="single-blog.html" class="post-title">Hai màu trắng - đen có ý
-                                                nghĩa, mối liên hệ gì với người mệnh Thủy?</a>
-                                            <span class="post-date">02/01/2017</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a class="post-image" href="single-blog.html"><img
-                                                    src="/html/assets/images/transparent.png"
-                                                    style="background-image: url(assets/images/1.jpg);  padding-bottom: 56.25%; height: 0; background-size: cover; background-position: center;"
-                                                    alt="Image"></a>
-                                        <div class="post-content">
-                                            <a href="single-blog.html" class="post-title">Trang trí nội thất phòng ngủ
-                                                hợp phong thủy với người tuổi Mão</a>
-                                            <span class="post-date">11/10/2018</span>
-                                        </div>
-                                    </li>
+                                        @foreach($postRandom as $post)
+                                        <li>
+                                            <a class="post-image" href="{{ url('phong-thuy/' .$post->path()) }}"><img
+                                            src="{{ $post->image }}"
+                                                        style="background-image: url({{ $post->image }});  padding-bottom: 56.25%; height: 0; background-size: cover; background-position: center;"
+                                                        alt="Image"></a>
+                                            <div class="post-content">
+                                            <a href="{{ url('phong-thuy/' .$post->path()) }}" class="post-title">{{ $post->name }}</a>
+                                            <span class="post-date">{{ $post->updated_at }}</span>
+                                            </div>
+                                        </li>
+                                        @endforeach
+                                  
                                 </ul>
                             </div>
                         </div>
@@ -140,7 +139,7 @@
                                         @foreach($ishots as $ishot)
                                             <li>
                                                 <a href="{{ url('phong-thuy/' .$ishot->path()) }}">{!! $ishot->name !!}</a>
-                                                <span class="post-date">{!! $ishot->created_at !!}</span>
+                                                <span class="post-date">{!! $ishot->updated_at !!}</span>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -166,7 +165,7 @@
                                                             style="background: url({{ $iscommon->image }}) center center no-repeat; padding-bottom: 100%; height: 0;"
                                                             src="{{ $iscommon->image }}" alt="#"></div>
                                                 <div class="post-content">
-                                                    <span class="post-date">{!! $iscommon->created_at !!}</span>
+                                                    <span class="post-date">{!! $iscommon->updated_at !!}</span>
                                                     <a href="{{ url('phong-thuy/' .$iscommon->path()) }}" class="post-title">{!! $iscommon->name !!}</a>
                                                 </div>
                                             </li>

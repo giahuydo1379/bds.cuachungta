@@ -24,7 +24,16 @@ class Asset extends Model
 
     public static function getListAll($filter)
     {
-        $sql = self::select('assets.*');
+        $scope = [
+            'assets.*', 'districts.name as districtname', 'provinces.name as provincename'
+        ];
+
+        $sql = self::select($scope)
+
+       ->leftJoin('provinces', 'provinces.province_id', '=', 'assets.province_id')
+        ->leftJoin('districts', 'districts.district_id', '=', 'assets.district_id');
+       
+        
 
         $sql->where('assets.is_deleted', 0);
 
@@ -129,7 +138,7 @@ class Asset extends Model
 
     public static function getDistrict($idProvince)
     {
-        $data = District::select('district_id', 'name')-> where('districts.province_id', $idProvince)->get();//->pluck('name','district_id');
+        $data = District::where('province_id', $idProvince)->pluck('name', 'district_id');
 
         if (!empty($data)) {
             return $data->toArray();
@@ -140,7 +149,7 @@ class Asset extends Model
 
     public static function getWard($id)
     {
-        $data = Ward::select('ward_id', 'name')-> where('wards.district_id', $id)->get();//->pluck('name','district_id');
+        $data = Ward::where('district_id', $id)->pluck('name', 'ward_id');
 
         if (!empty($data)) {
             return $data->toArray();
@@ -170,8 +179,8 @@ class Asset extends Model
     public function getOptionsType()
     {
         return array(
-            'lease' => 'Cho thuê',
-            'buy' => 'Cần thuê',
+            'buy' => 'Cho thuê',
+            'lease' => 'Cần thuê',
         );
     }
 

@@ -44,7 +44,7 @@ class Block
     public static function get_link_article($item=null)
     {
         if (!$item) return '';
-        
+
         if (!is_array($item)) $item = $item->toArray();
 
         return route('fe.article.show', ['slug' => str_slug(@$item['name']), 'id' => @$item['id']]);

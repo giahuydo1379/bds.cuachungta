@@ -27,7 +27,7 @@
                             </select>
                         </div>
                         <?php
-                        $assets_categories = \App\Helpers\General::get_assets_categories('lease');
+                        $assets_categories = \App\Helpers\General::get_assets_categories('buy');
                         
                         ?>
                         <div class="col-md-4 form-group">
@@ -49,13 +49,13 @@
                             <select name="price" class="form-control" id="sale-price">
                                 <option>Chọn Giá</option>
                                 <option>Thỏa thuận</option>
-                                <option value="0;1"> > 1 triệu</option>
-                                <option value="1;3">1 - 3 triệu</option>
-                                <option value="3;5">3 - 5 triệu</option>
-                                <option value="5;10">5 - 10 triệu</option>
-                                <option value="10;40">10 - 40 triệu</option>
-                                <option value="40;70">40 - 70 triệu</option>
-                                <option value="70;100">70 - 100 triệu</option>
+                                <option value="0;1000000"> > 1 triệu</option>
+                                <option value="1000000;3000000">1 - 3 triệu</option>
+                                <option value="3000000;5000000">3 - 5 triệu</option>
+                                <option value="500000;10000000">5 - 10 triệu</option>
+                                <option value="10000000;40000000">10 - 40 triệu</option>
+                                <option value="40000000;70000000">40 - 70 triệu</option>
+                                <option value="7000000;10000000">70 - 100 triệu</option>
                             </select>
                         </div>
                         <div class="col-md-4 form-group">
@@ -68,7 +68,7 @@
             </form>
         </div>
         <div role="tabpanel" class="tab-pane" id="for-rent">
-            <form action="{{route('fe.search.index')}}" id="frm-rent-search" method="get">
+            <form action="{{route('fe.search.search')}}" id="frm-rent-search" method="post">
                 <div class="form-body">
                     <div class="row">
                         <div class="col-md-4 form-group">
@@ -85,7 +85,7 @@
                             </select>
                         </div>
                         <?php
-                        $assets_categories = \App\Helpers\General::get_assets_categories('buy');
+                        $assets_categories = \App\Helpers\General::get_assets_categories('lease');
                         ?>
                         <div class="col-md-4 form-group">
                             <label for="sale-type">Loại Nhà Cần Thuê</label>

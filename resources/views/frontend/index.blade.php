@@ -61,7 +61,7 @@
                                 src="{{ $article->image}}" alt="" class="img-responsive"></a>
                             </div>
                             <div class="property-content">
-                            <a href="{{ url('tin-tuc/' .$article->path()) }}" class="property-title">{!! $article->content !!}</a>
+                            <a href="{{ url('tin-tuc/' .$article->path()) }}" class="property-title">{!! $article->name !!}</a>
                             </div>
                         </div>
 
@@ -98,13 +98,13 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="testimony-profile">
-                                        <a href="single-property.html" class="img-box__image"><img style="background: url(assets/images/2.jpg) center center no-repeat; padding-bottom: 100%; height: 0;" src="assets/images/transparent.png" alt="" class="img-responsive"></a>
+                                        <a href="{{ url('phong-thuy/' .$item->path()) }}" class="img-box__image"><img style="background: url(assets/images/2.jpg) center center no-repeat; padding-bottom: 100%; height: 0;" src="assets/images/transparent.png" alt="" class="img-responsive"></a>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="testimony-text">
-                                        <h5><a href="#" title="">{!!$item-> name!!}</a></h5>
-                                        <p>Simple and clean-easy to customize, the demo is so close to what I need. This theme can read my mind. AMAZING!</p>
+                                        <h5><a href="{{ url('phong-thuy/' .$item->path()) }}" title="">{!!$item-> name!!}</a></h5>
+                                        <p>{!! $item-> description !!}</p>
                                     </div>
                                 </div>
                             </div>
@@ -114,13 +114,13 @@
                             <div class="row">
                                 <div class="col-md-3 col-md-push-6 col-md-offset-3">
                                     <div class="testimony-profile">
-                                        <a href="single-property.html" class="img-box__image"><img style="background: url(assets/images/2.jpg) center center no-repeat; padding-bottom: 100%; height: 0;" src="assets/images/transparent.png" alt="" class="img-responsive"></a>
+                                        <a href="{{ url('phong-thuy/' .$item->path()) }}" class="img-box__image"><img style="background: url(assets/images/2.jpg) center center no-repeat; padding-bottom: 100%; height: 0;" src="assets/images/transparent.png" alt="" class="img-responsive"></a>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-md-pull-3">
                                     <div class="testimony-text">
-                                        <h5><a href="#" title="">{!! $item->name !!}</a></h5>
-                                        <p>Simple and clean-easy to customize, the demo is so close to what I need. This theme can read my mind. AMAZING!</p>
+                                        <h5><a href="{{ url('phong-thuy/' .$item->path()) }}" title="">{!! $item->name !!}</a></h5>
+                                        <p>{!! $item-> description !!}</p>
                                     </div>
                                 </div>
                             </div>

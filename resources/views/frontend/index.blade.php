@@ -57,8 +57,8 @@
                         <div class="property-item">
                             <div class="img-box">
                                 <a href="{{ url('tin-tuc/' .$article->path()) }}" class="img-box__image"><img
-                                            style="background: url({{ $article->image }}) center center no-repeat; padding-bottom: 62%; height: 0;"
-                                src="{{ $article->image}}" alt="" class="img-responsive"></a>
+                                            style="background: url({{ $article->image_url.$article->image }}) center center no-repeat; padding-bottom: 62%; height: 0;"
+                                src="{{ $article->image_url.$article->image}}" alt="" class="img-responsive"></a>
                             </div>
                             <div class="property-content">
                             <a href="{{ url('tin-tuc/' .$article->path()) }}" class="property-title">{!! $article->name !!}</a>
@@ -98,7 +98,8 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="testimony-profile">
-                                        <a href="{{ url('phong-thuy/' .$item->path()) }}" class="img-box__image"><img style="background: url(assets/images/2.jpg) center center no-repeat; padding-bottom: 100%; height: 0;" src="assets/images/transparent.png" alt="" class="img-responsive"></a>
+                                        <a href="{{ url('phong-thuy/' .$item->path()) }}" class="img-box__image">
+                                            <img style="background: url({{$article->image_url.$article->image}}) center center no-repeat; padding-bottom: 100%; height: 0;" src="/html/assets/images/transparent.png" alt="" class="img-responsive"></a>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -114,7 +115,8 @@
                             <div class="row">
                                 <div class="col-md-3 col-md-push-6 col-md-offset-3">
                                     <div class="testimony-profile">
-                                        <a href="{{ url('phong-thuy/' .$item->path()) }}" class="img-box__image"><img style="background: url(assets/images/2.jpg) center center no-repeat; padding-bottom: 100%; height: 0;" src="assets/images/transparent.png" alt="" class="img-responsive"></a>
+                                        <a href="{{ url('phong-thuy/' .$item->path()) }}" class="img-box__image">
+                                            <img style="background: url('{{$article->image_url.$article->image}}') center center no-repeat; padding-bottom: 100%; height: 0;" src="/html/assets/images/transparent.png" alt="" class="img-responsive"></a>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-md-pull-3">

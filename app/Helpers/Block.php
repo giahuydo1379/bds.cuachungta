@@ -39,8 +39,26 @@ class Block
         return view('frontend.blocks.property-item-content', ['item' => $item]);
     }
 
+    public static function fengshui_item($item, $class='') {
+        if (!$item) return '';
+
+        if (!is_array($item)) $item = $item->toArray();
+
+        return view('frontend.blocks.fengshui-item', ['item' => $item, 'class' => $class]);
+    }
+
+    public static function news_item($item) {
+        if (!$item) return '';
+
+        if (!is_array($item)) $item = $item->toArray();
+
+        return view('frontend.blocks.news-item', ['item' => $item]);
+    }
+
     public static function property_item($item) {
         if (!$item) return '';
+
+        if (!is_array($item)) $item = $item->toArray();
 
         return view('frontend.blocks.property-item', ['item' => $item]);
     }
@@ -61,5 +79,19 @@ class Block
         if (!is_array($item)) $item = $item->toArray();
 
         return route('fe.asset.show', ['slug' => str_slug(@$item['name']), 'id' => @$item['id']]);
+    }
+
+    public static function get_link_asset_category($item=null)
+    {
+        if (!$item) return '';
+
+        if (!is_array($item)) $item = $item->toArray();
+
+        $params = ['cid' => @$item['asset_category_id']];
+        if ($item['type'] == 'lease') {
+            return route('fe.asset.lease', $params);
+        }
+
+        return route('fe.asset.buy', $params);
     }
 }

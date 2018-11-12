@@ -69,31 +69,13 @@ class Asset extends Model
         return ['total' => $total, 'data' => $data];
     }
 
-    public static function getParentOptions()
-    {
-        $data = ProductCategory::select('id', 'name')->pluck('name', 'id');
-
-        if (!empty($data)) {
-            return $data->toArray();
-        }
-
-        return  array();
-    }
-
-    public static function getCategoryOptions()
-    {
-        $data = ProductCategory::select('id', 'name')->pluck('name', 'id');
-
-        if (!empty($data)) {
-            return $data->toArray();
-        }
-
-        return  array();
-    }
-
     public static function getAssetsHot($limit=4)
     {
-        $query = self::select(['*']);
+        $query = self::select(['assets.*', 'asset_categories.name as asset_category_name',
+            \DB::raw("CONCAT_WS(' ', provinces.type, provinces.name) as province_name"), \DB::raw("CONCAT_WS(' ', districts.type, districts.name) as district_name")])
+            ->leftJoin('asset_categories', 'asset_categories.id', '=', 'assets.asset_category_id')
+            ->leftJoin('provinces', 'provinces.province_id', '=', 'assets.province_id')
+            ->leftJoin('districts', 'districts.district_id', '=', 'assets.district_id');
 
         $query->where('assets.is_deleted', 0);
         $query->where('assets.is_hot', 1);
@@ -107,7 +89,11 @@ class Asset extends Model
 
     public static function getTopAssetsByType($type='lease', $limit=4)
     {
-        $query = self::select(['*']);
+        $query = self::select(['assets.*', 'asset_categories.name as asset_category_name',
+            \DB::raw("CONCAT_WS(' ', provinces.type, provinces.name) as province_name"), \DB::raw("CONCAT_WS(' ', districts.type, districts.name) as district_name")])
+            ->leftJoin('asset_categories', 'asset_categories.id', '=', 'assets.asset_category_id')
+            ->leftJoin('provinces', 'provinces.province_id', '=', 'assets.province_id')
+            ->leftJoin('districts', 'districts.district_id', '=', 'assets.district_id');
 
         $query->where('assets.is_deleted', 0);
         $query->where('assets.is_hot', 1);
@@ -120,29 +106,34 @@ class Asset extends Model
         return $query->limit($limit)->get();
     }
 
-    public static function getCategoryById($id)
+    public static function getSearchAssets($params)
     {
-        $data = ProductCategory::select('product_categories.*', 'manufacturers.name as manufacturer_name')
-            ->leftJoin('manufacturers', 'manufacturers.id', '=', 'product_categories.manufacturer_id')
-            ->where('product_categories.id', $id)
-            ->where('product_categories.is_deleted', 0)->first();
+        $query = self::select(['assets.*', 'asset_categories.name as asset_category_name',
+            \DB::raw("CONCAT_WS(' ', provinces.type, provinces.name) as province_name"), \DB::raw("CONCAT_WS(' ', districts.type, districts.name) as district_name")])
+            ->leftJoin('asset_categories', 'asset_categories.id', '=', 'assets.asset_category_id')
+            ->leftJoin('provinces', 'provinces.province_id', '=', 'assets.province_id')
+            ->leftJoin('districts', 'districts.district_id', '=', 'assets.district_id')
+            ->where(['assets.status' => 1, 'assets.is_deleted' => 0]);
 
-        if (!empty($data)) {
-            return $data->toArray();
+        if (isset($params['kw'])) {
+            $query->where('assets.name', 'LIKE', '%' . $params['kw'] . '%');
         }
 
-        return  array();
-    }
-
-    public static function ajaxGetCategoryBymanufacturer($manufacturer_id)
-    {
-        $data = ProductCategory::select('id', 'name')-> where('product_categories.manufacturer_id', $manufacturer_id)->pluck('name', 'id');
-
-        if (!empty($data)) {
-            return $data->toArray();
+        if (isset($params['province'])) {
+            $query->where('assets.province_id', $params['province']);
         }
 
-        return  array();
+        if (isset($params['district'])) {
+            $query->where('assets.district_id', $params['district']);
+        }
+
+        if (isset($params['cid'])) {
+            $query->where('assets.asset_category_id', $params['cid']);
+        }
+
+        $query->orderBy($params['sort']??'assets.position', $params['order']??'asc');
+
+        return $query->paginate($params['limit']??12);
     }
 
     public static function getProvince()
@@ -223,32 +214,5 @@ class Asset extends Model
     public function ward()
     {
         return $this->hasOne('App\Models\Ward', 'ward_id', 'ward_id');
-    }
-
-    public static function getSearchAssets($params)
-    {
-        $query = self::select('assets.*') //, 'product_categories.name as category_name'
-//            ->leftJoin('product_categories', 'product_categories.id', '=', 'articles.category_id')
-            ->where(['status' => 1, 'is_deleted' => 0]);
-
-        if (isset($params['kw'])) {
-            $query->where('assets.name', 'LIKE', '%' . $params['kw'] . '%');
-        }
-
-        if (isset($params['province'])) {
-            $query->where('assets.province_id', $params['province']);
-        }
-
-        if (isset($params['district'])) {
-            $query->where('assets.district_id', $params['district']);
-        }
-
-        if (isset($params['cid'])) {
-            $query->where('assets.asset_category_id', $params['cid']);
-        }
-
-        $query->orderBy($params['sort']??'assets.position', $params['order']??'asc');
-
-        return $query->paginate($params['limit']??12);
     }
 }

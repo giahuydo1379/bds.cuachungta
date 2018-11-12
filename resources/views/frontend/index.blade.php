@@ -50,26 +50,13 @@
             <!-- Panel Wrapper for Panel Box Container -->
             <div class="panel-wrapper">
                 <div id="product-house" class="row">
-                        @foreach ($articles as $key => $article)
+            @foreach ($articles as $key => $article)
                     <div class="col-md-3 col-sm-6">
                         <!-- Property Item -->
-
-                        <div class="property-item">
-                            <div class="img-box">
-                                <a href="{{ url('tin-tuc/' .$article->path()) }}" class="img-box__image"><img
-                                            style="background: url({{ $article->image_url.$article->image }}) center center no-repeat; padding-bottom: 62%; height: 0;"
-                                src="{{ $article->image_url.$article->image}}" alt="" class="img-responsive"></a>
-                            </div>
-                            <div class="property-content">
-                            <a href="{{ url('tin-tuc/' .$article->path()) }}" class="property-title">{!! $article->name !!}</a>
-                            </div>
-                        </div>
-
+                        <?=\App\Helpers\Block::news_item($article)?>
                     </div>
-                    @endforeach
+            @endforeach
                 </div>
-
-
             </div>
         </div>
     </section>
@@ -93,41 +80,7 @@
                 <div class="slider-item">
                     <!-- Testimony Left -->
                     @foreach($chunk as $key=>$item)
-                        @if($key%2==0)
-                        <div class="testimony-item item-left">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="testimony-profile">
-                                        <a href="{{ url('phong-thuy/' .$item->path()) }}" class="img-box__image">
-                                            <img style="background: url({{$article->image_url.$article->image}}) center center no-repeat; padding-bottom: 100%; height: 0;" src="/html/assets/images/transparent.png" alt="" class="img-responsive"></a>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="testimony-text">
-                                        <h5><a href="{{ url('phong-thuy/' .$item->path()) }}" title="">{!!$item-> name!!}</a></h5>
-                                        <p>{!! $item-> description !!}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @else
-                        <div class="testimony-item item-right">
-                            <div class="row">
-                                <div class="col-md-3 col-md-push-6 col-md-offset-3">
-                                    <div class="testimony-profile">
-                                        <a href="{{ url('phong-thuy/' .$item->path()) }}" class="img-box__image">
-                                            <img style="background: url('{{$article->image_url.$article->image}}') center center no-repeat; padding-bottom: 100%; height: 0;" src="/html/assets/images/transparent.png" alt="" class="img-responsive"></a>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-md-pull-3">
-                                    <div class="testimony-text">
-                                        <h5><a href="{{ url('phong-thuy/' .$item->path()) }}" title="">{!! $item->name !!}</a></h5>
-                                        <p>{!! $item-> description !!}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @endif
+                        <?=\App\Helpers\Block::fengshui_item($item, $key%2==0?'item-left':'item-right')?>
                     @endforeach
                     <!-- Testimony Right -->
                 </div>

@@ -1,5 +1,9 @@
 <?php
 $link = \App\Helpers\Block::get_link_asset($item);
+$tmp = [];
+if ($item['district_name']) $tmp[] = $item['district_name'];
+if ($item['province_name']) $tmp[] = $item['province_name'];
+$tmp = implode(", ", $tmp);
 ?>
 <div class="row">
     <div class="col-lg-5">
@@ -14,13 +18,11 @@ $link = \App\Helpers\Block::get_link_asset($item);
             <p>
                 <span class="property-price">{{$item['price']}}</span>
                 <span class="property-label">
-                    <a href="#" class="property-label__status">10/10/2018</a>
-                    <a href="#" class="property-label__type">50 m2</a>
+                    <a href="#" class="property-label__status">{{\App\Helpers\General::output_date_public($item['date_public'], $item['created_at'])}}</a>
+                    <a href="#" class="property-label__type">{{$item['acreage']}}</a>
                 </span>
             </p>
-            <div class="property-address">
-                Cầu Giấy, Hà Nội
-            </div>
+            <div class="property-address">{{$tmp}}</div>
             <p class="property-description">{!! $item['description'] !!}</p>
         </div>
     </div>

@@ -4,6 +4,7 @@
 <li><a href="{{backpack_url('asset') }}"><i class="fa fa-list"></i> <span>QL Sản phẩm</span></a></li>
 <li><a href="{{backpack_url('asset-feature') }}"><i class="fa fa-list"></i> <span>QL Thuộc tính</span></a></li>
 <li><a href="{{backpack_url('asset-feature-variant') }}"><i class="fa fa-list"></i> <span>QL Giá trị thuộc tính</span></a></li>
+<li><a href="{{backpack_url('asset-category') }}"><i class="fa fa-list"></i> <span>QL Danh mục bài viết</span></a></li>
 <li><a href="{{backpack_url('support') }}"><i class="fa fa-list"></i> <span>QL Hỗ trợ tực tuyến</span></a></li>
 <li><a href="{{backpack_url('slide-show') }}"><i class="fa fa-picture-o"></i> <span>QL Slide Show</span></a></li>
 <li><a href="{{backpack_url('page') }}"><i class="fa fa-file-o"></i> <span>Trang tĩnh</span></a></li>

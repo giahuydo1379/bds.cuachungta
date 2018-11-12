@@ -19,12 +19,12 @@ class AssetCategory extends Model
 
     public static function getListAll($filter)
     {
-        $sql = self::select('manufacturers.*');
+        $sql = self::select('asset_categories.*');
 //        $sql->where('manufacturers.is_deleted', 0);
 
         if (!empty($keyword = $filter['search'])) {
             $sql->where(function ($query) use ($keyword) {
-                $query->where('manufacturers.name', 'LIKE', '%' . $keyword . '%');
+                $query->where('asset_categories.name', 'LIKE', '%' . $keyword . '%');
             });
         }
 
@@ -69,5 +69,19 @@ class AssetCategory extends Model
         }
 
         return $rs;
+    }
+    public static function getStatusFilter()
+    {
+        return array(
+            '1' => 'Đang hoạt động',
+            '0' => 'Không hoạt động',
+        );
+    }
+    public static function getType()
+    {
+        return array(
+            'lease' => 'Cho thuê',
+            'buy' => 'Cần thuê',
+        );
     }
 }

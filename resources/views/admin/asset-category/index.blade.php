@@ -92,10 +92,10 @@
                             <thead>
                             <tr>
                                 <th data-field="check_id" data-checkbox="true">ID</th>
-                                <th data-field="name" data-sortable="true">Tên nhóm sản phẩm</th>
-                                <th data-field="description" data-sortable="true">Mô tả</th>
+                                <th data-field="name" data-sortable="true">Tên danh mục</th>
+                                <th data-field="type" data-sortable="true">Loại danh mục</th>
                                 <th data-field="position" data-sortable="true">Ưu tiên</th>
-                                <th data-field="is_range" data-sortable="true">Khoảng giá</th>
+
                                 <th data-field="created_at" data-sortable="true">Ngày tạo</th>
                                 <th data-field="status" data-sortable="true" data-formatter="formatStatus">Trạng thái</th>
                                 <th data-field="id" data-align="center" data-formatter="actionColumn">Chức năng</th>

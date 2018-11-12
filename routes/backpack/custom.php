@@ -41,6 +41,11 @@ Route::group([
     Route::resource('asset-feature-variant', 'AssetFeatureVariantController');
     Route::get('asset-feature-variant/ajax-disable-feature/{id}', 'AssetFeatureVariantController@getAjaxDisableFeature');
 
+    Route::get('asset-category-search', 'AssetCategoryController@search')->name('asset-category.search');
+    Route::resource('asset-category', 'AssetCategoryController');
+    Route::post('asset-category/ajax-active', 'AssetCategoryController@ajaxActive')->name('asset-category.ajax_active');
+    Route::post('asset-category/ajax-inactive', 'AssetCategoryController@ajaxInactive')->name('asset-category.ajax_inactive');
+    Route::post('asset-category/ajax-delete', 'AssetCategoryController@ajaxDelete')->name('asset-category.ajax_delete');
 
 
     Route::get('asset/search', 'AssetController@search')->name('asset.search');

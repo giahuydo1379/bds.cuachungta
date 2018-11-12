@@ -64,13 +64,13 @@
                                             'class' => 'custom_filter',
                                             'data-placeholder' => '--- Trạng thái ---']) !!}
                                     </div>
-                                    {{-- <div class="col-sm-3">
-                                        {!! Form::select('code_filter', $product_codes, null, [
-                                            'id' => 'code_filter',
-                                            'class' => 'custom_filter',
-                                            'data-placeholder' => '--- Mã sản phẩm ---']) !!}
+                                     <div class="col-sm-3">
+                                         {!! Form::select("province_id", [], null,
+                                                   ['id' => 'province_id', 'class' => 'custom_filter',
+
+                                                   'data-placeholder' => 'Chọn tỉnh/thành phố']) !!}
                                     </div>
-                                   --}}
+
                                     <div class="col-sm-1">
                                         <button id="reset-page" class="btn btn-default" type="button" name="refresh" title="Reset"><i class="fa fa-refresh" aria-hidden="true"></i> Làm lại</button>
                                     </div>
@@ -112,7 +112,7 @@
                                 <th data-field="provincename" data-sortable="true">Quận/Huyện</th>
 
                                 <th data-field="created_at" data-sortable="true">Ngày tạo</th>
-                                <th data-field="is_deleted" data-sortable="true" data-formatter="formatStatus">Trạng thái</th>
+                                <th data-field="status" data-sortable="true" data-formatter="formatStatus">Trạng thái</th>
                                 <th data-field="id" data-align="center" data-formatter="actionColumn">Chức năng</th>
                             </tr>
                             </thead>
@@ -132,6 +132,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
     <!-- Latest compiled and minified Locales -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-vi-VN.min.js"></script>
+    <link rel="stylesheet" href="/html-admin/plugins/chosen/chosen.min.css" rel="stylesheet">
+    <script src="/html-admin/plugins/chosen/chosen.jquery.min.js"></script>
 
     <style type="text/css">
         .bootstrap-select {
@@ -192,7 +194,7 @@
 
         function formatStatus(value, row, index) {
 
-            if(value == 0)
+            if(value == 1)
             {
                 return '<span class="label label-sm label-success">Đang kích hoạt</span>'
             }

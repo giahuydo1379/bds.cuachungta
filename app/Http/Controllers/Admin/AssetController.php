@@ -50,6 +50,7 @@ class AssetController extends Controller
     public function index()
     {
         $this->_data['status'] = ['' => ''] + $this->_model->getStatusFilter();
+        $this->_data['province'] = ['' => ''] + $this->_model->getProvince();
 
         return view("admin.{$this->_data['controllerName']}.index", $this->_data);
     }
@@ -63,7 +64,8 @@ class AssetController extends Controller
             'order' => $request->input('order', 'asc'),
             'search' => $request->input('search', ''),
             'status' => $request->input('status', '1'),
-            
+            'province_id' => $request->input('province_id', '1'),
+
         ];
 
         $data = $this->_model->getListAll($filter);
@@ -98,7 +100,7 @@ class AssetController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -123,7 +125,7 @@ class AssetController extends Controller
             if ($request->ajax() || $request->wantsJson()) {
                 return response()->json([
                     'rs' => 1,
-                    'msg' => 'Thêm mới '.$this->_data['title'].' thành công'
+                    'msg' => 'Thêm mới ' . $this->_data['title'] . ' thành công'
                 ]);
             }
 
@@ -144,7 +146,7 @@ class AssetController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -172,9 +174,9 @@ class AssetController extends Controller
 
         $this->_data['category'] = $category;
         $this->_data['assetFeature'] = $assetFeature;
-       
+
         $this->_data['product_images'] = AssetImage::select(\DB::Raw('CONCAT(image_url, image) as image'), 'id')->where('asset_id', $id)->pluck('image', 'id');
-        
+
         $this->_data['object'] = $object;
 
         return view("admin.{$this->_data['controllerName']}.edit", $this->_data);
@@ -183,13 +185,13 @@ class AssetController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $object  = $this->_model->find($id);
+        $object = $this->_model->find($id);
 
         if (!$object) {
             if ($request->ajax() || $request->wantsJson()) {
@@ -223,7 +225,7 @@ class AssetController extends Controller
         if ($request->ajax() || $request->wantsJson()) {
             return response()->json([
                 'rs' => 1,
-                'msg' => 'Chỉnh sửa '.$this->_data['title'].' thành công'
+                'msg' => 'Chỉnh sửa ' . $this->_data['title'] . ' thành công'
             ]);
         }
 
@@ -233,17 +235,17 @@ class AssetController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $object  = $this->_model->find($id);
+        $object = $this->_model->find($id);
 
         if (!$object || !$id) {
             return response()->json([
                 'rs' => 0,
-                'msg' => 'Xóa '.$this->_data['title'].' không thành công',
+                'msg' => 'Xóa ' . $this->_data['title'] . ' không thành công',
             ]);
         }
 
@@ -253,7 +255,7 @@ class AssetController extends Controller
 
         return response()->json([
             'rs' => 1,
-            'msg' => 'Xóa '.$this->_data['title'].' thành công',
+            'msg' => 'Xóa ' . $this->_data['title'] . ' thành công',
         ]);
     }
 
@@ -283,7 +285,7 @@ class AssetController extends Controller
         $res = [];
 
         $res = Asset::getWard($id);
-      
+
 
         return response()->json($res);
     }
@@ -297,6 +299,7 @@ class AssetController extends Controller
 
         return response()->json($res);
     }
+
     public function store_asset_features_values($asset_id, $fvv)
     {
         AssetFeatureValue::where('asset_id', $asset_id)->delete();
@@ -308,6 +311,7 @@ class AssetController extends Controller
             ]);
         }
     }
+
     public function store_product_images($asset_id, $product_images)
     {
         if (isset($product_images['delete'])) {
@@ -334,20 +338,20 @@ class AssetController extends Controller
 
         if (!empty($ids)) {
             foreach ($ids as $id) {
-                $object  = $this->_model->find($id);
+                $object = $this->_model->find($id);
                 $object->status = 1;
                 $object->save();
             }
             return response()->json([
                 'rs' => 1,
-                'msg' => 'Kích hoạt '.$this->_data['title'].' thành công',
+                'msg' => 'Kích hoạt ' . $this->_data['title'] . ' thành công',
                 'act' => 'active'
             ]);
         }
 
         return response()->json([
             'rs' => 1,
-            'msg' => 'Kích hoạt '.$this->_data['title'].' không thành công',
+            'msg' => 'Kích hoạt ' . $this->_data['title'] . ' không thành công',
             'act' => 'active'
         ]);
     }
@@ -363,20 +367,20 @@ class AssetController extends Controller
 
         if (!empty($ids)) {
             foreach ($ids as $id) {
-                $object  = $this->_model->find($id);
+                $object = $this->_model->find($id);
                 $object->status = 0;
                 $object->save();
             }
             return response()->json([
                 'rs' => 1,
-                'msg' => 'Ngừng kích hoạt '.$this->_data['title'].' thành công',
+                'msg' => 'Ngừng kích hoạt ' . $this->_data['title'] . ' thành công',
                 'act' => 'inactive'
             ]);
         }
 
         return response()->json([
             'rs' => 1,
-            'msg' => 'Ngừng kích hoạt '.$this->_data['title'].' không thành công',
+            'msg' => 'Ngừng kích hoạt ' . $this->_data['title'] . ' không thành công',
             'act' => 'inactive'
         ]);
     }
@@ -392,20 +396,20 @@ class AssetController extends Controller
 
         if (!empty($ids)) {
             foreach ($ids as $id) {
-                $object  = $this->_model->find($id);
+                $object = $this->_model->find($id);
                 $object->is_deleted = 1;
                 $object->save();
             }
             return response()->json([
                 'rs' => 1,
-                'msg' => 'Xóa '.$this->_data['title'].' thành công',
+                'msg' => 'Xóa ' . $this->_data['title'] . ' thành công',
                 'act' => 'delete'
             ]);
         }
 
         return response()->json([
             'rs' => 1,
-            'msg' => 'Xóa '.$this->_data['title'].' không thành công',
+            'msg' => 'Xóa ' . $this->_data['title'] . ' không thành công',
             'act' => 'delete'
         ]);
     }

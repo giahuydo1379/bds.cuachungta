@@ -46,6 +46,9 @@ class Asset extends Model
         if (isset($filter['status'])) {
             $sql->where('assets.status', $filter['status']);
         }
+        if (isset($filter['province_id'])) {
+            $sql->where('assets.province_id', $filter['province_id']);
+        }
 
         $total = $sql->count();
 
@@ -135,6 +138,18 @@ class Asset extends Model
 
         return  array();
     }
+
+    public static function getProvince()
+    {
+        $data = Province::pluck('name', 'province_id');
+
+        if (!empty($data)) {
+            return $data->toArray();
+        }
+
+        return  array();
+    }
+
 
     public static function getDistrict($idProvince)
     {

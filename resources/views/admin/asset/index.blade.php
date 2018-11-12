@@ -65,7 +65,7 @@
                                             'data-placeholder' => '--- Trạng thái ---']) !!}
                                     </div>
                                      <div class="col-sm-3">
-                                         {!! Form::select("province_id", [], null,
+                                         {!! Form::select("province_id", $province, null,
                                                    ['id' => 'province_id', 'class' => 'custom_filter',
 
                                                    'data-placeholder' => 'Chọn tỉnh/thành phố']) !!}
@@ -166,6 +166,7 @@
         }
 
         function queryParams(params) {
+            params.province_id = $('#province_id').val();
             params.status = $('#status_filter').val();
             return params;
         }

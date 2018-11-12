@@ -29,6 +29,16 @@ class Block
         return view('frontend.blocks.assets-hot', ['assets_hot' => $assets_hot]);
     }
 
+    public static function assets_hot_panel() {
+        $ac = General::get_controller_action();
+        if ($ac['action']=='hot') {
+            return '';
+        }
+
+        $assets_hot = \App\Models\Asset::getAssetsHot(10);
+        return view('frontend.blocks.assets-hot-panel', ['assets_hot' => $assets_hot]);
+    }
+
     public static function property_item_content($item, $view=null) {
         if (!$item) return '';
 

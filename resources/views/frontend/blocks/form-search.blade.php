@@ -15,7 +15,7 @@
                     <div class="row">
                         <div class="col-md-4 form-group">
                             <label for="sale-location">Thành Phố</label>
-                            <select name="province" class="form-control province_has_asset change" id="sale-location"
+                            <select name="province" class="form-control province_has_asset change" id="sale-location" data-id="{{@$_GET['province']}}"
                                     data-destination="#frm-sale-search .district" data-placeholder="Chọn Tỉnh / Thành Phố">
                                 <option>Chọn Tỉnh / Thành Phố</option>
                             </select>

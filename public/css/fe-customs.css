@@ -32,5 +32,5 @@ span.required:before {
     height: 34px !important;
 }
 .property-slider-nav img {
-    max-height: 130px;
+    max-height: 100px !important;
 }

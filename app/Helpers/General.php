@@ -153,7 +153,12 @@ class General
         );
     }
 
-    public static function format_show_date($date, $format='d-m-Y')
+    public static function output_date_public($date_public, $created_at, $format='d/m/Y')
+    {
+        return self::format_show_date($date_public??$created_at, $format);
+    }
+
+    public static function format_show_date($date, $format='d/m/Y')
     {
         if (!$date || $date=='0000-00-00') {
             return '';

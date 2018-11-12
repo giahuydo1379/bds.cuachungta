@@ -118,7 +118,7 @@
                                 <th data-field="provincename" data-sortable="true">Quận/Huyện</th>
                                 <th data-field="assetCateName" data-sortable="true">Loại hình</th>
 
-                                <th data-field="created_at" data-sortable="true">Ngày tạo</th>
+                                <th data-field="updated_at" data-sortable="true">Ngày sửa</th>
                                 <th data-field="status" data-sortable="true" data-formatter="formatStatus">Trạng thái</th>
                                 <th data-field="id" data-align="center" data-formatter="actionColumn">Chức năng</th>
                             </tr>

@@ -34,7 +34,7 @@ $action_title = isset($object['id']) ? 'Cập nhật' : 'Thêm mới';
         <div class="row">
             <div class="col-md-12">
                 <form id="frm-add" method="post" class="form-horizontal"
-                          action="<?= isset($object['id']) ? route($controllerName . '.update', ['id' => $object['id']]) : route($controllerName . '.index'); ?>">
+                      action="<?= isset($object['id']) ? route($controllerName . '.update', ['id' => $object['id']]) : route($controllerName . '.index'); ?>">
                     <div class="box box-info">
                         <div class="box-header with-border">
                             <h3 class="box-title"><?= $action_title; ?> {{$title}}</h3>
@@ -264,6 +264,22 @@ $action_title = isset($object['id']) ? 'Cập nhật' : 'Thêm mới';
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label" for="form-field-1">
+                                            Mã nhúng bản đồ
+                                        </label>
+                                        <div class="col-sm-10">
+                                            {!! Form::text("embed_map", @$object['embed_map'], ['class' => 'form-control']) !!}
+                                            <label id="embed_map-error" class="error"
+                                                   for="embed_map">{!! $errors->first("embed_map") !!}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="form-field-1">
                                             Thuộc tính sản phẩm
                                         </label>
                                         <div class="col-sm-4">
@@ -288,7 +304,8 @@ $action_title = isset($object['id']) ? 'Cập nhật' : 'Thêm mới';
                                             <label id="variant_id-error" class="error"
                                                    for="variant_id">{!! $errors->first("variant_id") !!}</label>
                                         </div>
-                                        <a id="addAssetFeatureVariant" href="" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Chọn thêm</a>
+                                        <a id="addAssetFeatureVariant" href="" class="btn btn-primary"><i
+                                                    class="fa fa-plus" aria-hidden="true"></i> Chọn thêm</a>
                                     </div>
 
                                     <div class="form-group">
@@ -296,19 +313,19 @@ $action_title = isset($object['id']) ? 'Cập nhật' : 'Thêm mới';
                                         </label>
                                         <div class="col-sm-10">
                                             <div class="appendFeature">
-                                            <table class="table" id="tableItem">
-                                                <thead>
-                                                <th>Tên thuộc tính</th>
-                                                <th>Giá trị thuộc tính</th>
-                                                <th>Hoạt động</th>
-                                                </thead>
-                                                <tbody></tbody>
-                                            </table>
+                                                <table class="table" id="tableItem">
+                                                    <thead>
+                                                    <th>Tên thuộc tính</th>
+                                                    <th>Giá trị thuộc tính</th>
+                                                    <th>Hoạt động</th>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
                                         </div>
-                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
                             <div class="row">
                                 <div class="col-sm-12">
@@ -350,7 +367,8 @@ $action_title = isset($object['id']) ? 'Cập nhật' : 'Thêm mới';
                                 </div>
                                 <div class="col-sm-9 text-right">
                                     <button class="btn btn-primary btn-labeled fa fa-save"> Lưu lại</button>
-                                    <button type="reset" class="btn btn-default btn-labeled fa fa-refresh"> Làm lại</button>
+                                    <button type="reset" class="btn btn-default btn-labeled fa fa-refresh"> Làm lại
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -399,15 +417,15 @@ $action_title = isset($object['id']) ? 'Cập nhật' : 'Thêm mới';
     <script type="text/javascript">
 
         $(document).ready(function () {
-    @if (session()->has('error'))
-        @if (session('error'))
+            @if (session()->has('error'))
+            @if (session('error'))
             $('#error_msg').html('{{session('message')}}');
             $('#error_div').show();
-        @else
+            @else
             $('#success_msg').html('{{session('message')}}');
             $('#success_div').show();
-        @endif
-    @endif
+            @endif
+            @endif
 
             $('.btn-add-image').on('click', function () {
                 add_image($('#image_file').val());
@@ -543,24 +561,25 @@ $action_title = isset($object['id']) ? 'Cập nhật' : 'Thêm mới';
                 add_feature_variant(AssetFeaature, ftext, AssetFeaatureVariant, ftext2);
             }
         }
+
         function add_feature_variant(feature_id, feature_name, variant_id, variant_name, id) {
-            var tmp = 'fv_'+feature_id+'_'+variant_id;
-            if ($('#'+tmp).attr('id') == tmp) return;
+            var tmp = 'fv_' + feature_id + '_' + variant_id;
+            if ($('#' + tmp).attr('id') == tmp) return;
 
             id = id || 0;
             var item = $.now();
-            $('#tableItem tbody').append('<tr id="'+tmp+'">\
-                    <td>' + feature_name + '<input name="fvv['+item+'][feature_id]" type="hidden" value="' + feature_id + '"/></td>\
-                    <td>' + variant_name + '<input name="fvv['+item+'][variant_id]" type="hidden" value="' + variant_id + '"/></td>\
+            $('#tableItem tbody').append('<tr id="' + tmp + '">\
+                    <td>' + feature_name + '<input name="fvv[' + item + '][feature_id]" type="hidden" value="' + feature_id + '"/></td>\
+                    <td>' + variant_name + '<input name="fvv[' + item + '][variant_id]" type="hidden" value="' + variant_id + '"/></td>\
                     <td><a href="#" class="add-tooltip btn btn-danger btn-xs btn-delete-fvv" data-toggle="tooltip" \
                         data-original-title="Xóa giá trị thuộc tính"><i class="fa fa-trash-o"></i> Xóa</a></td></tr>');
         }
 
         @if (isset($variants) && is_array($variants))
-            @foreach($variants as $variant)
-                add_feature_variant('{{$variant['feature_id']}}', '{{@$assetFeature[$variant['feature_id']]}}',
-                                    '{{$variant['variant_id']}}', '{{$variant['variant_name']}}');
-            @endforeach
+        @foreach($variants as $variant)
+        add_feature_variant('{{$variant['feature_id']}}', '{{@$assetFeature[$variant['feature_id']]}}',
+            '{{$variant['variant_id']}}', '{{$variant['variant_name']}}');
+        @endforeach
         @endif
 
         $('body').on('click', '.btn-delete-fvv', function (e) {

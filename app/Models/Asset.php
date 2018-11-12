@@ -18,7 +18,7 @@ class Asset extends Model
     protected $fillable = ['name', 'description', 'type', 'position', 'content', 'image', 'image_url', 'asset_category_id',
         'province_id', 'district_id', 'ward_id', 'acreage',
         'price', 'is_hot', 'created_by', 'updated_by',
-        'status', 'created_at', 'updated_at', 'is_deleted'];
+        'status', 'created_at', 'updated_at', 'is_deleted', 'embed_map'];
 
 //    protected $hidden = ['parent_id', 'is_deleted'];
 

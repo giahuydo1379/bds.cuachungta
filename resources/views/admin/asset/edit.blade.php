@@ -430,6 +430,16 @@ $action_title = isset($object['id']) ? 'Cập nhật' : 'Thêm mới';
     <script src="/html-admin/plugins/ckfinder/ckfinder.js"></script>
     <script type="text/javascript" src="/html-admin/plugins/ckeditor/adapters/jquery.js"></script>
     <script type="text/javascript" src="/html-admin/plugins/ckeditor/config.js"></script>
+    <!--Bootstrap Datepicker [ OPTIONAL ]-->
+    <link href="{{ asset('assets/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+    <script>
+        $('#demo-dp-range .input-daterange').datepicker({
+            format: "yyyy-mm-dd",
+            todayBtn: "linked",
+            autoclose: true,
+            todayHighlight: true
+        });
+    </script>
 
     <script type="text/javascript">
 

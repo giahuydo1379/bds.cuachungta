@@ -92,7 +92,7 @@
                             <thead>
                             <tr>
                                 <th data-field="check_id" data-checkbox="true">ID</th>
-                                <th data-field="name" data-sortable="true">Tên nhóm sản phẩm</th>
+                                <th data-field="name" data-sortable="true">Tên thuộc tính</th>
                                 <th data-field="description" data-sortable="true">Mô tả</th>
                                 <th data-field="position" data-sortable="true">Ưu tiên</th>
                                 <th data-field="is_range" data-sortable="true">Khoảng giá</th>

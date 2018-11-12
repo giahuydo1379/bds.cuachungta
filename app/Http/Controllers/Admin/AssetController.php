@@ -51,6 +51,7 @@ class AssetController extends Controller
     {
         $this->_data['status'] = ['' => ''] + $this->_model->getStatusFilter();
         $this->_data['province'] = ['' => ''] + $this->_model->getProvince();
+        $this->_data['assetCate'] = ['' => ''] + $this->_model->getAssetCategory();
 
         return view("admin.{$this->_data['controllerName']}.index", $this->_data);
     }
@@ -64,7 +65,8 @@ class AssetController extends Controller
             'order' => $request->input('order', 'asc'),
             'search' => $request->input('search', ''),
             'status' => $request->input('status', '1'),
-            'province_id' => $request->input('province_id', '1'),
+            'province_id' => $request->input('province_id', ''),
+            'asset_category_id' => $request->input('asset_category_id', ''),
 
         ];
 

@@ -25,13 +25,14 @@ class Asset extends Model
     public static function getListAll($filter)
     {
         $scope = [
-            'assets.*', 'districts.name as districtname', 'provinces.name as provincename'
+            'assets.*', 'districts.name as districtname', 'provinces.name as provincename', 'asset_categories.name as assetCateName'
         ];
 
         $sql = self::select($scope)
 
        ->leftJoin('provinces', 'provinces.province_id', '=', 'assets.province_id')
-        ->leftJoin('districts', 'districts.district_id', '=', 'assets.district_id');
+        ->leftJoin('districts', 'districts.district_id', '=', 'assets.district_id')
+        ->leftJoin('asset_categories', 'asset_categories.id', '=', 'assets.asset_category_id');
        
         
 
@@ -49,6 +50,11 @@ class Asset extends Model
         if (isset($filter['province_id'])) {
             $sql->where('assets.province_id', $filter['province_id']);
         }
+
+        if (isset($filter['asset_category_id'])) {
+            $sql->where('assets.asset_category_id', $filter['asset_category_id']);
+        }
+
 
         $total = $sql->count();
 
@@ -142,6 +148,17 @@ class Asset extends Model
     public static function getProvince()
     {
         $data = Province::pluck('name', 'province_id');
+
+        if (!empty($data)) {
+            return $data->toArray();
+        }
+
+        return  array();
+    }
+
+    public static function getAssetCategory()
+    {
+        $data = AssetCategory::pluck('name', 'id');
 
         if (!empty($data)) {
             return $data->toArray();

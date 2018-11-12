@@ -70,6 +70,12 @@
 
                                                    'data-placeholder' => 'Chọn tỉnh/thành phố']) !!}
                                     </div>
+                                <div class="col-sm-3">
+                                    {!! Form::select("asset_category_id", $assetCate, null,
+                                              ['id' => 'asset_category_id', 'class' => 'custom_filter',
+
+                                              'data-placeholder' => 'Chọn loại hình']) !!}
+                                </div>
 
                                     <div class="col-sm-1">
                                         <button id="reset-page" class="btn btn-default" type="button" name="refresh" title="Reset"><i class="fa fa-refresh" aria-hidden="true"></i> Làm lại</button>
@@ -110,6 +116,7 @@
                                 <th data-field="position" data-sortable="true">Ưu tiên</th>
                                 <th data-field="districtname" data-sortable="true">Tỉnh/Thành </th>
                                 <th data-field="provincename" data-sortable="true">Quận/Huyện</th>
+                                <th data-field="assetCateName" data-sortable="true">Loại hình</th>
 
                                 <th data-field="created_at" data-sortable="true">Ngày tạo</th>
                                 <th data-field="status" data-sortable="true" data-formatter="formatStatus">Trạng thái</th>
@@ -166,6 +173,7 @@
         }
 
         function queryParams(params) {
+            params.asset_category_id = $('#asset_category_id').val();
             params.province_id = $('#province_id').val();
             params.status = $('#status_filter').val();
             return params;

@@ -125,12 +125,12 @@
             $('#frm-add').validate({
                 ignore: ".ignore",
                 rules: {
-//                    name: "required",
-//                    address: "required",
+                   name: "required",
+                   type: "required",
                 },
                 messages: {
-                    {{--name: "Vui lòng nhập tên {{ $title }}",--}}
-                    {{--address: "Vui lòng nhập địa chỉ",--}}
+                    name: "Vui lòng nhập tên {{ $title }}",
+                    type: "Vui lòng nhập loại danh mục",
                 },
                 submitHandler: function(form) {
                     ajax_loading(true);

@@ -77,17 +77,17 @@
                                     </div>
                                     @endif
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label" for="form-field-1">
-                                            Trạng thái
-                                        </label>
-                                        <div class="col-sm-4">
-                                            <label class="radio-inline">
-                                                <input type="radio" name="status" id="status1" value="0" checked> Kích hoạt
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="status" id="status2" value="1"> Không kích hoạt
-                                            </label>
-                                        </div>
+                                            <label class="col-sm-4 control-label" for="form-field-1">
+                                                    Trạng thái
+                                                </label>
+                                                <div class="col-sm-8">
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="status" id="status1" value="1" <?=!isset($object['status']) || @$object['status']=='1'?'checked':''?>> Kích hoạt
+                                                    </label>
+                                                    <label class="radio-inline">
+                                                        <input type="radio" name="status" id="status2" value="0" <?=@$object['status']=='0'?'checked':''?>> Không kích hoạt
+                                                    </label>
+                                                </div>
                                         <label class="col-sm-3 control-label" for="form-field-1">
                                             Ưu tiên <span class="required"></span>
                                         </label>
@@ -142,12 +142,13 @@
             $('#frm-add').validate({
                 ignore: ".ignore",
                 rules: {
-//                    name: "required",
+                    feature_id: "required",
+                    name: "required",
 //                    address: "required",
                 },
                 messages: {
-                    {{--name: "Vui lòng nhập tên {{ $title }}",--}}
-                    {{--address: "Vui lòng nhập địa chỉ",--}}
+                    name: "Vui lòng nhập tên {{ $title }}",
+                    feature_id: "Vui lòng nhập thuôc tính",
                 },
                 submitHandler: function(form) {
                     ajax_loading(true);

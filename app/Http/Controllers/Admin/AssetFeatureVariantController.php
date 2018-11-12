@@ -33,6 +33,9 @@ class AssetFeatureVariantController extends Controller
      */
     public function index()
     {
+        $this->_data['status'] = ['' => ''] + $this->_model->getStatusFilter();
+        $this->_data['assetFeature'] = ['' => ''] + $this->_model->getAssetFeature();
+
         return view("admin.{$this->_data['controllerName']}.index", $this->_data);
     }
 
@@ -44,6 +47,9 @@ class AssetFeatureVariantController extends Controller
             'sort' => $request->input('sort', 'asset_features_variants.id'),
             'order' => $request->input('order', 'asc'),
             'search' => $request->input('search', ''),
+            'status' => $request->input('status', 1),
+            'assetFeature' => $request->input('assetFeature', ''),
+        
         ];
 
         $data = $this->_model->getListAll($filter);
@@ -61,11 +67,10 @@ class AssetFeatureVariantController extends Controller
      */
     public function create()
     {
-
         $assetFeature  = array('' => '') + AssetFeatureVariant::getAssetFeature();
         $orderOptions = General::getOrderOptions();
         $this->_data['orderOptions'] = $orderOptions;
-         $this->_data['assetFeature'] = $assetFeature;
+        $this->_data['assetFeature'] = $assetFeature;
 
         return view("admin.{$this->_data['controllerName']}.create", $this->_data);
     }
@@ -84,8 +89,7 @@ class AssetFeatureVariantController extends Controller
 
         $object = $this->_model->create($data);
 
-        if ($object)
-        {
+        if ($object) {
             if ($request->ajax() || $request->wantsJson()) {
                 return response()->json([
                     'rs' => 1,
@@ -123,7 +127,7 @@ class AssetFeatureVariantController extends Controller
         $assetFeature  = array('' => '') + AssetFeatureVariant::getAssetFeature();
         $orderOptions = General::getOrderOptions();
         $this->_data['orderOptions'] = $orderOptions;
-         $this->_data['assetFeature'] = $assetFeature;
+        $this->_data['assetFeature'] = $assetFeature;
 
         return view("admin.{$this->_data['controllerName']}.edit", $this->_data);
     }
@@ -139,8 +143,7 @@ class AssetFeatureVariantController extends Controller
     {
         $object  = $this->_model->find($id);
 
-        if (!$object)
-        {
+        if (!$object) {
             if ($request->ajax() || $request->wantsJson()) {
                 return response()->json([
                     'rs' => 0,
@@ -177,8 +180,7 @@ class AssetFeatureVariantController extends Controller
     {
         $object  = $this->_model->find($id);
 
-        if (!$object || !$id)
-        {
+        if (!$object || !$id) {
             return response()->json([
                 'rs' => 0,
                 'msg' => 'Xóa '.$this->_data['title'].' không thành công',
@@ -199,14 +201,13 @@ class AssetFeatureVariantController extends Controller
     {
         $res = [];
 
-        if (!empty($manufacturer_id))
-        {
+        if (!empty($manufacturer_id)) {
             $res = ProductCategory::ajaxGetCategoryBymanufacturer($manufacturer_id);
         }
 
         return response()->json($res);
     }
-     public function getAjaxDisableFeature($id)
+    public function getAjaxDisableFeature($id)
     {
         $data = AssetFeature::where('id', $id)->first()->toArray();
 
@@ -220,8 +221,87 @@ class AssetFeatureVariantController extends Controller
                 'is_range' => 0,
             ]);
         }
-
-
     }
 
+    public function ajaxActive(Request $request)
+    {
+        $ids = $request->all()['ids'];
+
+        if (!empty($ids)) {
+            foreach ($ids as $id) {
+                $object  = $this->_model->find($id);
+                $object->status = 1;
+                $object->save();
+            }
+            return response()->json([
+                'rs' => 1,
+                'msg' => 'Kích hoạt '.$this->_data['title'].' thành công',
+                'act' => 'active'
+            ]);
+        }
+
+        return response()->json([
+            'rs' => 1,
+            'msg' => 'Kích hoạt '.$this->_data['title'].' không thành công',
+            'act' => 'active'
+        ]);
+    }
+
+    /**
+     * Enter description here ...
+     * @return Ambigous <\Illuminate\Routing\Redirector, \Illuminate\Http\RedirectResponse>
+     * @author HaLV
+     */
+    public function ajaxInactive(Request $request)
+    {
+        $ids = $request->all()['ids'];
+
+        if (!empty($ids)) {
+            foreach ($ids as $id) {
+                $object  = $this->_model->find($id);
+                $object->status = 0;
+                $object->save();
+            }
+            return response()->json([
+                'rs' => 1,
+                'msg' => 'Ngừng kích hoạt '.$this->_data['title'].' thành công',
+                'act' => 'inactive'
+            ]);
+        }
+
+        return response()->json([
+            'rs' => 1,
+            'msg' => 'Ngừng kích hoạt '.$this->_data['title'].' không thành công',
+            'act' => 'inactive'
+        ]);
+    }
+
+    /**
+     * Enter description here ...
+     * @return Ambigous <\Illuminate\Routing\Redirector, \Illuminate\Http\RedirectResponse>
+     * @author HaLV
+     */
+    public function ajaxDelete(Request $request)
+    {
+        $ids = $request->all()['ids'];
+
+        if (!empty($ids)) {
+            foreach ($ids as $id) {
+                $object  = $this->_model->find($id);
+                $object->is_deleted = 1;
+                $object->save();
+            }
+            return response()->json([
+                'rs' => 1,
+                'msg' => 'Xóa '.$this->_data['title'].' thành công',
+                'act' => 'delete'
+            ]);
+        }
+
+        return response()->json([
+            'rs' => 1,
+            'msg' => 'Xóa '.$this->_data['title'].' không thành công',
+            'act' => 'delete'
+        ]);
+    }
 }

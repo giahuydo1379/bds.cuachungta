@@ -45,7 +45,7 @@
                                         {!! Form::select("type", $type, @$object['type'], ['id' =>
                                         'is_range','class' => 'form-control select2','data-placeholder' => '--- Chọn
                                         loại danh mục ---']) !!}
-                                        <label id="is_range-error" class="error" for="is_range">{!!
+                                        <label id="type-error" class="error" for="type">{!!
                                             $errors->first("is_range") !!}</label>
                                     </div>
                                 </div>
@@ -137,12 +137,12 @@
         $('#frm-add').validate({
                 ignore: ".ignore",
                 rules: {
-//                    name: "required",
-//                    address: "required",
+                   name: "required",
+                   type: "required",
                 },
                 messages: {
-                    {{--name: "Vui lòng nhập tên {{ $title }}",--}}
-                    {{--address: "Vui lòng nhập địa chỉ",--}}
+                    name: "Vui lòng nhập tên {{ $title }}",
+                    type: "Vui lòng nhập loại danh mục",
                 },
 
             submitHandler: function (form) {

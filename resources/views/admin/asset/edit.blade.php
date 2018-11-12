@@ -285,7 +285,7 @@ $action_title = isset($object['id']) ? 'Cập nhật' : 'Thêm mới';
                                         <div class="col-sm-3" id="demo-dp-range">
                                             <div class="input-daterange input-group" id="datepicker">
                                                 <input id="created_time_from" type="text" class="form-control"
-                                                       name="date_public" value="{{ old('date_public') }}"/>
+                                                       name="date_public" value = "<?= isset($object['id'])  ? @$object['date_public'] : '' ?>"/>
                                             </div>
                                         </div>
                                     </div>
@@ -490,11 +490,11 @@ $action_title = isset($object['id']) ? 'Cập nhật' : 'Thêm mới';
                 ignore: ".ignore",
                 rules: {
                     name: "required",
-//                    category_id: "required",
+                    asset_category_id: "required",
                 },
                 messages: {
                     name: "Nhập tên sản phẩm",
-//                    category_id: "Chọn nhóm sản phẩm",
+                    asset_category_id: "Chọn loại sản phẩm",
                 },
                 submitHandler: function (form) {
                     ajax_loading(true);

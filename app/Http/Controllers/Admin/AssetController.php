@@ -154,6 +154,7 @@ class AssetController extends Controller
     public function edit($id)
     {
         $query = Asset::find($id);
+    //dd($query);
         if (!$query) {
             abort(404);
         }

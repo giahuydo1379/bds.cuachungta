@@ -124,12 +124,12 @@
             $('#frm-add').validate({
                 ignore: ".ignore",
                 rules: {
-//                    name: "required",
+                   name: "required",
 //                    address: "required",
                 },
                 messages: {
-                    {{--name: "Vui lòng nhập tên {{ $title }}",--}}
-                    {{--address: "Vui lòng nhập địa chỉ",--}}
+                   name: "Vui lòng nhập tên {{ $title }}",
+                    
                 },
                 submitHandler: function(form) {
                     ajax_loading(true);

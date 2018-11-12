@@ -275,6 +275,23 @@ $action_title = isset($object['id']) ? 'Cập nhật' : 'Thêm mới';
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label" for="form-field-1">
+                                            Chọn ngày đăng tin
+                                        </label>
+
+                                        <div class="col-sm-3" id="demo-dp-range">
+                                            <div class="input-daterange input-group" id="datepicker">
+                                                <input id="created_time_from" type="text" class="form-control"
+                                                       name="date_public" value="{{ old('date_public') }}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
 
                             <div class="row">
                                 <div class="col-sm-12">

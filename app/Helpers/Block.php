@@ -29,8 +29,12 @@ class Block
         return view('frontend.blocks.assets-hot', ['assets_hot' => $assets_hot]);
     }
 
-    public static function property_item_content($item) {
+    public static function property_item_content($item, $view=null) {
         if (!$item) return '';
+
+        if ($view) {
+            return view('frontend.blocks.property-item-content-'.$view, ['item' => $item]);
+        }
 
         return view('frontend.blocks.property-item-content', ['item' => $item]);
     }

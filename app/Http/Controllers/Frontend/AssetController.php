@@ -20,16 +20,43 @@ class AssetController extends Controller
 
     public function index(Request $request)
     {
+        $params = $request->all();
+        $limit = $request->input('limit', 10);
+        $params['limit'] = $limit;
+
+        $assets = Asset::getSearchAssets($params);
+
+        $this->data['params'] = $params;
+        $this->data['assets'] = $assets;
+
         return view('frontend.asset.index', $this->data);
     }
 
     public function buy(Request $request)
     {
+        $params = $request->all();
+        $limit = $request->input('limit', 10);
+        $params['limit'] = $limit;
+
+        $assets = Asset::getSearchAssets($params);
+
+        $this->data['params'] = $params;
+        $this->data['assets'] = $assets;
+
         return view('frontend.asset.index', $this->data);
     }
 
     public function hot(Request $request)
     {
+        $params = $request->all();
+        $limit = $request->input('limit', 10);
+        $params['limit'] = $limit;
+
+        $assets = Asset::getSearchAssets($params);
+
+        $this->data['params'] = $params;
+        $this->data['assets'] = $assets;
+
         return view('frontend.asset.index', $this->data);
     }
 

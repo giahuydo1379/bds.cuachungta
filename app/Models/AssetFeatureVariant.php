@@ -55,7 +55,7 @@ class AssetFeatureVariant extends Model
 
     public static function getAssetFeature()
     {
-        $data = AssetFeature::select('id', 'name')->pluck('name', 'id');
+        $data = AssetFeature::select('id', 'name')->where('is_deleted', 0)->pluck('name', 'id');
 
         if (!empty($data)) {
             return $data->toArray();

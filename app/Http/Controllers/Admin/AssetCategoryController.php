@@ -32,7 +32,8 @@ class AssetCategoryController extends Controller
      */
     public function index()
     {
-
+        $isRange = General::isRange();
+        $this->_data['isRange'] = $isRange;
         $this->_data['status'] = ['' => ''] + $this->_model->getStatusFilter();
         return view("admin.{$this->_data['controllerName']}.index", $this->_data);
     }
@@ -65,8 +66,10 @@ class AssetCategoryController extends Controller
     {
         $orderOptions = General::getOrderOptions();
         $this->_data['orderOptions'] = $orderOptions;
-
         $this->_data['type'] = ['' => ''] + $this->_model->getType();
+
+        $isRange = General::isRange();
+        $this->_data['isRange'] = $isRange;
 
         return view("admin.{$this->_data['controllerName']}.create", $this->_data);
     }
@@ -117,10 +120,10 @@ class AssetCategoryController extends Controller
 
         $this->_data['id'] = $id;
         $this->_data['object'] = $object;
-        $this->_data['type'] = ['' => ''] + $this->_model->getType();
 
         $orderOptions = General::getOrderOptions();
         $this->_data['orderOptions'] = $orderOptions;
+        $this->_data['type'] = ['' => ''] + $this->_model->getType();
 
         $isRange = General::isRange();
         $this->_data['isRange'] = $isRange;

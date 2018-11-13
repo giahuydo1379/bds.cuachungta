@@ -129,6 +129,8 @@
 <script src="{{ asset('vendor/adminlte/bower_components/moment/min/moment.min.js') }}"></script>
 <script src="{{ asset('/html-admin/plugins/ckeditor/ckeditor.js') }}"></script>
 <script src="{{ asset('/html-admin/plugins/ckfinder/ckfinder.js') }}"></script>
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {

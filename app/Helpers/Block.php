@@ -7,40 +7,48 @@ use \App\Models\HomeBlock;
 
 class Block
 {
-    public static function form_search() {
+    public static function form_search()
+    {
         return view('frontend.blocks.form-search', []);
     }
 
-    public static function assets_buy($limit=8) {
+    public static function assets_buy($limit=8)
+    {
         $assets_buy = \App\Models\Asset::getTopAssetsByType('buy', $limit);
 
         return view('frontend.blocks.assets-buy', ['assets_buy' => $assets_buy]);
     }
 
-    public static function assets_lease($limit=8) {
+    public static function assets_lease($limit=8)
+    {
         $assets_lease = \App\Models\Asset::getTopAssetsByType('lease', $limit);
 
         return view('frontend.blocks.assets-lease', ['assets_lease' => $assets_lease]);
     }
 
-    public static function assets_hot() {
+    public static function assets_hot()
+    {
         $assets_hot = \App\Models\Asset::getAssetsHot(4);
 
         return view('frontend.blocks.assets-hot', ['assets_hot' => $assets_hot]);
     }
 
-    public static function assets_hot_panel() {
+    public static function assets_hot_panel()
+    {
         $ac = General::get_controller_action();
         if ($ac['action']=='hot') {
             return '';
         }
 
-        $assets_hot = \App\Models\Asset::getAssetsHot(10);
+        $assets_hot = \App\Models\Asset::getAssetsHot(8);
         return view('frontend.blocks.assets-hot-panel', ['assets_hot' => $assets_hot]);
     }
 
-    public static function property_item_content($item, $view=null) {
-        if (!$item) return '';
+    public static function property_item_content($item, $view=null)
+    {
+        if (!$item) {
+            return '';
+        }
 
         if ($view) {
             return view('frontend.blocks.property-item-content-'.$view, ['item' => $item]);
@@ -49,53 +57,80 @@ class Block
         return view('frontend.blocks.property-item-content', ['item' => $item]);
     }
 
-    public static function fengshui_item($item, $class='') {
-        if (!$item) return '';
+    public static function fengshui_item($item, $class='')
+    {
+        if (!$item) {
+            return '';
+        }
 
-        if (!is_array($item)) $item = $item->toArray();
+        if (!is_array($item)) {
+            $item = $item->toArray();
+        }
 
         return view('frontend.blocks.fengshui-item', ['item' => $item, 'class' => $class]);
     }
 
-    public static function news_item($item) {
-        if (!$item) return '';
+    public static function news_item($item)
+    {
+        if (!$item) {
+            return '';
+        }
 
-        if (!is_array($item)) $item = $item->toArray();
+        if (!is_array($item)) {
+            $item = $item->toArray();
+        }
 
         return view('frontend.blocks.news-item', ['item' => $item]);
     }
 
-    public static function property_item($item) {
-        if (!$item) return '';
+    public static function property_item($item)
+    {
+        if (!$item) {
+            return '';
+        }
 
-        if (!is_array($item)) $item = $item->toArray();
+        if (!is_array($item)) {
+            $item = $item->toArray();
+        }
 
         return view('frontend.blocks.property-item', ['item' => $item]);
     }
 
     public static function get_link_article($item=null)
     {
-        if (!$item) return '';
+        if (!$item) {
+            return '';
+        }
 
-        if (!is_array($item)) $item = $item->toArray();
+        if (!is_array($item)) {
+            $item = $item->toArray();
+        }
 
         return route('fe.article.show', ['slug' => str_slug(@$item['name']), 'id' => @$item['id']]);
     }
 
     public static function get_link_asset($item=null)
     {
-        if (!$item) return '';
+        if (!$item) {
+            return '';
+        }
 
-        if (!is_array($item)) $item = $item->toArray();
+        if (!is_array($item)) {
+            $item = $item->toArray();
+        }
 
         return route('fe.asset.show', ['slug' => str_slug(@$item['name']), 'id' => @$item['id']]);
     }
 
     public static function get_link_asset_category($item=null)
     {
-        if (!$item) return '';
+        if (!$item) {
+            return '';
+        }
 
-        if (!is_array($item)) $item = $item->toArray();
+        if (!is_array($item)) {
+            $item = $item->toArray();
+        }
 
         $params = ['cid' => @$item['asset_category_id']];
         if ($item['type'] == 'lease') {

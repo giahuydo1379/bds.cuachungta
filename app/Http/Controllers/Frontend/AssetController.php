@@ -80,6 +80,7 @@ class AssetController extends Controller
 
         $this->data['asset_type'] = $object['type'];
         $this->data['cid'] = $object['asset_category_id'];
+       
 
         return view('frontend.asset.show', $this->data);
     }

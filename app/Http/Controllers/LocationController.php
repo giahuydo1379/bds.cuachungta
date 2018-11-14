@@ -81,7 +81,7 @@ class LocationController extends Controller
         $objects = \App\Models\Province::select('province_id', \DB::raw("CONCAT_WS(' ', provinces.type, provinces.name) as province_name"))
             ->where('provinces.is_deleted', 0);
 
-        $has_asset = false;//$request->input('has_asset', 0);
+        $has_asset = $request->input('has_asset', 0);
         if ($has_asset) {
             $objects->whereExists(function ($qs) {
                 $qs->select(\DB::raw(1))

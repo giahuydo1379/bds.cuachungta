@@ -22,13 +22,13 @@ $assets_prices = \App\Helpers\General::get_assets_prices();
                         <div class="col-md-4 form-group">
                             <label for="sale-location">Thành Phố</label>
                             <select name="province" class="form-control province_has_asset change" id="sale-location" data-id="{{@$params['province']}}"
-                                    data-destination="#frm-sale-search .district" data-placeholder="Chọn Tỉnh / Thành Phố">
+                                    data-destination="#frm-sale-search .district" data-asset="1" data-placeholder="Chọn Tỉnh / Thành Phố">
                                 <option>Chọn Tỉnh / Thành Phố</option>
                             </select>
                         </div>
                         <div class="col-md-4 form-group">
                             <label for="sale-location">Quận/Huyện</label>
-                            <select name="district" class="form-control district" id="sale-location" data-placeholder="Chọn Quận Huyện">
+                            <select name="district" class="form-control district" data-id="{{@$params['district']}}" id="sale-location" data-placeholder="Chọn Quận Huyện">
                                 <option>Chọn Quận Huyện</option>
                             </select>
                         </div>
@@ -71,14 +71,15 @@ $assets_prices = \App\Helpers\General::get_assets_prices();
                     <div class="row">
                         <div class="col-md-4 form-group">
                             <label for="sale-location">Thành Phố</label>
-                            <select class="form-control province_has_asset change" id="rent-location"
-                                    data-destination="#frm-rent-search .district" data-placeholder="Chọn Tỉnh / Thành Phố">
+                            <select class="form-control province_has_asset change" id="rent-location" data-id="{{@$params['province']}}"
+                                    data-destination="#frm-rent-search .district" data-asset="1" data-placeholder="Chọn Tỉnh / Thành Phố">
                                 <option>Chọn Thành Phố</option>
                             </select>
                         </div>
                         <div class="col-md-4 form-group">
                             <label for="sale-location">Quận/Huyện</label>
-                            <select class="form-control district" id="rent-location" data-placeholder="Chọn Quận Huyện">
+                            <select class="form-control district" name="district" data-id="{{@$params['district']}}"
+                                    id="rent-location" data-placeholder="Chọn Quận Huyện">
                                 <option>Chọn Quận Huyện</option>
                             </select>
                         </div>

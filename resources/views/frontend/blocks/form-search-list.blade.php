@@ -2,10 +2,6 @@
 <?php
 $params = request()->all();
 $ac = \App\Helpers\General::get_controller_action();
-$link_search = '';
-if (isset($ac["as"]) && $ac["as"]=="fe.asset.show") {
-    $link_search = \App\Helpers\Block::get_link_asset_category($object);
-}
 $assets_prices = \App\Helpers\General::get_assets_prices();
 ?>
 <div class="search-tabmenu">
@@ -19,6 +15,9 @@ $assets_prices = \App\Helpers\General::get_assets_prices();
     <div class="tab-content">
         <!-- Tab Content For Sale -->
         <div role="tabpanel" class="tab-pane {!! !isset($params['type']) || $params['type']=='lease'?'active':'' !!}" id="for-sale">
+            <?php
+            $link_search = isset($ac['as']) && $ac['as']=='fe.asset.hot' ? '' : \App\Helpers\Block::get_link_asset_category(['type'=>'lease']);
+            ?>
             <form action="{{$link_search}}" id="frm-sale-search" method="get">
                 <input name="type" type="hidden" value="lease">
                 <div class="form-body">
@@ -73,6 +72,9 @@ $assets_prices = \App\Helpers\General::get_assets_prices();
         </div>
         <!-- Tab Content For Rent -->
         <div role="tabpanel" class="tab-pane {!! @$params['type']=='buy'?'active':'' !!}" id="for-rent">
+            <?php
+            $link_search = isset($ac['as']) && $ac['as']=='fe.asset.hot' ? '' : \App\Helpers\Block::get_link_asset_category(['type'=>'buy']);
+            ?>
             <form action="{{$link_search}}" id="frm-rent-search" method="get">
                 <input name="type" type="hidden" value="buy">
                 <div class="form-body">

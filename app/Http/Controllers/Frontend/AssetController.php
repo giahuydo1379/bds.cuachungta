@@ -23,6 +23,7 @@ class AssetController extends Controller
         $params = $request->all();
         $limit = $request->input('limit', 10);
         $params['limit'] = $limit;
+        $params['type'] = 'lease';
 
         $assets = Asset::getSearchAssets($params);
 
@@ -37,11 +38,16 @@ class AssetController extends Controller
         $params = $request->all();
         $limit = $request->input('limit', 10);
         $params['limit'] = $limit;
+        $params['type'] = 'buy';
 
         $assets = Asset::getSearchAssets($params);
 
         $this->data['params'] = $params;
         $this->data['assets'] = $assets;
+
+        $request->request->add([
+            'type' => $params['type'],
+        ]);
 
         return view('frontend.asset.index', $this->data);
     }
@@ -51,6 +57,7 @@ class AssetController extends Controller
         $params = $request->all();
         $limit = $request->input('limit', 10);
         $params['limit'] = $limit;
+        $params['is_hot'] = 1;
 
         $assets = Asset::getSearchAssets($params);
 

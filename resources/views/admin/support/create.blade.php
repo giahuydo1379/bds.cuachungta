@@ -85,7 +85,7 @@
                                                      src="{!! @$object['image_url'].$path !!}">
                                             </div>
     
-                                            {!! Form::text("image_location", $path, ['id' => 'image_location', 'class' => 'form-control', 'data-url' => '#image_url']) !!}
+                                            {!! Form::text("image_location", $path, ['id' => 'image', 'class' => 'form-control', 'data-url' => '#image_url']) !!}
                                             {!! Form::hidden("image_url", @$object['image_url'], ['id' => 'image_url']) !!}
     
                                             <div class="p-l-file">
@@ -152,10 +152,11 @@
     <script src="{{ asset('vendor/adminlte/bower_components/moment/min/moment.min.js') }}"></script>
     <script src="{{ asset('/html-admin/plugins/ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('/html-admin/plugins/ckfinder/ckfinder.js') }}"></script>
-    <script type="text/javascript" src="/html-admin/plugins/ckeditor/adapters/jquery.js"></script>
-    <script type="text/javascript" src="/html-admin/plugins/ckeditor/config.js"></script>
     <script src="/html-admin/plugins/ckeditor/ckeditor.js"></script>
     <script src="/html-admin/plugins/ckfinder/ckfinder.js"></script>
+    <script type="text/javascript" src="/html-admin/plugins/ckeditor/adapters/jquery.js"></script>
+    <script type="text/javascript" src="/html-admin/plugins/ckeditor/config.js"></script>
+
 
     <script type="text/javascript">
         $(document).ready(function() {

@@ -13,12 +13,12 @@ class Support extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['name', 'department', 'phone', 'account', 'type', 'created_at', 'updated_at', 'is_deleted'];
+    protected $fillable = ['name', 'department', 'phone', 'account', 'type', 'created_at', 'updated_at', 'is_deleted', 'image_location', 'image_url'];
 
 //    protected $hidden = ['deleted_at', 'is_deleted'];
 
-    public static function getListAll($filter){
-
+    public static function getListAll($filter)
+    {
         $sql = self::select('supports.*');
 //        $sql->where('supports.is_deleted', 0);
 
@@ -39,4 +39,3 @@ class Support extends Model
         return ['total' => $total, 'data' => $data];
     }
 }
-?>

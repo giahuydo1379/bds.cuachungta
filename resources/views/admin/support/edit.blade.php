@@ -86,7 +86,7 @@
                                                  src="{!! @$object['image_url'].$path !!}">
                                         </div>
 
-                                        {!! Form::text("image_location", $path, ['id' => 'image_location', 'class' => 'form-control', 'data-url' => '#image_url']) !!}
+                                        {!! Form::text("image_location", $path, ['id' => 'image', 'class' => 'form-control', 'data-url' => '#image_url']) !!}
                                         {!! Form::hidden("image_url", @$object['image_url'], ['id' => 'image_url']) !!}
 
                                         <div class="p-l-file">

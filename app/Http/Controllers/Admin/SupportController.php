@@ -141,6 +141,10 @@ class SupportController extends Controller
         }
 
         $data = $request->all();
+        
+        if (empty($data['image_url'])) {
+            $data['image_url'] = config('app.url');
+        }
 
         unset($data['_token']);
 

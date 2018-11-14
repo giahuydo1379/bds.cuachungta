@@ -6,10 +6,10 @@ if ($object['asset_category_name']) {
     $breadcrumb[] = ['link' => '#', 'name' => $object['asset_category_name']];
 }
 ?>
-@section('title') {{$object['name']}} @stop
+@section('title') {!! $object['name'] !!} @stop
 
-@section('og_title'){{ $object['name'] }}@stop
-@section('og_description'){{ $object['description'] }}@stop
+@section('og_title'){!! $object['name'] !!}@stop
+@section('og_description'){!! $object['description'] !!}@stop
 @section('og_image'){!! $object['image_url'] . $object['image'] !!}@stop
 @section('og_url')<?php echo URL::current(); ?>@stop
 

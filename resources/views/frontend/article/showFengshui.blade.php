@@ -1,9 +1,9 @@
 @extends('layouts.frontend')
 @section('title') {!! $articles->name !!} @stop
 
-@section('og_title'){{ $articles['name'] }}@stop
-@section('og_description'){{ $articles['description'] }}@stop
-@section('og_image'){!! $articles['image_url'] . $articles['image'] !!}@stop
+@section('og_title'){!! $articles->name !!}@stop
+@section('og_description'){!! $articles->description !!}@stop
+@section('og_image'){!! $articles->image_url . $articles->image !!}@stop
 @section('og_url')<?php echo URL::current(); ?>@stop
 
 @section('content')
@@ -77,12 +77,8 @@
                                     <a href="{{ url('phong-thuy/' .$articlePrevious->path()) }}" rel="prev"><span class="nav-post-title">Trờ về</span><span
                                                 class="nav-post-name">{{  $articlePrevious->name }}</span></a>
                                 </div>
-                               
-
                                 @endif
-
-
-                                @if ($articleNext != null)    
+                                @if ($articleNext != null)
                                 <div class="nav-next">
                                     <a href="{{ url('phong-thuy/' .$articleNext->path()) }}" rel="prev"><span class="nav-post-title">Tiếp theo</span><span
                                                 class="nav-post-name">{{ $articleNext->name }}</span></a>

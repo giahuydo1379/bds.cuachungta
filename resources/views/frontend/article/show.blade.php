@@ -2,9 +2,9 @@
 
 @section('title') {!! $articles->name !!} @stop
 
-@section('og_title'){{ $articles['name'] }}@stop
-@section('og_description'){{ $articles['description'] }}@stop
-@section('og_image'){!! $articles['image_url'] . $articles['image'] !!}@stop
+@section('og_title'){!! $articles->name !!}@stop
+@section('og_description'){!! $articles->description !!}@stop
+@section('og_image'){!! $articles->image_url . $articles->image !!}@stop
 @section('og_url')<?php echo URL::current(); ?>@stop
 
 @section('content')

@@ -72,7 +72,6 @@ class ArticleController extends Controller
         $this->data['ishots'] = $ishots;
         $this->data['articles'] = $articles;
         $this->data['iscommons'] = $iscommons;
-
         $this->data['articlePrevious'] = $articlePrevious;
         $this->data['articleNext'] = $articleNext;
         $this->data['postRandom'] = $postRandom;
@@ -99,7 +98,6 @@ class ArticleController extends Controller
 
         $this->data['articles'] = $articles;
         $this->data['ishots'] = $ishots;
-        $this->data['articles'] = $articles;
         $this->data['iscommons'] = $iscommons;
 
         $this->data['articlePrevious'] = $articlePrevious;

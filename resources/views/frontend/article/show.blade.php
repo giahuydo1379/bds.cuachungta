@@ -8,6 +8,7 @@
 @section('og_url')<?php echo URL::current(); ?>@stop
 
 @section('content')
+
     <!-- ====== SINGLE POST / BLOG CONTENT ====== -->
     <section class="page-section">
         <div class="container">

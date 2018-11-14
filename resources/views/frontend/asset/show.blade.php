@@ -2,6 +2,7 @@
 <?php
 $types_titles = \App\Helpers\General::get_assets_types_titles();
 $breadcrumb = [['link' => \App\Helpers\Block::get_link_asset_category(['type'=>$object['type']]), 'name' => $types_titles[$object['type']]]];
+
 if ($object['asset_category_name']) {
     $breadcrumb[] = ['link' => '#', 'name' => $object['asset_category_name']];
 }

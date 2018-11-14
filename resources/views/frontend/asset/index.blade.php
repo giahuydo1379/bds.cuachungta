@@ -12,7 +12,6 @@ if ($type=='hot') {
     <!-- ====== PROPERTY ARCHIVE PAGE HEADER ====== -->
     <section class="page-header">
         <div class="container">
-            <h1 class="page-header-title">{{$types_titles[$type]}}</h1>
             <ul class="breadcrumb">
                 <li><a href="/">Trang chủ</a></li>
                 @foreach($breadcrumb as $i => $bc)

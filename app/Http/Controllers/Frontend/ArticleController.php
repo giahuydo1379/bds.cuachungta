@@ -104,8 +104,6 @@ class ArticleController extends Controller
         $this->data['articleNext'] = $articleNext;
         $this->data['postRandom'] = $postRandom;
 
-
-
         return view('frontend.article.showFengshui', $this->data);
     }
     public function isHot(Request $request, $slug, $id)

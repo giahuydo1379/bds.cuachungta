@@ -1,12 +1,34 @@
 @extends('layouts.frontend')
+<?php
+if ($articles->article_category_id == 1)
+{
+    $breadcrumb_name = 'Tin tức';
+}
+else
+{
+    $breadcrumb_name = 'Phong thủy';
+}
+$breadcrumb_link = \App\Helpers\Block::get_breadcrumb_link($articles->article_category_id);
+
+?>
 @section('title') {{ $articles->name }} @stop
 
 @section('og_title'){{ $articles->name }}@stop
-@section('og_description'){{strip_tags($articles->description) }}@stop
+@section('og_description'){{ strip_tags($articles->description) }}@stop
 @section('og_image'){{ $articles->image_url . $articles->image }}@stop
 @section('og_url')<?php echo URL::current(); ?>@stop
 
 @section('content')
+    <!-- ====== SINGLE PROPERTY PAGE HEADER ====== -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-header-title">{{$breadcrumb_name}}</h1>
+            <ul class="breadcrumb">
+                <li><a href="/">Trang chủ</a></li>
+                <li><a href="{{$breadcrumb_link}}">{{$breadcrumb_name}}</a></li>
+            </ul>
+        </div>
+    </section>
     <!-- ====== SINGLE POST / BLOG CONTENT ====== -->
     <section class="page-section">
         <div class="container">
@@ -23,7 +45,7 @@
                                     <p>  {!! $articles->description !!}</p>
                                     <footer></footer>
                                 </blockquote>
-                                {!! $articles->content !!}
+                                    {!! $articles->content !!}
                                 <div class="widget">
                                     <div class="share-box">
                                         <h4>Share:</h4>
@@ -106,7 +128,7 @@
                                             </div>
                                         </li>
                                         @endforeach
-                                  
+
                                 </ul>
                             </div>
                         </div>

@@ -470,6 +470,10 @@ $action_title = isset($object['id']) ? 'Cập nhật' : 'Thêm mới';
                 loadAssetVariant();
             });
 
+             $('#type').on('change', function () {
+                loadAssetCategory();
+            });
+
             $('#addAssetFeatureVariant').on('click', function (e) {
                 e.preventDefault();
                 addAssetFeatureVariant();
@@ -613,6 +617,39 @@ $action_title = isset($object['id']) ? 'Cập nhật' : 'Thêm mới';
             e.preventDefault();
             $(this).closest('tr').remove();
         });
+
+        function loadAssetCategory(){
+            var valId = $('#type').val();
+            console.log(valId);
+
+              var data = {
+                id: valId,
+                _token: $('input[name ="_token"]').val()
+            };
+            $.post({
+                url: "/panel-kht/asset/loadAssetCategory/" + valId, data, success: function (result) {
+                    console.log(result);
+                    var data = $.map(result, function (obj) {
+                        obj.id = obj.id;
+                        obj.text = obj.name;
+                        return obj;
+                    });
+                    console.log(data);
+                    $('#category').html('');
+                    $("#category").select2({
+                        data: data
+                    });
+                    /* var options = '';
+                        for(var i=0;i<result.length;i++){
+                            options += '<option value="'+result[i].district_id+'">'+result[i].name+'</option>';
+                        }
+                        console.log(options);
+                        $("#loadDistrict").html('<select class="form-control select2" id="">'+options+'</select>');*/
+
+                }
+            });
+        }
+            
 
         function loadAssetVariant() {
             var valId = $('#feature_id').val();

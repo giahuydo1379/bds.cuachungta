@@ -57,6 +57,7 @@ Route::group([
     Route::post('asset/loadDistrict/{id}', 'AssetController@getDistrict');
     Route::post('asset/loadWard/{id}', 'AssetController@getWard');
     Route::post('asset/loadAssetFeatureVariant/{id}', 'AssetController@getAssetFeatureVariant');
+    Route::post('asset/loadAssetCategory/{id}', 'AssetController@getAssetCategory');
     Route::resource('asset', 'AssetController');
     Route::post('asset/ajax-active', 'AssetController@ajaxActive')->name('asset.ajax_active');
     Route::post('asset/ajax-inactive', 'AssetController@ajaxInactive')->name('asset.ajax_inactive');

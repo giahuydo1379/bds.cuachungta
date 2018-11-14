@@ -70,6 +70,18 @@ class AssetCategory extends Model
 
         return $rs;
     }
+
+    public static function getAssetCategory($id)
+    {
+        $data = AssetCategory::select('id', 'name')-> where('asset_categories.type', $id)->get();//->pluck('name','district_id');
+
+        if (!empty($data)) {
+            return $data->toArray();
+        }
+
+        return  array();
+    }
+
     public static function getStatusFilter()
     {
         return array(

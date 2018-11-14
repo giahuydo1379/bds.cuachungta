@@ -67,6 +67,37 @@
                                     </div>
                                 </div>
 
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label" for="form-field-1"> <strong>Ảnh đại diện </strong>
+                                        </label>
+                                        <div class="col-sm-7 btn-file">
+                                            <div class="fileupload-new thumbnail"
+                                                 style="width: 140px; height: 150px; margin-bottom: 3px;">
+                                                <?php
+                                                if (strlen(old('image_location')) == 1) {
+                                                    $path = old('image_location');
+                                                } else {
+                                                    $path = $object['image_location'] ?? '/images/no-image.jpeg';
+                                                }
+                                                ?>
+                                                <img id="preview-file-upload" class="preview-file-upload"
+                                                     style="width: 130px; height: 140px;"
+                                                     src="{!! @$object['image_url'].$path !!}">
+                                            </div>
+    
+                                            {!! Form::text("image_location", $path, ['id' => 'image_location', 'class' => 'form-control', 'data-url' => '#image_url']) !!}
+                                            {!! Form::hidden("image_url", @$object['image_url'], ['id' => 'image_url']) !!}
+    
+                                            <div class="p-l-file">
+                                                <a href="#" data-target="image"
+                                                   class="iframe-btn browse-image" type="button"> <i
+                                                            class="fa fa-paperclip"></i>&nbsp;&nbsp;Chọn hình
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                            
+
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label" for="form-field-1">
                                         Trạng thái<span class="required"></span>
@@ -121,6 +152,10 @@
     <script src="{{ asset('vendor/adminlte/bower_components/moment/min/moment.min.js') }}"></script>
     <script src="{{ asset('/html-admin/plugins/ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('/html-admin/plugins/ckfinder/ckfinder.js') }}"></script>
+    <script type="text/javascript" src="/html-admin/plugins/ckeditor/adapters/jquery.js"></script>
+    <script type="text/javascript" src="/html-admin/plugins/ckeditor/config.js"></script>
+    <script src="/html-admin/plugins/ckeditor/ckeditor.js"></script>
+    <script src="/html-admin/plugins/ckfinder/ckfinder.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {

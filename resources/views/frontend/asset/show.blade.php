@@ -152,7 +152,7 @@ if ($object['asset_category_name']) {
                                 <h3 class="panel-title">Property Location</h3>
                             </div>
                             <div class="panel-body">
-                                <div id="map">{{ $object-> embed_map }}</div>
+                                <div id="map">{!! $object-> embed_map !!}</div>
                             </div>
                         </div>
                         @endif

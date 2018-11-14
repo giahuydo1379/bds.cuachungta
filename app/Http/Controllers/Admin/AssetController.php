@@ -154,7 +154,7 @@ class AssetController extends Controller
     public function edit($id)
     {
         $query = Asset::find($id);
-    //dd($query);
+        //dd($query);
         if (!$query) {
             abort(404);
         }
@@ -302,6 +302,17 @@ class AssetController extends Controller
 
         return response()->json($res);
     }
+
+    public function getAssetCategory($id)
+    {
+        $res = [];
+
+        $res = AssetCategory::getAssetCategory($id);
+        //dd($res);
+
+        return response()->json($res);
+    }
+
 
     public function store_asset_features_values($asset_id, $fvv)
     {

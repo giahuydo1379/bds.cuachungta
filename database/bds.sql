@@ -12,11 +12,11 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 
--- Dumping database structure for bds2
-CREATE DATABASE IF NOT EXISTS `bds` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `bds`;
+-- Dumping database structure for bds_product2
+CREATE DATABASE IF NOT EXISTS `bds_product` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `bds_product`;
 
--- Dumping structure for table bds2.articles
+-- Dumping structure for table bds_product2.articles
 CREATE TABLE IF NOT EXISTS `articles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL COMMENT 'tiêu đề bài viết',
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `articles` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='bài viết về tin tức, phong thuỷ';
 
--- Dumping data for table bds2.articles: ~37 rows (approximately)
+-- Dumping data for table bds_product2.articles: ~37 rows (approximately)
 /*!40000 ALTER TABLE `articles` DISABLE KEYS */;
 INSERT INTO `articles` (`id`, `name`, `description`, `content`, `article_category_id`, `image`, `image_url`, `position`, `status`, `is_deleted`, `is_hot`, `is_common`, `created_at`, `updated_at`) VALUES
 	(21, 'E3FA *', NULL, '<ul>\r\n	<li><span style="color:#2980b9"><span style="font-size:14px">Thế hệ mới t&iacute;nh năng phong ph&uacute; nhất với 2 d&ograve;ng: E3FA v&agrave; E3RA(loại đứng). C&oacute; những model đặc biệt ph&aacute;t hiện vật trong, vật b&oacute;ng, vật m&agrave;u sắc kh&aacute;c nhau</span></span></li>\r\n	<li><span style="color:#2980b9"><span style="font-size:14px">Th&acirc;n h&igrave;nh trụ ngắn gọn vớo phi&nbsp;18.&nbsp;Vỏ bọc: Nhựa (ABS) hoặc kim loại E3FB/RB</span></span></li>\r\n	<li><span style="color:#2980b9"><span style="font-size:14px">Nguồn cấp: 12-24VDC</span></span></li>\r\n	<li><span style="color:#2980b9"><span style="font-size:14px">Chức năng chỉnh độ nhạy.&nbsp;Nguồn s&aacute;ng: Red LED (624nm)</span></span></li>\r\n	<li><span style="color:#2980b9"><span style="font-size:14px">Ng&otilde; ra: Transistor cực thu hở, 100mA max. (30VDC max.)</span></span></li>\r\n	<li><span style="color:#2980b9"><span style="font-size:14px">Chế độ ng&otilde; ra: Chọn lựa Light-ON / Dark-ON.&nbsp;Thời gian đ&aacute;p ứng: 0.5ms Max.</span></span></li>\r\n	<li><span style="color:#2980b9"><span style="font-size:14px">&Aacute;nh s&aacute;ng m&ocirc;i trường: Đ&egrave;n huỳnh quang: 3000lx max / mặt trời 10000lx max.</span></span></li>\r\n	<li><span style="color:#2980b9"><span style="font-size:14px">Ti&ecirc;u chuẩn cấp bảo vệ vỏ: IEC: IP67, DIN 40050-9: IP69K</span></span></li>\r\n	<li><span style="font-size:14px"><a href="https://drive.google.com/open?id=13qkw1zkC-rlaSzsrsCyI4hHjAbTmkk4-"><span style="color:#f39c12">Download t&agrave;i liệu</span></a></span></li>\r\n</ul>', 7, '/uploads/cke/E3FANEW.png', 'https://phanthinh.com.vn', 4, 1, 0, 0, 0, '2018-09-29 10:45:06', '2018-09-29 13:50:21'),
@@ -50,13 +50,13 @@ INSERT INTO `articles` (`id`, `name`, `description`, `content`, `article_categor
 	(30, 'E2E*', '<ul>\r\n	<li><span style="color:#2980b9"><span style="font-size:14px">V&acirc;̣t ph&aacute;t hiện chu&acirc;̉n :&nbsp;Sắt&nbsp;Iron&nbsp;3&times;3&times;1, 5&times;5&times;1,&nbsp;8&times;8&times;1,&nbsp;12&times;12&times;1, 15&times;15&times;1,&nbsp;18&times;1 8&times;1,&nbsp;20&times;20&times;1,&nbsp;30&times;30&times;1,&nbsp;54&times;54&times;1&nbsp;(Phụ thuộc v&agrave;o từng model)</span></span></li>\r\n	<li><span style="color:#2980b9"><span style="font-size:14px">Tần số đ&aacute;p ứng :&nbsp;1.5&nbsp;kHz,&nbsp;1.5 kHz, 1&nbsp;kHz,&nbsp;0.8&nbsp;kHz,&nbsp;0.6&nbsp;kHz, 0.5&nbsp;kHz,&nbsp;0.4 kHz, 0.2&nbsp;kHz,&nbsp;0.1 kHz</span></span></li>\r\n	<li><span style="color:#2980b9"><span style="font-size:14px">Ng&otilde; ra điều khiển :&nbsp;DC 3-wire PNP open-collector output,&nbsp;DC 3-wire NPN open-collector output,&nbsp;DC 2-wire polarity/no polarity,&nbsp;DC 3-wire NPN collector load built-in output&nbsp;,&nbsp;DC 3-wire PNP collector load built-in output&nbsp;,&nbsp;AC/DC 2-wire,&nbsp;AC 2-wire&nbsp;(Lựa chọn giữa NO/NC)</span></span></li>\r\n	<li><span style="color:#2980b9"><span style="font-size:14px">Ứng dụng của Cảm biến từ Omron E2E: Sử dụng để ph&aacute;t hiện kim loại c&oacute; từ t&iacute;nh, c&aacute;c ứng dụng c&oacute; nhiệt độ cao hoặc thấp, c&aacute;c ứng dụng di chuyển.</span></span></li>\r\n</ul>', '<ul>\r\n	<li><span style="font-size:14px"><span style="color:#2980b9"><strong>Cảm biến từ Omron E2E</strong>&nbsp;l&agrave; d&ograve;ng cảm biến ti&ecirc;u chuẩn để ph&aacute;t hiện c&aacute;c kim loại c&oacute; từ t&iacute;nh.</span></span></li>\r\n	<li><span style="font-size:14px"><span style="color:#2980b9">Hình trụ&nbsp;đường k&iacute;nh M8, M12, M18, M30</span></span></li>\r\n	<li><span style="font-size:14px"><span style="color:#2980b9">Ngu&ocirc;̀n c&acirc;́p&nbsp;:&nbsp;12-24VDC (10-30VDC),&nbsp;24-240VAC (20-264VAC), 50/60Hz</span></span></li>\r\n	<li><span style="font-size:14px"><span style="color:#2980b9">Nhiều model với c&aacute;c tần số kh&aacute;c nhau để ngăn chặn c&aacute;c nhiễu ảnh hưởng lẫn nhau.</span></span></li>\r\n	<li><span style="font-size:14px"><span style="color:#2980b9">Hoạt động trong m&ocirc;i trường khắc nhiệt nhờ c&aacute;p chống dầu PVC v&agrave; bề mặt cảm biến chế tạo bởi kim loại chống dầu cắt gọt.</span></span></li>\r\n	<li><span style="font-size:14px"><span style="color:#2980b9">Với cảm biến từ E2E, giảm thiểu c&aacute;c sự cố do mất kết nối với c&aacute;c ứng dụng di chuyển.</span></span></li>\r\n	<li><span style="font-size:14px"><span style="color:#2980b9">C&aacute;p nối được bảo vệ an to&agrave;n</span></span></li>\r\n	<li><span style="font-size:14px"><a href="https://drive.google.com/open?id=1pay4XSpPdX4lBLrYNuxxTssrb3Wy7TdM"><span style="color:#2980b9">Download t&agrave;i liệu</span></a></span></li>\r\n</ul>', 9, '/uploads/cke/E2E.png', 'https://phanthinh.com.vn', 2, 1, 0, 0, 0, '2018-10-14 06:17:26', '2018-10-14 06:19:18'),
 	(31, 'E2K*', NULL, '<p><strong><span style="color:#2980b9"><span style="font-size:14px">E2K-C l&agrave; cảm biến điện dung phi 34mm khoảng c&aacute;ch ph&aacute;t hiện c&oacute; thể điều chỉnh&nbsp;từ 3-25mm</span></span></strong></p>\r\n\r\n<p><strong><span style="color:#2980b9"><span style="font-size:14px">E2K-X l&agrave; cảm biến điện dung c&oacute; phi M12, M18, M30&nbsp;</span></span></strong></p>\r\n\r\n<ul>\r\n	<li><span style="color:#2980b9"><span style="font-size:14px">Cho ph&eacute;p ph&aacute;t hiện c&aacute;c&nbsp;vật kim loại v&agrave; phi kim loại như vậynhư thủy tinh, gỗ, nước, dầu v&agrave; nhựaCho ph&eacute;p ph&aacute;t hiện gi&aacute;n tiếp vật liệu b&ecirc;n trong th&ugrave;ng chứa phi kim loại</span></span></li>\r\n	<li><span style="color:#2980b9"><span style="font-size:14px">K&iacute;ch thước vật ph&aacute;t hiện 50 x 50 x 1 mm</span></span></li>\r\n</ul>\r\n\r\n<p><strong><span style="color:#2980b9"><span style="font-size:14px">E2K-L l&agrave; cảm biến ph&aacute;t hiện mức chất lỏng tr&ecirc;n đường ống</span></span></strong></p>\r\n\r\n<ul>\r\n	<li><span style="color:#2980b9"><span style="font-size:14px">Kh&ocirc;ng chịu ảnh hưởng bởi m&agrave;u sắc của đường ống hoặc chất lỏng</span></span></li>\r\n	<li><span style="color:#2980b9"><span style="font-size:14px">Ph&ugrave; hợp cho đường ống đường k&iacute;nh 8-11mm (độ d&agrave;y ống 1mm), 12-26mm (độ d&agrave;y ống 1.5mm)</span></span></li>\r\n</ul>', 9, '/uploads/cke/E2K.png', 'https://phanthinh.com.vn', 3, 1, 0, 0, 0, '2018-10-14 06:34:08', '2018-10-14 07:10:22'),
 	(32, 'TL*', NULL, NULL, 9, '/uploads/cke/TL.png', 'https://phanthinh.com.vn', 4, 1, 0, 0, 0, '2018-10-14 08:43:17', '2018-10-14 08:43:17'),
-	(47, 'ỨNG DỤNG PHONG THỦY GIÚP CUỘC SỐNG TỐT ĐẸP HƠN', '<p>test description&nbsp;</p>', '<p>test content</p>', 1, '/uploads/cke/WwLRaQp.jpg', 'http://bds.cuachungta.com', 3, 1, 0, 0, 0, '2018-11-06 02:41:13', '2018-11-06 02:41:13'),
-	(48, 'Mẹo bố trí phòng làm việc hợp phong thủy để có sự nghiệp thăng tiến', '<p>&aacute;dasd</p>', '<p>&aacute;dsad</p>', 1, '/uploads/cke/maxresdefault.jpg', 'http://bds.cuachungta.com', 1, 1, 0, 0, 0, '2018-11-06 03:03:42', '2018-11-06 03:03:42'),
-	(49, 'Phương pháp kích hoạt tài lộc cho không gian ngồi làm việc', '<p>&aacute;dsad</p>', '<p>&aacute;dsa</p>', 1, '/uploads/cke/untitled.png', 'http://bds.cuachungta.com', 1, 1, 0, 0, 0, '2018-11-06 05:29:34', '2018-11-06 05:29:34'),
-	(50, 'test1', '<p>&aacute;d</p>', '<p>&aacute;d</p>', 1, '/uploads/cke/maxresdefault.jpg', 'http://bds.cuachungta.com', 1, 1, 0, 1, 1, '2018-11-06 06:37:11', '2018-11-06 06:46:17');
+	(47, 'ỨNG DỤNG PHONG THỦY GIÚP CUỘC SỐNG TỐT ĐẸP HƠN', '<p>test description&nbsp;</p>', '<p>test content</p>', 1, '/uploads/cke/WwLRaQp.jpg', 'http://bds_product.cuachungta.com', 3, 1, 0, 0, 0, '2018-11-06 02:41:13', '2018-11-06 02:41:13'),
+	(48, 'Mẹo bố trí phòng làm việc hợp phong thủy để có sự nghiệp thăng tiến', '<p>&aacute;dasd</p>', '<p>&aacute;dsad</p>', 1, '/uploads/cke/maxresdefault.jpg', 'http://bds_product.cuachungta.com', 1, 1, 0, 0, 0, '2018-11-06 03:03:42', '2018-11-06 03:03:42'),
+	(49, 'Phương pháp kích hoạt tài lộc cho không gian ngồi làm việc', '<p>&aacute;dsad</p>', '<p>&aacute;dsa</p>', 1, '/uploads/cke/untitled.png', 'http://bds_product.cuachungta.com', 1, 1, 0, 0, 0, '2018-11-06 05:29:34', '2018-11-06 05:29:34'),
+	(50, 'test1', '<p>&aacute;d</p>', '<p>&aacute;d</p>', 1, '/uploads/cke/maxresdefault.jpg', 'http://bds_product.cuachungta.com', 1, 1, 0, 1, 1, '2018-11-06 06:37:11', '2018-11-06 06:46:17');
 /*!40000 ALTER TABLE `articles` ENABLE KEYS */;
 
--- Dumping structure for table bds2.article_categories
+-- Dumping structure for table bds_product2.article_categories
 CREATE TABLE IF NOT EXISTS `article_categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL COMMENT 'tên',
@@ -71,14 +71,14 @@ CREATE TABLE IF NOT EXISTS `article_categories` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='loại nhà cho thuê hoặc cần thuê';
 
--- Dumping data for table bds2.article_categories: ~2 rows (approximately)
+-- Dumping data for table bds_product2.article_categories: ~2 rows (approximately)
 /*!40000 ALTER TABLE `article_categories` DISABLE KEYS */;
 INSERT INTO `article_categories` (`id`, `name`, `description`, `position`, `status`, `is_deleted`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 'Tin tức', 'tin tức', 1, 1, 0, NULL, NULL, '2018-08-13 03:37:04', '2018-10-23 09:09:16'),
 	(2, 'Phong thủy', 'Phong thủy', 1, 1, 0, NULL, NULL, '2018-08-21 08:12:26', '2018-10-23 09:09:44');
 /*!40000 ALTER TABLE `article_categories` ENABLE KEYS */;
 
--- Dumping structure for table bds2.article_images
+-- Dumping structure for table bds_product2.article_images
 CREATE TABLE IF NOT EXISTS `article_images` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `image` varchar(255) DEFAULT NULL COMMENT 'path ảnh',
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `article_images` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='ảnh của bài viết tin tức, phong thuỷ';
 
--- Dumping data for table bds2.article_images: ~14 rows (approximately)
+-- Dumping data for table bds_product2.article_images: ~14 rows (approximately)
 /*!40000 ALTER TABLE `article_images` DISABLE KEYS */;
 INSERT INTO `article_images` (`id`, `image`, `image_url`, `article_id`, `created_at`, `updated_at`) VALUES
 	(22, '/uploads/cke/CP1E-N20.jpg', 'https://phanthinh.com.vn', 1, '2018-09-22 14:30:18', '2018-09-22 14:30:18'),
@@ -105,10 +105,10 @@ INSERT INTO `article_images` (`id`, `image`, `image_url`, `article_id`, `created
 	(33, '/uploads/cke/NX1P22.jpg', 'https://phanthinh.com.vn', 16, '2018-09-23 08:30:30', '2018-09-23 08:30:30'),
 	(34, '/uploads/cke/E5CSL1.png', 'https://phanthinh.com.vn', 24, '2018-09-30 02:54:06', '2018-09-30 02:54:06'),
 	(35, '/uploads/cke/Jellyfish.jpg', 'http://batdongsan.local', 46, '2018-10-26 03:18:24', '2018-10-26 03:18:24'),
-	(36, '/uploads/cke/maxresdefault.jpg', 'http://bds.cuachungta.com', 47, '2018-11-06 02:41:13', '2018-11-06 02:41:13');
+	(36, '/uploads/cke/maxresdefault.jpg', 'http://bds_product.cuachungta.com', 47, '2018-11-06 02:41:13', '2018-11-06 02:41:13');
 /*!40000 ALTER TABLE `article_images` ENABLE KEYS */;
 
--- Dumping structure for table bds2.assets
+-- Dumping structure for table bds_product2.assets
 CREATE TABLE IF NOT EXISTS `assets` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL COMMENT 'tiêu đề bài viết',
@@ -134,11 +134,11 @@ CREATE TABLE IF NOT EXISTS `assets` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='tin cho thuê nhà hoặc cần thuê (tài sản)';
 
--- Dumping data for table bds2.assets: ~0 rows (approximately)
+-- Dumping data for table bds_product2.assets: ~0 rows (approximately)
 /*!40000 ALTER TABLE `assets` DISABLE KEYS */;
 /*!40000 ALTER TABLE `assets` ENABLE KEYS */;
 
--- Dumping structure for table bds2.assets_images
+-- Dumping structure for table bds_product2.assets_images
 CREATE TABLE IF NOT EXISTS `assets_images` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `image` varchar(255) DEFAULT NULL COMMENT 'path ảnh',
@@ -149,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `assets_images` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='ảnh phụ của tin nhà cho thuê, cần thuê';
 
--- Dumping data for table bds2.assets_images: ~12 rows (approximately)
+-- Dumping data for table bds_product2.assets_images: ~12 rows (approximately)
 /*!40000 ALTER TABLE `assets_images` DISABLE KEYS */;
 INSERT INTO `assets_images` (`id`, `image`, `image_url`, `asset_id`, `created_at`, `updated_at`) VALUES
 	(22, '/uploads/cke/CP1E-N20.jpg', 'https://phanthinh.com.vn', 1, '2018-09-22 14:30:18', '2018-09-22 14:30:18'),
@@ -166,7 +166,7 @@ INSERT INTO `assets_images` (`id`, `image`, `image_url`, `asset_id`, `created_at
 	(34, '/uploads/cke/E5CSL1.png', 'https://phanthinh.com.vn', 24, '2018-09-30 02:54:06', '2018-09-30 02:54:06');
 /*!40000 ALTER TABLE `assets_images` ENABLE KEYS */;
 
--- Dumping structure for table bds2.asset_categories
+-- Dumping structure for table bds_product2.asset_categories
 CREATE TABLE IF NOT EXISTS `asset_categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL COMMENT 'tên',
@@ -182,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `asset_categories` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='danh mục bài viết';
 
--- Dumping data for table bds2.asset_categories: ~6 rows (approximately)
+-- Dumping data for table bds_product2.asset_categories: ~6 rows (approximately)
 /*!40000 ALTER TABLE `asset_categories` DISABLE KEYS */;
 INSERT INTO `asset_categories` (`id`, `name`, `type`, `description`, `position`, `status`, `is_deleted`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
 	(1, 'Cho thuê nhà chung cư', NULL, NULL, 1, 1, 0, NULL, NULL, NULL, '2018-10-23 09:07:05'),
@@ -193,7 +193,7 @@ INSERT INTO `asset_categories` (`id`, `name`, `type`, `description`, `position`,
 	(6, 'Cần thuê nhà mặt phố', 'lease', NULL, 1, 1, 0, NULL, NULL, NULL, '2018-10-23 09:08:06');
 /*!40000 ALTER TABLE `asset_categories` ENABLE KEYS */;
 
--- Dumping structure for table bds2.asset_features
+-- Dumping structure for table bds_product2.asset_features
 CREATE TABLE IF NOT EXISTS `asset_features` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'tên',
@@ -207,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `asset_features` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT COMMENT='danh mục filter';
 
--- Dumping data for table bds2.asset_features: ~6 rows (approximately)
+-- Dumping data for table bds_product2.asset_features: ~6 rows (approximately)
 /*!40000 ALTER TABLE `asset_features` DISABLE KEYS */;
 INSERT INTO `asset_features` (`id`, `name`, `description`, `is_range`, `position`, `status`, `is_deleted`, `created_at`, `updated_at`) VALUES
 	(2, 'Diện tích', 'Diện tích', 0, 1, 1, 0, NULL, '2018-08-02 22:50:50'),
@@ -218,7 +218,7 @@ INSERT INTO `asset_features` (`id`, `name`, `description`, `is_range`, `position
 	(13, 'b', 'b', 0, 1, 1, 1, '2018-10-27 01:57:41', '2018-10-27 02:24:14');
 /*!40000 ALTER TABLE `asset_features` ENABLE KEYS */;
 
--- Dumping structure for table bds2.asset_features_values
+-- Dumping structure for table bds_product2.asset_features_values
 CREATE TABLE IF NOT EXISTS `asset_features_values` (
   `feature_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `asset_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
@@ -229,7 +229,7 @@ CREATE TABLE IF NOT EXISTS `asset_features_values` (
   KEY `job_id` (`asset_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='map filter cho từng công việc';
 
--- Dumping data for table bds2.asset_features_values: 133 rows
+-- Dumping data for table bds_product2.asset_features_values: 133 rows
 /*!40000 ALTER TABLE `asset_features_values` DISABLE KEYS */;
 INSERT INTO `asset_features_values` (`feature_id`, `asset_id`, `variant_id`) VALUES
 	(2, 2, 3),
@@ -367,7 +367,7 @@ INSERT INTO `asset_features_values` (`feature_id`, `asset_id`, `variant_id`) VAL
 	(8, 76, 11);
 /*!40000 ALTER TABLE `asset_features_values` ENABLE KEYS */;
 
--- Dumping structure for table bds2.asset_features_variants
+-- Dumping structure for table bds_product2.asset_features_variants
 CREATE TABLE IF NOT EXISTS `asset_features_variants` (
   `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `feature_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
@@ -384,7 +384,7 @@ CREATE TABLE IF NOT EXISTS `asset_features_variants` (
   KEY `job_feature_id` (`feature_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='giá trị filter';
 
--- Dumping data for table bds2.asset_features_variants: 13 rows
+-- Dumping data for table bds_product2.asset_features_variants: 13 rows
 /*!40000 ALTER TABLE `asset_features_variants` DISABLE KEYS */;
 INSERT INTO `asset_features_variants` (`id`, `feature_id`, `name`, `description`, `from`, `to`, `position`, `status`, `is_deleted`, `created_at`, `updated_at`) VALUES
 	(1, 2, 'Nhân viên', NULL, 0, 0, 0, 1, 0, '2018-04-05 20:36:12', '2018-04-05 21:04:17'),
@@ -402,7 +402,7 @@ INSERT INTO `asset_features_variants` (`id`, `feature_id`, `name`, `description`
 	(17, 13, 'b', 'b', 0, 0, 1, 0, 1, '2018-10-29 15:42:19', '2018-10-29 15:44:08');
 /*!40000 ALTER TABLE `asset_features_variants` ENABLE KEYS */;
 
--- Dumping structure for table bds2.audits
+-- Dumping structure for table bds_product2.audits
 CREATE TABLE IF NOT EXISTS `audits` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_type` varchar(191) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -423,7 +423,7 @@ CREATE TABLE IF NOT EXISTS `audits` (
   KEY `audits_auditable_type_auditable_id_index` (`auditable_type`,`auditable_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table bds2.audits: ~6 rows (approximately)
+-- Dumping data for table bds_product2.audits: ~6 rows (approximately)
 /*!40000 ALTER TABLE `audits` DISABLE KEYS */;
 INSERT INTO `audits` (`id`, `user_type`, `user_id`, `event`, `auditable_type`, `auditable_id`, `old_values`, `new_values`, `url`, `ip_address`, `user_agent`, `tags`, `created_at`, `updated_at`) VALUES
 	(22, NULL, NULL, 'updated', 'App\\User', 2, '[]', '[]', 'http://phanthinh.com.vn/panel-kht/logout?', '210.245.102.177', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36', NULL, '2018-08-20 10:15:13', '2018-08-20 10:15:13'),
@@ -434,7 +434,7 @@ INSERT INTO `audits` (`id`, `user_type`, `user_id`, `event`, `auditable_type`, `
 	(27, NULL, NULL, 'updated', 'App\\User', 2, '[]', '[]', 'https://phanthinh.com.vn/public/panel-kht/logout?', '27.78.76.20', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36', NULL, '2018-09-08 10:05:17', '2018-09-08 10:05:17');
 /*!40000 ALTER TABLE `audits` ENABLE KEYS */;
 
--- Dumping structure for table bds2.districts
+-- Dumping structure for table bds_product2.districts
 CREATE TABLE IF NOT EXISTS `districts` (
   `district_id` varchar(5) CHARACTER SET utf8 NOT NULL,
   `name` varchar(100) CHARACTER SET utf8 NOT NULL,
@@ -445,7 +445,7 @@ CREATE TABLE IF NOT EXISTS `districts` (
   PRIMARY KEY (`district_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='quận huyện';
 
--- Dumping data for table bds2.districts: ~713 rows (approximately)
+-- Dumping data for table bds_product2.districts: ~713 rows (approximately)
 /*!40000 ALTER TABLE `districts` DISABLE KEYS */;
 INSERT INTO `districts` (`district_id`, `name`, `type`, `location`, `province_id`, `is_deleted`) VALUES
 	('001', 'Ba Đình', 'Quận', NULL, '01', 0),
@@ -1163,7 +1163,7 @@ INSERT INTO `districts` (`district_id`, `name`, `type`, `location`, `province_id
 	('973', 'Ngọc Hiển', 'Huyện', NULL, '96', 0);
 /*!40000 ALTER TABLE `districts` ENABLE KEYS */;
 
--- Dumping structure for table bds2.menu_items
+-- Dumping structure for table bds_product2.menu_items
 CREATE TABLE IF NOT EXISTS `menu_items` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -1180,7 +1180,7 @@ CREATE TABLE IF NOT EXISTS `menu_items` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table bds2.menu_items: ~5 rows (approximately)
+-- Dumping data for table bds_product2.menu_items: ~5 rows (approximately)
 /*!40000 ALTER TABLE `menu_items` DISABLE KEYS */;
 INSERT INTO `menu_items` (`id`, `name`, `type`, `link`, `page_id`, `parent_id`, `lft`, `rgt`, `depth`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 'Tin nổi bật', 'internal_link', '#featured-property', NULL, NULL, NULL, NULL, NULL, '2018-11-05 09:13:11', '2018-11-05 09:13:11', NULL),
@@ -1190,7 +1190,7 @@ INSERT INTO `menu_items` (`id`, `name`, `type`, `link`, `page_id`, `parent_id`, 
 	(5, 'Phong thủy', 'internal_link', '#testimony', NULL, NULL, NULL, NULL, NULL, '2018-11-05 09:13:11', '2018-11-05 09:13:11', NULL);
 /*!40000 ALTER TABLE `menu_items` ENABLE KEYS */;
 
--- Dumping structure for table bds2.migrations
+-- Dumping structure for table bds_product2.migrations
 CREATE TABLE IF NOT EXISTS `migrations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1198,11 +1198,11 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table bds2.migrations: ~0 rows (approximately)
+-- Dumping data for table bds_product2.migrations: ~0 rows (approximately)
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 
--- Dumping structure for table bds2.pages
+-- Dumping structure for table bds_product2.pages
 CREATE TABLE IF NOT EXISTS `pages` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `template` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT 'default',
@@ -1226,13 +1226,13 @@ CREATE TABLE IF NOT EXISTS `pages` (
   UNIQUE KEY `slug` (`slug`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table bds2.pages: ~0 rows (approximately)
+-- Dumping data for table bds_product2.pages: ~0 rows (approximately)
 /*!40000 ALTER TABLE `pages` DISABLE KEYS */;
 INSERT INTO `pages` (`id`, `template`, `name`, `title`, `slug`, `content`, `image_location`, `image_url`, `image_link`, `page_name`, `extras`, `seo_title`, `seo_description`, `seo_keyword`, `created_at`, `updated_at`, `deleted_at`, `status`) VALUES
 	(16, 'about_us', 'Giới thiệu', 'Giới thiệu về Phan Thịnh', 'gioi-thieu.html', '<p><iframe height="800" src="https://drive.google.com/file/d/1DPd5ftrOO0Vedqb7lSQ7Iq4jWfU9512-/preview" width="100%"></iframe><iframe height="800" src="https://drive.google.com/file/d/0B9K2uDaavw7bdGFhUzF4WUlSTmc/preview" width="100%"></iframe></p>', '/static/images/banners/home%20page%20banner%201000x230.jpg', 'http://blackeyes.co', 'http://carspa.cms/introduction', 'Giới thiệu về Khang Thịnh', 'Extras', 'Seo title', 'Seo description', 'Keyword', '2017-11-10 03:01:08', '2018-08-22 03:53:44', NULL, 'publish');
 /*!40000 ALTER TABLE `pages` ENABLE KEYS */;
 
--- Dumping structure for table bds2.password_resets
+-- Dumping structure for table bds_product2.password_resets
 CREATE TABLE IF NOT EXISTS `password_resets` (
   `email` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
   `token` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
@@ -1240,11 +1240,11 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
   KEY `password_resets_email_index` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table bds2.password_resets: ~0 rows (approximately)
+-- Dumping data for table bds_product2.password_resets: ~0 rows (approximately)
 /*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
 /*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
 
--- Dumping structure for table bds2.products
+-- Dumping structure for table bds_product2.products
 CREATE TABLE IF NOT EXISTS `products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL COMMENT 'tên sản phẩm',
@@ -1266,11 +1266,11 @@ CREATE TABLE IF NOT EXISTS `products` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='Danh mục sản phẩm';
 
--- Dumping data for table bds2.products: ~0 rows (approximately)
+-- Dumping data for table bds_product2.products: ~0 rows (approximately)
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 
--- Dumping structure for table bds2.provinces
+-- Dumping structure for table bds_product2.provinces
 CREATE TABLE IF NOT EXISTS `provinces` (
   `province_id` varchar(5) CHARACTER SET utf8 NOT NULL,
   `name` varchar(100) CHARACTER SET utf8 NOT NULL,
@@ -1280,7 +1280,7 @@ CREATE TABLE IF NOT EXISTS `provinces` (
   PRIMARY KEY (`province_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT COMMENT='tỉnh thành phô';
 
--- Dumping data for table bds2.provinces: ~63 rows (approximately)
+-- Dumping data for table bds_product2.provinces: ~63 rows (approximately)
 /*!40000 ALTER TABLE `provinces` DISABLE KEYS */;
 INSERT INTO `provinces` (`province_id`, `name`, `type`, `is_deleted`, `ordering`) VALUES
 	('01', 'Hà Nội', 'Thành phố', 0, 2),
@@ -1348,7 +1348,7 @@ INSERT INTO `provinces` (`province_id`, `name`, `type`, `is_deleted`, `ordering`
 	('96', 'Cà Mau', 'Tỉnh', 0, 2);
 /*!40000 ALTER TABLE `provinces` ENABLE KEYS */;
 
--- Dumping structure for table bds2.scripts_include
+-- Dumping structure for table bds_product2.scripts_include
 CREATE TABLE IF NOT EXISTS `scripts_include` (
   `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1361,14 +1361,14 @@ CREATE TABLE IF NOT EXISTS `scripts_include` (
   KEY `key_active` (`key`,`is_active`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT COMMENT='các script include vào website';
 
--- Dumping data for table bds2.scripts_include: ~2 rows (approximately)
+-- Dumping data for table bds_product2.scripts_include: ~2 rows (approximately)
 /*!40000 ALTER TABLE `scripts_include` DISABLE KEYS */;
 INSERT INTO `scripts_include` (`id`, `key`, `description`, `value`, `is_active`, `position`) VALUES
 	(1, 'ga', 'Global site tag (gtag.js) - Google Analytics', '<!-- Global site tag (gtag.js) - Google Analytics -->\r\n<script async src="https://www.googletagmanager.com/gtag/js?id=UA-118010763-1"></script>\r\n<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag(\'js\', new Date());\r\n\r\n  gtag(\'config\', \'UA-118010763-1\');\r\n</script>\r\n', 1, 2),
 	(3, 'facebook', 'Script facebook', '<div id="fb-root"></div>\r\n<script>(function(d, s, id) {\r\n  var js, fjs = d.getElementsByTagName(s)[0];\r\n  if (d.getElementById(id)) return;\r\n  js = d.createElement(s); js.id = id;\r\n  js.src = \'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.12\';\r\n  fjs.parentNode.insertBefore(js, fjs);\r\n}(document, \'script\', \'facebook-jssdk\'));</script>\r\n', 1, 1);
 /*!40000 ALTER TABLE `scripts_include` ENABLE KEYS */;
 
--- Dumping structure for table bds2.settings
+-- Dumping structure for table bds_product2.settings
 CREATE TABLE IF NOT EXISTS `settings` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(191) COLLATE utf8_unicode_ci NOT NULL,
@@ -1383,7 +1383,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
   UNIQUE KEY `settings_key_unique` (`key`)
 ) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table bds2.settings: ~3 rows (approximately)
+-- Dumping data for table bds_product2.settings: ~3 rows (approximately)
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
 INSERT INTO `settings` (`id`, `key`, `name`, `description`, `value`, `field`, `active`, `created_at`, `updated_at`) VALUES
 	(1, 'copyright', 'Copyright', 'Copyright', 'Copyright &copy; 2018 - All Rights Reserved By tinthuenha', '{"name":"value","label":"Value","type":"text"}', 1, '2018-08-22 16:43:23', '2018-08-22 03:00:35'),
@@ -1391,7 +1391,7 @@ INSERT INTO `settings` (`id`, `key`, `name`, `description`, `value`, `field`, `a
 	(49, 'favicon_ico', 'Favicon ico', 'Favicon ico', '/html/assets/images/favicon.ico', '{"name":"value","label":"Value","type":"image"}', 1, '2018-08-22 16:43:35', '2018-09-18 02:35:54');
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 
--- Dumping structure for table bds2.slides
+-- Dumping structure for table bds_product2.slides
 CREATE TABLE IF NOT EXISTS `slides` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
@@ -1405,7 +1405,7 @@ CREATE TABLE IF NOT EXISTS `slides` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
--- Dumping data for table bds2.slides: ~6 rows (approximately)
+-- Dumping data for table bds_product2.slides: ~6 rows (approximately)
 /*!40000 ALTER TABLE `slides` DISABLE KEYS */;
 INSERT INTO `slides` (`id`, `title`, `image`, `image_url`, `description`, `link`, `created_at`, `updated_at`, `is_deleted`) VALUES
 	(1, 'Slide 1', '/uploads/cke/nbweb.png', 'https://phanthinh.com.vn', NULL, '#', '2018-08-09 08:08:59', '2018-10-04 03:46:20', 0),
@@ -1416,7 +1416,7 @@ INSERT INTO `slides` (`id`, `title`, `image`, `image_url`, `description`, `link`
 	(6, 'Iiii', NULL, 'https://phanthinh.com.vn', NULL, NULL, '2018-10-05 12:39:25', '2018-10-05 12:39:36', 1);
 /*!40000 ALTER TABLE `slides` ENABLE KEYS */;
 
--- Dumping structure for table bds2.users
+-- Dumping structure for table bds_product2.users
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `code` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1438,13 +1438,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   KEY `username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='người dùng (chủ website)';
 
--- Dumping data for table bds2.users: ~0 rows (approximately)
+-- Dumping data for table bds_product2.users: ~0 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `code`, `department_id`, `fullname`, `email`, `username`, `avatar`, `gender`, `is_enabled`, `password`, `remember_token`, `api_token`, `created_at`, `updated_at`) VALUES
 	(2, NULL, 0, 'Admin', 'admin@gmail.com', 'Nakata', NULL, NULL, 1, '$2y$10$du4MvTsmV6RVezWRdgkxEuvKmgb.W1pPhXXY2IwIUAnM3.HhPDiGi', 'PaKYNWCtQNwD7MDWqhwhcQ8N0IC58nKO4Ro3wvYunCMgJzRJniE5PELEJMSn', NULL, '2018-04-25 01:25:31', '2018-04-25 01:25:31');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
--- Dumping structure for table bds2.wards
+-- Dumping structure for table bds_product2.wards
 CREATE TABLE IF NOT EXISTS `wards` (
   `ward_id` varchar(5) CHARACTER SET utf8 NOT NULL,
   `name` varchar(100) CHARACTER SET utf8 NOT NULL,
@@ -1455,7 +1455,7 @@ CREATE TABLE IF NOT EXISTS `wards` (
   PRIMARY KEY (`ward_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='phường xã';
 
--- Dumping data for table bds2.wards: ~11,151 rows (approximately)
+-- Dumping data for table bds_product2.wards: ~11,151 rows (approximately)
 /*!40000 ALTER TABLE `wards` DISABLE KEYS */;
 INSERT INTO `wards` (`ward_id`, `name`, `type`, `location`, `district_id`, `is_deleted`) VALUES
 	('00001', 'Phúc Xá', 'Phường', NULL, '001', 0),

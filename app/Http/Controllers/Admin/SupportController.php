@@ -71,13 +71,16 @@ class SupportController extends Controller
     public function store(SupportRequest $request)
     {
         $data = $request->all();
-
+        // dd($data);
         unset($data['_token']);
+
+        if (empty($data['image_url'])) {
+            $data['image_url'] = config('app.url');
+        }
 
         $object = $this->_model->create($data);
 
-        if ($object)
-        {
+        if ($object) {
             if ($request->ajax() || $request->wantsJson()) {
                 return response()->json([
                     'rs' => 1,
@@ -126,8 +129,7 @@ class SupportController extends Controller
     {
         $object  = $this->_model->find($id);
 
-        if (!$object)
-        {
+        if (!$object) {
             if ($request->ajax() || $request->wantsJson()) {
                 return response()->json([
                     'rs' => 0,
@@ -164,8 +166,7 @@ class SupportController extends Controller
     {
         $object  = $this->_model->find($id);
 
-        if (!$object || !$id)
-        {
+        if (!$object || !$id) {
             return response()->json([
                 'rs' => 0,
                 'msg' => 'Xóa '.$this->_data['title'].' không thành công',

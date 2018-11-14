@@ -45,7 +45,7 @@ $settings = \App\Helpers\General::get_settings();
     <script type="text/javascript" src="/html/assets/js/jquery.daterangepicker.min.js"></script>
     <script type="text/javascript" src="/html/assets/js/slick.min.js"></script>
     <script type="text/javascript" src="/html/assets/js/ion.rangeSlider.min.js"></script>
-    <script type="text/javascript" src="/html/assets/js/apps.min.js"></script>
+    <script type="text/javascript" src="/html/assets/js/apps.min.js?v={{$ver_js}}"></script>
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {

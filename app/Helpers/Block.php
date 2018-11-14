@@ -132,7 +132,8 @@ class Block
             $item = $item->toArray();
         }
 
-        $params = ['cid' => @$item['asset_category_id']];
+        $params = isset($item['asset_category_id']) ? ['cid' => $item['asset_category_id']] : [];
+
         if ($item['type'] == 'lease') {
             return route('fe.asset.lease', $params);
         }

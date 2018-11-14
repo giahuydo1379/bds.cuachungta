@@ -23,11 +23,13 @@ class AssetController extends Controller
         $params = $request->all();
         $limit = $request->input('limit', 10);
         $params['limit'] = $limit;
+        $params['type'] = 'lease';
 
         $assets = Asset::getSearchAssets($params);
 
         $this->data['params'] = $params;
         $this->data['assets'] = $assets;
+        $this->data['type'] = $params['type'];
 
         return view('frontend.asset.index', $this->data);
     }
@@ -37,11 +39,17 @@ class AssetController extends Controller
         $params = $request->all();
         $limit = $request->input('limit', 10);
         $params['limit'] = $limit;
+        $params['type'] = 'buy';
 
         $assets = Asset::getSearchAssets($params);
 
         $this->data['params'] = $params;
         $this->data['assets'] = $assets;
+        $this->data['type'] = $params['type'];
+
+        $request->request->add([
+            'type' => $params['type'],
+        ]);
 
         return view('frontend.asset.index', $this->data);
     }
@@ -51,11 +59,13 @@ class AssetController extends Controller
         $params = $request->all();
         $limit = $request->input('limit', 10);
         $params['limit'] = $limit;
+        $params['is_hot'] = 1;
 
         $assets = Asset::getSearchAssets($params);
 
         $this->data['params'] = $params;
         $this->data['assets'] = $assets;
+        $this->data['type'] = 'hot';
 
         return view('frontend.asset.index', $this->data);
     }
@@ -78,9 +88,10 @@ class AssetController extends Controller
         $images = AssetImage::where('assets_images.asset_id', $id)->orderBy('assets_images.id', 'desc')->get();
         $this->data['images'] = $images;
 
-        $this->data['asset_type'] = $object['type'];
-        $this->data['cid'] = $object['asset_category_id'];
-       
+        $request->request->add([
+            'type' => $object['type'],
+            'cid' => $object['asset_category_id'],
+        ]);
 
         return view('frontend.asset.show', $this->data);
     }

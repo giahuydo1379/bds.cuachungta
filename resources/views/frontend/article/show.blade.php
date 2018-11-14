@@ -1,5 +1,6 @@
 @extends('layouts.frontend')
-@section('title') Trang chủ @stop
+
+@section('title') {!! $articles->name !!} @stop
 
 @section('og_title'){{ $articles['name'] }}@stop
 @section('og_description'){{ $articles['description'] }}@stop

@@ -52,6 +52,16 @@ class AssetFeatureVariant extends Model
         return ['total' => $total, 'data' => $data];
     }
 
+    public static function getVariantsOptions($feature_id)
+    {
+        $data = self::select('id', 'name')
+            ->where('status', 1)
+            ->where('is_deleted', 0)
+            ->where('feature_id', $feature_id)
+            ->pluck('name', 'id');
+
+        return $data->toArray();
+    }
 
     public static function getAssetFeature()
     {
@@ -61,52 +71,9 @@ class AssetFeatureVariant extends Model
             return $data->toArray();
         }
 
-        return  array();
+        return array();
     }
 
-    public static function getCategoryById($id)
-    {
-        $data = ProductCategory::select('product_categories.*', 'manufacturers.name as manufacturer_name')
-            ->leftJoin('manufacturers', 'manufacturers.id', '=', 'product_categories.manufacturer_id')
-            ->where('product_categories.id', $id)
-            ->where('product_categories.is_deleted', 0)->first();
-
-        if (!empty($data)) {
-            return $data->toArray();
-        }
-
-        return  array();
-    }
-
-    public static function getCategoryBymanufacturer($manufacturer_id)
-    {
-        $data = ProductCategory::select(
-            'product_categories.id',
-            'product_categories.name',
-            'product_categories.image_url',
-            'product_categories.image',
-            'manufacturers.name as manufacturer_name'
-        )
-            ->leftJoin('manufacturers', 'manufacturers.id', '=', 'product_categories.manufacturer_id')
-            ->where('product_categories.manufacturer_id', $manufacturer_id)
-            ->where('product_categories.is_deleted', 0)
-            ->orderBy('product_categories.order', 'asc')->get();
-        if (!empty($data)) {
-            return $data->toArray();
-        }
-        return  array();
-    }
-
-    public static function ajaxGetCategoryBymanufacturer($manufacturer_id)
-    {
-        $data = ProductCategory::select('id', 'name')-> where('product_categories.manufacturer_id', $manufacturer_id)->pluck('name', 'id');
-
-        if (!empty($data)) {
-            return $data->toArray();
-        }
-
-        return  array();
-    }
     public static function getStatusFilter()
     {
         return array(

@@ -85,7 +85,7 @@ function get_districts_by_province(obj_province, select2) {
 
     $.get(_base_url+'/location/get-districts', {
         province_id: $(obj_province).val(),
-        has_store: $(obj_province).attr('data-store'),
+        has_asset: $(obj_province).attr('data-asset'),
         status: $(obj_province).attr('data-status'),
     }, function (res) {
         $.each(res.data, function( id, name ) {

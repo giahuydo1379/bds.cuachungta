@@ -1,6 +1,11 @@
 @extends('layouts.frontend')
 @section('title') Trang chủ @stop
 
+@section('og_title'){{ $articles['name'] }}@stop
+@section('og_description'){{ $articles['description'] }}@stop
+@section('og_image'){!! $articles['image_url'] . $articles['image'] !!}@stop
+@section('og_url')<?php echo URL::current(); ?>@stop
+
 @section('content')
     <!-- ====== SINGLE POST / BLOG CONTENT ====== -->
     <section class="page-section">
@@ -25,41 +30,41 @@
                                         <h4>Share:</h4>
                                         <ul class="share-box-list">
                                             <li>
-                                                <a href="#" class="facebook">
+                                                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo URL::current(); ?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=no,scrollbars=no,height=400,width=600'); return false;" class="facebook">
                                                     <i class="fa fa-facebook"></i>
                                                     <i class="fa fa-facebook"></i>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#" class="twitter">
+                                                <a href="http://twitter.com/share" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=no,scrollbars=no,height=400,width=600'); return false;" class="twitter">
                                                     <i class="fa fa-twitter"></i>
                                                     <i class="fa fa-twitter"></i>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#" class="pinterest">
-                                                    <i class="fa fa-pinterest"></i>
-                                                    <i class="fa fa-pinterest"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="google">
+                                                <a href="https://plus.google.com/share?url=<?php echo URL::current(); ?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=no,scrollbars=no,height=400,width=600'); return false;" class="google">
                                                     <i class="fa fa-google"></i>
                                                     <i class="fa fa-google"></i>
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href="#" class="rss">
-                                                    <i class="fa fa-rss"></i>
-                                                    <i class="fa fa-rss"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="envelope">
-                                                    <i class="fa fa-envelope"></i>
-                                                    <i class="fa fa-envelope"></i>
-                                                </a>
-                                            </li>
+                                            {{--<li>--}}
+                                                {{--<a href="#" class="pinterest">--}}
+                                                    {{--<i class="fa fa-pinterest"></i>--}}
+                                                    {{--<i class="fa fa-pinterest"></i>--}}
+                                                {{--</a>--}}
+                                            {{--</li>--}}
+                                            {{--<li>--}}
+                                                {{--<a href="#" class="rss">--}}
+                                                    {{--<i class="fa fa-rss"></i>--}}
+                                                    {{--<i class="fa fa-rss"></i>--}}
+                                                {{--</a>--}}
+                                            {{--</li>--}}
+                                            {{--<li>--}}
+                                                {{--<a href="#" class="envelope">--}}
+                                                    {{--<i class="fa fa-envelope"></i>--}}
+                                                    {{--<i class="fa fa-envelope"></i>--}}
+                                                {{--</a>--}}
+                                            {{--</li>--}}
                                         </ul>
                                     </div>
                                 </div>
@@ -184,6 +189,9 @@
 
 @section('after_script')
     <script type='text/javascript'>
+        function share_fb(url) {
+            window.open('https://www.facebook.com/sharer/sharer.php?u='+url,'facebook-share-dialog',"width=626, height=436")
+        }
         $(document).ready(function () {
         });
     </script>

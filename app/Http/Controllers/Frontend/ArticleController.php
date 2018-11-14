@@ -69,7 +69,6 @@ class ArticleController extends Controller
                                         ->where(['status' => 1, 'article_category_id' => 1, 'is_deleted' => 0])
                                         ->limit(2)
                                         ->get();
-        $this->data['articles'] = $articles;
         $this->data['ishots'] = $ishots;
         $this->data['articles'] = $articles;
         $this->data['iscommons'] = $iscommons;

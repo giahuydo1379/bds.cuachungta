@@ -2,7 +2,8 @@
     <?php
     $params = request()->all();
     if (isset($params['page'])) unset($params['page']);
-    $params = '&'.http_build_query($params);
+    $params = http_build_query($params);
+    if ($params) $params = '&'.$params;
     ?>
     <div class="pagination">
             {{-- Previous Page Link --}}

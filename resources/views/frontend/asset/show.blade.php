@@ -1,13 +1,32 @@
 @extends('layouts.frontend')
-@section('title') Trang chủ @stop
+<?php
+$types_titles = \App\Helpers\General::get_assets_types_titles();
+$breadcrumb = [['link' => \App\Helpers\Block::get_link_asset_category(['type'=>$object['type']]), 'name' => $types_titles[$object['type']]]];
+if ($object['asset_category_name']) {
+    $breadcrumb[] = ['link' => '#', 'name' => $object['asset_category_name']];
+}
+?>
+@section('title') {{$object['name']}} @stop
+
+@section('og_title'){{ $object['name'] }}@stop
+@section('og_description'){{ $object['description'] }}@stop
+@section('og_image'){!! $object['image_url'] . $object['image'] !!}@stop
+@section('og_url')<?php echo URL::current(); ?>@stop
 
 @section('content')
     <!-- ====== SINGLE PROPERTY PAGE HEADER ====== -->
     <section class="page-header">
         <div class="container">
+            <h1 class="page-header-title">{{$types_titles[$object['type']]}}</h1>
             <ul class="breadcrumb">
-                <li><a href="#">Trang chủ</a></li>
-                <li class="active">Nhà Đất cho thuê</li>
+                <li><a href="/">Trang chủ</a></li>
+                @foreach($breadcrumb as $i => $bc)
+                    @if ($i+1 == count($breadcrumb))
+                        <li class="active">{{$bc['name']}}</li>
+                    @else
+                        <li><a href="{{$bc['link']}}">{{$bc['name']}}</a></li>
+                    @endif
+                @endforeach
             </ul>
         </div>
     </section>
@@ -80,26 +99,62 @@
                                     </ul>
                                 </div>
                             </div>
+                            <div class="widget">
+                                <div class="share-box">
+                                    <h4>Share:</h4>
+                                    <ul class="share-box-list">
+                                        <li>
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo URL::current(); ?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=no,scrollbars=no,height=400,width=600'); return false;" class="facebook">
+                                                <i class="fa fa-facebook"></i>
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="http://twitter.com/share" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=no,scrollbars=no,height=400,width=600'); return false;" class="twitter">
+                                                <i class="fa fa-twitter"></i>
+                                                <i class="fa fa-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="https://plus.google.com/share?url=<?php echo URL::current(); ?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=no,scrollbars=no,height=400,width=600'); return false;" class="google">
+                                                <i class="fa fa-google"></i>
+                                                <i class="fa fa-google"></i>
+                                            </a>
+                                        </li>
+                                        {{--<li>--}}
+                                        {{--<a href="#" class="pinterest">--}}
+                                        {{--<i class="fa fa-pinterest"></i>--}}
+                                        {{--<i class="fa fa-pinterest"></i>--}}
+                                        {{--</a>--}}
+                                        {{--</li>--}}
+                                        {{--<li>--}}
+                                        {{--<a href="#" class="rss">--}}
+                                        {{--<i class="fa fa-rss"></i>--}}
+                                        {{--<i class="fa fa-rss"></i>--}}
+                                        {{--</a>--}}
+                                        {{--</li>--}}
+                                        {{--<li>--}}
+                                        {{--<a href="#" class="envelope">--}}
+                                        {{--<i class="fa fa-envelope"></i>--}}
+                                        {{--<i class="fa fa-envelope"></i>--}}
+                                        {{--</a>--}}
+                                        {{--</li>--}}
+                                    </ul>
+                                </div>
+                            </div>
                             <!-- Facilities Section -->
                         </article>
                         <!-- Property Location / Map -->
+                        @if (isset($object['embed_map']))
                         <div class="property-location widget panel-box">
                             <div class="panel-header">
                                 <h3 class="panel-title">Property Location</h3>
                             </div>
                             <div class="panel-body">
-                                <div id="map" style="width:500px;height:500px;">
-                                    {{-- <div class="mapouter">
-                                        <div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.crocothemes.net">crocothemes.net</a></div>
-                                        <style>.mapouter{text-align:right;height:500px;width:600px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style>
-                                     </div> --}}
-
-                                     {!! $object-> embed_map !!} 
-                               
-
-                                </div>
+                                <div id="map">{!! $object-> embed_map !!}</div>
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
                 <div class="col-md-4">

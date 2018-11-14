@@ -127,6 +127,14 @@ class Asset extends Model
             $query->where('assets.district_id', $params['district']);
         }
 
+        if (isset($params['is_hot'])) {
+            $query->where('assets.is_hot', $params['is_hot']);
+        }
+
+        if (isset($params['type'])) {
+            $query->where('assets.type', $params['type']);
+        }
+
         if (isset($params['cid'])) {
             $query->where('assets.asset_category_id', $params['cid']);
         }

@@ -56,6 +56,22 @@ class General
         return $objects[$type]??[];
     }
 
+    public static function get_assets_prices($re_cache=false) {
+        $key = 'AssetFeaturePrices';
+
+        $objects = Cache::get( $key );
+
+        if ($re_cache || !$objects) {
+            $feature_price = self::get_settings('feature_price_id');
+
+            $objects = \App\Models\AssetFeatureVariant::getVariantsOptions($feature_price['value']??0);
+
+            Cache::forever($key, $objects);
+        }
+
+        return $objects??[];
+    }
+
     public static function get_scripts_include($type='body', $re_cache=false) {
         $key = 'ScriptInclude:All';
 
@@ -92,6 +108,15 @@ class General
         }
 
         return url($tmp ? $tmp : '/');
+    }
+
+    public static function get_assets_types_titles()
+    {
+        return [
+            'hot' => 'Tin nổi bật',
+            'lease' => 'Nhà đất cho thuê',
+            'buy' => 'Nhà đất cần thuê',
+        ];
     }
 
     public static function get_limit_options()

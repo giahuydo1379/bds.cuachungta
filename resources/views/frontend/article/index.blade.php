@@ -1,5 +1,5 @@
 @extends('layouts.frontend')
-@section('title') Trang chủ @stop
+@section('title') Tin Tức @stop
 
 @section('content')
     <!-- ====== BLOG ARCHIVE PAGE HEADER ====== -->
@@ -7,7 +7,7 @@
         <div class="container">
             <h1 class="page-header-title">Tin Tức</h1>
             <ul class="breadcrumb">
-                <li><a href="#">Trang chủ</a></li>
+                <li><a href="/">Trang chủ</a></li>
                 <li class="active">Tin tức</li>
             </ul>
         </div>

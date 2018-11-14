@@ -15,6 +15,15 @@ $settings = \App\Helpers\General::get_settings();
     <meta name="viewport" content="initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <meta property="og:title" content="@yield('og_title', config('app.name'))"/>
+    <meta property="og:url" content="@yield('og_url', url()->current())"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="og:image" content="@yield('og_image', asset('uploads/logo.png'))"/>
+    <meta property="og:description" content="@yield('og_description', '')"/>
+    <meta name="keywords" content="@yield('og_keywords', '')"/>
+    <meta name="description" content="@yield('og_description', '')"/>
     <link rel="stylesheet" type="text/css" href="/html/assets/css/style.css?v=<?=$ver_css?>">
     <link rel="stylesheet" type="text/css" href="/css/fe-customs.css?v=<?=$ver_css?>">
 
@@ -36,7 +45,7 @@ $settings = \App\Helpers\General::get_settings();
     <script type="text/javascript" src="/html/assets/js/jquery.daterangepicker.min.js"></script>
     <script type="text/javascript" src="/html/assets/js/slick.min.js"></script>
     <script type="text/javascript" src="/html/assets/js/ion.rangeSlider.min.js"></script>
-    <script type="text/javascript" src="/html/assets/js/apps.min.js"></script>
+    <script type="text/javascript" src="/html/assets/js/apps.min.js?v={{$ver_js}}"></script>
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {

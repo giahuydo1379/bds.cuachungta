@@ -29,6 +29,7 @@ class AssetController extends Controller
 
         $this->data['params'] = $params;
         $this->data['assets'] = $assets;
+        $this->data['type'] = $params['type'];
 
         return view('frontend.asset.index', $this->data);
     }
@@ -44,6 +45,7 @@ class AssetController extends Controller
 
         $this->data['params'] = $params;
         $this->data['assets'] = $assets;
+        $this->data['type'] = $params['type'];
 
         $request->request->add([
             'type' => $params['type'],
@@ -63,6 +65,7 @@ class AssetController extends Controller
 
         $this->data['params'] = $params;
         $this->data['assets'] = $assets;
+        $this->data['type'] = 'hot';
 
         return view('frontend.asset.index', $this->data);
     }

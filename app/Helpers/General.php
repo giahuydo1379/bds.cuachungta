@@ -110,6 +110,15 @@ class General
         return url($tmp ? $tmp : '/');
     }
 
+    public static function get_assets_types_titles()
+    {
+        return [
+            'hot' => 'Tin nổi bật',
+            'lease' => 'Nhà đất cho thuê',
+            'buy' => 'Nhà đất cần thuê',
+        ];
+    }
+
     public static function get_limit_options()
     {
         return [

@@ -1,11 +1,14 @@
 @extends('layouts.frontend')
-@section('title') Trang chủ @stop
+<?php
+$types_titles = \App\Helpers\General::get_assets_types_titles();
+?>
+@section('title') {{$types_titles[$type]}} @stop
 
 @section('content')
     <!-- ====== PROPERTY ARCHIVE PAGE HEADER ====== -->
     <section class="page-header">
         <div class="container">
-            <h1 class="page-header-title">Nhà đất cho thuê</h1>
+            <h1 class="page-header-title">{{$types_titles[$type]}}</h1>
             <ul class="breadcrumb">
                 <li><a href="#">Trang chủ</a></li>
                 <li class="active">Nhà đất cho thuê</li>

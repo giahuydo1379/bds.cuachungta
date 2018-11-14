@@ -2,18 +2,25 @@
 <?php
 $params = request()->all();
 $ac = \App\Helpers\General::get_controller_action();
-//dd($ac);
+$link_search = '';
+if (isset($ac["as"]) && $ac["as"]=="fe.asset.show") {
+    $link_search = \App\Helpers\Block::get_link_asset_category($object);
+}
+$assets_prices = \App\Helpers\General::get_assets_prices();
 ?>
 <div class="search-tabmenu">
     <!-- Tabmenu Navigation -->
     <ul class="nav nav-tabs" role="tablist">
-        <li class="active"><a href="#for-sale" role="tab" data-toggle="tab"><i class="fi flaticon-sale"></i> Cho Thuê</a></li>
-        <li><a href="#for-rent" role="tab" data-toggle="tab"><i class="fi flaticon-rent"></i> Cần thuê</a></li>
+        <li {!! !isset($params['type']) || $params['type']=='lease'?'class="active"':'' !!}>
+            <a href="#for-sale" role="tab" data-toggle="tab"><i class="fi flaticon-sale"></i> Cho Thuê</a></li>
+        <li {!! @$params['type']=='buy'?'class="active"':'' !!}>
+            <a href="#for-rent" role="tab" data-toggle="tab"><i class="fi flaticon-rent"></i> Cần thuê</a></li>
     </ul>
     <div class="tab-content">
         <!-- Tab Content For Sale -->
-        <div role="tabpanel" class="tab-pane active" id="for-sale">
-            <form action="" id="frm-sale-search" method="get">
+        <div role="tabpanel" class="tab-pane {!! !isset($params['type']) || $params['type']=='lease'?'active':'' !!}" id="for-sale">
+            <form action="{{$link_search}}" id="frm-sale-search" method="get">
+                <input name="type" type="hidden" value="lease">
                 <div class="form-body">
                     <div class="form-group">
                         <label for="sale-location">Thành phố</label>
@@ -29,17 +36,19 @@ $ac = \App\Helpers\General::get_controller_action();
                         </select>
                     </div>
                     <?php
-                    $assets_categories = \App\Helpers\General::get_assets_categories('buy');
+                    $assets_categories = \App\Helpers\General::get_assets_categories('lease');
                     ?>
                     <div class="form-group">
                         <label for="sale-bathroom">Loại nhà</label>
-                        {!! Form::select("cid", ['' => "Chọn Loại Nhà Cho Thuê"]+$assets_categories, @$_GET['cid'],
+                        {!! Form::select("cid", ['' => "Chọn Loại Nhà Cho Thuê"]+$assets_categories, @$params['cid'],
                             ['class' => 'form-control', "data-placeholder" => "Chọn Loại Nhà Cho Thuê"]) !!}
                     </div>
                     <div class="form-group">
                         <label for="sale-range-feet">Diện tích (m2)</label>
                         <div class="range-box">
-                            <input id="sale-range-feet" readonly="">
+                            <input id="sale-range-feet" type="text" data-from="{{@$params['acreage_from']}}" data-to="{{@$params['acreage_to']}}">
+                            <input name="acreage_from" id="acreage_from" type="hidden" value="{{@$params['acreage_from']}}">
+                            <input name="acreage_to" id="acreage_to" type="hidden" value="{{@$params['acreage_to']}}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -63,8 +72,9 @@ $ac = \App\Helpers\General::get_controller_action();
             </form>
         </div>
         <!-- Tab Content For Rent -->
-        <div role="tabpanel" class="tab-pane" id="for-rent">
-            <form action="" id="frm-rent-search" method="get">
+        <div role="tabpanel" class="tab-pane {!! @$params['type']=='buy'?'active':'' !!}" id="for-rent">
+            <form action="{{$link_search}}" id="frm-rent-search" method="get">
+                <input name="type" type="hidden" value="buy">
                 <div class="form-body">
                     <div class="form-group">
                         <label for="sale-location">Thành phố</label>
@@ -81,16 +91,18 @@ $ac = \App\Helpers\General::get_controller_action();
                     </div>
                     <div class="form-group">
                         <?php
-                        $assets_categories = \App\Helpers\General::get_assets_categories('lease');
+                        $assets_categories = \App\Helpers\General::get_assets_categories('buy');
                         ?>
                         <label for="sale-bathroom">Loại nhà</label>
-                        {!! Form::select("cid", ['' => "Chọn Loại Nhà Cần Thuê"]+$assets_categories, @$_GET['cid'],
+                        {!! Form::select("cid", ['' => "Chọn Loại Nhà Cần Thuê"]+$assets_categories, @$params['cid'],
                                         ['class' => 'form-control', "data-placeholder" => "Chọn Loại Nhà Cần Thuê"]) !!}
                     </div>
                     <div class="form-group">
                         <label for="sale-range-feet">Diện tích (m2)</label>
                         <div class="range-box">
-                            <input id="sale-range-feet-1" readonly="">
+                            <input id="sale-range-feet-1" type="text" data-from="{{@$params['acreage_from']}}" data-to="{{@$params['acreage_to']}}">
+                            <input name="acreage_from" id="acreage_from1" type="hidden" value="{{@$params['acreage_from']}}">
+                            <input name="acreage_to" id="acreage_to1" type="hidden" value="{{@$params['acreage_to']}}">
                         </div>
                     </div>
                     <div class="form-group">

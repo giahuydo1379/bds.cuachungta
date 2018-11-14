@@ -34,3 +34,6 @@ span.required:before {
 .property-slider-nav img {
     max-height: 100px !important;
 }
+#map iframe {
+    width: 100% !important;
+}

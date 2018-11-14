@@ -78,9 +78,10 @@ class AssetController extends Controller
         $images = AssetImage::where('assets_images.asset_id', $id)->orderBy('assets_images.id', 'desc')->get();
         $this->data['images'] = $images;
 
-        $this->data['asset_type'] = $object['type'];
-        $this->data['cid'] = $object['asset_category_id'];
-       
+        $request->request->add([
+            'type' => $object['type'],
+            'cid' => $object['asset_category_id'],
+        ]);
 
         return view('frontend.asset.show', $this->data);
     }

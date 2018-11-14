@@ -83,23 +83,16 @@
                             <!-- Facilities Section -->
                         </article>
                         <!-- Property Location / Map -->
+                        @if (isset($object['embed_map']))
                         <div class="property-location widget panel-box">
                             <div class="panel-header">
                                 <h3 class="panel-title">Property Location</h3>
                             </div>
                             <div class="panel-body">
-                                <div id="map" style="width:500px;height:500px;">
-                                    {{-- <div class="mapouter">
-                                        <div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.crocothemes.net">crocothemes.net</a></div>
-                                        <style>.mapouter{text-align:right;height:500px;width:600px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style>
-                                     </div> --}}
-
-                                     {!! $object-> embed_map !!} 
-                               
-
-                                </div>
+                                <div id="map">{!! $object-> embed_map !!}</div>
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
                 <div class="col-md-4">

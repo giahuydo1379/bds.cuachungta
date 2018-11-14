@@ -20,10 +20,10 @@
                             <figure class="post-image"><a href="#"><img src="{{ $articles->image}}" alt=""></a></figure>
                             <div class="post-entries">
                                 <blockquote>
-                                    <p>  {{ $articles->description }}</p>
+                                    <p>  {!! $articles->description !!}</p>
                                     <footer></footer>
                                 </blockquote>
-                                {{ $articles->content }}
+                                {!! $articles->content !!}
                                 <div class="widget">
                                     <div class="share-box">
                                         <h4>Share:</h4>

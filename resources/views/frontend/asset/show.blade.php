@@ -83,7 +83,7 @@ if ($object['asset_category_name']) {
                                 <div class="item-garage"><span class="fi flaticon-garage"></span> 1</div>
                             </div>
                             <div class="property-content">
-                                {{ $object['content'] }}
+                                {!! $object['content'] !!}
                             </div>
                             <hr>
                             <div class="row">

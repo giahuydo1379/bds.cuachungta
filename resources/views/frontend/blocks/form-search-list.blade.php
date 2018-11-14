@@ -23,14 +23,15 @@ $assets_prices = \App\Helpers\General::get_assets_prices();
                 <div class="form-body">
                     <div class="form-group">
                         <label for="sale-location">Thành phố</label>
-                        <select name="province" class="form-control province_has_asset change" id="sale-location"
+                        <select name="province" class="form-control province_has_asset change" id="sale-location" data-id="{{@$params['province']}}"
                                 data-destination="#frm-sale-search .district" data-placeholder="Chọn Tỉnh / Thành Phố">
                             <option>Chọn Tỉnh / Thành Phố</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="sale-type">Quận/huyện</label>
-                        <select name="district" class="form-control district" id="sale-location" data-placeholder="Chọn Quận Huyện">
+                        <select name="district" class="form-control district" data-id="{{@$params['district']}}"
+                                id="sale-location" data-placeholder="Chọn Quận Huyện">
                             <option>Chọn Quận Huyện</option>
                         </select>
                     </div>
@@ -52,17 +53,8 @@ $assets_prices = \App\Helpers\General::get_assets_prices();
                     </div>
                     <div class="form-group">
                         <label for="sale-range-price">Giá</label>
-                        <select class="form-control" id="sale-price">
-                            <option>Chọn Giá</option>
-                            <option>Thỏa thuận</option>
-                            <option> > 1 triệu</option>
-                            <option>1 - 3 triệu</option>
-                            <option>3 - 5 triệu</option>
-                            <option>5 - 10 triệu</option>
-                            <option>10 - 40 triệu</option>
-                            <option>40 - 70 triệu</option>
-                            <option>70 - 100 triệu</option>
-                        </select>
+                        {!! Form::select("price", ['' => 'Chọn Giá']+$assets_prices, @$params['price'],
+                            ['class' => 'form-control', "data-placeholder" => "Chọn Giá"]) !!}
                     </div>
                     <div class="form-group">
                         <button class="btn btn-primary btn-submit" type="submit"><i class="fa fa-search"></i> Tìm kiếm</button>
@@ -80,14 +72,15 @@ $assets_prices = \App\Helpers\General::get_assets_prices();
                 <div class="form-body">
                     <div class="form-group">
                         <label for="sale-location">Thành phố</label>
-                        <select class="form-control province_has_asset change" id="rent-location"
+                        <select class="form-control province_has_asset change" name="province" id="rent-location" data-asset="1" data-id="{{@$params['province']}}"
                                 data-destination="#frm-rent-search .district" data-placeholder="Chọn Tỉnh / Thành Phố">
                             <option>Chọn Thành Phố</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="sale-type">Quận/huyện</label>
-                        <select class="form-control district" id="rent-location" data-placeholder="Chọn Quận Huyện">
+                        <select class="form-control district" id="rent-location" name="district" data-id="{{@$params['district']}}"
+                                data-placeholder="Chọn Quận Huyện">
                             <option>Chọn Quận Huyện</option>
                         </select>
                     </div>
@@ -109,17 +102,8 @@ $assets_prices = \App\Helpers\General::get_assets_prices();
                     </div>
                     <div class="form-group">
                         <label for="sale-range-price">Giá</label>
-                        <select class="form-control" id="sale-price">
-                            <option>Chọn Giá</option>
-                            <option>Thỏa thuận</option>
-                            <option> > 1 triệu</option>
-                            <option>1 - 3 triệu</option>
-                            <option>3 - 5 triệu</option>
-                            <option>5 - 10 triệu</option>
-                            <option>10 - 40 triệu</option>
-                            <option>40 - 70 triệu</option>
-                            <option>70 - 100 triệu</option>
-                        </select>
+                        {!! Form::select("price", ['' => 'Chọn Giá']+$assets_prices, @$params['price'],
+                            ['class' => 'form-control', "data-placeholder" => "Chọn Giá"]) !!}
                     </div>
                     <div class="form-group">
                         <button class="btn btn-primary btn-submit" type="submit"><i class="fa fa-search"></i> Tìm kiếm</button>

@@ -210,8 +210,8 @@ class Asset extends Model
     public function getOptionsType()
     {
         return array(
-            'buy' => 'Cho thuê',
-            'lease' => 'Cần thuê',
+            'lease' => 'Cho thuê',
+            'buy' => 'Cần thuê',
         );
     }
 

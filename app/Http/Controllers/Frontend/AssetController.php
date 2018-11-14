@@ -91,6 +91,8 @@ class AssetController extends Controller
         $request->request->add([
             'type' => $object['type'],
             'cid' => $object['asset_category_id'],
+            'province' => $object['province_id'],
+            'district' => $object['district_id'],
         ]);
 
         return view('frontend.asset.show', $this->data);

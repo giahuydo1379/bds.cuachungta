@@ -1,5 +1,5 @@
 @extends('layouts.frontend')
-@section('title') Trang chủ @stop
+@section('title') {!! $articles->name !!} @stop
 
 @section('content')
     <!-- ====== SINGLE POST / BLOG CONTENT ====== -->
@@ -14,7 +14,6 @@
                             <h2 class="post-title"><a href="#">{!! $articles->name!!}</a></h2>
                             <figure class="post-image"><a href="#"><img src="{{ $articles->image}}" alt=""></a></figure>
                             <div class="post-entries">
-                             
                                 <blockquote>
                                     <p>  {!! $articles->description !!}</p>
                                     <footer></footer>

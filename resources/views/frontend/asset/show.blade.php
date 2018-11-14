@@ -1,13 +1,27 @@
 @extends('layouts.frontend')
-@section('title') Trang chủ @stop
+<?php
+$types_titles = \App\Helpers\General::get_assets_types_titles();
+$breadcrumb = [['link' => \App\Helpers\Block::get_link_asset_category(['type'=>$object['type']]), 'name' => $types_titles[$object['type']]]];
+if ($object['asset_category_name']) {
+    $breadcrumb[] = ['link' => '#', 'name' => $object['asset_category_name']];
+}
+?>
+@section('title') {{$object['name']}} @stop
 
 @section('content')
     <!-- ====== SINGLE PROPERTY PAGE HEADER ====== -->
     <section class="page-header">
         <div class="container">
+            <h1 class="page-header-title">{{$types_titles[$object['type']]}}</h1>
             <ul class="breadcrumb">
-                <li><a href="#">Trang chủ</a></li>
-                <li class="active">Nhà Đất cho thuê</li>
+                <li><a href="/">Trang chủ</a></li>
+                @foreach($breadcrumb as $i => $bc)
+                    @if ($i+1 == count($breadcrumb))
+                        <li class="active">{{$bc['name']}}</li>
+                    @else
+                        <li><a href="{{$bc['link']}}">{{$bc['name']}}</a></li>
+                    @endif
+                @endforeach
             </ul>
         </div>
     </section>

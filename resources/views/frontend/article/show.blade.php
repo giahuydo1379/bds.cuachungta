@@ -1,5 +1,6 @@
 @extends('layouts.frontend')
-@section('title') Trang chủ @stop
+
+@section('title') {!! $articles->name !!} @stop
 
 @section('content')
     <!-- ====== SINGLE POST / BLOG CONTENT ====== -->

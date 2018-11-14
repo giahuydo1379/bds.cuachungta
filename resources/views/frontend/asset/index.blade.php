@@ -1,6 +1,10 @@
 @extends('layouts.frontend')
 <?php
 $types_titles = \App\Helpers\General::get_assets_types_titles();
+$breadcrumb = [['link' => '#', 'name' => $types_titles[$type]]];
+if ($type=='hot') {
+    if (isset($params['type'])) $breadcrumb[] = ['link' => '#', 'name' => $types_titles[$params['type']]];
+}
 ?>
 @section('title') {{$types_titles[$type]}} @stop
 
@@ -10,8 +14,14 @@ $types_titles = \App\Helpers\General::get_assets_types_titles();
         <div class="container">
             <h1 class="page-header-title">{{$types_titles[$type]}}</h1>
             <ul class="breadcrumb">
-                <li><a href="#">Trang chủ</a></li>
-                <li class="active">Nhà đất cho thuê</li>
+                <li><a href="/">Trang chủ</a></li>
+                @foreach($breadcrumb as $i => $bc)
+                    @if ($i+1 == count($breadcrumb))
+                        <li class="active">{{$bc['name']}}</li>
+                    @else
+                        <li><a href="{{$bc['link']}}">{{$bc['name']}}</a></li>
+                    @endif
+                @endforeach
             </ul>
         </div>
     </section>

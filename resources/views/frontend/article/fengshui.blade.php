@@ -1,13 +1,14 @@
 @extends('layouts.frontend')
-@section('title') Trang chủ @stop
+
+@section('title') Phong thuỷ @stop
 
 @section('content')
     <!-- ====== BLOG ARCHIVE PAGE HEADER ====== -->
     <section class="page-header">
         <div class="container">
-            <h1 class="page-header-title">Tin Tức</h1>
+            <h1 class="page-header-title">Phong thuỷ</h1>
             <ul class="breadcrumb">
-                <li><a href="#">Trang chủ</a></li>
+                <li><a href="/">Trang chủ</a></li>
                 <li class="active">Tin tức</li>
             </ul>
         </div>

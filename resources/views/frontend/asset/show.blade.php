@@ -8,6 +8,11 @@ if ($object['asset_category_name']) {
 ?>
 @section('title') {{$object['name']}} @stop
 
+@section('og_title'){{ $object['name'] }}@stop
+@section('og_description'){{ $object['description'] }}@stop
+@section('og_image'){!! $object['image_url'] . $object['image'] !!}@stop
+@section('og_url')<?php echo URL::current(); ?>@stop
+
 @section('content')
     <!-- ====== SINGLE PROPERTY PAGE HEADER ====== -->
     <section class="page-header">
@@ -91,6 +96,49 @@ if ($object['asset_category_name']) {
                                         <li>Phòng khách: <strong>1</strong></li>
                                         <li>Phòng bếp: <strong>1</strong></li>
                                         <li>Toilet: <strong>2</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="widget">
+                                <div class="share-box">
+                                    <h4>Share:</h4>
+                                    <ul class="share-box-list">
+                                        <li>
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo URL::current(); ?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=no,scrollbars=no,height=400,width=600'); return false;" class="facebook">
+                                                <i class="fa fa-facebook"></i>
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="http://twitter.com/share" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=no,scrollbars=no,height=400,width=600'); return false;" class="twitter">
+                                                <i class="fa fa-twitter"></i>
+                                                <i class="fa fa-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="https://plus.google.com/share?url=<?php echo URL::current(); ?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=no,scrollbars=no,height=400,width=600'); return false;" class="google">
+                                                <i class="fa fa-google"></i>
+                                                <i class="fa fa-google"></i>
+                                            </a>
+                                        </li>
+                                        {{--<li>--}}
+                                        {{--<a href="#" class="pinterest">--}}
+                                        {{--<i class="fa fa-pinterest"></i>--}}
+                                        {{--<i class="fa fa-pinterest"></i>--}}
+                                        {{--</a>--}}
+                                        {{--</li>--}}
+                                        {{--<li>--}}
+                                        {{--<a href="#" class="rss">--}}
+                                        {{--<i class="fa fa-rss"></i>--}}
+                                        {{--<i class="fa fa-rss"></i>--}}
+                                        {{--</a>--}}
+                                        {{--</li>--}}
+                                        {{--<li>--}}
+                                        {{--<a href="#" class="envelope">--}}
+                                        {{--<i class="fa fa-envelope"></i>--}}
+                                        {{--<i class="fa fa-envelope"></i>--}}
+                                        {{--</a>--}}
+                                        {{--</li>--}}
                                     </ul>
                                 </div>
                             </div>

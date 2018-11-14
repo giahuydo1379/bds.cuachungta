@@ -6,11 +6,11 @@ if ($object['asset_category_name']) {
     $breadcrumb[] = ['link' => '#', 'name' => $object['asset_category_name']];
 }
 ?>
-@section('title') {!! $object['name'] !!} @stop
+@section('title') {{ $object['name'] }} @stop
 
-@section('og_title'){!! $object['name'] !!}@stop
-@section('og_description'){!! $object['description'] !!}@stop
-@section('og_image'){!! $object['image_url'] . $object['image'] !!}@stop
+@section('og_title'){{ $object['name'] }}@stop
+@section('og_description'){{ strip_tags($object['description']) }}@stop
+@section('og_image'){{ $object['image_url'] . $object['image'] }}@stop
 @section('og_url')<?php echo URL::current(); ?>@stop
 
 @section('content')
@@ -83,7 +83,7 @@ if ($object['asset_category_name']) {
                                 <div class="item-garage"><span class="fi flaticon-garage"></span> 1</div>
                             </div>
                             <div class="property-content">
-                                {!! $object['content'] !!}
+                                {{ $object['content'] }}
                             </div>
                             <hr>
                             <div class="row">
@@ -151,7 +151,7 @@ if ($object['asset_category_name']) {
                                 <h3 class="panel-title">Property Location</h3>
                             </div>
                             <div class="panel-body">
-                                <div id="map">{!! $object-> embed_map !!}</div>
+                                <div id="map">{{ $object-> embed_map }}</div>
                             </div>
                         </div>
                         @endif

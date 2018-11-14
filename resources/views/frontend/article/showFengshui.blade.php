@@ -1,9 +1,9 @@
 @extends('layouts.frontend')
-@section('title') {!! $articles->name !!} @stop
+@section('title') {{ $articles->name }} @stop
 
-@section('og_title'){!! $articles->name !!}@stop
-@section('og_description'){!! $articles->description !!}@stop
-@section('og_image'){!! $articles->image_url . $articles->image !!}@stop
+@section('og_title'){{ $articles->name }}@stop
+@section('og_description'){{strip_tags($articles->description) }}@stop
+@section('og_image'){{ $articles->image_url . $articles->image }}@stop
 @section('og_url')<?php echo URL::current(); ?>@stop
 
 @section('content')
@@ -16,14 +16,14 @@
                     <div id="content">
                         <!-- Post Entries-->
                         <article class="post">
-                            <h2 class="post-title"><a href="#">{!! $articles->name!!}</a></h2>
+                            <h2 class="post-title"><a href="#">{{ $articles->name}}</a></h2>
                             <figure class="post-image"><a href="#"><img src="{{ $articles->image}}" alt=""></a></figure>
                             <div class="post-entries">
                                 <blockquote>
-                                    <p>  {!! $articles->description !!}</p>
+                                    <p>  {{ $articles->description }}</p>
                                     <footer></footer>
                                 </blockquote>
-                                {!! $articles->content !!}
+                                {{ $articles->content }}
                                 <div class="widget">
                                     <div class="share-box">
                                         <h4>Share:</h4>
@@ -138,8 +138,8 @@
                                     <ul>
                                         @foreach($ishots as $ishot)
                                             <li>
-                                                <a href="{{ url('phong-thuy/' .$ishot->path()) }}">{!! $ishot->name !!}</a>
-                                                <span class="post-date">{!! $ishot->updated_at !!}</span>
+                                                <a href="{{ url('phong-thuy/' .$ishot->path()) }}">{{ $ishot->name }}</a>
+                                                <span class="post-date">{{ $ishot->updated_at }}</span>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -165,8 +165,8 @@
                                                             style="background: url({{ $iscommon->image }}) center center no-repeat; padding-bottom: 100%; height: 0;"
                                                             src="{{ $iscommon->image }}" alt="#"></div>
                                                 <div class="post-content">
-                                                    <span class="post-date">{!! $iscommon->updated_at !!}</span>
-                                                    <a href="{{ url('phong-thuy/' .$iscommon->path()) }}" class="post-title">{!! $iscommon->name !!}</a>
+                                                    <span class="post-date">{{ $iscommon->updated_at }}</span>
+                                                    <a href="{{ url('phong-thuy/' .$iscommon->path()) }}" class="post-title">{{ $iscommon->name }}</a>
                                                 </div>
                                             </li>
                                             <!-- Post List Item -->

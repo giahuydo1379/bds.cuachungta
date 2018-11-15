@@ -31,13 +31,27 @@ class IndexController extends Controller
             ->take(4)
             ->get();
 
-     
-                    
         $this->data['articles'] = $articles;
         $this->data['fengshuis'] = $fengshuis;
-                    
-        
+
         return view('frontend.index', $this->data);
+    }
+
+    public function index_v2(Request $request)
+    {
+        $articles =  Article::where(['status'=>1, 'is_deleted'=>0, 'article_category_id' => 1])
+            ->orderBy('id', 'desc')
+            ->take(4)
+            ->get();
+        $fengshuis =  Article::where(['status'=>1, 'is_deleted'=>0, 'article_category_id' => 2])
+            ->orderBy('id', 'desc')
+            ->take(4)
+            ->get();
+
+        $this->data['articles'] = $articles;
+        $this->data['fengshuis'] = $fengshuis;
+
+        return view('frontend.index-v2', $this->data);
     }
 
     public function about(Request $request)

@@ -110,6 +110,17 @@ class General
         return url($tmp ? $tmp : '/');
     }
 
+    public static function get_assets_sort_options()
+    {
+        return [
+            'latest' => 'Tin mới nhất',
+            'price-asc' => 'Giá thấp đến cao',
+            'price-desc' => 'Giá cao đến thấp',
+            'acreage-asc' => 'Diện tích nhỏ đến lớn',
+            'acreage-desc' => 'Diện tích lớn đến nhỏ',
+        ];
+    }
+
     public static function get_assets_types_titles()
     {
         return [

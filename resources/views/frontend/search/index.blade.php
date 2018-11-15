@@ -23,14 +23,11 @@
                         <form action="#" class="form-inline pull-right">
                             <div class="form-group">
                                 <label>Sắp xếp:</label>
-                                <select class="form-control">
-                                    <option value="1">Tin mới nhất</option>
-                                    <option value="2">Giá thấp</option>
-                                    <option value="3">Giá cao</option>
-                                    <option value="4">Phổ biến</option>
-                                    <option value="5">Diện tích lớn nhất</option>
-                                    <option value="6">Diện tích nhỏ nhất</option>
-                                </select>
+                                <?php
+                                $sorts = \App\Helpers\General::get_assets_sort_options();
+                                ?>
+                                {!! Form::select("sort", ['' => 'Sắp xếp theo']+$sorts, @$_GET['sort'],
+                                    ['class' => 'form-control sorting', "data-placeholder" => "Sắp xếp theo"]) !!}
                             </div>
                         </form>
                     </div>

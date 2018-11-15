@@ -13,6 +13,13 @@ $(document).ready(function() {
     }
 
     $('img.img-user').on('error', function() { img_user_default(this); });
+
+    $('.sorting').on('change', function () {
+        var key = $(this).attr('name') || 'sort';
+        var value = $(this).val();
+        var url = updateUrlParameter(key, value);
+        location.href = url;
+    });
 });
 function init_fm_number(element) {
     $(element).on('keyup', function(event) {

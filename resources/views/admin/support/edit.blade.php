@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label" for="form-field-1">
-                                        Tên <span class="required"></span>
+                                        Email <span class="required"></span>
                                     </label>
                                     <div class="col-sm-8">
                                         {!! Form::text("email", $object['email'], ['class' => 'form-control']) !!}

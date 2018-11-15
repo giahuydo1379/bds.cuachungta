@@ -27,7 +27,12 @@ class AssetCategory extends Model
                 $query->where('asset_categories.name', 'LIKE', '%' . $keyword . '%');
             });
         }
-
+        if (isset($filter['type'])) {
+            $sql->where('asset_categories.type', $filter['type']);
+        }
+        if (isset($filter['status'])) {
+            $sql->where('asset_categories.status', $filter['status']);
+        }
         $total = $sql->count();
 
         $data = $sql->skip($filter['offset'])
@@ -81,6 +86,18 @@ class AssetCategory extends Model
 
         return  array();
     }
+
+    public static function getTypeAssetCategory()
+    {
+        $data = Asset::pluck('type', 'id');
+
+        if (!empty($data)) {
+            return $data->toArray();
+        }
+
+        return  array();
+    }
+
 
     public static function getStatusFilter()
     {

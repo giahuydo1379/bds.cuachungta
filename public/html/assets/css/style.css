@@ -16180,7 +16180,9 @@ TABLE OF CONTENTS:
       display: inline-block; }
     #footer .copyright a {
       color: #fff;
-      float: right; }
+      float: right;
+      text-transform: none;
+      }
     @media (max-width: 767px) {
       #footer .copyright {
         text-align: center; }

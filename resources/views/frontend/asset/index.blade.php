@@ -54,26 +54,7 @@ if ($type=='hot') {
                         </div>
                         <!-- widget section Contact Our Agent -->
                         <div class="widget">
-                            <!-- Panel Box -->
-                            <div class="panel-box">
-                                <!-- Panel Header / Title -->
-                                <div class="panel-header">
-                                    <h3 class="panel-title">Liên hệ</h3>
-                                </div>
-                                <!-- Panel Body -->
-                                <div class="panel-body">
-                                    <div class="profile-box">
-                                        <div class="profile-header">
-                                            <div class="profile-img"><img src="/html/assets/images/img_author_default.jpg" alt="Vinh Lâm"></div>
-                                            <h5 class="profile-title">Vinh Lâm</h5>
-                                        </div>
-                                        <ul class="profile-contact">
-                                            <li><i class="fa fa-envelope"></i> <a href="#">vinhlam@gmail.com</a></li>
-                                            <li><i class="fa fa-phone"></i> <a href="#">0973173939</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                            <?=\App\Helpers\Block::show_contact_item();?>
                         </div>
                         <!-- widget section Recent Property-->
                         <div class="widget">

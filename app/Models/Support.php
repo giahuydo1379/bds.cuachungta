@@ -13,7 +13,7 @@ class Support extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['name', 'department', 'phone', 'account', 'type', 'created_at', 'updated_at', 'is_deleted', 'image_location', 'image_url'];
+    protected $fillable = ['name', 'department', 'email', 'phone', 'account', 'type', 'created_at', 'updated_at', 'is_deleted', 'image_location', 'image_url'];
 
 //    protected $hidden = ['deleted_at', 'is_deleted'];
 
@@ -37,5 +37,15 @@ class Support extends Model
             ->toArray();
 
         return ['total' => $total, 'data' => $data];
+    }
+
+    public static function getContact()
+    {
+        $sql = self::select('supports.*');
+        $sql->where('supports.is_deleted', 0);
+        $data = $sql->orderBy('updated_at', 'DESC')
+            ->first()
+            ->toArray();
+        return  $data;
     }
 }

@@ -96,6 +96,13 @@ class Block
         return view('frontend.blocks.property-item', ['item' => $item]);
     }
 
+    public static function show_contact_item()
+    {
+        $item = \App\Models\Support::getContact();
+
+        return view('frontend.blocks.contact', ['item' => $item]);
+    }
+
     public static function get_link_article($item=null)
     {
         if (!$item) {

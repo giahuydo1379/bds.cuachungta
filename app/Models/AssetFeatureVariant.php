@@ -38,7 +38,7 @@ class AssetFeatureVariant extends Model
         }
 
         if (isset($filter['assetFeature'])) {
-            $sql->where('asset_features.name', $filter['assetFeature']);
+            $sql->where('asset_features_variants.feature_id', $filter['assetFeature']);
         }
 
         $total = $sql->count();

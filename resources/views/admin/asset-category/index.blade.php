@@ -58,6 +58,12 @@
                                             'class' => 'custom_filter',
                                             'data-placeholder' => '--- Trạng thái ---']) !!}
                                     </div>
+                                <div class="col-sm-3">
+                                    {!! Form::select("type", $type, null,
+                                              ['id' => 'type', 'class' => 'custom_filter',
+
+                                              'data-placeholder' => 'Chọn loại hình']) !!}
+                                </div>
         
                                     <div class="col-sm-1">
                                         <button id="reset-page" class="btn btn-default" type="button" name="refresh" title="Reset">Làm lại</button>
@@ -152,6 +158,7 @@
 
         function queryParams(params) {
             params.status = $('#status_filter').val();
+            params.type = $('#type').val();
             return params;
         }
 

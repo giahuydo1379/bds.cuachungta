@@ -55,7 +55,7 @@ $settings = \App\Helpers\General::get_settings();
     </script>
 
     <script type="text/javascript" src="/js/numeral.min.js"></script>
-    <script type="text/javascript" src="/js/function.js"></script>
+    <script type="text/javascript" src="/js/function.js?v={{$ver_js}}"></script>
 
     @yield('after_scripts')
 

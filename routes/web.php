@@ -19,6 +19,7 @@
 
 // Trang chủ
 Route::get('/', ['as' => 'fe.home', 'uses' => 'Frontend\IndexController@index']);
+Route::get('/v2', ['as' => 'fe.home-v2', 'uses' => 'Frontend\IndexController@index_v2']);
 Route::get('/tim-kiem', ['as' => 'fe.search.index', 'uses' => 'Frontend\SearchController@index']);
 Route::get('/tin-noi-bat', ['as' => 'fe.asset.hot', 'uses' => 'Frontend\AssetController@hot']);
 Route::get('/nha-dat-cho-thue', ['as' => 'fe.asset.lease', 'uses' => 'Frontend\AssetController@index']);

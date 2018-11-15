@@ -79,9 +79,10 @@ if ($object['asset_category_name']) {
                             <!-- Property facility Detail -->
                             <div class="property-footer">
                                 <div class="item-wide"><span class="fi flaticon-wide"></span>{{$object['acreage']}}</div>
-                                <div class="item-room"><span class="fi flaticon-room"></span> 4</div>
-                                <div class="item-bathroom"><span class="fi flaticon-bathroom"></span> 3</div>
-                                <div class="item-garage"><span class="fi flaticon-garage"></span> 1</div>
+                            @foreach($asset_features_values as $v)
+                                <?php if (empty($v['class_icon'])) continue; ?>
+                                <div class="item-room"><span class="{{$v['class_icon']}}"></span> {{$v['variant_name']}}</div>
+                            @endforeach
                             </div>
                             <div class="property-content">
                                 {!! $object['content'] !!}
@@ -93,10 +94,10 @@ if ($object['asset_category_name']) {
                                 </div>
                                 <div class="col-md-9 col-sm-9">
                                     <ul class="feature-list">
-                                        <li>Phòng ngủ: <strong>2</strong></li>
-                                        <li>Phòng khách: <strong>1</strong></li>
-                                        <li>Phòng bếp: <strong>1</strong></li>
-                                        <li>Toilet: <strong>2</strong></li>
+                                        @foreach($asset_features_values as $v)
+                                            <?php if (empty($v['is_show_detail'])) continue; ?>
+                                            <li>{{$v['asset_feature_name']}}: <strong>{{$v['variant_name']}}</strong></li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>

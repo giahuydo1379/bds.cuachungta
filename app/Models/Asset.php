@@ -183,6 +183,10 @@ class Asset extends Model
 
         if (isset($params['sort'])) {
             switch ($params['sort']) {
+                case 'latest':
+                    $query->orderByRaw('ISNULL(assets.date_public), assets.date_public desc');
+                    $query->orderBy('assets.position', $params['order']??'asc');
+                    break;
                 case 'price-asc':
                 case 'price-desc':
                     $feature_price = \App\Helpers\General::get_settings('feature_price_id');
@@ -200,6 +204,24 @@ class Asset extends Model
                     });
 
                     $query->orderByRaw('ISNULL(asset_features_variants.position), asset_features_variants.position '.($params['sort']=='price-asc'?'asc':'desc'));
+                    break;
+                case 'acreage-asc':
+                case 'acreage-desc':
+                    $feature_acreage = \App\Helpers\General::get_settings('feature_acreage_id');
+                    $feature_acreage = $feature_acreage['value']??0;
+
+                    $query->leftJoin('asset_features_values', function($join) use ($feature_acreage)
+                    {
+                        $join->on('asset_features_values.asset_id', '=', 'assets.id')
+                            ->where('asset_features_values.feature_id', '=', $feature_acreage);
+                    });
+                    $query->leftJoin('asset_features_variants', function($join) use ($feature_acreage)
+                    {
+                        $join->on('asset_features_variants.id', '=', 'asset_features_values.variant_id')
+                            ->where('asset_features_variants.feature_id', '=', $feature_acreage);
+                    });
+
+                    $query->orderByRaw('ISNULL(asset_features_variants.position), asset_features_variants.position '.($params['sort']=='acreage-asc'?'asc':'desc'));
                     break;
                 default:
                     $query->orderBy('assets.position', $params['order']??'asc');

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\ArticleImage;
 use App\Models\Asset;
+use App\Models\AssetFeatureValue;
 use App\Models\AssetImage;
 use App\Models\Manufacturer;
 use App\Models\Product;
@@ -87,6 +88,16 @@ class AssetController extends Controller
 
         $images = AssetImage::where('assets_images.asset_id', $id)->orderBy('assets_images.id', 'desc')->get();
         $this->data['images'] = $images;
+
+        $asset_features_values = AssetFeatureValue::select([
+            'asset_features_values.*', 'asset_features.name as asset_feature_name', 'asset_features.class_icon', 'asset_features.is_show_detail',
+            'asset_features_variants.name as variant_name'
+        ])
+            ->where('asset_id', $id)
+            ->leftJoin('asset_features', 'asset_features.id', '=', 'asset_features_values.feature_id')
+            ->leftJoin('asset_features_variants', 'asset_features_variants.id', '=', 'asset_features_values.variant_id')
+            ->get()->toArray();
+        $this->data['asset_features_values'] = $asset_features_values;
 
         $request->request->add([
             'type' => $object['type'],

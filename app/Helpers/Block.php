@@ -103,6 +103,12 @@ class Block
         return view('frontend.blocks.contact', ['item' => $item]);
     }
 
+    public static function slider()
+    {
+        $item = \App\Models\SlideShow::getSlideShows();
+        return view('frontend.blocks.slider', ['sliders' => $item]);
+    }
+
     public static function get_link_article($item=null)
     {
         if (!$item) {

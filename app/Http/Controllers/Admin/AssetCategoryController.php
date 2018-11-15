@@ -35,6 +35,7 @@ class AssetCategoryController extends Controller
         $isRange = General::isRange();
         $this->_data['isRange'] = $isRange;
         $this->_data['status'] = ['' => ''] + $this->_model->getStatusFilter();
+        $this->_data['type'] = ['' => ''] + $this->_model->getType();
         return view("admin.{$this->_data['controllerName']}.index", $this->_data);
     }
 
@@ -47,6 +48,7 @@ class AssetCategoryController extends Controller
             'order' => $request->input('order', 'asc'),
             'search' => $request->input('search', ''),
             'status' => $request->input('status', 1),
+            'type' => $request->input('type', ''),
         ];
 
         $data = $this->_model->getListAll($filter);

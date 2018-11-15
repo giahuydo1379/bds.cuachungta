@@ -39,6 +39,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label" for="form-field-1">
+                                        Email <span class="required"></span>
+                                    </label>
+                                    <div class="col-sm-7">
+                                        {!! Form::text("email", null, ['class' => 'form-control']) !!}
+                                        <label id="email-error" class="error" for="email">{!! $errors->first("email") !!}</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label" for="form-field-1">
                                         Bộ phận <span class="required"></span>
                                     </label>
                                     <div class="col-sm-7">
@@ -163,12 +172,15 @@
             $('#frm-add').validate({
                 ignore: ".ignore",
                 rules: {
-//                    name: "required",
-//                    address: "required",
+                   name: "required",
+                   email: {
+                       required: true,
+                       email: true
+                   },
                 },
                 messages: {
-                    {{--name: "Vui lòng nhập tên {{ $title }}",--}}
-                    {{--address: "Vui lòng nhập địa chỉ",--}}
+                    name: "Vui lòng nhập tên {{ $title }}",
+                    email: "Vui lòng nhập địa chỉ email",
                 },
                 submitHandler: function(form) {
                     ajax_loading(true);

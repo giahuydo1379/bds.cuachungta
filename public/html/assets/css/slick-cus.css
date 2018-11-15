@@ -61,13 +61,13 @@
 
 
 .main-slider .fa-angle-right {
-    right: 12%;
+    right: 1%;
     padding-top: 4px;
     padding-left: 3px;
 }
 
 .main-slider .fa-angle-left {
-    left: 12%;
+    left: 1%;
     padding-top: 4px;
     padding-right: 3px;
     z-index: 10;

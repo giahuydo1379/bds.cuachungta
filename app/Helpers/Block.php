@@ -122,6 +122,11 @@ class Block
         return route('fe.article.show', ['slug' => str_slug(@$item['name']), 'id' => @$item['id']]);
     }
 
+    public static function breadcrumb($data=array())
+    {
+        return view('frontend.blocks.breadcrumb', ['breadcrumb' => $data]);
+    }
+
     public static function get_breadcrumb_link($cate_id)
     {
         if (!$cate_id) {

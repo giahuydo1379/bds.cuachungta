@@ -113,10 +113,10 @@
                                     </label>
                                     <div class="col-sm-9">
                                         <label class="radio-inline">
-                                            <input type="radio" name="is_deleted" id="is_deleted1" value="0" <?=$object['is_deleted']=='0'?'checked':''?>> Hiển thị
+                                            <input type="radio" name="status" id="status1" value="0" <?=$object['status']=='0'?'checked':''?>> Hiển thị
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="is_deleted" id="is_deleted2" value="1" <?=$object['is_deleted']=='1'?'checked':''?>> Không hiển thị
+                                            <input type="radio" name="status" id="status2" value="1" <?=$object['status']=='1'?'checked':''?>> Không hiển thị
                                         </label>
                                     </div>
                                 </div>

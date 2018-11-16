@@ -352,7 +352,7 @@ $action_title = isset($object['id']) ? 'Cập nhật' : 'Thêm mới';
                                         </label>
                                         <div class="col-sm-10">
                                             {!! Form::textarea("description", @$object['description'],
-                                            ['id'=>'description', 'class' => 'form-control ckeditor', 'cols'=>"20", 'rows'=>"3"]) !!}
+                                            ['id'=>'description', 'class' => 'form-control', 'cols'=>"20", 'rows'=>"4"]) !!}
                                             <label id="description-error" class="error"
                                                    for="description">{!! $errors->first("description") !!}</label>
                                         </div>

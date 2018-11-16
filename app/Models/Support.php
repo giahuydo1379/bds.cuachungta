@@ -20,7 +20,7 @@ class Support extends Model
     public static function getListAll($filter)
     {
         $sql = self::select('supports.*');
-//        $sql->where('supports.is_deleted', 0);
+        $sql->where('supports.is_deleted', 0);
 
         if (!empty($keyword = $filter['search'])) {
             $sql->where(function ($query) use ($keyword) {

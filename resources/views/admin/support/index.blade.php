@@ -137,6 +137,31 @@
             }
         }
 
+        function deleteItems(items, e) {
+            if (e) e.preventDefault();
+            malert('Bạn có thật sự muốn xoá {{$title}} này không?', 'Xác nhận xoá {{$title}}', null, function () {
+                var url = '{{ url("/panel-kht/asset/ajax-delete") }}';
+                var data = {
+                    '_token': '{{ csrf_token() }}',
+                    'ids': items
+                };
+
+                console.log(items);
+                $.post(url, data).done(function(data){
+                    $('#demo-custom-toolbar').bootstrapTable('refresh');
+                    $('#demo-active-row').prop('disabled', true);
+                    $('#demo-inactive-row').prop('disabled', true);
+                    $('#demo-delete-row').prop('disabled', true);
+                    if(data.rs == 1)
+                    {
+                        $('#danger_msg').html(data.msg);
+                        $('#danger_div').show();
+                        $(window).scrollTop(0);
+                    }
+                });
+            });
+        }
+
         $(document).ready(function() {
             @if (session('msg'))
                 notifyMsg('{{ session('msg') }}');

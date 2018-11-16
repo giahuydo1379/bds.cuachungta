@@ -42,6 +42,7 @@ class Support extends Model
     public static function getContact()
     {
         $sql = self::select('supports.*');
+        $sql->where('supports.status', 1);
         $sql->where('supports.is_deleted', 0);
         $data = $sql->orderBy('updated_at', 'DESC')
             ->first()

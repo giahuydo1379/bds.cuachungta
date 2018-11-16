@@ -40,8 +40,16 @@
                         <div id="datatable_button_stack" class="pull-right text-right hidden-xs"></div>
                     </div>
                     <div class="box-body overflow-hidden">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                {!! Form::select('status_filter', $status, '1', [
+                                    'id' => 'status_filter',
+                                    'class' => 'custom_filter',
+                                    'data-placeholder' => '--- Trạng thái ---']) !!}
+                            </div>
+                        </div>
+
                         <div id="table-toolbar">
-                            <a href="<?=route($controllerName.'.create')?>" class="btn btn-success ladda-button" data-style="zoom-in"><span class="ladda-label"><i class="fa fa-plus"></i> Thêm {{ $title }}</span></a>
                         </div>
                         <table id="demo-custom-toolbar" class="table table-bordered table-striped table-hover" cellspacing="0"
                                data-toggle="table"
@@ -65,10 +73,9 @@
                             <tr>
                                 <th data-field="check_id" data-checkbox="true">ID</th>
                                 <th data-field="name" data-sortable="true">Tên</th>
-                                <th data-field="department" data-sortable="true">Bộ phận</th>
-                                <th data-field="account" data-sortable="true">Tài khoản</th>
-                                <th data-field="type" data-sortable="true">Loại tài khoản</th>
-                                <th data-field="phone" data-sortable="true">Điện thoại</th>
+                                <th data-field="email" data-sortable="true">Email</th>
+                                <th data-field="content" data-sortable="true">Nội dung</th>
+                                <th data-field="reply" data-sortable="true">Trả lời</th>
                                 <th data-field="created_at" data-sortable="true">Ngày tạo</th>
                                 <th data-field="status" data-sortable="true" data-formatter="formatStatus">Trạng thái</th>
                                 <th data-field="id" data-align="center" data-formatter="actionColumn">Chức năng</th>
@@ -90,6 +97,9 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
     <!-- Latest compiled and minified Locales -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-vi-VN.min.js"></script>
+    <link rel="stylesheet" href="/html-admin/plugins/chosen/chosen.min.css" rel="stylesheet">
+    <script src="/html-admin/plugins/chosen/chosen.jquery.min.js"></script>
+
 
     <style type="text/css">
         .bootstrap-select {
@@ -122,6 +132,7 @@
         }
 
         function queryParams(params) {
+            params.status = $('#status_filter').val();
             return params;
         }
 
@@ -143,6 +154,11 @@
                     @endif
 
             var $table = $('#demo-custom-toolbar');
+            // select_filter
+            $('.custom_filter').chosen({width:'100%', allow_single_deselect: true});
+            $('.custom_filter').on('change', function(evt, params) {
+                $table.bootstrapTable('refresh');
+            });
 
             $table.on('load-success.bs.table', function () {
                 $('[data-toggle="tooltip"]').tooltip({

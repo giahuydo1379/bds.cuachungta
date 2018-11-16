@@ -21,6 +21,9 @@ Route::group([
     Route::get('support/search', 'SupportController@search')->name('support.search');
     Route::resource('support', 'SupportController');
 
+    Route::get('contact/search', 'ContactController@search')->name('contact.search');
+    Route::resource('contact', 'ContactController');
+
     Route::get('manufacturer/search', 'ManufacturerController@search')->name('manufacturer.search');
     Route::resource('manufacturer', 'ManufacturerController');
 

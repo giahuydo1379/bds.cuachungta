@@ -111,13 +111,12 @@
                             <thead>
                             <tr>
                                 <th data-field="check_id" data-checkbox="true">ID</th>
-                                <th data-field="name" data-sortable="true">Tên nhóm sản phẩm</th>
+                                <th data-field="name" data-sortable="true">Tên sản phẩm</th>
+                                <th data-field="assetCateName" data-sortable="true">Loại sản phẩm</th>
                                 <th data-field="description" data-sortable="true">Mô tả</th>
                                 <th data-field="position" data-sortable="true">Ưu tiên</th>
                                 <th data-field="provincename" data-sortable="true">Tỉnh/Thành </th>
                                 <th data-field="districtname" data-sortable="true">Quận/Huyện</th>
-                                <th data-field="assetCateName" data-sortable="true">Loại hình</th>
-
                                 <th data-field="updated_at" data-sortable="true">Ngày sửa</th>
                                 <th data-field="status" data-sortable="true" data-formatter="formatStatus">Trạng thái</th>
                                 <th data-field="id" data-align="center" data-formatter="actionColumn">Chức năng</th>

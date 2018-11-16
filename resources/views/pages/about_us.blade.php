@@ -26,9 +26,15 @@
     <div class="socials-box" style="background: none; margin-top: 0; margin-bottom: 50px;">
         <div class="container">
             <div class="row">
-                <a href="#" class="btn btn-facebook col-md-4 col-xs-4"><i class="fa fa-facebook"></i></a>
-                <a href="#" class="btn btn-twitter col-md-4 col-xs-4"><i class="fa fa-twitter"></i></a>
-                <a href="#" class="btn btn-google col-md-4 col-xs-4"><i class="fa fa-google-plus"></i></a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo URL::current(); ?>"
+                   onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=no,scrollbars=no,height=400,width=600'); return false;"
+                   class="btn btn-facebook col-md-4 col-xs-4"><i class="fa fa-facebook"></i></a>
+                <a href="http://twitter.com/share"
+                   onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=no,scrollbars=no,height=400,width=600'); return false;"
+                   class="btn btn-twitter col-md-4 col-xs-4"><i class="fa fa-twitter"></i></a>
+                <a href="https://plus.google.com/share?url=<?php echo URL::current(); ?>"
+                   onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=no,scrollbars=no,height=400,width=600'); return false;"
+                   class="btn btn-google col-md-4 col-xs-4"><i class="fa fa-google-plus"></i></a>
             </div>
         </div>
     </div>

@@ -912,6 +912,8 @@ table th[class*="col-"] {
   overflow-x: auto;
   min-height: 0.01%; }
   @media screen and (max-width: 767px) {
+    .page-section .section-header .section-title { font-size: 14px!important; }
+    .list-social { width: 205px; float: none!important; margin: 10px auto 0 auto!important; }
     .table-responsive {
       width: 100%;
       margin-bottom: 17.25px;
@@ -16174,15 +16176,20 @@ TABLE OF CONTENTS:
           opacity: 0.5; }
   #footer .copyright {
     border-top: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 24px 0; }
-    #footer .copyright p, #footer .copyright a { margin-bottom: 0;
+    padding: 10px 0;
+    }
+    #footer .copyright p {
+      margin-bottom: 0;
       text-transform: uppercase;
-      display: inline-block; }
+      display: inline-block;
+      margin-top: 8px;
+      }
     #footer .copyright a {
       color: #fff;
       float: right;
-      text-transform: none;
+      text-transform: none; cursor: pointer;
       }
+       #footer .copyright a:hover { color:#fff; opacity: 0.9;}
     @media (max-width: 767px) {
       #footer .copyright {
         text-align: center; }
@@ -16503,3 +16510,49 @@ body.header-3 .topbar-2 {
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1); } }
+
+
+.list-social {float: right;margin-bottom: 0;list-style: none;padding-left: 0;}
+.list-social li {/* display: inline-block; */float: left;}
+
+.btn-floating {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    width: 37px;
+    height: 37px;
+    padding: 0;
+    background-color: #a6c;
+    border-radius: 50%;
+    -webkit-transition: .3s;
+    transition: .3s;
+    margin: 0 7px;
+    line-height: 37px;
+    text-align: center;
+}
+.btn-fb {
+    background-color: #3B5998;
+}
+.btn-tw {
+    background-color: #6cb7f0;
+}
+.btn-gplus {
+    background-color: #e15f4f;
+}
+.btn-email {
+    background-color: #565d6b;
+}
+
+.property-item .widget:last-child { margin-bottom: 0; }
+
+ @media screen and (max-width: 767px) {
+    .page-section .section-header .section-title {font-size: 18px!important;text-align: left!important;}
+    .page-section .section-header .section-title .btn-more {margin-top: 3px;font-size: 12px;}
+    .section-header:before {
+    left: 24px!important;
+    transform: translateX(0%)!important;
+    -webkit-transform: translateX(0%)!important;
+    -moz-transform: translateX(0%);
+    }
+    #featured-property .property-item .property-header .item-price { font-size: 22px; }
+}

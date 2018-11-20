@@ -115,6 +115,11 @@ $action_title = isset($object['id']) ? 'Cập nhật' : 'Thêm mới';
                                                 Không
                                                 kích hoạt
                                             </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="status" id="status3"
+                                                       value="2" <?= @$object['status'] == '2' ? 'checked' : ''; ?>>
+                                                Đã cho thuê
+                                            </label>
                                         </div>
                                     </div>
 

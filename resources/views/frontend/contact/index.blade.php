@@ -24,17 +24,17 @@
                             <h3 class="panel-title">Liên hệ chúng tôi</h3>
                         </div>
                         <div class="panel-body">
-                            <form action="" method="post">
+                            <form action="{{ route("contact") }}" method="post">
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <input type="text" class="form-control" placeholder="Tên">
+                                        <input name="name" type="text" class="form-control" placeholder="Tên">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <input type="email" class="form-control" placeholder="Email">
+                                        <input name="email" type="email" class="form-control" placeholder="Email">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <textarea name="message" id="messages" cols="30" rows="7" class="form-control" placeholder="Nội dung"></textarea>
+                                    <textarea name="content" id="messages" cols="30" rows="7" class="form-control" placeholder="Nội dung"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" class="btn-submit btn-primary btn" value="Gửi">

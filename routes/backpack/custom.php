@@ -64,6 +64,7 @@ Route::group([
     Route::resource('asset', 'AssetController');
     Route::post('asset/ajax-active', 'AssetController@ajaxActive')->name('asset.ajax_active');
     Route::post('asset/ajax-inactive', 'AssetController@ajaxInactive')->name('asset.ajax_inactive');
+    Route::post('asset/ajax-rented', 'AssetController@ajaxRented')->name('asset.ajax_rented');
     Route::post('asset/ajax-delete', 'AssetController@ajaxDelete')->name('asset.ajax_delete');
 
 

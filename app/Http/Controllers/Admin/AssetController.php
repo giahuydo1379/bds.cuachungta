@@ -370,6 +370,30 @@ class AssetController extends Controller
         ]);
     }
 
+    public function ajaxRented(Request $request)
+    {
+        $ids = $request->all()['ids'];
+
+        if (!empty($ids)) {
+            foreach ($ids as $id) {
+                $object = $this->_model->find($id);
+                $object->status = 2;
+                $object->save();
+            }
+            return response()->json([
+                'rs' => 1,
+                'msg' => 'Chuyển ' . $this->_data['title'] . ' thành đã cho thuê',
+                'act' => 'rented'
+            ]);
+        }
+
+        return response()->json([
+            'rs' => 1,
+            'msg' => 'Kích hoạt ' . $this->_data['title'] . ' không thành công',
+            'act' => 'rented'
+        ]);
+    }
+
     /**
      * Enter description here ...
      * @return Ambigous <\Illuminate\Routing\Redirector, \Illuminate\Http\RedirectResponse>

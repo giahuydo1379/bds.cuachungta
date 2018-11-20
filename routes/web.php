@@ -29,7 +29,7 @@ Route::get('/{slug}-a{id}.html', ['as' => 'fe.asset.show', 'uses' => 'Frontend\A
 
 Route::get('/tin-tuc', ['as' => 'fe.article.index', 'uses' => 'Frontend\ArticleController@index']);
 Route::get('/lien-he', ['as' => 'fe.contact.index', 'uses' => 'Frontend\ContactController@index']);
-Route::post('/lien-he', ['uses' => 'Frontend\ContactController@store']);
+Route::post('/lien-he', ['uses' => 'Frontend\ContactController@store'])->name('contact');
 
 Route::get('/phong-thuy', ['as' => 'fe.article.fengshui', 'uses' => 'Frontend\ArticleController@fengshui']);
 Route::get('tin-tuc/{slug}-n{id}.html', ['as' => 'fe.article.show', 'uses' => 'Frontend\ArticleController@show'])

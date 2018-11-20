@@ -294,6 +294,7 @@ class Asset extends Model
         return array(
             '1' => 'Đang hoạt động',
             '0' => 'Không hoạt động',
+            '2' => 'Đã cho thuê',
         );
     }
 

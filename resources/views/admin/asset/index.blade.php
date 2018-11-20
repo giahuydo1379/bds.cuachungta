@@ -86,6 +86,7 @@
                             <a href="<?=route($controllerName.'.create')?>" class="btn btn-success ladda-button" data-style="zoom-in"><span class="ladda-label"><i class="fa fa-plus"></i> Thêm {{ $title }}</span></a>
                             <button id="demo-active-row" class="btn btn-success" disabled><i class="fa fa-check"></i> Kích hoạt</button>
                             <button id="demo-inactive-row" class="btn btn-warning" disabled><i class="fa fa-times"></i> Ngừng kích hoạt</button>
+                            <button id="demo-rented-row" class="btn btn-mint" disabled><i class="fa fa-handshake-o"></i> Đã cho thuê</button>
                             <button id="demo-delete-row" class="btn btn-danger" disabled><i class="fa fa-trash-o"></i> Xóa</button>
 
                         </div>
@@ -191,12 +192,20 @@
             if(status == '1')
             {
                 $('#demo-active-row').hide();
+                $('#demo-rented-row').show();
+                $('#demo-inactive-row').show();
+            }
+            if(status == '2')
+            {
+                $('#demo-active-row').show();
+                $('#demo-rented-row').hide();
                 $('#demo-inactive-row').show();
             }
             else
             {
                 $('#demo-active-row').show();
                 $('#demo-inactive-row').hide();
+                $('#demo-rented-row').show();
             }
         });
 
@@ -205,6 +214,10 @@
             if(value == 1)
             {
                 return '<span class="label label-sm label-success">Đang kích hoạt</span>'
+            }
+            if(value == 2)
+            {
+                return '<span class="label label-sm label-danger">Đã cho thuê</span>'
             }
             else
             {
@@ -242,6 +255,39 @@
                 });
 //            });
         }
+
+        function rentedItems(items, e) {
+            if (e) e.preventDefault();
+                    {{--malert('Bạn có thật sự muốn kích hoạt {{$title}} này không?', 'Xác nhận kích hoạt {{$title}}', null, function () {--}}
+            var url = '{{ url("/panel-kht/asset/ajax-rented") }}';
+            var data = {
+                '_token': '{{ csrf_token() }}',
+                'ids': items
+            };
+
+            console.log(items);
+            $.post(url, data).done(function(data){
+                $('#demo-custom-toolbar').bootstrapTable('refresh');
+                $('#demo-active-row').prop('disabled', true);
+                $('#demo-inactive-row').prop('disabled', true);
+                $('#demo-delete-row').prop('disabled', true);
+                $('#demo-rented-row').prop('disabled', true);
+                if(data.rs == 1)
+                {
+                    $('#success_msg').html(data.msg);
+                    $('#success_div').show();
+                    $(window).scrollTop(0);
+                }
+                else
+                {
+                    $('#error_msg').html(data.msg);
+                    $("#error_div").show();
+                    $(window).scrollTop(0);
+                }
+            });
+//            });
+        }
+
 
         //---------------------------------
         function inactiveItems(items, e) {
@@ -368,6 +414,22 @@
                     activeItems(ids);
                 });
 
+
+            var $rented = $('#demo-rented-row');
+
+            $table.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function () {
+                $rented.prop('disabled', !$table.bootstrapTable('getSelections').length);
+            }).on('load-success.bs.table', function () {
+                var tooltip = $('.add-tooltip');
+                if (tooltip.length)tooltip.tooltip();
+            });
+
+            $rented.click(function () {
+                var ids = $.map($table.bootstrapTable('getSelections'), function (row) {
+                    return row.id;
+                });
+                rentedItems(ids);
+            });
                 //-------------------------------
 
                 var $inactive = $('#demo-inactive-row');

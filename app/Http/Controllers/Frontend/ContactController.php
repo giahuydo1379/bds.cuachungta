@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\Warehouse;
 use Illuminate\Http\Request;
+use App\Http\Requests\FeContactRequest;
 use App\Models\SlideShow;
 use App\Models\Asset;
 
@@ -22,8 +23,9 @@ class ContactController extends Controller
         return view('frontend.contact.index', $this->data);
     }
 
-    public function store(Request $request)
+    public function store(FeContactRequest $request)
     {
-
+        $data = $request->all();
+        dd($data);
     }
 }

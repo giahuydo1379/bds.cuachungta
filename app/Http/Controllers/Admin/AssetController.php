@@ -108,6 +108,10 @@ class AssetController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        if ($data['status'] == 2) {
+            unset($data['image']);
+            unset($data['product_images']);
+        }
 
         if (empty($data['image_url'])) {
             $data['image_url'] = config('app.url');
@@ -208,7 +212,10 @@ class AssetController extends Controller
         }
 
         $data = $request->all();
-
+        if ($data['status'] == 2) {
+            $data['image'] = null;
+            $data['product_images'] = null ;
+        }
         if (empty($data['image_url'])) {
             $data['image_url'] = config('app.url');
         }

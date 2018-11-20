@@ -213,9 +213,18 @@ class AssetController extends Controller
 
         $data = $request->all();
         if ($data['status'] == 2) {
+
+            if(file_exists ( public_path($data['image']) )){
+
+                unlink(public_path($data['image']) );
+            }
+
+
             $data['image'] = null;
             $data['product_images'] = null ;
+
         }
+
         if (empty($data['image_url'])) {
             $data['image_url'] = config('app.url');
         }

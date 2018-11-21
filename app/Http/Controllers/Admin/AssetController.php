@@ -218,6 +218,10 @@ class AssetController extends Controller
 
                 unlink(public_path($data['image']) );
             }
+            if(file_exists ( public_path($data['product_images']) )){
+
+                unlink(public_path($data['product_images']) );
+            }
 
 
             $data['image'] = null;
